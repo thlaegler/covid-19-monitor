@@ -1,0 +1,239 @@
+countryCode,country,acuteCareBedsAbsolute,acuteCareBedsPer100k,criticalCareBedsAbsolute,criticalCareBedsPer100k,criticalCareToAcuteCareRatio,fertilityRate,gdpAbsolute,gdpPerCapita,healthExpenditureOfGdp,healthExpenditurePerCapita,landArea,latitude,longitude,populationMedianAge,migrants,populationDensity,populationNetChange,populationYearlyChange,populationAbsolute,populationOver65,populationOver65Ratio,source,urbanPopulationRatio,worldPopulationShare
+AF,Afghanistan,,,,,,4.6,,,,,65286,33.0,65.0,18,-6292,60,886592,2.33,38928346,,,https://www.worldometers.info/world-population/population-by-country/,25.0,0.5
+AL,Albania,,,,,,1.6,,,,,274,41.1533,20.1683,36,-14,105,-312,-0.11,2877797,,,https://www.worldometers.info/world-population/population-by-country/,63.0,0.04
+DZ,Algeria,,,,,,3.1,,,,,2381740,28.0339,1.6596,29,-10,18,79799,1.85,43851044,,,https://www.worldometers.info/world-population/population-by-country/,73.0,0.56
+AS,American Samoa,,,,,,0.0,,,,,200,0.0,0.0,0,0,276,-121,-0.22,55191,,,https://www.worldometers.info/world-population/population-by-country/,88.0,0.0
+AD,Andorra,188,224.0,6,7.1,3.2,0.0,2893000000,34407,7.7,2883.0,470,42.5063,1.5218,0,0,164,123,0.16,77265,10044,13.0,https://www.worldometers.info/world-population/population-by-country/,88.0,0.0
+AO,Angola,,,,,,5.6,,,,,1246700,-11.2027,17.8739,17,6413,26,1040977,3.27,32866272,,,https://www.worldometers.info/world-population/population-by-country/,67.0,0.42
+AI,Anguilla,,,,,,0.0,,,,,90,0.0,0.0,0,0,167,134,0.9,15003,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+AG,Antigua and Barbuda,,,,,,2.0,,,,,440,17.0608,-61.7964,34,0,223,811,0.84,97929,,,https://www.worldometers.info/world-population/population-by-country/,26.0,0.0
+AR,Argentina,,,,,,2.3,,,,,2736690,-38.4161,-63.6167,32,48,17,415097,0.93,45195774,,,https://www.worldometers.info/world-population/population-by-country/,93.0,0.58
+AM,Armenia,,,,,,1.8,,,,,2847,40.0691,45.0382,35,-4998,104,5512,0.19,2963243,,,https://www.worldometers.info/world-population/population-by-country/,63.0,0.04
+AW,Aruba,,,,,,1.9,,,,,180,0.0,0.0,41,201,593,452,0.43,106766,,,https://www.worldometers.info/world-population/population-by-country/,44.0,0.0
+AU,Australia,128143,199.0,1794,8.94,1.4,1.8,1323000000000,51883,10.0,5188.0,7682300,-23.896921,134.802342,38,158246,3,296686,1.18,25499884,5666584,22.2,https://www.worldometers.info/world-population/population-by-country/,86.0,0.33
+AT,Austria,48446,635.0,1833,21.8,3.4,1.5,377382000000,44904,8.6,3604.0,82409,47.5162,14.5501,43,65,109,51296,0.57,9006398,1639164,18.2,https://www.worldometers.info/world-population/population-by-country/,57.0,0.12
+AZ,Azerbaijan,,,,,,2.1,,,,,82658,40.1431,47.5769,32,12,123,91459,0.91,10139177,,,https://www.worldometers.info/world-population/population-by-country/,56.0,0.13
+BS,Bahamas,,,,,,1.8,,,,,1001,25.0343,-77.3963,32,1,39,3762,0.97,393244,,,https://www.worldometers.info/world-population/population-by-country/,86.0,0.01
+BH,Bahrain,,,,,,2.0,,,,,760,26.0275,50.55,32,478,2239,60403,3.68,1701575,,,https://www.worldometers.info/world-population/population-by-country/,89.0,0.02
+BD,Bangladesh,32611,20.0,1174,0.7,3.6,2.1,257572548118,1564,2.4,34.0,13017,23.685,90.3563,28,-369501,1265,1643222,1.01,164689383,10260149,6.23,https://www.worldometers.info/world-population/population-by-country/,39.0,2.11
+BB,Barbados,,,,,,1.6,,,,,430,13.1939,-59.5432,40,-79,668,350,0.12,287375,,,https://www.worldometers.info/world-population/population-by-country/,31.0,0.0
+BY,Belarus,,,,,,1.7,,,,,20291,53.7098,27.9534,40,873,47,-3088,-0.03,9449323,,,https://www.worldometers.info/world-population/population-by-country/,79.0,0.12
+BE,Belgium,50156,456.0,1755,15.9,3.5,1.7,467779000000,42498,8.2,3310.0,3028,50.8333,4.0,42,48,383,50295,0.44,11589623,2086132,18.0,https://www.worldometers.info/world-population/population-by-country/,98.0,0.15
+BZ,Belize,,,,,,2.3,,,,,2281,0.0,0.0,25,12,17,7275,1.86,397628,,,https://www.worldometers.info/world-population/population-by-country/,46.0,0.01
+BJ,Benin,,,,,,4.9,,,,,11276,9.3077,2.3158,19,-2,108,322049,2.73,12123200,,,https://www.worldometers.info/world-population/population-by-country/,48.0,0.16
+BM,Bermuda,,,,,,0.0,,,,,50,0.0,0.0,0,0,1246,-228,-0.36,62278,,,https://www.worldometers.info/world-population/population-by-country/,97.0,0.0
+BT,Bhutan,,,,,,2.0,,,,,38117,27.5142,90.4336,28,320,20,8516,1.12,771608,,,https://www.worldometers.info/world-population/population-by-country/,46.0,0.01
+BO,Bolivia,,,,,,2.8,,,,,1083300,-16.2902,-63.5887,26,-9504,11,159921,1.39,11673021,,,https://www.worldometers.info/world-population/population-by-country/,69.0,0.15
+BA,Bosnia and Herzegovina,,,,,,1.3,,,,,51,43.9159,17.6791,43,-21585,64,-20181,-0.61,3280819,,,https://www.worldometers.info/world-population/population-by-country/,52.0,0.04
+BW,Botswana,,,,,,2.9,,,,,56673,0.0,0.0,24,3,4,4793,2.08,2351627,,,https://www.worldometers.info/world-population/population-by-country/,73.0,0.03
+BR,Brazil,467630,220.0,36000,16.93,7.69,1.7,2056000000000,9673,8.3,1165.37,8358140,-14.235,-51.9253,33,212,25,1509890,0.72,212559417,18960300,8.92,https://www.worldometers.info/world-population/population-by-country/,88.0,2.73
+VG,British Virgin Islands,,,,,,0.0,,,,,150,0.0,0.0,0,0,202,201,0.67,30231,,,https://www.worldometers.info/world-population/population-by-country/,52.0,0.0
+BN,Brunei,1234,282.0,58,13.1,4.7,1.8,12499698111,28572,2.3,631.0,527,4.5353,114.7277,32,0,83,4194,0.97,437479,21174,4.84,https://www.worldometers.info/world-population/population-by-country/,80.0,0.01
+BG,Bulgaria,57460,766.0,913,12.2,1.6,1.6,47702000000,6356,4.4,302.0,10856,42.7339,25.4858,45,-48,64,-51674,-0.74,6948445,1264617,18.2,https://www.worldometers.info/world-population/population-by-country/,76.0,0.09
+BF,Burkina Faso,,,,,,5.2,,,,,2736,12.2383,-1.5616,18,-25,76,581895,2.86,20903273,,,https://www.worldometers.info/world-population/population-by-country/,31.0,0.27
+BI,Burundi,,,,,,5.5,,,,,2568,0.0,0.0,17,2001,463,360204,3.12,11890784,,,https://www.worldometers.info/world-population/population-by-country/,14.0,0.15
+CV,Cabo Verde,,,,,,2.3,,,,,403,16.5388,-23.0418,28,-1342,138,6052,1.1,555987,,,https://www.worldometers.info/world-population/population-by-country/,68.0,0.01
+KH,Cambodia,,,,,,2.5,,,,,17652,11.55,104.9167,26,-30,95,232423,1.41,16718965,,,https://www.worldometers.info/world-population/population-by-country/,24.0,0.21
+CM,Cameroon,,,,,,4.6,,,,,47271,3.848,11.5021,19,-48,56,669483,2.59,26545863,,,https://www.worldometers.info/world-population/population-by-country/,56.0,0.34
+CA,Canada,93235,405.0,3170,9.5,3.4,1.5,1653000000000,43797,11.6,5168.0,9093510,64.8255,-124.8457,41,242032,4,331107,0.89,37742154,5887776,15.6,https://www.worldometers.info/world-population/population-by-country/,81.0,0.48
+BQ,Caribbean Netherlands,,,,,,0.0,,,,,328,0.0,0.0,0,0,80,244,0.94,26223,,,https://www.worldometers.info/world-population/population-by-country/,75.0,0.0
+KY,Cayman Islands,,,,,,0.0,,,,,240,0.0,0.0,0,0,274,774,1.19,65722,,,https://www.worldometers.info/world-population/population-by-country/,97.0,0.0
+CF,Central African Republic,,,,,,4.8,,,,,62298,6.6111,20.9394,18,-40,8,84582,1.78,4829767,,,https://www.worldometers.info/world-population/population-by-country/,43.0,0.06
+TD,Chad,,,,,,5.8,,,,,1259200,15.4542,18.7322,17,2,13,478988,3.0,16425864,,,https://www.worldometers.info/world-population/population-by-country/,23.0,0.21
+CL,Chile,,,,,,1.7,,,,,743532,-35.6751,-71.543,35,111708,26,164163,0.87,19116201,,,https://www.worldometers.info/world-population/population-by-country/,85.0,0.25
+CN,China,5494778,262.0,49453,3.6,0.9,1.7,14062193291520,9770,5.0,489.0,9388211,33.882,113.614,38,-348399,153,5540090,0.39,1439323776,71966189,5.0,https://www.worldometers.info/world-population/population-by-country/,61.0,18.47
+CO,Colombia,,,,,,1.8,,,,,1109500,4.5709,-74.2973,31,204796,46,543448,1.08,50882891,,,https://www.worldometers.info/world-population/population-by-country/,80.0,0.65
+KM,Comoros,,,,,,4.2,,,,,1861,0.0,0.0,20,-2,467,18715,2.2,869601,,,https://www.worldometers.info/world-population/population-by-country/,29.0,0.01
+CD,Congo,,,,,,4.5,,,,,3415,-4.0383,21.7587,19,-4,16,137579,2.56,5518087,,,https://www.worldometers.info/world-population/population-by-country/,70.0,0.07
+CK,Cook Islands,,,,,,0.0,,,,,240,0.0,0.0,0,0,73,16,0.09,17564,,,https://www.worldometers.info/world-population/population-by-country/,75.0,0.0
+CR,Costa Rica,,,,,,1.8,,,,,5106,9.7489,-83.7534,33,42,100,46557,0.92,5094118,,,https://www.worldometers.info/world-population/population-by-country/,80.0,0.07
+CI,Cote d'Ivoire,,,,,,4.7,,,,,318,7.54,-5.5471,19,-8,83,66173,2.57,26378274,,,https://www.worldometers.info/world-population/population-by-country/,51.0,0.34
+HR,Croatia,15629,353.0,650,14.7,4.2,1.4,60834000000,13745,7.8,1156.0,5596,45.1,15.2,44,-8001,73,-25037,-0.61,4105267,693790,16.9,https://www.worldometers.info/world-population/population-by-country/,58.0,0.05
+,Diamond Princess Cruise Ship,,,,,,,,,,,,35.4437,139.6380,,,,,,,,,,,
+CU,Cuba,,,,,,1.6,,,,,10644,22.0,-80.0,42,-144,106,-6867,-0.06,11326616,,,https://www.worldometers.info/world-population/population-by-country/,78.0,0.15
+CW,Curaçao,,,,,,1.8,,,,,444,0.0,0.0,42,515,370,669,0.41,164093,,,https://www.worldometers.info/world-population/population-by-country/,89.0,0.0
+CY,Cyprus,2813,350.0,92,11.4,3.3,1.3,23174000000,28808,6.0,1152.0,924,35.1264,33.4299,37,5,131,8784,0.73,1207359,125565,10.4,https://www.worldometers.info/world-population/population-by-country/,67.0,0.02
+CZ,Czech Republic,91068,865.0,1227,11.6,1.3,1.6,192030000000,18232,6.9,1237.0,7724,49.8175,15.473,43,22011,139,19772,0.18,10708981,1745564,16.3,https://www.worldometers.info/world-population/population-by-country/,74.0,0.14
+DK,Denmark,17124,308.0,372,6.7,2.2,1.8,309866000000,55725,9.8,5243.0,4243,56.2639,9.5018,42,152,137,20326,0.35,5792202,990467,17.1,https://www.worldometers.info/world-population/population-by-country/,88.0,0.07
+DJ,Djibouti,,,,,,2.8,,,,,2318,11.8251,42.5903,27,900,43,1444,1.48,988,,,https://www.worldometers.info/world-population/population-by-country/,79.0,0.01
+DM,Dominica,,,,,,0.0,,,,,750,0.0,0.0,0,0,96,178,0.25,71986,,,https://www.worldometers.info/world-population/population-by-country/,74.0,0.0
+DO,Dominican Republic,,,,,,2.4,,,,,4832,18.7357,-70.1627,28,-30,225,108952,1.01,10847910,,,https://www.worldometers.info/world-population/population-by-country/,85.0,0.14
+EC,Ecuador,,,,,,2.4,,,,,24836,-1.8312,-78.1834,28,364,71,269392,1.55,17643054,,,https://www.worldometers.info/world-population/population-by-country/,63.0,0.23
+EG,Egypt,,,,,,3.3,,,,,99545,26.0,30.0,25,-38033,103,1946331,1.94,102334404,,,https://www.worldometers.info/world-population/population-by-country/,43.0,1.31
+SV,El Salvador,,,,,,2.1,,,,,2072,13.7942,-88.8965,28,-40539,313,32652,0.51,6486205,,,https://www.worldometers.info/world-population/population-by-country/,73.0,0.08
+GQ,Equatorial Guinea,,,,,,4.6,,,,,2805,1.5,10.0,22,16,50,46999,3.47,1402985,,,https://www.worldometers.info/world-population/population-by-country/,73.0,0.02
+ER,Eritrea,,,,,,4.1,,,,,101,15.1794,39.7823,19,-39858,35,49304,1.41,3546421,,,https://www.worldometers.info/world-population/population-by-country/,63.0,0.05
+EE,Estonia,5096,380.0,196,14.6,3.8,1.6,19253000000,14366,5.3,769.0,4239,58.5953,25.0136,42,3911,31,887,0.07,1326535,234797,17.7,https://www.worldometers.info/world-population/population-by-country/,68.0,0.02
+SZ,Eswatini,,,,,,3.0,,,,,172,-26.5225,31.4659,21,-8353,67,12034,1.05,1160164,,,https://www.worldometers.info/world-population/population-by-country/,30.0,0.01
+ET,Ethiopia,,,,,,4.3,,,,,1000000,9.145,40.4897,19,30,115,2884858,2.57,114963588,,,https://www.worldometers.info/world-population/population-by-country/,21.0,1.47
+FO,Faeroe Islands,,,,,,0.0,,,,,1396,0.0,0.0,0,0,35,185,0.38,48863,,,https://www.worldometers.info/world-population/population-by-country/,43.0,0.0
+FK,Falkland Islands,,,,,,0.0,,,,,1217,0.0,0.0,0,0,0,103,3.05,348,,,https://www.worldometers.info/world-population/population-by-country/,66.0,0.0
+FJ,Fiji,,,,,,2.8,,,,,1827,-17.7134,178.065,28,-6202,49,6492,0.73,896445,,,https://www.worldometers.info/world-population/population-by-country/,59.0,0.01
+FI,Finland,12654,231.0,329,6.1,2.6,1.5,239177000000,44496,6.8,2935.0,30389,64.0,26.0,43,14,18,8564,0.15,5540720,986248,17.8,https://www.worldometers.info/world-population/population-by-country/,86.0,0.07
+FR,France,232821,358.0,7540,11.6,3.2,1.9,2562742000000,39381,9.2,3612.0,547557,46.2276,2.2137,42,36527,119,143783,0.22,65273511,10965950,16.8,https://www.worldometers.info/world-population/population-by-country/,82.0,0.84
+GF,French Guiana,,,,,,3.4,,,,,822,0.0,0.0,25,12,4,785,2.7,298682,,,https://www.worldometers.info/world-population/population-by-country/,87.0,0.0
+PF,French Polynesia,,,,,,2.0,,,,,366,0.0,0.0,34,-1,77,1621,0.58,280908,,,https://www.worldometers.info/world-population/population-by-country/,64.0,0.0
+GA,Gabon,,,,,,4.0,,,,,25767,-0.8037,11.6094,23,326,9,53155,2.45,2225734,,,https://www.worldometers.info/world-population/population-by-country/,87.0,0.03
+GM,Gambia,,,,,,5.3,,,,,1012,13.4432,-15.3101,18,-3087,239,68962,2.94,2416668,,,https://www.worldometers.info/world-population/population-by-country/,59.0,0.03
+GE,Georgia,,,,,,2.1,,,,,6949,42.3154,43.3569,38,-10,57,-7598,-0.19,3989167,,,https://www.worldometers.info/world-population/population-by-country/,58.0,0.05
+DE,Germany,469791,575.0,23890,29.2,5.1,1.6,3286451000000,40202,8.9,3491.0,34856,51.0,9.0,46,543822,240,266897,0.32,83783942,17259492,20.6,https://www.worldometers.info/world-population/population-by-country/,76.0,1.07
+GH,Ghana,,,,,,3.9,,,,,22754,7.9465,-1.0232,22,-10,137,655084,2.15,31072940,,,https://www.worldometers.info/world-population/population-by-country/,57.0,0.4
+GI,Gibraltar,,,,,,0.0,,,,,10,0.0,0.0,0,0,3369,-10,-0.03,33691,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+GR,Greece,44411,392.0,680,6.0,1.5,1.3,305415000000,26957,5.8,1700.0,1289,39.0742,21.8243,46,-16,81,-50401,-0.48,10423054,2042919,19.6,https://www.worldometers.info/world-population/population-by-country/,85.0,0.13
+GL,Greenland,,,,,,0.0,,,,,41045,0.0,0.0,0,0,0,98,0.17,5677,,,https://www.worldometers.info/world-population/population-by-country/,87.0,0.0
+GD,Grenada,,,,,,2.1,,,,,340,0.0,0.0,32,-200,331,520,0.46,112523,,,https://www.worldometers.info/world-population/population-by-country/,35.0,0.0
+GP,Guadeloupe,,,,,,2.2,,,,,169,0.0,0.0,44,-144,237,68,0.02,400124,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.01
+GU,Guam,,,,,,2.3,,,,,540,0.0,0.0,31,-506,313,1481,0.89,168775,,,https://www.worldometers.info/world-population/population-by-country/,95.0,0.0
+GT,Guatemala,,,,,,2.9,,,,,10716,15.7835,-90.2308,23,-9215,167,334096,1.9,17915568,,,https://www.worldometers.info/world-population/population-by-country/,52.0,0.23
+GN,Guinea,,,,,,4.7,,,,,24572,9.9456,-9.6966,18,-4,53,361549,2.83,13132795,,,https://www.worldometers.info/world-population/population-by-country/,39.0,0.17
+GW,Guinea-Bissau,,,,,,4.5,,,,,2812,0.0,0.0,19,-1399,70,47079,2.45,1968001,,,https://www.worldometers.info/world-population/population-by-country/,45.0,0.03
+GY,Guyana,,,,,,2.5,,,,,19685,5.0,-58.75,27,-6,4,3786,0.48,786552,,,https://www.worldometers.info/world-population/population-by-country/,27.0,0.01
+HT,Haiti,,,,,,3.0,,,,,2756,18.9712,-72.2852,24,-35,414,139451,1.24,11402528,,,https://www.worldometers.info/world-population/population-by-country/,57.0,0.15
+VA,Holy See,,,,,,0.0,,,,,0,41.9029,12.4534,0,0,2003,2,0.25,801,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+HN,Honduras,,,,,,2.5,,,,,11189,15.2,-86.2419,24,-68,89,15849,1.63,9904607,,,https://www.worldometers.info/world-population/population-by-country/,57.0,0.13
+HK,Hong Kong,17205,229.0,511,7.1,2.7,1.3,346514210311,46221,5.9,2462.0,105,22.345086,114.160452,45,29308,714,60827,0.82,7496981,1239251,16.53,https://www.worldometers.info/world-population/population-by-country/,0.0,0.1
+HU,Hungary,41574,416.0,1374,13.8,3.3,1.5,130421000000,13060,5.2,702.0,9053,47.1625,19.5033,43,6,107,-24328,-0.25,9660351,1632599,16.9,https://www.worldometers.info/world-population/population-by-country/,72.0,0.12
+IS,Iceland,1160,367.0,29,9.1,2.5,1.8,12594000000,39548,7.9,2916.0,10025,64.9631,-19.0208,37,380,3,2212,0.65,341243,43338,12.7,https://www.worldometers.info/world-population/population-by-country/,94.0,0.0
+IN,India,1034379,75.0,29997,2.3,3.7,2.2,2733788686685,1981,3.6,71.0,2973190,21.0,78.0,28,-532687,464,13586631,0.99,1380004385,85284271,6.18,https://www.worldometers.info/world-population/population-by-country/,35.0,17.7
+ID,Indonesia,262741,96.0,7094,2.7,2.3,2.3,1049485493630,3837,3.1,119.0,1811570,-0.7893,113.9213,30,-98955,151,2898047,1.07,273523615,19174006,7.01,https://www.worldometers.info/world-population/population-by-country/,56.0,3.51
+IR,Iran,130690,156.0,3790,4.6,2.9,2.2,472628324023,5627,8.1,456.0,1628550,32.0,53.0,32,-55,52,1079043,1.3,83992949,4602814,5.48,https://www.worldometers.info/world-population/population-by-country/,76.0,1.08
+IQ,Iraq,,,,,,3.7,,,,,43432,33.0,44.0,21,7834,93,91271,2.32,40222493,,,https://www.worldometers.info/world-population/population-by-country/,73.0,0.52
+IE,Ireland,12042,272,289,6.5,2.4,1.8,206985000000,46200,7.2,3018.0,6889,53.1424,-7.6921,38,23604,72,55291,1.13,4937786,572783,11.6,https://www.worldometers.info/world-population/population-by-country/,63.0,0.06
+IM,Isle of Man,,,,,,0.0,,,,,570,0.0,0.0,0,0,149,449,0.53,85033,,,https://www.worldometers.info/world-population/population-by-country/,53.0,0.0
+IL,Israel,,,,,,3.0,,,,,2164,31.0,35.0,30,10,400,136158,1.6,8655535,,,https://www.worldometers.info/world-population/population-by-country/,93.0,0.11
+IT,Italy,201932,333.0,7550,12.5,3.7,1.3,2055114000000,33898,7.4,2515.0,29414,43.0,12.0,47,148943,206,-88249,-0.15,60461826,12273751,20.3,https://www.worldometers.info/world-population/population-by-country/,69.0,0.78
+JM,Jamaica,,,,,,2.0,,,,,1083,18.1096,-77.2975,31,-11332,273,12888,0.44,2961167,,,https://www.worldometers.info/world-population/population-by-country/,55.0,0.04
+JP,Japan,710846,562.0,9241,7.3,1.3,1.4,4848095703052,38332,10.9,4178.0,364555,36.0,138.0,48,7156,347,-38384,-0.3,126476461,32757403,25.9,https://www.worldometers.info/world-population/population-by-country/,92.0,1.62
+JO,Jordan,,,,,,2.8,,,,,8878,31.24,36.51,24,1022,115,10144,1.0,10203134,,,https://www.worldometers.info/world-population/population-by-country/,91.0,0.13
+KZ,Kazakhstan,101231,539.0,3948,21.3,3.9,2.8,169559672756,9030,3.5,262.0,2699700,48.0196,66.9237,31,-18,7,22528,1.21,18776707,1436418,7.65,https://www.worldometers.info/world-population/population-by-country/,58.0,0.24
+KE,Kenya,,,,,,3.5,,,,,56914,-0.0236,37.9062,20,-10,94,1197323,2.28,53771296,,,https://www.worldometers.info/world-population/population-by-country/,28.0,0.69
+KI,Kiribati,,,,,,3.6,,,,,810,0.0,0.0,23,-800,147,1843,1.57,119449,,,https://www.worldometers.info/world-population/population-by-country/,57.0,0.0
+KW,Kuwait,,,,,,2.1,,,,,1782,29.5,47.75,37,3952,240,63488,1.51,4270571,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.05
+KG,Kyrgyzstan,,,,,,3.0,,,,,1918,41.2044,74.7661,26,-4,34,108345,1.69,6524195,,,https://www.worldometers.info/world-population/population-by-country/,36.0,0.08
+LA,Laos,,,,,,2.7,,,,,2308,0.0,0.0,24,-14704,32,106105,1.48,7275560,,,https://www.worldometers.info/world-population/population-by-country/,36.0,0.09
+LV,Latvia,12056,531.0,217,9.7,1.8,1.7,24013000000,10770,8.1,1031.0,622,56.8796,24.6032,44,-14837,30,-20545,-1.08,1886198,318767,16.9,https://www.worldometers.info/world-population/population-by-country/,69.0,0.02
+LB,Lebanon,,,,,,2.1,,,,,1023,33.8547,35.8623,30,-30012,667,-30268,-0.44,6825445,,,https://www.worldometers.info/world-population/population-by-country/,78.0,0.09
+LS,Lesotho,,,,,,3.2,,,,,3036,0.0,0.0,24,-10047,71,16981,0.8,2142249,,,https://www.worldometers.info/world-population/population-by-country/,31.0,0.03
+LR,Liberia,,,,,,4.4,,,,,9632,6.4281,-9.4295,19,-5,53,120307,2.44,5057681,,,https://www.worldometers.info/world-population/population-by-country/,53.0,0.06
+LY,Libya,,,,,,2.3,,,,,1759540,0.0,0.0,29,-1999,4,9384,1.38,6871292,,,https://www.worldometers.info/world-population/population-by-country/,78.0,0.09
+LI,Liechtenstein,,,,,,0.0,,,,,160,47.14,9.55,0,0,238,109,0.29,38128,,,https://www.worldometers.info/world-population/population-by-country/,15.0,0.0
+LT,Lithuania,17310,526.0,502,15.5,2.9,1.7,36370000000,11209,7.8,1042.0,62674,55.1694,23.8813,45,-3278,43,-37338,-1.35,2722289,449178,16.5,https://www.worldometers.info/world-population/population-by-country/,71.0,0.03
+LU,Luxembourg,,,,,,1.5,,,,,259,49.8153,6.1296,40,9741,242,10249,1.66,625978,,,https://www.worldometers.info/world-population/population-by-country/,88.0,0.01
+MO,Macao,,,,,,1.2,,,,,30,22.1667,113.5500,39,5,21645,889,1.39,649335,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.01
+MG,Madagascar,,,,,,4.1,,,,,581795,-18.7669,46.8691,20,-15,48,721711,2.68,27691018,,,https://www.worldometers.info/world-population/population-by-country/,39.0,0.36
+MW,Malawi,,,,,,4.3,,,,,9428,0.0,0.0,18,-16053,203,501205,2.69,19129952,,,https://www.worldometers.info/world-population/population-by-country/,18.0,0.25
+MY,Malaysia,62353,193.0,1060,3.4,1.7,2.0,327465260502,10118,3.8,362.0,32855,2.5,112.5,30,50,99,416222,1.3,32365999,1974326,6.1,https://www.worldometers.info/world-population/population-by-country/,78.0,0.42
+MV,Maldives,,,,,,1.9,,,,,300,3.2028,73.2207,30,1137,1802,9591,1.81,540544,,,https://www.worldometers.info/world-population/population-by-country/,35.0,0.01
+ML,Mali,,,,,,5.9,,,,,1220190,0.0,0.0,16,-40,17,592802,3.02,20250833,,,https://www.worldometers.info/world-population/population-by-country/,44.0,0.26
+MT,Malta,,,,,,1.5,,,,,320,35.9375,14.3754,43,900,138,1171,0.27,441543,,,https://www.worldometers.info/world-population/population-by-country/,93.0,0.01
+MH,Marshall Islands,,,,,,0.0,,,,,180,0.0,0.0,0,0,329,399,0.68,5919,,,https://www.worldometers.info/world-population/population-by-country/,70.0,0.0
+MQ,Martinique,,,,,,1.9,,,,,106,14.6415,-61.0242,47,-960,354,-289,-0.08,375265,,,https://www.worldometers.info/world-population/population-by-country/,92.0,0.0
+MR,Mauritania,,,,,,4.6,,,,,1030700,21.0079,10.9408,20,5,5,123962,2.74,4649658,,,https://www.worldometers.info/world-population/population-by-country/,57.0,0.06
+MU,Mauritius,,,,,,1.4,,,,,203,-20.2,57.5,37,0,626,21,0.17,1271768,,,https://www.worldometers.info/world-population/population-by-country/,41.0,0.02
+YT,Mayotte,,,,,,3.7,,,,,375,0.0,0.0,20,0,728,6665,2.5,272815,,,https://www.worldometers.info/world-population/population-by-country/,46.0,0.0
+MX,Mexico,,,,,,2.1,,,,,1943950,23.6345,-102.5528,29,-60,66,1357224,1.06,128932753,,,https://www.worldometers.info/world-population/population-by-country/,84.0,1.65
+FM,Micronesia,,,,,,3.1,,,,,700,0.0,0.0,24,-600,164,1208,1.06,115023,,,https://www.worldometers.info/world-population/population-by-country/,21.0,0.0
+MD,Moldova,,,,,,1.3,,,,,3285,47.4116,28.3699,38,-1387,123,-93,-0.23,4033963,,,https://www.worldometers.info/world-population/population-by-country/,43.0,0.05
+MC,Monaco,,,,,,0.0,,,,,1,43.7333,7.4167,0,0,26337,278,0.71,39242,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+MN,Mongolia,10840,331.0,271,8.8,2.5,2.9,12037716966,3672,3.8,140.7,1553560,46.8625,103.8467,28,-852,2,53123,1.65,3278290,140639,4.29,https://www.worldometers.info/world-population/population-by-country/,67.0,0.04
+ME,Montenegro,,,,,,1.8,,,,,1345,42.5,19.3,39,-480,47,79,0.01,628066,,,https://www.worldometers.info/world-population/population-by-country/,68.0,0.01
+MS,Montserrat,,,,,,0.0,,,,,100,0.0,0.0,0,0,50,3,0.06,4992,,,https://www.worldometers.info/world-population/population-by-country/,10.0,0.0
+MA,Morocco,,,,,,2.4,,,,,4463,31.7917,-7.0926,30,-51419,83,438791,1.2,36910560,,,https://www.worldometers.info/world-population/population-by-country/,64.0,0.47
+MZ,Mozambique,,,,,,4.9,,,,,78638,0.0,0.0,18,-5,40,889399,2.93,31255435,,,https://www.worldometers.info/world-population/population-by-country/,38.0,0.4
+MM,Myanmar,53273,98.0,586,1.0,1.1,2.2,68003000334,1250,5.1,62.0,65329,0.0,0.0,29,-163313,83,36438,0.67,54409800,3008862,5.53,https://www.worldometers.info/world-population/population-by-country/,31.0,0.7
+NA,Namibia,,,,,,3.4,,,,,82329,-22.9576,18.4904,22,-4806,3,46375,1.86,2540905,,,https://www.worldometers.info/world-population/population-by-country/,55.0,0.03
+NR,Nauru,,,,,,0.0,,,,,20,0.0,0.0,0,0,541,68,0.63,10824,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+NP,Nepal,,,,,,1.9,,,,,14335,28.1667,84.25,25,4171,203,528098,1.85,29136808,,,https://www.worldometers.info/world-population/population-by-country/,21.0,0.37
+NL,Netherlands,56053,337.0,1065,6.4,1.9,1.7,780668000000,46873,5.5,2506.0,3372,52.1326,5.2913,43,16,508,37742,0.22,17134872,2673040,15.6,https://www.worldometers.info/world-population/population-by-country/,92.0,0.22
+NC,New Caledonia,,,,,,2.0,,,,,1828,0.0,0.0,34,502,16,2748,0.97,285498,,,https://www.worldometers.info/world-population/population-by-country/,72.0,0.0
+NZ,New Zealand,32714,147.0,229,5.53,0.7,1.9,205900000000,42698,9.5,4056.0,26331,-40.9006,174.886,38,14881,18,3917,0.82,4822233,1071500,22.2,https://www.worldometers.info/world-population/population-by-country/,87.0,0.06
+NI,Nicaragua,,,,,,2.4,,,,,12034,12.8654,-85.2072,26,-21272,55,79052,1.21,6624554,,,https://www.worldometers.info/world-population/population-by-country/,57.0,0.08
+NE,Niger,,,,,,7.0,,,,,1266700,17.6078,8.0817,15,4,19,895929,3.84,24206644,,,https://www.worldometers.info/world-population/population-by-country/,17.0,0.31
+NG,Nigeria,,,,,,5.4,,,,,91077,9.082,8.6753,18,-60,226,5175990,2.58,206139589,,,https://www.worldometers.info/world-population/population-by-country/,52.0,2.64
+NU,Niue,,,,,,0.0,,,,,260,0.0,0.0,0,0,6,11,0.68,1626,,,https://www.worldometers.info/world-population/population-by-country/,46.0,0.0
+KP,North Korea,,,,,,1.9,,,,,12041,0.0,0.0,35,-5403,214,112655,0.44,25778816,,,https://www.worldometers.info/world-population/population-by-country/,63.0,0.33
+MK,North Macedonia,,,,,,1.5,,,,,2522,41.6086,21.7453,39,-1,83,-85,0.0,2083374,,,https://www.worldometers.info/world-population/population-by-country/,59.0,0.03
+MP,Northern Mariana Islands,,,,,,0.0,,,,,460,0.0,0.0,0,0,125,343,0.6,57559,,,https://www.worldometers.info/world-population/population-by-country/,88.0,0.0
+NO,Norway,13621,277.0,395,8.0,2.9,1.7,412990000000,83936,8.1,9405.0,365268,60.472,8.4689,40,28,15,42384,0.79,5421241,867399,16.0,https://www.worldometers.info/world-population/population-by-country/,83.0,0.07
+OM,Oman,5736,112.0,499,14.6,8.7,2.9,77469303739,15170,4.3,648.0,3095,21.0,57.0,31,874,16,13164,2.65,5106626,178221,3.49,https://www.worldometers.info/world-population/population-by-country/,87.0,0.07
+PK,Pakistan,125680,57.0,3142,1.5,2.5,3.6,324013720006,1467,2.8,524.0,77088,30.3753,69.3451,23,-233379,287,4327022,2.0,220892340,9895977,4.48,https://www.worldometers.info/world-population/population-by-country/,35.0,2.83
+PW,Palau,,,,,,0.0,,,,,460,0.0,0.0,0,0,39,86,0.48,18094,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+PS,Palestine,,,,,,3.70,,,,,602,31.9522,35.2332,21,-10563,847,119994,2.41,5101414,,,https://www.worldometers.info/world-population/population-by-country/,80.0,0.07
+PA,Panama,,,,,,2.5,,,,,7434,8.538,-80.7821,30,112,58,68328,1.61,4314767,,,https://www.worldometers.info/world-population/population-by-country/,68.0,0.06
+PG,Papua New Guinea,,,,,,3.6,,,,,45286,-6.315,143.9555,22,-800,20,170915,1.95,8947024,,,https://www.worldometers.info/world-population/population-by-country/,13.0,0.11
+PY,Paraguay,,,,,,2.4,,,,,3973,-23.4425,-58.4438,26,-16556,18,87902,1.25,7132538,,,https://www.worldometers.info/world-population/population-by-country/,62.0,0.09
+PE,Peru,,,,,,2.3,,,,,1280000,-9.19,-75.0152,31,99069,26,461401,1.42,32971854,,,https://www.worldometers.info/world-population/population-by-country/,79.0,0.42
+PH,Philippines,63108,58.0,2335,2.2,3.7,2.6,326770774596,2982,4.4,131.0,29817,13.0,122.0,26,-67152,368,1464463,1.35,109581078,4920190,4.49,https://www.worldometers.info/world-population/population-by-country/,47.0,1.41
+PL,Poland,155000,410.0,2635,6.9,1.7,1.4,469401000000,12288,5.3,2340.0,30623,51.9194,19.1451,42,-29395,124,-41157,-0.11,37846611,5184986,13.7,https://www.worldometers.info/world-population/population-by-country/,60.0,0.49
+PT,Portugal,32214,298.0,451,4.2,1.4,1.3,229154000000,21543,5.7,3943.0,9159,39.3999,-8.2245,46,-6,111,-29478,-0.29,10196709,1835408,18.0,https://www.worldometers.info/world-population/population-by-country/,66.0,0.13
+PR,Puerto Rico,,,,,,1.2,,,,,887,0.0,0.0,44,-97986,323,-72555,-2.47,2860853,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.04
+QA,Qatar,,,,,,1.9,,,,,1161,25.3548,51.1839,32,40,248,48986,1.73,2881053,,,https://www.worldometers.info/world-population/population-by-country/,96.0,0.04
+CG,Republic of Congo,,,,,,6.0,,,,,2267050,-4.0383,21.7587,17,23861,40,2770836,3.19,89561403,,,https://www.worldometers.info/world-population/population-by-country/,46.0,1.15
+RE,Reunion,,,,,,2.3,,,,,25,0.0,0.0,36,-1256,358,6385,0.72,895312,,,https://www.worldometers.info/world-population/population-by-country/,100.0,0.01
+RO,Romania,108905,507.0,4574,21.4,4.2,1.6,161629000000,7548,5.4,1556.0,23017,45.9432,24.9668,43,-73999,84,-126866,-0.66,19237691,2847178,14.8,https://www.worldometers.info/world-population/population-by-country/,55.0,0.25
+RU,Russia,805000,552,12113,8.3,1.504665881,1.8,1578000000000,10813,5.3,573.0,16376870,60.0,90.0,40,182456,9,62206,0.04,145934462,21408586,14.67,https://www.worldometers.info/world-population/population-by-country/,74.0,1.87
+RW,Rwanda,,,,,,4.1,,,,,2467,-1.9403,29.8739,20,-9,525,325268,2.58,12952218,,,https://www.worldometers.info/world-population/population-by-country/,18.0,0.17
+,Saint Barthelemy,,,,,,0.0,,,,,21,0.0,0.0,0,0,470,30,0.3,9877,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+,Saint Helena,,,,,,0.0,,,,,390,0.0,0.0,0,0,16,18,0.3,6077,,,https://www.worldometers.info/world-population/population-by-country/,27.0,0.0
+,Saint Kitts & Nevis,,,,,,0.0,,,,,260,0.0,0.0,0,0,205,376,0.71,53199,,,https://www.worldometers.info/world-population/population-by-country/,33.0,0.0
+LC,Saint Lucia,,,,,,1.4,,,,,610,13.9094,-60.9789,34,0,301,837,0.46,183627,,,https://www.worldometers.info/world-population/population-by-country/,19.0,0.0
+,Saint Martin,,,,,,0.0,,,,,53,0.0,0.0,0,0,730,664,1.75,38666,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+,Saint Pierre & Miquelon,,,,,,0.0,,,,,230,0.0,0.0,0,0,25,-28,-0.48,5794,,,https://www.worldometers.info/world-population/population-by-country/,100.0,0.0
+WS,Samoa,,,,,,3.9,,,,,283,0.0,0.0,22,-2803,70,1317,0.67,198414,,,https://www.worldometers.info/world-population/population-by-country/,18.0,0.0
+SM,San Marino,,,,,,0.0,,,,,60,43.9424,12.4578,0,0,566,71,0.21,33931,,,https://www.worldometers.info/world-population/population-by-country/,97.0,0.0
+ST,Sao Tome & Principe,,,,,,4.4,,,,,960,0.0,0.0,19,-168,228,4103,1.91,219159,,,https://www.worldometers.info/world-population/population-by-country/,74.0,0.0
+SA,Saudi Arabia,70815,203.0,6515,22.8,9.2,2.3,724258720678,20804,5.7,1147.0,2149690,24.0,45.0,32,134979,16,545343,1.59,34813871,1197597,3.44,https://www.worldometers.info/world-population/population-by-country/,84.0,0.45
+SN,Senegal,,,,,,4.7,,,,,19253,14.4974,-14.4524,19,-20,87,447563,2.75,16743927,,,https://www.worldometers.info/world-population/population-by-country/,49.0,0.21
+RS,Serbia,,,,,,1.5,,,,,8746,44.0165,21.0059,42,4,100,-34864,-0.4,8737371,,,https://www.worldometers.info/world-population/population-by-country/,56.0,0.11
+SC,Seychelles,,,,,,2.5,,,,,460,-4.6796,55.492,34,-200,214,608,0.62,98347,,,https://www.worldometers.info/world-population/population-by-country/,56.0,0.0
+SL,Sierra Leone,,,,,,4.3,,,,,7218,0.0,0.0,19,-42,111,163768,2.1,7976983,,,https://www.worldometers.info/world-population/population-by-country/,43.0,0.1
+SG,Singapore,10167,174.0,671,11.4,6.6,1.2,352762693344,60298,4.5,2713.0,700,1.2833,103.8333,42,27028,8358,46005,0.79,5850342,563388,9.63,https://www.worldometers.info/world-population/population-by-country/,0.0,0.08
+SX,Sint Maarten,,,,,,0.0,,,,,34,0.0,0.0,0,0,1261,488,1.15,42876,,,https://www.worldometers.info/world-population/population-by-country/,96.0,0.0
+SK,Slovakia,33333,599.0,500,9.2,1.5,1.5,87450000000,16089,6.0,961.0,48088,48.669,19.699,41,1485,114,2629,0.05,5459642,698834,12.8,https://www.worldometers.info/world-population/population-by-country/,54.0,0.07
+SI,Slovenia,,,,,,1.6,,,,,2014,46.1512,14.9955,45,2,103,284,0.01,2078938,,,https://www.worldometers.info/world-population/population-by-country/,55.0,0.03
+SB,Solomon Islands,,,,,,4.4,,,,,2799,0.0,0.0,20,-16,25,17061,2.55,686884,,,https://www.worldometers.info/world-population/population-by-country/,23.0,0.01
+SO,Somalia,,,,,,6.1,,,,,62734,5.1521,46.1996,17,-40,25,450317,2.92,15893222,,,https://www.worldometers.info/world-population/population-by-country/,47.0,0.2
+ZA,South Africa,,,,,,2.4,,,,,1213090,-30.5595,22.9375,28,145405,49,75042,1.28,59308690,,,https://www.worldometers.info/world-population/population-by-country/,67.0,0.76
+KR,South Korea,270100,527.0,5402,10.6,2.0,1.1,1524899369455,29743,7.3,2171.0,9723,36.0,128.0,44,11731,527,43877,0.09,51269185,739302,14.42,https://www.worldometers.info/world-population/population-by-country/,82.0,0.66
+SS,South Sudan,,,,,,4.7,,,,,610952,0.0,0.0,19,-1742,18,131612,1.19,11193725,,,https://www.worldometers.info/world-population/population-by-country/,25.0,0.14
+ES,Spain,124194,269.0,4479,9.7,3.6,1.3,1409946000000,30549,7.0,2111.0,4988,40.0,-4.0,45,40,94,18002,0.04,46754778,7995067,17.1,https://www.worldometers.info/world-population/population-by-country/,80.0,0.6
+LK,Sri Lanka,86500,404.0,519,2.3,0.6,2.2,87879973896,4104,3.9,160.0,6271,7.0,81.0,34,-97986,341,89516,0.42,21413249,224197,10.47,https://www.worldometers.info/world-population/population-by-country/,18.0,0.27
+VC,St. Vincent & Grenadines,,,,,,1.9,,,,,390,0.0,0.0,33,-200,284,351,0.32,11094,,,https://www.worldometers.info/world-population/population-by-country/,53.0,0.0
+PS,Palestine,,,,,,3.7,,,,,602,0.0,0.0,21,-10563,847,119994,2.41,5101414,,,https://www.worldometers.info/world-population/population-by-country/,80.0,0.07
+SD,Sudan,,,,,,4.4,,,,,1765048,12.8628,30.2176,20,-50,25,1036022,2.42,43849260,,,https://www.worldometers.info/world-population/population-by-country/,35.0,0.56
+SR,Suriname,,,,,,2.4,,,,,156,3.9193,-56.0278,29,-1,4,526,0.9,586632,,,https://www.worldometers.info/world-population/population-by-country/,65.0,0.01
+SE,Sweden,26131,278.0,550,5.8,2.1,1.9,458725000000,48720,8.2,3725.0,41034,63.0,16.0,41,40,25,62886,0.63,10099265,1989555,19.7,https://www.worldometers.info/world-population/population-by-country/,88.0,0.13
+CH,Switzerland,28096,357.0,866,11.0,3.1,1.5,527920000000,67110,6.8,4148.0,39516,46.8182,8.2275,43,52,219,63257,0.74,8654622,1471286,17.0,https://www.worldometers.info/world-population/population-by-country/,74.0,0.11
+SY,Syria,,,,,,2.8,,,,,18363,0.0,0.0,26,-427391,95,430523,2.52,17500658,,,https://www.worldometers.info/world-population/population-by-country/,60.0,0.22
+TW,Taiwan,73637,309.0,6701,28.5,9.1,1.2,540252579068,22684,6.3,1347.0,3541,23.7,121.0,42,30001,673,42899,0.18,23816775,3267662,13.72,https://www.worldometers.info/world-population/population-by-country/,79.0,0.31
+TJ,Tajikistan,,,,,,3.6,,,,,13996,0.0,0.0,22,-20,68,216627,2.32,9537645,,,https://www.worldometers.info/world-population/population-by-country/,27.0,0.12
+TZ,Tanzania,,,,,,4.9,,,,,8858,-6.369,34.8888,18,-40076,67,1728755,2.98,59734218,,,https://www.worldometers.info/world-population/population-by-country/,37.0,0.77
+TH,Thailand,139216,199.0,7100,10.4,5.1,1.5,459157517280,6578,3.7,222.0,51089,15.0,101.0,40,19444,137,174396,0.25,69799978,7384838,10.58,https://www.worldometers.info/world-population/population-by-country/,51.0,0.9
+TL,Timor-Leste,,,,,,4.1,,,,,1487,0.0,0.0,21,-5385,89,25326,1.96,1318445,,,https://www.worldometers.info/world-population/population-by-country/,33.0,0.02
+TG,Togo,,,,,,4.4,,,,,5439,8.6195,0.8248,19,-2,152,196358,2.43,8278724,,,https://www.worldometers.info/world-population/population-by-country/,43.0,0.11
+TK,Tokelau,,,,,,0.0,,,,,10,0.0,0.0,0,0,136,17,1.27,1357,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+TO,Tonga,,,,,,3.6,,,,,720,0.0,0.0,22,-800,147,1201,1.15,105695,,,https://www.worldometers.info/world-population/population-by-country/,24.0,0.0
+TT,Trinidad and Tobago,,,,,,1.7,,,,,513,10.6918,-61.2225,36,-800,273,4515,0.32,1399488,,,https://www.worldometers.info/world-population/population-by-country/,52.0,0.02
+TN,Tunisia,,,,,,2.2,,,,,15536,34.0,9.0,33,-4,76,1239,1.06,11818619,,,https://www.worldometers.info/world-population/population-by-country/,70.0,0.15
+TR,Turkey,760706,902.0,38796,46.0,6.086956522,2.1,851100000000,10091,5.1,515.0,76963,38.9637,35.2433,32,283922,110,909452,1.09,84339067,7674855,9.1,https://www.worldometers.info/world-population/population-by-country/,76.0,1.08
+TM,Turkmenistan,,,,,,2.8,,,,,46993,0.0,0.0,27,-5,13,89111,1.5,6031200,,,https://www.worldometers.info/world-population/population-by-country/,53.0,0.08
+TC,Turks and Caicos,,,,,,0.0,,,,,950,0.0,0.0,0,0,41,526,1.38,38717,,,https://www.worldometers.info/world-population/population-by-country/,89.0,0.0
+TV,Tuvalu,,,,,,0.0,,,,,30,0.0,0.0,0,0,393,146,1.25,11792,,,https://www.worldometers.info/world-population/population-by-country/,62.0,0.0
+VI,U.S. Virgin Islands,,,,,,2.0,,,,,350,0.0,0.0,43,-451,298,-153,-0.15,104425,,,https://www.worldometers.info/world-population/population-by-country/,96.0,0.0
+UG,Uganda,,,,,,5.0,,,,,19981,1.0,32.0,17,168694,229,1471413,3.32,45741007,,,https://www.worldometers.info/world-population/population-by-country/,26.0,0.59
+UA,Ukraine,,,,,,1.4,,,,,57932,48.3794,31.1656,41,10,75,-259876,-0.59,43733762,,,https://www.worldometers.info/world-population/population-by-country/,69.0,0.56
+AE,United Arab Emirates,,,,,,1.4,,,,,836,24.0,54.0,33,40,118,119873,1.23,9890402,,,https://www.worldometers.info/world-population/population-by-country/,86.0,0.13
+GB,United Kingdom,147809,237.0,4114,6.6,2.8,1.8,2250209000000,36040,8.2,2718.0,24193,55.3781,-3.436,40,26065,281,355839,0.53,67886011,11201192,16.5,https://www.worldometers.info/world-population/population-by-country/,83.0,0.87
+US,United States,627112,190.0,114858,34.7,12.40751253,1.8,21439000000000,65112,16.79182798,10876.0,9147420,40.393715,-98.737574,38,954806,36,1937734,0.59,331002651,41100000,12.41681898,https://www.worldometers.info/world-population/population-by-country/,83.0,4.25
+UY,Uruguay,,,,,,2.0,,,,,17502,-32.5228,-55.7658,36,-3,20,11996,0.35,3473730,,,https://www.worldometers.info/world-population/population-by-country/,96.0,0.04
+UZ,Uzbekistan,,,,,,2.4,,,,,4254,41.3775,64.5853,28,-8863,79,487487,1.48,33469203,,,https://www.worldometers.info/world-population/population-by-country/,50.0,0.43
+VU,Vanuatu,,,,,,3.8,,,,,1219,0.0,0.0,21,120,25,7263,2.42,307145,,,https://www.worldometers.info/world-population/population-by-country/,24.0,0.0
+VE,Venezuela,,,,,,2.3,,,,,88205,6.4238,-66.5897,30,-653249,32,-79889,-0.28,28435940,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.36
+VN,Vietnam,,,,,,2.1,,,,,31007,16.0,108.0,32,-80,314,876473,0.91,97338579,,,https://www.worldometers.info/world-population/population-by-country/,38.0,1.25
+WF,Wallis & Futuna,,,,,,0.0,,,,,140,0.0,0.0,0,0,80,-193,-1.69,11239,,,https://www.worldometers.info/world-population/population-by-country/,0.0,0.0
+EH,Western Sahara,,,,,,2.4,,,,,266,0.0,0.0,28,5582,2,14876,2.55,597339,,,https://www.worldometers.info/world-population/population-by-country/,87.0,0.01
+YE,Yemen,,,,,,3.8,,,,,52797,0.0,0.0,20,-30,56,664042,2.28,29825964,,,https://www.worldometers.info/world-population/population-by-country/,38.0,0.38
+ZM,Zambia,,,,,,4.7,,,,,74339,-15.4167,28.2833,18,-8,25,522925,2.93,18383955,,,https://www.worldometers.info/world-population/population-by-country/,45.0,0.24
+ZW,Zimbabwe,,,,,,3.6,,,,,38685,-20.0,30.0,19,-116858,38,217456,1.48,14862924,,,https://www.worldometers.info/world-population/population-by-country/,38.0,0.19
+XK,Kosovo,,,,,,,,,,,,,,,,,,,,,,,,
+WWW,World,13730766,,416100,,,,75031595258070,,,,103437188,,,,-96583,,77792446,,7798531936,18960300,,,,

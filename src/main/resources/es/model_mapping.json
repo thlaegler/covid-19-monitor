@@ -1,0 +1,13 @@
+{
+	"properties": {
+		"location": {
+			"type": "geo_point"
+		},
+		"countryRegion": {
+			"type": "keyword"
+		},
+		"provinceState": {
+			"type": "keyword"
+		}
+	}
+}

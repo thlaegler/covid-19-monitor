@@ -1,0 +1,100 @@
+{
+    "general": {
+        "initParams": {
+            "link": "Initial Parameters",
+            "tooltip": "Initial Parameters"
+        },
+        "simulation": {
+            "link": "Simulation 'Flatten the Curve'",
+            "tooltip": "Simulation 'Flatten the Curve'"
+        },
+        "calculated": {
+            "link": "Calculated Values",
+            "tooltip": "Calculated Values are results of combining COVID-19 realtime data with each countries health system data"
+        },
+        "health": {
+            "link": "Health System",
+            "tooltip": "Health System"
+        },
+        "population": {
+            "link": "Population",
+            "tooltip": "Population"
+        },
+        "language": {
+            "link": "Language",
+            "tooltip": "Change UI Language"
+        }
+    },
+    "confirmed": {
+        "link": "Confirmed Cases",
+        "tooltip": "Confirmed Cases",
+        "absolute": {
+            "link": "Absolute Number",
+            "tooltip": "Confirmed Cases: Absolute Number"
+        },
+        "log": {
+            "link": "Absolute Number Logarithmic",
+            "tooltip": "Confirmed Cases: Absolute Number on Logarithm Scale"
+        },
+        "incidencePer100k": {
+            "link": "Incidence per 100k Capita",
+            "tooltip": "Confirmed Cases: Incidence per 100.000 Capita"
+        },
+        "growthRate": {
+            "link": "Growth Rate in %",
+            "tooltip": "Confirmed Cases: Growth Rate in % compared to yesterday"
+        },
+        "delta": {
+            "link": "New Cases since yesterday",
+            "tooltip": "Confirmed Cases: Delta of new Cases compared to yesterday (new Infections)"
+        },
+        "doublingTime": {
+            "link": "Doubling Time in Days",
+            "tooltip": "Confirmed Cases: Doubling Time in Days"
+        }
+    },
+    "recovered": {
+        "link": "Recovered Cases",
+        "tooltip": "Recovered Cases",
+        "absolute": {
+            "link": "Absolute Number",
+            "tooltip": "Recovered Cases: Absolute Number"
+        },
+        "recoveryRate": {
+            "link": "Recovery Rate in %",
+            "tooltip": "Recovery Rate in %"
+        },
+        "immunizationRate": {
+            "link": "Immunization Rate in %",
+            "tooltip": "Immunization Rate in %"
+        },
+        "growthRate": {
+            "link": "Growth Rate in %",
+            "tooltip": "Recovered Cases: Growth Rate in % compared to yesterday"
+        },
+        "delta": {
+            "link": "New Cases since yesterday",
+            "tooltip": "Recovered Cases: Delta of new Cases compared to yesterday (new Recovered)"
+        }
+    },
+    "deceased": {
+        "link": "Deceased Cases",
+        "tooltip": "Deceased Cases",
+        "absolute": {
+            "link": "Absolute Number",
+            "tooltip": "Deceased Cases: Absolute Number"
+        },
+        "caseFatalityRisk": {
+            "link": "Case Fatality Risk (CFR) in %",
+            "tooltip": "Deceased Cases: Case Fatality Risk (CFR) in %"
+        },
+        "growthRate": {
+            "link": "Growth Rate in %",
+            "tooltip": "Deceased Cases: Growth Rate in % compared to yesterday"
+        },
+        "delta": {
+            "link": "New Cases since yesterday",
+            "tooltip": "Deceased Cases: Delta of new Cases compared to yesterday"
+        }
+    }
+}

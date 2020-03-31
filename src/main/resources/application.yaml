@@ -1,0 +1,159 @@
+covid19:
+  service:
+    elasticsearch:
+      host: elasticsearch-master
+      port: 9200
+      cluster: elasticsearch
+server:
+  port: 8080
+graphql:
+  datetime:
+    scalars:
+      zone-conversion-enabled: true
+  query-invoker:
+    transactional: false
+  tools:
+    introspection-enabled: true
+    schema-parser-options:
+      introspection-enabled: true
+    schema-location-pattern: "**/*.graphqls"
+  spqr:
+    http:
+      enabled: true
+    ws:
+      enabled: true
+    gui:
+      enabled: true
+  servlet:
+    enabled: true
+    subscriptions:
+      websocket:
+        path: /api/v1/graphql/subscriptions
+      apollo:
+        keep-alive-interval-seconds: 15
+    mapping: /api/v1/graphql
+    corsEnabled: true
+    tracing-enabled: false
+    actuator-metrics: true
+    exception-handlers-enabled: true
+    async-mode-enabled: true
+#    contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
+  playground:
+    enabled: true
+    mapping: /graphql_playground
+    endpoint: /api/v1/graphql
+    page-title: covid-19-monitor GraphQL Playground
+    subscription-endpoint: /api/v1/graphql/subscriptions
+#    static-folder:
+#      basePath: my-playground-resources-folder
+    cdn:
+      enabled: true
+      version: latest
+    settings:
+      editor:
+        cursorShape: line
+        fontFamily: "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace"
+        fontSize: 14
+        reuseHeaders: true
+        theme: dark
+      general.betaUpdates: false
+      prettie:
+        printWidth: 80
+        tabWidth: 2
+        useTabs: true
+      request:
+        credentials: omit
+      schema:
+        polling:
+          enable: true
+#          endpointFilter: "*localhost*"
+          interval: 2000
+        disableComments: false
+      tracing:
+        hideTracingResponse: true
+    headers:
+      headerFor: AllTabs
+#    tabs:
+#    - name: Example Tab
+#      query: classpath:graphql/example_query.graphql
+#      headers:
+#        SomeHeader: Some value
+#      variables: classpath:variables.json
+#      responses:
+#      - classpath:exampleResponse1.json
+#      - classpath:exampleResponse2.json
+graphiql:
+  enabled: true
+  mapping: /graphiql
+  endpoint:
+    graphql: /api/v1/graphql
+    subscriptions: /api/v1/graphql/subscriptions
+  subscriptions:
+    timeout: 30
+    reconnect: true
+#  static:
+#    basePath: /api/v1
+  pageTitle: covid-19-monitor GraphiQL
+  cdn:
+    enabled: true
+    version: 0.13.0
+  props:
+#    resources:
+#      query: classpath:graphql/example_query.graphql
+#      defaultQuery: classpath:graphql/default_query.graphql
+#      variables: variables.graphql
+    variables:
+      editorTheme: "solarized light"
+#  headers:
+#    Authorization: "Bearer <your-token>"
+security:
+  basic:
+    enabled: false
+  sessions: if-required
+management:
+  security:
+    enabled: false
+  health:
+    defaults:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      enabled: true
+      showDetails: always
+    info:
+      enabled: true
+    auditevents:
+      enabled: true
+    beans:
+      enabled: true
+    conditions:
+      enabled: true
+    configprops:
+      enabled: true
+    env:
+      enabled: true
+    flyway:
+      enabled: true
+    httptrace:
+      enabled: true
+    loggers:
+      enabled: true
+    liquibase:
+      enabled: true
+    metrics:
+      enabled: true
+    mappings:
+      enabled: true
+    scheduledtasks:
+      enabled: true
+    sessions:
+      enabled: true
+    shutdown:
+      enabled: true
+    threaddump:
+      enabled: true

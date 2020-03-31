@@ -1,0 +1,45 @@
+steps:
+
+- id: INIT
+  name: gcr.io/cloud-builders/gcloud
+  entrypoint: /bin/bash
+  args:
+  - '-c'
+  - |
+    gsutil -m cp -n -r "gs://$PROJECT_ID-private/*" cloudbuild/
+    chmod +x cloudbuild/*.sh
+    ./cloudbuild/init.sh $PROJECT_ID $_DEBUG $SHORT_SHA "branch_$BRANCH_NAME" "tag_$TAG_NAME"
+
+#- id: REBASE FORK
+#  name: gcr.io/$PROJECT_ID/maven-builder
+#  waitFor: [ 'INIT' ]
+#  entrypoint: /bin/bash
+#  args: [ './cloudbuild/rebase_fork.sh' ]
+  
+- id: MAVEN
+  name: gcr.io/$PROJECT_ID/maven-builder
+  waitFor: [ 'INIT' ]
+  entrypoint: /bin/bash
+  args: [ './cloudbuild/maven.sh' ]
+
+- id: DOCKER
+  name: gcr.io/cloud-builders/docker
+  waitFor: [ 'MAVEN' ]
+  entrypoint: /bin/bash
+  args: [ './cloudbuild/docker.sh' ]
+
+- id: HELM
+  name: gcr.io/$PROJECT_ID/helm-builder
+  waitFor: [ 'DOCKER' ]
+  entrypoint: /bin/bash
+  args: [ './cloudbuild/helm.sh' ]
+
+- id: REPORT
+  name: gcr.io/cloud-builders/gcloud
+  waitFor: [ 'HELM' ]
+  entrypoint: /bin/bash
+  args: [ './cloudbuild/report.sh' ]
+
+timeout: 25m
+
+images: [ 'gcr.io/$PROJECT_ID/covid-19' ]

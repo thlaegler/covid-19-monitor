@@ -1,0 +1,1032 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.covid19</groupId>
+	<artifactId>covid-19</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>covid-19-monitor</name>
+	<description>covid-19-monitor</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.2.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<properties>
+		<!-- Basics: Encoding and Java version -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputDirectory>${project.build.directory}/reports</project.reporting.outputDirectory>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<project.scm.id>github</project.scm.id>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+		<maven.test.error.ignore>true</maven.test.error.ignore>
+		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+		<maven.skip.deploy>true</maven.skip.deploy>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+
+		<!-- Plugin Versions -->
+		<dockerfile.plugin.version>1.4.0</dockerfile.plugin.version>
+		<swagger.plugin.version>3.1.8</swagger.plugin.version>
+
+		<!-- Dependency Versions -->
+		<spring-boot.version>2.2.2.RELEASE</spring-boot.version>
+		<spring.cloud.version>Greenwich.SR5</spring.cloud.version>
+		<springfox.version>2.9.2</springfox.version>
+		<!-- <springfox.version>3.0.0-SNAPSHOT</springfox.version> -->
+		<elasticsearch.version>7.4.1</elasticsearch.version>
+		<elasticsearch>7.4.1</elasticsearch>
+		<spring.data.elasticsearch>4.0.0.M3</spring.data.elasticsearch>
+		<lombok.version>1.18.6</lombok.version>
+		<guava.version>20.0</guava.version>
+		<gson.version>2.8.5</gson.version>
+		<google.api.version>1.23.0</google.api.version>
+		<google.maps.version>0.2.9</google.maps.version>
+		<google.functions.version>v1-rev48-1.23.0</google.functions.version>
+		<google.api.services.cloudkms.version>v1-rev81-1.25.0</google.api.services.cloudkms.version>
+		<junit.version>4.12</junit.version>
+		<!-- <junit.version>5.5.2</junit.version> -->
+		<cucumber.version>4.8.0</cucumber.version>
+		<restassured.version>4.1.2</restassured.version>
+
+		<skipTests>false</skipTests>
+		<skipUnitTests>false</skipUnitTests>
+		<skipIntegrationTests>false</skipIntegrationTests>
+		<testResultDirectory>${project.build.directory}/docs/test-results</testResultDirectory>
+		<testReportDirectory>${project.build.directory}/reports</testReportDirectory>
+
+		<skipUnitTests>false</skipUnitTests>
+		<skipIntegrationTests>false</skipIntegrationTests>
+		<dependencyReportDir>target/reports/dependency-check</dependencyReportDir>
+		<sonar.projectKey>thlaegler_${project.artifactId}</sonar.projectKey>
+		<sonar.organization>thlaegler-github</sonar.organization>
+		<sonar.projectName>${project.name}</sonar.projectName>
+		<sonar.host>https://sonarcloud.io</sonar.host>
+		<sonar.junit.reportPaths>target/surefire-reports,target/cucumber</sonar.junit.reportPaths>
+		<sonar.jacoco.reportPaths>target/jacoco.exec,target/jacoco-it.exec</sonar.jacoco.reportPaths>
+		<sonar.dependencyCheck.reportPath>${dependencyReportDir}/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+		<sonar.dependencyCheck.htmlReportPath>${dependencyReportDir}/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
+		<!-- <sonar.test.exclusions>**/test/**</sonar.test.exclusions> -->
+
+		<baseUri>http://localhost:8080</baseUri>
+		<basePath>/api/v1</basePath>
+		<clientId>showcase</clientId>
+		<clientSecret>changeme</clientSecret>
+		<appId>test</appId>
+		<apiKey>123</apiKey>
+		<username>changeme</username>
+		<password>changeme</password>
+		<tokenUri>${baseUri}${basePath}/oauth2/token</tokenUri>
+		<redirectUri>${baseUri}${basePath}/oauth2/redirect</redirectUri>
+		<perfEnabled>true</perfEnabled>
+		<dataDirectory>test_data</dataDirectory>
+
+		<version>${project.version}</version>
+		<groupId>${project.groupId}</groupId>
+		<timestamp>${maven.build.timestamp}</timestamp>
+
+		<spring.jvm.args>-Dspring.profiles.active=default</spring.jvm.args>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.mobility23.gtfs</groupId>
+			<artifactId>mobility23-java-elasticsearch</artifactId>
+			<version>1.0.2-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Spring Boot Dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-elasticsearch</artifactId>
+			<version>${spring.data.elasticsearch}</version>
+		</dependency>
+
+		<!-- GraphQL -->
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphql-spring-boot-starter</artifactId>
+			<version>6.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphiql-spring-boot-starter</artifactId>
+			<version>6.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>playground-spring-boot-starter</artifactId>
+			<version>6.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.leangen.graphql</groupId>
+			<artifactId>graphql-spqr-spring-boot-starter</artifactId>
+			<version>0.0.4</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.graphql-java</groupId>
+					<artifactId>graphql-java</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.zhokhov.graphql</groupId>
+			<artifactId>graphql-datetime-spring-boot-starter</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-bean-validators</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+
+		<!-- User Interface -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-thymeleaf</artifactId> 
+			</dependency> -->
+
+		<!-- Other utilities & libraries -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>gherkin</artifactId>
+			<version>2.7.3</version>
+		</dependency>
+		<!-- <dependency> <groupId>io.cucumber</groupId> <artifactId>gherkin</artifactId> 
+			<version>5.1.0</version></dependency> -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.0.0-alpha-3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<!-- <version>${restassured.version}</version> -->
+			<scope>test</scope>
+		</dependency>
+		<!-- Updated ContiPerf -->
+		<dependency>
+			<groupId>com.github.noconnor</groupId>
+			<artifactId>junitperf</artifactId>
+			<version>1.15.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-java-commons</artifactId>
+			<version>2.13.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.1.5</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mongodb</groupId>
+					<artifactId>mongodb-driver</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>bson</artifactId>
+		</dependency>
+
+		<!-- General -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<!-- <optional>true</optional> -->
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<testSourceDirectory>src/main/java/</testSourceDirectory>
+
+		<extensions>
+			<extension>
+				<groupId>com.gkatzioura.maven.cloud</groupId>
+				<artifactId>google-storage-wagon</artifactId>
+				<version>2.3</version>
+			</extension>
+		</extensions>
+
+		<plugins>
+			<!-- <plugin> <groupId>org.apache.cxf</groupId> <artifactId>cxf-codegen-plugin</artifactId> 
+				<version>3.3.5</version> <executions> <execution> <id>generate-supershuttle</id> 
+				<goals> <goal>wsdl2java</goal> </goals> <phase>generate-sources</phase> <configuration> 
+				<wsdlOptions> <wsdlOption> <uri>https://www.tourismtransport.com:8445/v6/SuperService.svc?wsdl</uri> 
+				</wsdlOption> </wsdlOptions> <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot> 
+				</configuration> </execution> <execution> <id>generate-mtdata-auth</id> <goals> 
+				<goal>wsdl2java</goal> </goals> <phase>generate-sources</phase> <configuration> 
+				<wsdlOptions> <wsdlOption> <uri>http://219.89.203.168:8080/dispatch/AuthenticationWebService.asmx?wsdl</uri> 
+				</wsdlOption> </wsdlOptions> <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot> 
+				</configuration> </execution> <execution> <id>generate-mtdata-booking</id> 
+				<goals> <goal>wsdl2java</goal> </goals> <phase>generate-sources</phase> <configuration> 
+				<wsdlOptions> <wsdlOption> <uri>http://219.89.203.168:8080/dispatch/BookingWebService.asmx?wsdl</uri> 
+				</wsdlOption> </wsdlOptions> <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot> 
+				</configuration> </execution> </executions> </plugin> -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>jaxws-maven-plugin</artifactId> 
+				<version>2.6</version> <executions> <execution> <goals> <goal>wsimport</goal> 
+				</goals> </execution> </executions> <configuration> <wsdlDirectory>src/main/resources/wsdl</wsdlDirectory> 
+				<packageName>com.example.myservice</packageName> </configuration> </plugin> -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>jaxb2-maven-plugin</artifactId> 
+				<version>2.5.0</version> <executions> <execution> <id>xjc</id> <goals> <goal>xjc</goal> 
+				</goals> <phase>generate-sources</phase> <configuration> <sources> <source>src/main/resources/wsdl</source> 
+				</sources> </configuration> </execution> </executions> <configuration> <packageName>com.example.myschema</packageName> 
+				</configuration> </plugin> -->
+			<!-- <plugin> <groupId>org.jvnet.jaxb2.maven2</groupId> <artifactId>maven-jaxb2-plugin</artifactId> 
+				<version>0.14.0</version> <executions> <execution> <id>mtdata-auth</id> <goals> 
+				<goal>generate</goal> </goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> 
+				<generatePackage>${project.groupId}.api.soap.mtdata.auth</generatePackage> 
+				<schemas> <schema> <url>http://219.89.203.168:8080/dispatch/AuthenticationWebService.asmx?wsdl</url> 
+				</schema> </schemas> </configuration> </execution> <execution> <id>mtdata</id> 
+				<goals> <goal>generate</goal> </goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> 
+				<generatePackage>${project.groupId}.api.soap.mtdata</generatePackage> <schemaDirectory>src/main/resources/wsdl</schemaDirectory> 
+				<schemaIncludes> <include>mtdata_booking.wsdl</include> </schemaIncludes> 
+				<schemas> <schema> <url>http://219.89.203.168:8080/dispatch/BookingWebService.asmx?wsdl</url> 
+				<fileset> <directory>src/main/resources</directory> <include>true</include> 
+				<includes> <include>${project.basedir}/src/main/resources/wsdl/mtdata_booking.wsdl</include> 
+				</includes> </fileset> </schema> </schemas> </configuration> </execution> 
+				<execution> <id>super-shuttle</id> <goals> <goal>generate</goal> </goals> 
+				<configuration> <schemaLanguage>WSDL</schemaLanguage> <generatePackage>${project.groupId}.api.soap.supershuttle</generatePackage> 
+				<schemas> <schema> <url>https://www.tourismtransport.com:8445/v6/SuperService.svc?wsdl</url> 
+				</schema> </schemas> </configuration> </execution> </executions> </plugin> -->
+
+			<!-- <plugin> <groupId>org.jetbrains.kotlin</groupId> <artifactId>kotlin-maven-plugin</artifactId> 
+				<version>${kotlin.version}</version> <executions> <execution> <id>compile</id> 
+				<goals> <goal>compile</goal> </goals> <configuration> <sourceDirs> <sourceDir>${project.basedir}/src/main/kotlin</sourceDir> 
+				<sourceDir>${project.basedir}/src/main/java</sourceDir> </sourceDirs> </configuration> 
+				</execution> <execution> <id>test-compile</id> <goals> <goal>test-compile</goal> 
+				</goals> <configuration> <sourceDirs> <sourceDir>${project.basedir}/src/test/kotlin</sourceDir> 
+				<sourceDir>${project.basedir}/src/test/java</sourceDir> </sourceDirs> </configuration> 
+				</execution> </executions> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-compiler-plugin</artifactId> <version>3.5.1</version> <executions> 
+				Replacing default-compile as it is treated specially by maven <execution> 
+				<id>default-compile</id> <phase>none</phase> </execution> Replacing default-testCompile 
+				as it is treated specially by maven <execution> <id>default-testCompile</id> 
+				<phase>none</phase> </execution> <execution> <id>java-compile</id> <phase>compile</phase> 
+				<goals> <goal>compile</goal> </goals> </execution> <execution> <id>java-test-compile</id> 
+				<phase>test-compile</phase> <goals> <goal>testCompile</goal> </goals> </execution> 
+				</executions> </plugin> -->
+
+			<!-- <plugin> <groupId>com.graphql-java-generator</groupId> <artifactId>graphql-maven-plugin</artifactId> 
+				<version>1.3</version> <executions> <execution> <goals> <goal>graphql</goal> 
+				</goals> </execution> </executions> <configuration> <packageName>${project.groupId}</packageName> 
+				<mode>client</mode> <schemaFilePattern>**/*.graphqls</schemaFilePattern> 
+				<customScalars> <customScalar> <graphQLTypeName>Date</graphQLTypeName> <javaType>java.util.Date</javaType> 
+				<graphQLScalarTypeClass>com.graphql_java_generator.customscalars.GraphQLScalarTypeDate</graphQLScalarTypeClass> 
+				</customScalar> <customScalar> <graphQLTypeName>Long</graphQLTypeName> <javaType>java.lang.Long</javaType> 
+				<graphQLScalarTypeStaticField>graphql.Scalars.GraphQLLong</graphQLScalarTypeStaticField> 
+				</customScalar> <customScalar> <graphQLTypeName>GeoJsonScalar</graphQLTypeName> 
+				<javaType>java.lang.Map</javaType> <graphQLScalarTypeStaticField>graphql.Scalars.GraphQLString</graphQLScalarTypeStaticField> 
+				</customScalar> </customScalars> </configuration> </plugin> -->
+			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+				<executions> <execution> <goals> <goal>repackage</goal> </goals> </execution> 
+				</executions> </plugin> -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+			</plugin>
+			<!-- <plugin> <groupId>com.github.kongchen</groupId> <artifactId>swagger-maven-plugin</artifactId> 
+				</plugin> -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<outputFile>${project.build.outputDirectory}/maven.properties</outputFile>
+				</configuration>
+				<executions>
+					<execution>
+						<id>resources</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>write-project-properties</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>test-resources</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>write-project-properties</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/gen</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>add-test-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/test/gen</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- <plugin> <groupId>com.apollographql.apollo</groupId> <artifactId>apollo-gradle-plugin</artifactId> 
+				<version>1.2.1</version> <executions> <execution> <phase></phase> <goals> 
+				<goal></goal> </goals> </execution> </executions> </plugin> -->
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.0</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.1</version>
+					<configuration>
+						<skipTests>${skipUnitTests}</skipTests>
+						<reportsDirectory>${testResultDirectory}</reportsDirectory>
+						<useSystemClassLoader>false</useSystemClassLoader>
+						<systemPropertyVariables>
+							<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+						</systemPropertyVariables>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>2.22.1</version>
+					<configuration>
+						<skipTests>${skipIntegrationTests}</skipTests>
+						<reportsDirectory>${testResultDirectory}</reportsDirectory>
+						<useSystemClassLoader>false</useSystemClassLoader>
+						<systemPropertyVariables>
+							<jacoco-agent.destfile>target/jacoco-it.exec</jacoco-agent.destfile>
+						</systemPropertyVariables>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>3.0.0-M1</version>
+				</plugin>
+				<plugin>
+					<groupId>com.github.kongchen</groupId>
+					<artifactId>swagger-maven-plugin</artifactId>
+					<version>${swagger.plugin.version}</version>
+					<configuration>
+						<skipSwaggerGeneration>false</skipSwaggerGeneration>
+						<apiSources>
+							<apiSource>
+								<springmvc>true</springmvc>
+								<locations>${project.groupId}</locations>
+								<swaggerFileName>${project.artifactId}</swaggerFileName>
+								<schemes>http,https</schemes>
+								<host>${mobility.baseurl}</host>
+								<basePath>${mobility.path}</basePath>
+								<outputFormats>yaml,json</outputFormats>
+								<jsonExampleValues>false</jsonExampleValues>
+								<swaggerDirectory>${project.build.directory}/reports/</swaggerDirectory>
+								<info>
+									<title>${project.name} REST API</title>
+									<version>${project.version}</version>
+									<description>${project.description}</description>
+								</info>
+							</apiSource>
+						</apiSources>
+					</configuration>
+					<executions>
+						<execution>
+							<id>generate-swagger</id>
+							<phase>package</phase>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+						<jvmArguments>${spring.jvm.args}</jvmArguments>
+						<excludeDevtools>false</excludeDevtools>
+						<classifier>service</classifier>
+						<attach>false</attach>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.0.0-M1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.3</version>
+					<executions>
+						<execution>
+							<id>prepare-unit-tests</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>pre-integration-test</id>
+							<phase>pre-integration-test</phase>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+							<configuration>
+								<destFile>${project.build.directory}/jacoco-it.exec</destFile>
+								<propertyName>failsafe.argLine</propertyName>
+							</configuration>
+						</execution>
+						<execution>
+							<id>post-integration-test</id>
+							<phase>post-integration-test</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+							<configuration>
+								<dataFile>${project.build.directory}/jacoco-it.exec</dataFile>
+								<outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.6.0.1398</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.0.1</version>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar</goal>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.7.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.0.1</version>
+					<configuration>
+						<outputDirectory>${project.build.directory}/reports/javadoc</outputDirectory>
+					</configuration>
+					<executions>
+						<execution>
+							<id>javadoc-jar</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<phase>package</phase>
+							<configuration>
+								<useStandardDocletOptions>true</useStandardDocletOptions>
+								<show>private</show>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>3.0.0</version>
+					<configuration>
+						<outputFile>${testReportDirectory}/checkstyle-result.xml</outputFile>
+						<configLocation>google_checks.xml</configLocation>
+						<encoding>UTF-8</encoding>
+						<consoleOutput>false</consoleOutput>
+						<failsOnError>true</failsOnError>
+						<linkXRef>false</linkXRef>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>com.trivago.rta</groupId>
+					<artifactId>cluecumber-report-plugin</artifactId>
+					<version>1.4.2</version>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<goals>
+								<goal>reporting</goal>
+							</goals>
+							<configuration>
+								<sourceJsonReportDirectory>${testResultDirectory}</sourceJsonReportDirectory>
+								<generatedHtmlReportDirectory>${testReportDirectory}/html-report</generatedHtmlReportDirectory>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+		</profile>
+		<profile>
+			<id>docu</id>
+			<dependencies>
+				<!-- Allure -->
+				<dependency>
+					<groupId>io.qameta.allure</groupId>
+					<artifactId>allure-junit5</artifactId>
+					<version>2.13.0</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.qameta.allure</groupId>
+					<artifactId>allure-rest-assured</artifactId>
+					<version>2.13.0</version>
+					<scope>test</scope>
+				</dependency>
+
+				<!-- Test Reporting -->
+				<dependency>
+					<groupId>com.vimalselvam</groupId>
+					<artifactId>cucumber-extentsreport</artifactId>
+					<version>3.1.1</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>net.masterthought</groupId>
+					<artifactId>cucumber-reporting</artifactId>
+					<version>4.10.0</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-site-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+					</plugin>
+					<!-- This could take a very long time, that's why it's under profile 
+						'docu' -->
+					<plugin>
+						<groupId>com.lazerycode.jmeter</groupId>
+						<artifactId>jmeter-maven-plugin</artifactId>
+						<version>2.9.0</version>
+						<configuration>
+							<reportDirectory>${testReportDirectory}/jmeter</reportDirectory>
+							<resultsDirectory>${testReportDirectory}/jmeter</resultsDirectory>
+						</configuration>
+						<executions>
+							<execution>
+								<id>jmeter-tests</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>jmeter</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.trivago.rta</groupId>
+						<artifactId>cluecumber-report-plugin</artifactId>
+						<version>2.3.1</version>
+						<executions>
+							<execution>
+								<id>report</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>reporting</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<sourceJsonReportDirectory>${testResultDirectory}</sourceJsonReportDirectory>
+							<generatedHtmlReportDirectory>${testReportDirectory}/html-report</generatedHtmlReportDirectory>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>net.masterthought</groupId>
+						<artifactId>maven-cucumber-reporting</artifactId>
+						<version>4.10.0</version>
+						<configuration>
+							<checkBuildResult>false</checkBuildResult>
+							<jsonFiles>*.json</jsonFiles>
+							<inputDirectory>${testResultDirectory}</inputDirectory>
+							<outputDirectory>${testReportDirectory}</outputDirectory>
+						</configuration>
+						<executions>
+							<execution>
+								<id>generate</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>io.qameta.allure</groupId>
+						<artifactId>allure-maven</artifactId>
+						<version>2.10.0</version>
+						<configuration>
+							<inputDirectories>${testResultDirectory}</inputDirectories>
+							<reportDirectory>${testReportDirectory}/allure</reportDirectory>
+							<resultsDirectory>${testResultDirectory}/allure</resultsDirectory>
+							<!-- <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath> -->
+							<!-- <allureDownloadUrl>https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/%s/allure-%s.zip</allureDownloadUrl> -->
+							<!-- <reportVersion>2.13.0</reportVersion> -->
+							<properties>
+								<allure.issues.tracker.pattern>http://fzcintjra01.finzoffice:8080/browse/%s</allure.issues.tracker.pattern>
+							</properties>
+						</configuration>
+						<executions>
+							<execution>
+								<id>generate</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<reportDirectory>${testReportDirectory}/allure</reportDirectory>
+									<resultsDirectory>${testResultDirectory}/allure</resultsDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>generate</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<junitreport todir="target/docs/test-results">
+											<fileset dir="target/docs/test-results">
+												<include name="**/*.xml" />
+											</fileset>
+											<report format="noframes"
+												todir="target/docs/test-results" />
+										</junitreport>
+										<copy file="target/docs/test-results/junit-noframes.html"
+											tofile="target/docs/test-reports/junit.html" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>ant</groupId>
+								<artifactId>ant-junit</artifactId>
+								<version>1.6.2</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					<!-- <plugin> <groupId>de.codecentric</groupId> <artifactId>jmeter-graph-maven-plugin</artifactId> 
+						<version>0.1.0</version> <configuration> <inputFile>${testResultDirectory}/jmeter.jtl</inputFile> 
+						<graphs> <graph> <pluginType>ResponseTimesOverTime</pluginType> <width>800</width> 
+						<height>600</height> <outputFile>${testReportDirectory}/jmeter.png</outputFile> 
+						</graph> </graphs> </configuration> <executions> <execution> <id>generate</id> 
+						<phase>post-integration-test</phase> <goals> <goal>create-graph</goal> </goals> 
+						</execution> </executions> </plugin> -->
+				</plugins>
+			</build>
+			<!-- Reporting -->
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-project-info-reports-plugin</artifactId>
+						<version>2.9</version>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<version>3.0.0</version>
+						<reportSets>
+							<reportSet>
+								<reports>
+									<report>checkstyle</report>
+								</reports>
+							</reportSet>
+						</reportSets>
+						<configuration>
+							<configLocation>google_checks.xml</configLocation>
+							<encoding>UTF-8</encoding>
+							<consoleOutput>false</consoleOutput>
+							<failsOnError>false</failsOnError>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+						<version>2.19.1</version>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+	</profiles>
+	<scm>
+		<connection>scm:git:https://github.com/thlaegler/covid-19.git</connection>
+		<developerConnection>scm:git:https://github.com/thlaegler/covid-19.git</developerConnection>
+		<url>https://github.com/thlaegler/covid-19</url>
+		<tag>v${project.version}</tag>
+	</scm>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring.cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.projectreactor</groupId>
+				<artifactId>reactor-bom</artifactId>
+				<version>Bismuth-RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<developers>
+		<developer>
+			<name>Thomas L</name>
+			<organizationUrl>https://github.com/thlaegler/covid-19-monitor</organizationUrl>
+		</developer>
+	</developers>
+
+	<organization>
+		<name>covid-19-monitor</name>
+		<url>https://github.com/thlaegler/covid-19-monitor</url>
+	</organization>
+
+	<url>https://github.com/thlaegler/covid-19-monitor</url>
+
+	<inceptionYear>2020</inceptionYear>
+
+	<repositories>
+		<repository>
+			<id>mobility23-repo-bucket-snapshot</id>
+			<url>gs://mobility23-maven-repository/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>mobility23-repo-bucket-release</id>
+			<url>gs://mobility23-maven-repository/release</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>jcenter</id>
+			<name>jcenter</name>
+			<url>https://jcenter.bintray.com/</url>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestone Repository</name>
+			<url>http://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>spring-snapshot2</id>
+			<name>Spring Snapshot Repository</name>
+			<url>http://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-snapshot</id>
+			<name>Spring Snapshot Repository</name>
+			<url>http://repo.springsource.org/libs-snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>JFrog</id>
+			<name>JFrog Snapshot Repository</name>
+			<url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
+		</repository>
+		<repository>
+			<id>boundless-geotools</id>
+			<name>boundless-geotools</name>
+			<url>http://repo.boundlessgeo.com/main/</url>
+		</repository>
+		<repository>
+			<id>geotools</id>
+			<name>geotools</name>
+			<url>http://download.osgeo.org/webdav/geotools/</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>mobility23-repo-bucket-snapshot</id>
+			<url>gs://mobility23-maven-repository/snapshot</url>
+		</snapshotRepository>
+		<repository>
+			<id>mobility23-repo-bucket-release</id>
+			<url>gs://mobility23-maven-repository/release</url>
+		</repository>
+	</distributionManagement>
+
+</project>

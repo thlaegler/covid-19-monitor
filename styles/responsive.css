@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
+#map, #chart {
+    width: 100%;
+    height: 100%;
+}
+
+.sidenav {
+    /* height: 100%; */
+    width: 0;
+    position: absolute;
+    right: 0;
+    top: 64px;
+    background-color: #ffffff;
+    overflow: scroll;
+    transition: 0.5s;
+    padding: 0px;
+    /* opacity: 0.9; */
+    z-index: 2;
+    border-bottom: 1px solid #222222;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.5s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.page {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* z-index: -2; */
+}
+
+.section {
+    width: 100%;
+    /* display: flex; */
+    justify-content: center;
+    align-items: top;
+    /* z-index: -1; */
+}
+
+.section-header {
+    background-color: #fff;
+    /* height: 32px; */
+    order: 1;
+}
+
+.section-map {
+    background-color: #fff;
+    /* height: 75%; */
+    min-height: 400px;
+    order: 2;
+}
+
+.section-details {
+    background-color: #fff;
+    padding: 10px;
+    height: 10%;
+    min-height: 64px;
+    order: 3;
+}
+
+.section-charts {
+    background-color: #fff;
+    height: 20%;
+    min-height: 400px;
+    order: 4;
+}
+
+.section-footer {
+    background-color: #fff;
+    text-align: center;
+    height: 32px;
+    order: 5;
+}
+
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 400px) {
+    body {
+        background-color: #fff;
+    }
+    .section-map, .section-charts {
+        width: 100%;
+    }
+}
+
+/* Tablet Styles */
+
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    body {
+        background-color: #fff;
+    }
+    .section-map, .section-charts {
+        width: 100%;
+    }
+}
+
+/* Desktop Styles */
+
+@media only screen and (min-width: 961px) {
+    body {
+        background-color: #fff;
+    }
+    .page {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .section-map, .section-charts {
+        width: 100%;
+    }
+    /* .section-menu {
+        order: 1;
+    }
+    .section-map {
+        order: 2;
+    }
+    .section-charts {
+        order: 2;
+    }
+    .section-footer {
+        order: 4;
+    } */
+}

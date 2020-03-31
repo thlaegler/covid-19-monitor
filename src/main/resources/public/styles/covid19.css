@@ -1,0 +1,60 @@
+/* #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+} */
+
+.listing-group {
+    /* font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px;
+    background-color: white;
+    z-index: 1;
+    border-radius: 3px;
+    max-width: 33%; */
+    display: inline-block;
+    margin: 10px;
+}
+
+.loader-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    opacity: 0.9;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    padding: 100px;
+}
+
+.loader {
+    position: relative;
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin 2s linear infinite;
+    text-align: center;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

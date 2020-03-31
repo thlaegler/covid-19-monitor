@@ -1,0 +1,10 @@
+==============
+ covid-19-monitor App
+==============            
+
+Application:	${spring.application.name}
+Version:	${covid19.version}
+Description:	${covid19.description}
+Java:		${covid19.java.version}
+Spring Boot:	${spring-boot.version}
+Profile:	${spring.profiles.active}

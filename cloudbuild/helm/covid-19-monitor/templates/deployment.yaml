@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: covid-19
+  labels:
+    app: covid-19
+    version: {{ .Values.docker.tag }}
+spec:
+  replicas: {{ .Values.deployment.numberOfReplicas }}
+  revisionHistoryLimit: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: covid-19
+  template:
+    metadata:
+      labels:
+        app: covid-19
+    spec:
+      containers:
+      - name: covid-19
+        image: '{{ .Values.docker.registry }}/{{ .Values.docker.image }}:{{ .Values.docker.tag }}'
+        imagePullPolicy: Always
+        terminationMessagePolicy: FallbackToLogsOnError
+        envFrom:
+        - configMapRef:
+            name: mobility23-config-map
+        - secretRef:
+            name: mobility23-secret
+        env:
+        - name: JAVA_OPTS
+          value: '{{ .Values.java.options }}'
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: '/etc/config/service-account/service-account.json'
+        - name: MOBILITYOS_K8S_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ports:
+        - name: api
+          containerPort: 8080
+#        resources:
+#          limits:
+#            memory: 4Gi
+#          requests:
+#            memory: 3Gi
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /actuator/health
+            port: api
+          initialDelaySeconds: 120
+          periodSeconds: 30
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 8 # due to flyway migrations, the startup-time can be very long
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /actuator/health
+            port: api
+          initialDelaySeconds: 120
+          periodSeconds: 30
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 8 # due to flyway migrations, the startup-time can be very long
+        volumeMounts:
+        - name: mobility23-service-account
+          mountPath: /etc/config/service-account
+          readOnly: true
+      volumes:
+      - name: mobility23-service-account
+        secret:
+          secretName: mobility23-service-account
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

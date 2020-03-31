@@ -1,0 +1,16 @@
+docker:
+  registry: 'DOCKER_REGISTRY'
+  image: 'covid-19'
+  tag: 'DOCKER_TAG'
+# This is the helm convention on declaring images
+# image:
+#   repository: 'DOCKER_REGISTRY'
+#   tag: 'DOCKER_TAG'
+#   pullPolicy: IfNotPresent
+service:
+  type: 'LoadBalancer'
+  internal: false
+deployment:
+  numberOfReplicas: 1
+java:
+  options: '-Xmx512m -server -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:+UseParallelGC'

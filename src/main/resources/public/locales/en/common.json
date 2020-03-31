@@ -1,0 +1,72 @@
+{
+    "general": {
+        "initParams": {
+            "link": "Initial Parameters",
+            "tooltip": "Initial Parameters"
+        },
+        "simulation": {
+            "link": "Simulation 'Flatten the Curve'",
+            "tooltip": "Simulation 'Flatten the Curve'"
+        },
+        "calculated": {
+            "link": "Calculated Values",
+            "tooltip": "Calculated Values are results of combining covid-19-monitor realtime data with each countries health system data"
+        },
+        "health": {
+            "link": "Health System",
+            "tooltip": "Health System"
+        },
+        "population": {
+            "link": "Population",
+            "tooltip": "Population"
+        },
+        "language": {
+            "link": "Language",
+            "tooltip": "Change UI Language"
+        }
+    },
+    "confirmed": {
+        "link": "Confirmed Cases",
+        "tooltip": "Confirmed Cases",
+        "absolute": {
+            "link": "Absolute Number",
+            "tooltip": "Confirmed Cases: Absolute Number"
+        },
+        "incidencePer100k": {
+            "link": "Incidence of per 100.000 Capita",
+            "tooltip": "Confirmed Cases: Incidence per 100.000 Capita"
+        },
+        "growthRate24Hours": {
+            "link": "Last 24 Hours Growth Rate",
+            "tooltip": "Confirmed Cases: Growth Rate in % compared to 24 Hours ago"
+        },
+        "growthDelta24Hours": {
+            "link": "Last 24 Hours Delta",
+            "tooltip": "Confirmed Cases: Delta of new Cases compared to 24 Hours ago (new Infections)"
+        },
+        "growthRate7Days": {
+            "link": "Last 7 Days Hours Growth Rate",
+            "tooltip": "Confirmed Cases: Growth Rate in % compared to 7 Days ago"
+        },
+        "growthDelta7Days": {
+            "link": "Last 7 Days Delta",
+            "tooltip": "Confirmed Cases: Delta of new Cases compared to 7 Days ago (new Infections)"
+        }
+    },
+    "recovered": {
+        "link": "Recovered Cases",
+        "tooltip": "Recovered Cases",
+        "absolute": {
+            "link": "Absolute Number",
+            "tooltip": "Recovered Cases: Absolute Number"
+        }
+    },
+    "deceased": {
+        "link": "Deceased Cases",
+        "tooltip": "Deceased Cases",
+        "absolute": {
+            "link": "Absolute Number",
+            "tooltip": "Deceased Cases: Absolute Number"
+        }
+    }
+}

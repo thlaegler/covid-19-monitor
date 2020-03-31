@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: @project.artifactId@
+covid19:
+  version: @project.version@
+  description: @project.description@
+  java:
+    version: @java.version@

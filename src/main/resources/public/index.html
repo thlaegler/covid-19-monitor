@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,shrink-to-fit=no">
+
+	<title>covid-19-monitor Monitor</title>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shards-ui@3.0.0/dist/css/shards.min.css"
+		integrity="sha256-/Jp0Ye+4qZWXFKalAvmvkRdMScrRebEEMwrcxZ7sD80=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/1.4.0/mapbox-gl.css"
+		integrity="sha256-t2fYcalxXkJ++B2YwGcM5KYrF8Fu9vCcO69LI16Q5Y0=" crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="styles/covid19.css" />
+	<link rel="stylesheet" href="styles/responsive.css" />
+	<link rel="stylesheet" href="styles/autocomplete.css" />
+</head>
+
+<body>
+
+	<div class="loader-modal">
+		<div class="loader"></div>
+	</div>
+
+	<div class="page">
+
+		<div class="section section-header">
+			<nav class="navbar fixed-top navbar-light bg-light" style="width: 100%;">
+				<a class="navbar-brand" href=".">covid-19-monitor</a>
+				<span id="last-update-ago" style="color: red;"></span>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="#"
+								data-i18n="[title]general.initParams.tooltip; [text]general.initParams.link"
+								onclick="openParameters();"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#"
+								data-i18n="[title]general.simulation.tooltip; [text]general.simulation.link"
+								onclick="openSimulations();"></a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConfirmed" role="button"
+								data-i18n="[title]confirmed.tooltip; [text]confirmed.link" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownConfirmed">
+								<a id="input-confirmed_incidence_per100k" class="change-perspective dropdown-item"
+									data-i18n="[title]confirmed.incidencePer100k.tooltip; [text]confirmed.incidencePer100k.link"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									title="Confirmed Cases: Incidence per 100.000 Capita"
+									data-target="confirmed_incidence_per100k">Incidence per 100.000 Capita</a>
+								<a id="input-confirmed_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]confirmed.absolute.tooltip; [text]confirmed.absolute.link"
+									data-target="confirmed_absolute"></a>
+								<a id="input-confirmed_growth24Hours" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]confirmed.growthRate24Hours.tooltip; [text]confirmed.growthRate24Hours.link"
+									data-target="confirmed_growth24Hours"></a>
+								<a id="input-confirmed_delta24Hours" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]confirmed.growthDelta24Hours.tooltip; [text]confirmed.growthDelta24Hours.link"
+									data-target="confirmed_delta24Hours"></a>
+								<a id="input-confirmed_growth7Days" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]confirmed.growthRate7Days.tooltip; [text]confirmed.growthRate7Days.link"
+									data-target="confirmed_growth7Days"></a>
+								<a id="input-confirmed_delta7Days" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]confirmed.growthDelta7Days.tooltip; [text]confirmed.growthDelta7Days.link"
+									data-target="confirmed_delta7Days"></a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRecovered" role="button"
+								data-i18n="[title]recovered.tooltip; [text]recovered.link" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"></a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownRecovered">
+								<a id="link-recovery_rate" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Recovery Rate in %"
+									data-target="recovery_rate">Recovery
+									Rate
+									in %</a>
+								<a id="link-immunization_rate" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Recovery Rate in % of absolute Population"
+									data-target="immunization_rate">Immunization Rate
+									in %</a>
+								<a id="link-recovered_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Recovered Cases: Absolute Number"
+									data-target="recovered_absolute">Absolute Number of Cases</a>
+								<a id="input-recovered_growth24Hours" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Recovered Cases: Growth Rate in % compared to 24 Hours ago"
+									data-target="recovered_growth24Hours">Last 24 Hours Growth Rate in %</a>
+								<a id="input-recovered_delta24Hours" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Recovered Cases: Delta of new Cases compared to 24 Hours ago"
+									data-target="recovered_delta24Hours">Last 24 Hours Delta</a>
+								<a id="input-recovered_growth7Days" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Recovered Cases: Growth Rate in % compared to 7 Days ago"
+									data-target="recovered_growth7Days">Last 7 Days Growth Rate in %</a>
+								<a id="input-recovered_delta7Days" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Recovered Cases: Delta of new Cases compared to 7 Days ago"
+									data-target="recovered_delta7Days">Last 7 Days Delta</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDeceased" role="button"
+								data-i18n="[title]deceased.tooltip; [text]deceased.link" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"></a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownDeceased">
+								<a id="link-mortality_rate" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Mortality Rate in %"
+									data-target="mortality_rate">Mortality
+									Rate in %</a>
+								<a id="link-deceased_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Deceased Cases: Absolute Number"
+									data-target="deceased_absolute">Absolute Number of Cases</a>
+								<a id="input-deceased_growth24Hours" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Deceased Cases: Growth Rate in % compared to 24 Hours ago"
+									data-target="deceased_growth24Hours">Last 24 Hours Growth Rate in %</a>
+								<a id="input-deceased_delta24Hours" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Deceased Cases: Delta of new Cases compared to 24 Hours ago"
+									data-target="deceased_delta24Hours">Last 24 Hours Delta</a>
+								<a id="input-deceased_growth7Days" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Deceased Cases: Growth Rate in % compared to 7 Days ago"
+									data-target="deceased_growth7Days">Last 7 Days Growth Rate in %</a>
+								<a id="input-deceased_delta7Days" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Deceased Cases: Delta of new Cases compared to 7 Days ago"
+									data-target="deceased_delta7Days">Last 7 Days Delta</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCalculated" role="button"
+								data-i18n="[title]general.calculated.tooltip; [text]general.calculated.link"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownCalculated">
+								<a id="link-calculated_acute_care_beds_absolute"
+									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
+									data-placement="auto" title="Calculated: Absolute Number of Acute Care Cases"
+									data-target="calculated_acute_care_beds_absolute">Absolute Number of Acute Care
+									Cases</a>
+								<a id="link-calculated_acute_care_cases_per100k"
+									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
+									data-placement="auto" title="Calculated: Acute Care Cases per 100.000 Capita"
+									data-target="calculated_acute_care_cases_per100k">Acute Care Cases per
+									100.000 Capita</a>
+								<a id="link-calculated_acute_care_beds_utilization"
+									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
+									data-placement="auto"
+									title="Calculated: Acute Care Bed Utilization in % of total Capacity"
+									data-target="calculated_acute_care_beds_utilization">Acute Care Bed Utilization in %
+									of
+									total Capacity</a>
+								<div class="dropdown-divider"></div>
+								<a id="link-calculated_critical_care_absolute" class="change-perspective dropdown-item"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									title="Calculated: Absolute Number of Critical/Intensive Care Cases"
+									data-target="calculated_critical_care_absolute">Absolute Number of
+									Critical/Intensive Care
+									Cases</a>
+								<a id="link-calculated_critical_care_cases_per100k"
+									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
+									data-placement="auto"
+									title="Calculated: Critical/Intensive Care Cases per 100.000 Capita"
+									data-target="calculated_critical_care_cases_per100k">Critical/Intensive Care Cases
+									per 100.000
+									Capita</a>
+								<a id="link-calculated_critical_care_beds_utilization"
+									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
+									data-placement="auto"
+									title="Calculated: Critical/Intensive Care Bed Utilization in % of total Capacity"
+									data-target="calculated_critical_care_beds_utilization">Critical/Intensive Care Bed
+									Utilization in %
+									of
+									total Capacity</a>
+								<!-- <div class="dropdown-divider"></div>
+								<a id="input-null" class="dropdown-item" href="#" data-toggle="tooltip"
+									data-placement="auto" title="Make Simulation"
+									data-target="null">Make
+									Simulation</a> -->
+								<!-- <div class="dropdown-divider"></div>
+								<a id="link-calculated_confirmed_24Hours" class="change-perspective dropdown-item"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									title="Calculated: Simulation of Cases next 24 Hours"
+									data-target="calculated_confirmed_24Hours">Calculated: Simulation of Cases next
+									24
+									Hours</a>
+								<a id="link-calculated_confirmed_7Days" class="change-perspective dropdown-item"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									title="Calculated: Simulation of Cases next 7 Days"
+									data-target="calculated_confirmed_7Days">Calculated: Simulation of Cases next 7
+									Days</a>
+								<a id="link-calculated_confirmed_incidence_24Hours"
+									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
+									data-placement="auto"
+									title="Calculated: Simulation of Incidence per 100.000 Capita next 24 Hours"
+									data-target="calculated_confirmed_incidence_24Hours">Calculated: Simulation of
+									Incidence per 100.000 Capita next 24
+									Hours</a>
+								<a id="link-calculated_confirmed_incidence_7Days"
+									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
+									data-placement="auto"
+									title="Calculated: Simulation of Incidence per 100.000 Capita next 7 Days"
+									data-target="calculated_confirmed_incidence_7Days">Calculated: Simulation of
+									Incidence per 100.000 Capita next 7
+									Days</a> -->
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHealth" role="button"
+								data-i18n="[title]general.health.tooltip; [text]general.health.link"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownHealth">
+								<a id="link-acute_care_beds_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Absolute Number of Acute Care Beds"
+									data-target="acute_care_beds_absolute">Absolute Number of Acute Care Beds</a>
+								<a id="link-acute_care_beds_per100k" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Acute Care Beds per 100.000 Capita"
+									data-target="acute_care_beds_per100k">Acute Care Beds per 100.000 Capita</a>
+								<a id="link-critical_care_beds_absolute" class="change-perspective dropdown-item"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									title="Absolute Number of Critical/Intensive Care Beds"
+									data-target="critical_care_beds_absolute">Absolute Number of Critical/Intensive Care
+									Beds</a>
+								<a id="link-critical_care_beds_per100k" class="change-perspective dropdown-item"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									title="Critical/Intensive Care Beds per 100.000 Capita"
+									data-target="critical_care_beds_per100k">Critical/Intensive Care Beds per 100.000
+									Capita</a>
+								<a id="link-health_expenditure_gdp" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Health Expenditure in % of GDP"
+									data-target="health_expenditure_gdp">Health Expenditure in % of GDP</a>
+								<a id="link-health_expenditure_perCapita" class="change-perspective dropdown-item"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									title="Health Expenditure in US$ per Capita"
+									data-target="health_expenditure_perCapita">Health Expenditure in US$ per
+									Capita</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPopulation" role="button"
+								data-i18n="[title]general.population.tooltip; [text]general.population.link"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownPopulation">
+								<a id="link-population_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Population: Absolute Number"
+									data-target="population_absolute">Absolute
+									Population</a>
+								<a id="link-population_density" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Population Density in P/Km²"
+									data-target="population_density">Population Density</a>
+								<a id="link-population_urban" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Urban Population"
+									data-target="population_urban">Urban
+									Population</a>
+								<a id="link-population_median_age" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Population Median Age"
+									data-target="population_median_age">Median
+									Age</a>
+								<a id="link-population_over65_absolute" class="change-perspective dropdown-item"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									title="Absolute Population over 65 yo"
+									data-target="population_over65_absolute">Absolute Population over 65 yo</a>
+								<a id="link-population_over65_ratio" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Population: Share of over 65 yo in %"
+									data-target="population_over65_ratio">Population Share of over 65 yo in %</a>
+								<a id="link-fertility_rate" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									title="Population: Fertility Rate in Children per Woman"
+									data-target="fertility_rate">Fertility Rate</a>
+								<a id="link-gdp_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Absolute GDP in US$"
+									data-target="gdp_absolute">Absolute
+									GDP in
+									US$</a>
+								<a id="link-gdp_perCapita" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="GDP in US$ per Capita"
+									data-target="gdp_perCapita">GDP in
+									US$
+									per Capita</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguage" role="button"
+								data-i18n="[title]general.language.tooltip; [text]general.language.link"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownLanguage">
+								<a class="dropdown-item" href="#" onclick="changeLanguage('en');">English</a>
+								<a class="dropdown-item" href="#" onclick="changeLanguage('de');">Deutsch</a>
+								<a class="dropdown-item" href="#" onclick="changeLanguage('es');">Español</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div class="section section-map">
+			<div id="map"></div>
+		</div>
+
+		<div class="section section-details">
+			<h4 id="details-title">covid-19-monitor Monitor</h4>
+			<div id="accordion" style="display: none;">
+				<div class="card">
+					<div class="card-header" id="headingCountry">
+						<a data-toggle="collapse" href="#collapseCountry" aria-expanded="false"
+							aria-controls="collapseCountry">Selected Countries</a>
+					</div>
+					<div id="collapseCountry" class="collapse" aria-labelledby="headingCountry"
+						data-parent="#accordion">
+						<div class="card-body" id="details-countries">
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header" id="headingDate">
+						<a data-toggle="collapse" href="#collapseDate" aria-expanded="false"
+							aria-controls="collapseDate">Selected Date Range</a>
+					</div>
+					<div id="collapseDate" class="collapse" aria-labelledby="headingDate" data-parent="#accordion">
+						<div class="card-body" id="details-dates">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section section-charts">
+			<div style="width: 100%;">
+				<div>
+					<div id="chart_over_time" class="chart"></div>
+					<a name="button-chart_over_time" id="button-chart_over_time" style="text-align: center;"
+						target="_blank" download="chart_over_time.png">Download Chart</a>
+				</div>
+				<div>
+					<div id="chart_latest" class="chart"></div>
+					<a name="button-chart_latest" id="button-chart_latest" style="text-align: center;" target="_blank"
+						download="chart_latest.png">Download Chart</a>
+				</div>
+				<div>
+					<div id="chart_tertiary" class="chart"></div>
+					<a name="button-chart_tertiary" id="button-chart_tertiary" style="text-align: center;"
+						target="_blank" download="chart_tertiary.png">Download Chart</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="section section-footer"><a href="index.html">Home</a> | <a href="about.html">About</a> | <a
+				href="sources.html">Data Sources</a> | <a href="swagger-ui.html" target="_blank">REST API</a> | <a
+				href="graphql_playground" target="_blank">GraphQL
+				API</a></div>
+	</div>
+
+
+	<!-- SIDENAV PARAMETERS -->
+	<div id="sidenav-parameters" class="sidenav sidenav-right">
+		<a href="javascript:void(0);" class="closebtn" onclick="closeSidenav();">&times;</a>
+		<div id="listing-group" class="listing-group">
+			<h4>Initial Parameters</h4>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Countries">
+				<select class="form-control form-control-sm" name="input-countries" id="input-countries"
+					multiple="multiple">
+					<!-- <option value="" selected>all</option> -->
+				</select>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Dates">
+				<select class="form-control form-control-sm" name="input-dateIds" id="input-dateIds"
+					multiple="multiple">
+					<!-- <option value="" selected>all</option> -->
+				</select>
+			</div>
+			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Confirmed Cases">
+				<input class="form-check-input" type="checkbox" name="checkbox-confirmed" id="checkbox-confirmed"
+					value="confirmed" checked>
+				<label class="form-check-label" for="checkbox-confirmed">Confirmed Cases</label>
+			</div>
+			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Recovered Cases">
+				<input class="form-check-input" type="checkbox" name="checkbox-recovered" id="checkbox-recovered"
+					value="recovered" checked>
+				<label class="form-check-label" for="checkbox-recovered">Recovered Cases</label>
+			</div>
+			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Deceased Cases">
+				<input class="form-check-input" type="checkbox" name="checkbox-deceased" id="checkbox-deceased"
+					value="deceased" checked>
+				<label class="form-check-label" for="checkbox-deceased">Deceased Cases</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Estimated undetected Cases per Confirmed
+				Case Factor (0/empty=disabled, means 100% test-coverage, means no undetected/untested Cases; 1=Doubles the number, meaning one undetected Case per one confirmed Case)">
+				<input class="form-control form-control-sm" type="text" name="estimated_undetected_factor"
+					id="input-estimated_undetected_factor" value="0">
+				<label class="form-control-label" for="input-estimated_undetected_factor">Estimated undetected Cases per
+					Confirmed
+					Case Factor</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Additional Acute Care Capacity in % of Capacity before covid-19-monitor (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since covid-19-monitor outbreak)">
+				<input class="form-control form-control-sm" type="text" name="acute_care_additional_rate"
+					id="input-acute_care_additional_rate" value="10">
+				<label class="form-control-label" for="input-acute_care_additional_rate">Additional Acute Care Capacity
+					in % since covid-19-monitor Outbreak</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Acute Care Rate in % of Confirmed Cases This value represents the Percentage of Confirmed Cases that need acute Care. A value around 15% seems to be realistic based on data from China, South Koreo and Japan">
+				<input class="form-control form-control-sm" type="text" name="acute_care_rate"
+					id="input-acute_care_rate" value="15">
+				<label class="form-control-label" for="input-acute_care_rate">Acute Care Rate in % of Confirmed
+					Cases</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Additional Critical/Intensive Care Capacity in % of Capacity before covid-19-monitor (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since covid-19-monitor outbreak)">
+				<input class="form-control form-control-sm" type="text" name="critical_care_additional_rate"
+					id="input-critical_care_additional_rate" value="50">
+				<label class="form-control-label" for="input-critical_care_additional_rate">Additional
+					Critical/Intensive Care
+					Capacity in % since covid-19-monitor Outbreak</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Critical/Intensive Care Rate in % of Confirmed Cases. This value represents the Percentage of Confirmed Cases that need critical Care. A value around 5% seems to be realistic based on data from China, South Koreo and Japan">
+				<input class="form-control form-control-sm" type="text" name="critical_care_rate"
+					id="input-critical_care_rate" value="5">
+				<label class="form-control-label" for="input-critical_care_rate">Critical/Intensive Care Rate in % of
+					Confirmed
+					Cases</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Apply">
+				<button class="btn btn-outline-secondary btn-sm form-control form-control-sm" name="button-apply"
+					id="button-apply" type="button" onclick="apply();">Apply</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- SIDENAV SIMULATION -->
+	<div id="sidenav-simulations" class="sidenav sidenav-right">
+		<a href="javascript:void(0);" class="closebtn" onclick="closeSidenav();">&times;</a>
+		<div id="listing-group" class="listing-group">
+			<h4>Simulation</h4>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Country">
+				<select class="form-control form-control-sm" name="input-country" id="input-country">
+					<!-- <option value="" selected>all</option> -->
+				</select>
+				<label class="form-control-label" for="input-country">Country</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Date">
+				<select class="form-control form-control-sm" name="start_dateId" id="input-start_dateId">
+					<!-- <option value="" selected>all</option> -->
+				</select>
+				<label class="form-control-label" for="input-start_dateId">Start Date</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Reproduction Rate in % over 24 Hours (current country-specific rate: default/empty/0, lockdown: 7-15%, no lockdown: 30+x%)">
+				<input class="form-control form-control-sm" type="text" name="reproduction_rate"
+					id="input-reproduction_rate" value="">
+				<label class="form-control-label" for="input-reproduction_rate">Reproduction Rate in % over 24
+					Hours</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Mortaliy Rate in %">
+				<input class="form-control form-control-sm" type="text" name="mortality_rate" id="input-mortality_rate"
+					value="1.5">
+				<label class="form-control-label" for="input-mortality_rate">Mortality Rate in % </label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Incubation/Retention Time in Days. How many days after the Infection a Patient either recovers or dies. While those days the Patient is infectious to others.">
+				<input class="form-control form-control-sm" type="text" name="retention_days" id="input-retention_days"
+					value="9">
+				<label class="form-control-label" for="input-retention_days">Incubation/Retention Time in Days</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Simulation Horizon in Days. How many Days the Simulation/Forecast should go ahead.">
+				<input class="form-control form-control-sm" type="text" name="simulation_horizon"
+					id="input-simulation_horizon" value="365">
+				<label class="form-control-label" for="input-simulation_horizon">Simulation Horizon in Days</label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
+				title="Herd Immunity Rate in %. covid-19-monitor may have a value of 70-80%">
+				<input class="form-control form-control-sm" type="text" name="herd_immunity_rate"
+					id="input-herd_immunity_rate" value="100">
+				<label class="form-control-label" for="input-herd_immunity_rate">Herd Immunity Rate in % </label>
+			</div>
+			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Apply">
+				<button class="btn btn-outline-secondary btn-sm form-control form-control-sm" name="button-simulate"
+					id="button-simulate" type="button" onclick="simulate();">Simulate</button>
+			</div>
+		</div>
+	</div>
+
+	<input id="inputBaseUrl" type="hidden" value="api/v1">
+
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/1.4.0/mapbox-gl.js"
+		integrity="sha256-4vgPjIfsjmay+xrYNgX79wO5pIHcSKoCWJKwNmoqcms=" crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/19.3.4/i18next.min.js"
+		integrity="sha256-CYCGlYXcJ/yqRx1owUGdVXzvN1eJDCLLr3nAO5QsTQk=" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/i18next-xhr-backend/i18nextXHRBackend.js"></script>
+	<script src="https://unpkg.com/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.js"></script>
+
+	<!-- <script src="https://github.com/i18next/jquery-i18next/blob/master/jquery-i18next.min.js"
+		crossorigin="anonymous"></script> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.7/jquery.i18n.min.js"
+		integrity="sha256-Xe5TCNN0b3K98e99/oWJr0FOiSTILqWWWEaDCY48V5E=" crossorigin="anonymous"></script> -->
+
+	<script src="../js/jquery-i18next.min.js"></script>
+	<script src="../js/utilities.js"></script>
+	<script src="../js/geojson.js"></script>
+	<script src="../js/mapbox.js"></script>
+	<script src="../js/graphql.js"></script>
+	<script src="../js/chart.js"></script>
+	<script src="../js/perspectives.js"></script>
+	<script src="../js/main.js"></script>
+
+	<script>
+
+		$(document).ready(function () {
+			$('.loader-modal').show();
+
+			i18next
+				.use(i18nextXHRBackend)
+				.use(i18nextBrowserLanguageDetector)
+				.init({
+					debug: true,
+					// resources: {
+					// 	en: {
+					// 		translation: {
+					// 			"key": "hello world"
+					// 		}
+					// 	}
+					// },
+					// nsSeparator: false,
+					// keySeparator: false,
+					// fallbackLng: false,
+					fallbackLng: 'en',
+					ns: ['common'],
+					defaultNS: 'common',
+					backend: {
+						loadPath: 'locales/{{lng}}/{{ns}}.json',
+						crossDomain: true
+					}
+				}, function (err, t) {
+					jqueryI18next.init(i18next, $, {
+						tName: 't', // --> appends $.t = i18next.t
+						i18nName: 'i18n', // --> appends $.i18n = i18next
+						handleName: 'localize', // --> appends $(selector).localize(opts);
+						selectorAttr: 'data-i18n', // selector for translating elements
+						targetAttr: 'i18n-target', // data-() attribute to grab target element to translate (if diffrent then itself)
+						optionsAttr: 'i18n-options', // data-() attribute that contains options, will load/set if useOptionsAttr = true
+						useOptionsAttr: false, // see optionsAttr
+						// parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text
+					});
+					changeLanguage();
+				}
+				);
+
+			getDateIdsMini();
+			getCountriesMini();
+
+			initMapBox();
+			google.charts.load('current', { 'packages': ['corechart'] });
+			map.setZoom(0.5);
+			map.setCenter({ lng: 0.0, lat: 0.0 });
+			$('.change-perspective').unbind().on('click touchstart', event => {
+				var element = $(event.currentTarget);
+				var id = element.attr('id');
+				var target = element.data('target');
+				var originalTitle = element.data('original-title');
+				var text = event.currentTarget.text;
+				$('.navbar-toggler').click();
+				updatePerspective(target);
+				$('#details-title').html(originalTitle);
+				document.title = originalTitle;
+				closeSidenav();
+			});
+			// changeLanguage();
+
+			// Change reproduction rate value for simulation according to latest 24-hour growth-rate of given country.
+			$('#input-country').unbind().change(event => {
+				var selectedCountry = $(event.currentTarget).val();
+				var simulationCountrySnaps = snapshotsGroupedByCountry[selectedCountry];
+				$('#input-reproduction_rate').val(parseFloat(simulationCountrySnaps[simulationCountrySnaps.length - 1].confirmed.growthRateLast24Hours).toFixed(2));
+
+			});
+			$('.loader-modal').hide();
+			$(window).resize(function () {
+				updatePerspective();
+			});
+		});
+
+		function changeLanguage(languageCode) {
+			if (languageCode) {
+				i18next.changeLanguage(languageCode);
+			}
+			$('body').localize();
+			$('[data-toggle="tooltip"]').tooltip('dispose');
+			$('[data-toggle="tooltip"]').tooltip();
+		}
+
+	</script>
+</body>
+
+</html>

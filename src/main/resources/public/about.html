@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,shrink-to-fit=no">
+
+    <title>covid-19-monitor Monitor - About</title>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shards-ui@3.0.0/dist/css/shards.min.css"
+        integrity="sha256-/Jp0Ye+4qZWXFKalAvmvkRdMScrRebEEMwrcxZ7sD80=" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles/covid19.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="stylesheet" href="styles/autocomplete.css" />
+</head>
+
+<body>
+    <a href="https://github.com/thlaegler/covid-19-monitor"><img width="149" height="149"
+            src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149"
+            class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" ,
+            style="right: 0px; position: absolute; z-index: 100;"></a>
+
+    <div class="loader-modal">
+        <div class="loader"></div>
+    </div>
+
+    <div class="page">
+
+        <div class="section section-headrer">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%;">
+                <a class="navbar-brand" href=".">About</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+        </div>
+
+        <div class="section section-details">
+            <h4 id="details-title">About</h4>
+            <p>Visualization of worldwide dynamics of covid-19-monitor. Always up-to-date using covid-19-monitor data from Johns Hopkins
+                University: <a href="https://github.com/CSSEGISandData/covid-19-monitor">Data Source Repository (GitHub)</a>.
+                <a href="https://github.com/thlaegler/covid-19-monitor">Source Code</a></p>
+            <h5>Calculated Values</h5>
+            <p>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Calculated Acute Critical Care Utilization in %:</strong> On
+                        page load the default value for the percentage of confirmed cases that may need Acute Care
+                        (Hospitalization) is set to 15%. For a limited number of countries we know the available Acute
+                        Care Capacity and combine it with the total population and the current number of actual covid-19-monitor
+                        Cases (without recovered and deceased).
+                        The Utilization shows the load of Acute Care beds (covid-19-monitor Cases only; not taking into account
+                        the "usual" load/occupancy).</li>
+                    <li class="list-group-item"><strong>Calculated Critical Care Utilization in %:</strong> On page load
+                        the default value for the percentage of confirmed cases that may need Critical Care
+                        (ICU/Ventilator) is set to 5%. For a limited number of countries we know the available Critical
+                        Care Capacity and combine it with the total population and the current number of actual covid-19-monitor
+                        Cases (without recovered and deceased).
+                        The Utilization shows the load of Critical Care beds with covid-19-monitor cases.
+                        Different sources indicate that in "usual" times (without covid-19-monitor) around 80% of the critical
+                        care beds are already (permanently) occupied. Which means a covid-19-monitor Critical Care bed
+                        Utilization of more than 20% might indicate that the national Critical Care Capacity limit has
+                        been reached.
+
+                    </li>
+                </ul>
+            </p>
+            <h5>Disclaimer</h5>
+            <p>NO GUARANTEE OF VALIDITY:
+                We cannot guarantee the validity of the information found here. The content of any given data map, chart
+                or
+                table may recently have been changed or altered as our primary or secondary data sources may change.
+                Also there is only a very limited amount of scientific data and (long-term) studies available. Some data
+                might be inconsistent or contradictory or results for one country don't apply for another country.</p>
+            <p>CAUTION: All calculated values are THEORETICAL values and may not reflect the real/actual values!</p>
+            <p>A big question mark is also behind the number of Confirmed Cases and the estimated number of undetected
+                Cases.
+                While most scientists agree that there is a significant amount of undetected Cases, the numbers differ
+                quite a lot between studies and countries depending on the test intensity and test regulations.
+                This has a big influence on a lot of dereived and calculated values (e.g. Hospitalization, Mortality
+                rate etc.)</p>
+        </div>
+
+        <div class="section section-footer"><a href="index.html">Home</a> | <a href="about.html">About</a> | <a
+                href="sources.html"> Data Sources</a> | <a href="swagger-ui.html" target="_blank">REST API</a> | <a
+                href="graphql_playground" target="_blank">GraphQL API</a></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

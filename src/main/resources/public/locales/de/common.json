@@ -1,0 +1,72 @@
+{
+    "general": {
+        "initParams": {
+            "link": "Anfangsparameters",
+            "tooltip": "Anfangsparameters"
+        },
+        "simulation": {
+            "link": "Simulation 'Flatten the Curve'",
+            "tooltip": "Simulation 'Flatten the Curve'"
+        },
+        "calculated": {
+            "link": "Berechnete Werte",
+            "tooltip": "Berechnete Werte sind das Ergebnis aus der Kombination von covid-19-monitor Daten und den Gesundheitssystemdaten der jeweiligen Länder"
+        },
+        "health": {
+            "link": "Gesundheitsversorgung",
+            "tooltip": "Gesundheitsversorgung"
+        },
+        "population": {
+            "link": "Bevölkerung",
+            "tooltip": "Bevölkerung"
+        },
+        "language": {
+            "link": "Sprache",
+            "tooltip": "Bildschirmsprache ändern"
+        }
+    },
+    "confirmed": {
+        "link": "Bestätigte Fälle",
+        "tooltip": "Bestätigte Fälle",
+        "absolute": {
+            "link": "Absolute Anzahl",
+            "tooltip": "Bestätigte Fälle: Absolute Anzahl"
+        },
+        "incidencePer100k": {
+            "link": "Inzidenz pro 100.000 Einwohner",
+            "tooltip": "Bestätigte Fälle: Inzidenz pro 100.000 Einwohner"
+        },
+        "growthRate24Hours": {
+            "link": "24 Stunden Wachstumsrate in %",
+            "tooltip": "Bestätigte Fälle: Wachstumsrate in % in den letzten 24 Stunden"
+        },
+        "growthDelta24Hours": {
+            "link": "24 Stunden Neuinfizierte",
+            "tooltip": "Bestätigte Fälle: Differenz gegenüber 24 Stunden zuvor (Neuinfektionen)"
+        },
+        "growthRate7Days": {
+            "link": "7 Tage Wachstumsrate in %",
+            "tooltip": "Bestätigte Fälle: Wachstumsrate in % in den letzten 7 Tagen"
+        },
+        "growthDelta7Days": {
+            "link": "7 Tage Neuinfizierte",
+            "tooltip": "Bestätigte Fälle: Differenz gegenüber 7 Tage zuvor (Neuinfektionen)"
+        }
+    },
+    "recovered": {
+        "link": "Genesene Fälle",
+        "tooltip": "Genesene Fälle",
+        "absolute": {
+            "link": "Absolute Anzahl",
+            "tooltip": "Genesene Fälle: Absolute Anzahl"
+        }
+    },
+    "deceased": {
+        "link": "Verstorbene Fälle",
+        "tooltip": "Verstorbene Fälle",
+        "absolute": {
+            "link": "Absolute Anzahl",
+            "tooltip": "Verstorbene Fälle: Absolute Anzahl"
+        }
+    }
+}

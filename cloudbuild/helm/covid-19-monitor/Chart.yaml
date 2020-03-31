@@ -1,0 +1,16 @@
+apiVersion: v1
+name: covid-19
+version: CHART_VERSION
+appVersion: CHART_VERSION
+icon: https://www.google.de/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
+home: https://github.com/thlaegler/covid-19
+source:
+- https://github.com/thlaegler/covid-19
+description: 'covid-19-monitor'
+maintainers:
+- name: thlaegler
+keywords:
+- Backend
+- API
+- REST
+- Web

@@ -1,0 +1,14 @@
+label {
+    margin-bottom: 0.2rem;
+    margin-top: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 0.2rem;
+}
+
+.nested-form {
+    padding: 5px;
+    border: 1px dashed #cccccc;
+    margin-bottom: 0.2rem;
+}
