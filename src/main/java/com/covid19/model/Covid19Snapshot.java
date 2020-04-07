@@ -52,50 +52,72 @@ public class Covid19Snapshot extends AbstractModel {
   @ApiModelProperty(name = "confirmed", value = "Confirmed Cases")
   @CsvBindByName
   @Field(name = "confirmed", type = FieldType.Long)
-  private Long confirmed;
+  private long confirmed;
 
   @CsvBindByName
-  private Integer confirmedDelta;
+  private long confirmedDelta;
 
   @CsvBindByName
-  private Double confirmedGrowthRate;
+  private double confirmedGrowthRate;
 
   @ApiModelProperty(name = "recovered", value = "Recovered Cases")
   @CsvBindByName
   @Field(name = "recovered", type = FieldType.Long)
-  private Long recovered;
+  private long recovered;
 
   @CsvBindByName
-  private Integer recoveredDelta;
+  private long recoveredDelta;
 
   @CsvBindByName
-  private Double recoveredGrowthRate;
+  private double recoveredGrowthRate;
 
   @ApiModelProperty(name = "deceased", value = "Deceased Cases")
   @CsvBindByName
   @Field(name = "deceased", type = FieldType.Long)
-  private Long deceased;
+  private long deceased;
 
   @CsvBindByName
-  private Integer deceasedDelta;
+  private long deceasedDelta;
 
   @CsvBindByName
-  private Double deceasedGrowthRate;
+  private double deceasedGrowthRate;
+
+  @ApiModelProperty(name = "infectious", value = "Active/Infectious Cases")
+  @CsvBindByName
+  @Field(name = "infectious", type = FieldType.Long)
+  private long infectious;
 
   @CsvBindByName
-  private Double incidencePer100k;
+  private long infectiousDelta;
 
   @CsvBindByName
-  private Double recoveryRate;
+  private double infectiousGrowthRate;
+
+  @ApiModelProperty(name = "tested", value = "Tested Cases/People")
+  @CsvBindByName
+  @Field(name = "tested", type = FieldType.Long)
+  private long tested;
 
   @CsvBindByName
-  private Double caseFatalityRisk;
+  private long testedDelta;
 
   @CsvBindByName
-  private Double immunizationRate;
+  private double testedPer1k;
 
   @CsvBindByName
-  private Double doublingTime;
+  private double incidencePer100k;
+
+  @CsvBindByName
+  private double recoveryRate;
+
+  @CsvBindByName
+  private double caseFatalityRisk;
+
+  @CsvBindByName
+  private double immunizationRate;
+
+  @CsvBindByName
+  private double doublingTime;
 
   // @ApiModelProperty(name = "location", value = "Searchable Geo location", required = false)
   // @CsvRecurse

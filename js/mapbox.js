@@ -79,30 +79,37 @@ const initMapBox = () => {
         antialias: true
     });
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            currPosition = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            map.setCenter(currPosition);
-            // setCenter(currPosition);
-        });
-    }
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(function (position) {
+    //         currPosition = {
+    //             lat: position.coords.latitude,
+    //             lng: position.coords.longitude
+    //         };
+    //         map.setCenter(currPosition);
+    //     });
+    // }
     // setCenter(map.getCenter());
 
-    map.addControl(new mapboxgl.NavigationControl());
-    map.addControl(new mapboxgl.GeolocateControl({
-        positionOptions: {
-            enableHighAccuracy: true
-        },
-        trackUserLocation: true
-    }));
+    // map.addControl(new mapboxgl.NavigationControl());
+    // map.addControl(new mapboxgl.GeolocateControl({
+    //     positionOptions: {
+    //         enableHighAccuracy: true
+    //     },
+    //     trackUserLocation: true
+    // }));
 
-    Object.keys(paths).forEach(k => {
-        map.loadImage(filePathPrefix + 'images/mapicon/icon_' + k + '.png', (error, image) => {
-            if (error) throw error;
-            map.addImage('icon_' + k, image);
+    // Object.keys(paths).forEach(k => {
+    //     map.loadImage(filePathPrefix + 'images/mapicon/icon_' + k + '.png', (error, image) => {
+    //         if (error) throw error;
+    //         map.addImage('icon_' + k, image);
+    //     });
+    // });
+
+    map.on('load', async (e) => {
+        await updateGeoJsonCircle({
+            id: 'countries',
+            type: 'FeatureCollection',
+            features: [],
         });
     });
 

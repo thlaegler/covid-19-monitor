@@ -5,7 +5,7 @@
             "tooltip": "Initial Parameters"
         },
         "simulation": {
-            "link": "Simulation 'Flatten the Curve'",
+            "link": "Simulation",
             "tooltip": "Simulation 'Flatten the Curve'"
         },
         "calculated": {
@@ -23,6 +23,18 @@
         "language": {
             "link": "Language",
             "tooltip": "Change UI Language"
+        },
+        "overTime": {
+            "link": "Data over time",
+            "tooltip": "Data over time"
+        },
+        "latest": {
+            "link": "Latest Data",
+            "tooltip": "Latest Data"
+        },
+        "tertiary": {
+            "link": "Additional Data",
+            "tooltip": "Additional Data"
         }
     },
     "confirmed": {
@@ -45,12 +57,32 @@
             "tooltip": "Confirmed Cases: Growth Rate in % compared to yesterday"
         },
         "delta": {
-            "link": "New Cases since yesterday",
+            "link": "New Cases",
             "tooltip": "Confirmed Cases: Delta of new Cases compared to yesterday (new Infections)"
         },
         "doublingTime": {
-            "link": "Doubling Time in Days",
-            "tooltip": "Confirmed Cases: Doubling Time in Days"
+            "link": "Doubling Time (yesterday)",
+            "tooltip": "Confirmed Cases: Doubling Time in Days using latest Growth Rate"
+        },
+        "doublingTimeLast7Days": {
+            "link": "Doubling Time (over last Week)",
+            "tooltip": "Confirmed Cases: Doubling Time in Days using average Growth Rate of last week"
+        }
+    },
+    "infectious": {
+        "link": "Active Cases",
+        "tooltip": "Active Cases (Confirmed minus Recovered minus Deceased)",
+        "absolute": {
+            "link": "Absolute Number",
+            "tooltip": "Active Cases: Absolute Number"
+        },
+        "growthRate": {
+            "link": "Growth Rate in %",
+            "tooltip": "Active Cases: Growth Rate in % compared to yesterday"
+        },
+        "delta": {
+            "link": "New Cases",
+            "tooltip": "Active Cases: Delta of new Cases compared to yesterday"
         }
     },
     "recovered": {
@@ -73,7 +105,7 @@
             "tooltip": "Recovered Cases: Growth Rate in % compared to yesterday"
         },
         "delta": {
-            "link": "New Cases since yesterday",
+            "link": "New Cases",
             "tooltip": "Recovered Cases: Delta of new Cases compared to yesterday (new Recovered)"
         }
     },
@@ -93,8 +125,24 @@
             "tooltip": "Deceased Cases: Growth Rate in % compared to yesterday"
         },
         "delta": {
-            "link": "New Cases since yesterday",
+            "link": "New Cases",
             "tooltip": "Deceased Cases: Delta of new Cases compared to yesterday"
+        }
+    },
+    "tested": {
+        "link": "Testing",
+        "tooltip": "Testing",
+        "absolute": {
+            "link": "Absolute Number",
+            "tooltip": "Tests: Total Number of Tests"
+        },
+        "per1k": {
+            "link": "Tests per 1000 Capita",
+            "tooltip": "Tests per 1000 Capita"
+        },
+        "delta": {
+            "link": "New Tests",
+            "tooltip": "Tests: Difference of new Tests compared to yesterday"
         }
     }
 }

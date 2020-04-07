@@ -56,21 +56,28 @@ public class DailyReport extends AbstractModel {
   @JsonAlias("confirmed")
   @Field(name = "confirmed", type = Keyword)
   @CsvBindByName(column = "Confirmed", required = false)
-  private Long confirmed;
+  private long confirmed;
 
   @ApiModelProperty(name = "recovered", value = "Recovered Cases", required = false)
   @JsonProperty("recovered")
   @JsonAlias("recovered")
   @Field(name = "recovered", type = Keyword)
   @CsvBindByName(column = "Recovered", required = false)
-  private Long recovered;
+  private long recovered;
 
   @ApiModelProperty(name = "deceased", value = "Deceased Cases", required = false)
   @JsonProperty("deceased")
   @JsonAlias("deceased")
   @Field(name = "deceased", type = Keyword)
   @CsvBindByName(column = "Deaths", required = false)
-  private Long deceased;
+  private long deceased;
+
+  @ApiModelProperty(name = "infectious", value = "Active/Infectious Cases", required = false)
+  @JsonProperty("infectious")
+  @JsonAlias("infectious")
+  @Field(name = "infectious", type = Keyword)
+  @CsvBindByName(column = "Active", required = false)
+  private long infectious;
 
   @ApiModelProperty(name = "importDate", value = "Import Date of this data into the system",
       required = true)

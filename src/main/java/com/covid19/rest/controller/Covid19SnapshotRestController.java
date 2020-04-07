@@ -8,7 +8,7 @@ import com.covid19.service.Covid19SnapshotService;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 
-@Api(value = "covid-19-monitor Country-Date-Snapshots API", tags = "covid-19-monitor Snapshots")
+@Api(value = "COVID-19 Country-Date-Snapshots API", tags = "COVID-19 Snapshots")
 @RestController
 @RequestMapping(value = "/api/v1/covid19")
 @AllArgsConstructor(onConstructor_ = {@Autowired})

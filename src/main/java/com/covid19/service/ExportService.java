@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class ExportService extends CsvService {
 
-  private final static String EXPORT_COUNTRIES_PATH = "data/countries_export.csv";
+  private final static String EXPORT_COUNTRIES_PATH = "data/countries.csv";
   private final static String EXPORT_BY_DATE_PATH = "data/by_date/%s.csv";
   private final static String EXPORT_BY_COUNTRY_PATH = "data/by_country/%s.csv";
 

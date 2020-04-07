@@ -78,11 +78,36 @@
 								<a id="input-confirmed_incidence_per100k" class="change-perspective dropdown-item"
 									data-i18n="[title]confirmed.incidencePer100k.tooltip; [text]confirmed.incidencePer100k.link"
 									href="#" data-toggle="tooltip" data-placement="auto"
-									data-target="confirmed_incidence_per100k">Incidence per 100.000 Capita</a>
+									data-target="confirmed_incidence_per100k"></a>
 								<a id="input-confirmed_doubling_time" class="change-perspective dropdown-item"
 									data-i18n="[title]confirmed.doublingTime.tooltip; [text]confirmed.doublingTime.link"
 									href="#" data-toggle="tooltip" data-placement="auto"
-									data-target="confirmed_doubling_time">Doubling Time</a>
+									data-target="confirmed_doubling_time"></a>
+								<a id="input-confirmed_doubling_time_last_7days"
+									class="change-perspective dropdown-item"
+									data-i18n="[title]confirmed.doublingTimeLast7Days.tooltip; [text]confirmed.doublingTimeLast7Days.link"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									data-target="confirmed_doubling_time_last_7days"></a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownInfectious" role="button"
+								data-i18n="[title]infectious.tooltip; [text]infectious.link" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownInfectious">
+								<a id="input-infectious_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]infectious.absolute.tooltip; [text]infectious.absolute.link"
+									data-target="infectious_absolute"></a>
+								<a id="input-infectious_growth_rate" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]infectious.growthRate.tooltip; [text]infectious.growthRate.link"
+									data-target="infectious_growth_rate"></a>
+								<a id="input-infectious_delta" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]infectious.delta.tooltip; [text]infectious.delta.link"
+									data-target="infectious_delta"></a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -133,6 +158,25 @@
 									data-toggle="tooltip" data-placement="auto"
 									data-i18n="[title]deceased.caseFatalityRisk.tooltip; [text]deceased.caseFatalityRisk.link"
 									data-target="case_fatality_risk"></a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTested" role="button"
+								data-i18n="[title]tested.tooltip; [text]tested.link" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"></a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownTested">
+								<a id="link-tested_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]tested.absolute.tooltip; [text]tested.absolute.link"
+									data-target="tested_absolute">s</a>
+								<a id="input-tested_delta" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]tested.delta.tooltip; [text]tested.delta.link"
+									data-target="tested_delta"></a>
+								<a id="link-tested_per1k" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]tested.per1k.tooltip; [text]tested.per1k.link"
+									data-target="tested_per1k"></a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -308,7 +352,7 @@
 			<div id="map"></div>
 		</div>
 
-		<div class="section section-details">
+		<!-- <div class="section section-details">
 			<h4 id="details-title">COVID-19 Monitor</h4>
 			<div id="accordion" style="display: none;">
 				<div class="card">
@@ -333,24 +377,32 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="section section-charts">
-			<div style="width: 100%;">
+			<div style="width: 100%; padding: 5px;">
+				<h4 id="details-title">COVID-19 Monitor</h4>
+				<p id="details-description"></p>
 				<div>
+					<h5 id="title_over_time" data-i18n="general.overTime.link">Over Time</h5>
 					<div id="chart_over_time" class="chart"></div>
 					<a name="button-chart_over_time" id="button-chart_over_time" style="text-align: center;"
 						target="_blank" download="chart_over_time.png">Download Chart</a>
+					<div id="table_over_time" class="chart_table"></div>
 				</div>
 				<div>
+					<h5 id="title_latest" data-i18n="general.latest.link">Latest</h5>
 					<div id="chart_latest" class="chart"></div>
 					<a name="button-chart_latest" id="button-chart_latest" style="text-align: center;" target="_blank"
 						download="chart_latest.png">Download Chart</a>
+					<div id="table_latest" class="chart_table"></div>
 				</div>
 				<div>
+					<h5 id="title_tertiary" data-i18n="general.tertiary.link">Additional Data</h5>
 					<div id="chart_tertiary" class="chart"></div>
 					<a name="button-chart_tertiary" id="button-chart_tertiary" style="text-align: center;"
 						target="_blank" download="chart_tertiary.png">Download Chart</a>
+					<div id="table_tertiary" class="chart_table"></div>
 				</div>
 			</div>
 		</div>
@@ -368,18 +420,20 @@
 		<div id="listing-group" class="listing-group">
 			<h4>Initial Parameters</h4>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Countries">
+				<label class="form-control-label" for="input-countries">Countries</label>
 				<select class="form-control form-control-sm" name="input-countries" id="input-countries"
 					multiple="multiple">
 					<!-- <option value="" selected>all</option> -->
 				</select>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Dates">
+				<label class="form-control-label" for="input-dateIds">Date Range</label>
 				<select class="form-control form-control-sm" name="input-dateIds" id="input-dateIds"
 					multiple="multiple">
 					<!-- <option value="" selected>all</option> -->
 				</select>
 			</div>
-			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Confirmed Cases">
+			<!-- <div class="form-check" data-toggle="tooltip" data-placement="auto" title="Confirmed Cases">
 				<input class="form-check-input" type="checkbox" name="checkbox-confirmed" id="checkbox-confirmed"
 					value="confirmed" checked>
 				<label class="form-check-label" for="checkbox-confirmed">Confirmed Cases</label>
@@ -393,50 +447,43 @@
 				<input class="form-check-input" type="checkbox" name="checkbox-deceased" id="checkbox-deceased"
 					value="deceased" checked>
 				<label class="form-check-label" for="checkbox-deceased">Deceased Cases</label>
-			</div>
+			</div> -->
 			<div class="form-group" data-toggle="tooltip" data-placement="auto"
 				title="Estimated undetected Cases per Confirmed
 				Case Factor (0/empty=disabled, means 100% test-coverage, means no undetected/untested Cases; 1=Doubles the number, meaning one undetected Case per one confirmed Case)">
+				<label class="form-control-label" for="input-estimated_undetected_factor">Estimated undetected Cases per
+					Confirmed Case Factor</label>
 				<input class="form-control form-control-sm" type="text" name="estimated_undetected_factor"
 					id="input-estimated_undetected_factor" value="0">
-				<label class="form-control-label" for="input-estimated_undetected_factor">Estimated undetected Cases per
-					Confirmed
-					Case Factor</label>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Additional Acute Care Capacity in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
+				title="Acute Care Hospitalization Admission Rate in % of Active Cases This value represents the Percentage of Confirmed Cases that need acute Care. A value around 5-15% seems to be realistic based on data from China, South Koreo and Japan">
+				<label class="form-control-label" for="input-acute_care_rate">Acute Care Hospitalization Rate in %</label>
+				<input class="form-control form-control-sm" type="text" name="acute_care_rate"
+					id="input-acute_care_rate" value="10">
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto"
+				title="Acute Care Capacity Increase in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
+				<label class="form-control-label" for="input-acute_care_additional_rate">Acute Care Capacity Increase in %</label>
 				<input class="form-control form-control-sm" type="text" name="acute_care_additional_rate"
 					id="input-acute_care_additional_rate" value="10">
-				<label class="form-control-label" for="input-acute_care_additional_rate">Additional Acute Care Capacity
-					in % since COVID-19 Outbreak</label>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Acute Care Rate in % of Confirmed Cases This value represents the Percentage of Confirmed Cases that need acute Care. A value around 15% seems to be realistic based on data from China, South Koreo and Japan">
-				<input class="form-control form-control-sm" type="text" name="acute_care_rate"
-					id="input-acute_care_rate" value="15">
-				<label class="form-control-label" for="input-acute_care_rate">Acute Care Rate in % of Confirmed
-					Cases</label>
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Additional Critical/Intensive Care Capacity in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
-				<input class="form-control form-control-sm" type="text" name="critical_care_additional_rate"
-					id="input-critical_care_additional_rate" value="50">
-				<label class="form-control-label" for="input-critical_care_additional_rate">Additional
-					Critical/Intensive Care
-					Capacity in % since COVID-19 Outbreak</label>
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Critical/Intensive Care Rate in % of Confirmed Cases. This value represents the Percentage of Confirmed Cases that need critical Care. A value around 5% seems to be realistic based on data from China, South Koreo and Japan">
+				title="Critical/Intensive Care Hospitalization Admission Rate in % of Active Cases. This value represents the Percentage of Confirmed Cases that need critical Care. A value around 2-5% seems to be realistic based on data from China, South Koreo and Japan">
+				<label class="form-control-label" for="input-critical_care_rate">Critical/Intensive Care Admission
+					Rate in %</label>
 				<input class="form-control form-control-sm" type="text" name="critical_care_rate"
-					id="input-critical_care_rate" value="5">
-				<label class="form-control-label" for="input-critical_care_rate">Critical/Intensive Care Rate in % of
-					Confirmed
-					Cases</label>
+					id="input-critical_care_rate" value="2">
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto"
+				title="Critical/Intensive Care Capacity Increase in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
+				<label class="form-control-label" for="input-critical_care_additional_rate">Critical/Intensive Care Capacity Increase in %</label>
+				<input class="form-control form-control-sm" type="text" name="critical_care_additional_rate"
+					id="input-critical_care_additional_rate" value="40">
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Apply">
-				<button class="btn btn-outline-secondary btn-sm form-control form-control-sm"
-					name="button-update_perspective" id="button-update_perspective" type="button"
-					onclick="updatePerspective();">Apply</button>
+				<button class="btn btn-outline-primary btn-sm form-control form-control-sm" name="button-apply"
+					id="button-apply" type="button" onclick="doApply();">Apply</button>
 			</div>
 		</div>
 	</div>
@@ -447,31 +494,18 @@
 		<div id="listing-group" class="listing-group">
 			<h4>Simulation</h4>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Country">
-				<select class="form-control form-control-sm" name="input-country" id="input-country">
+				<label class="form-control-label" for="input-simulation_country">Country</label>
+				<select class="form-control form-control-sm" name="input-simulation_country"
+					id="input-simulation_country">
 					<!-- <option value="" selected>all</option> -->
 				</select>
-				<label class="form-control-label" for="input-country">Country</label>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Date">
-				<select class="form-control form-control-sm" name="start_dateId" id="input-start_dateId">
+				<label class="form-control-label" for="input-simulation_start_dateId">Start Date</label>
+				<select class="form-control form-control-sm" name="simulation_start_dateId"
+					id="input-simulation_start_dateId">
 					<!-- <option value="" selected>all</option> -->
 				</select>
-				<label class="form-control-label" for="input-start_dateId">Start Date</label>
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Total Population">
-				<label for="input-total_population">Total Population</label>
-				<input class="form-control form-control-sm" type="text" name="total_population"
-					id="input-total_population" value="83500000">
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Incubation Period in Days">
-				<label for="input-latent_duration">Incubation Period in Days</label>
-				<input class="form-control form-control-sm" type="text" name="latent_duration"
-					id="input-latent_duration" value="5.5">
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Infectious Period in Days">
-				<label for="input-infectious_duration">Infectious Period in Days</label>
-				<input class="form-control form-control-sm" type="text" name="infectious_duration"
-					id="input-infectious_duration" value="10">
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto"
 				title="Simulation Horizon in Days. How many Days the Simulation/Forecast should go ahead.">
@@ -479,57 +513,17 @@
 				<input class="form-control form-control-sm" type="text" name="simulation_horizon"
 					id="input-simulation_horizon" value="365">
 			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Base Reproduction Number R₀">
-				<label for="select-base_reproduction_number">Base Reproduction Number R₀</label>
-				<select class="form-control form-control-sm" name="base_reproduction_number"
-					id="select-base_reproduction_number">
-					<option value="1.0">1.0 / Eredicate</option>
-					<option value="1.1">1.1</option>
-					<option value="1.2">1.2</option>
-					<option value="1.3">1.3</option>
-					<option value="1.4">1.4</option>
-					<option value="1.5">1.5 / best case / hard lockdown</option>
-					<option value="1.6">1.6</option>
-					<option value="1.7">1.7</option>
-					<option value="1.8">1.8</option>
-					<option value="1.9">1.9</option>
-					<option value="2.0">2.0</option>
-					<option value="2.1">2.1</option>
-					<option value="2.2">2.2</option>
-					<option value="2.3">2.3</option>
-					<option value="2.4">2.4</option>
-					<option value="2.5" selected>2.5 / medium case / medium lockdown</option>
-					<option value="2.6">2.6</option>
-					<option value="2.7">2.7</option>
-					<option value="2.8">2.8</option>
-					<option value="2.9">2.9</option>
-					<option value="3.0">3.0</option>
-					<option value="3.1">3.1</option>
-					<option value="3.2">3.2</option>
-					<option value="3.3">3.3 / worst case / no lockdown</option>
-					<option value="3.4">3.4</option>
-					<option value="3.5">3.5</option>
-				</select>
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Case Fatality Risk (CFR) in %">
-				<label for="select-case_fatality_risk">Case Fatality Risk (CFR) in %</label>
-				<select class="form-control form-control-sm" name="case_fatality_risk" id="select-case_fatality_risk">
-					<option value="0.0">0.0 / nobody dies</option>
-					<option value="0.1">0.1 / Seasonal Flu</option>
-					<option value="0.2">0.2</option>
-					<option value="0.3">0.3</option>
-					<option value="0.4">0.4</option>
-					<option value="0.5">0.5</option>
-					<option value="0.6">0.6</option>
-					<option value="0.7">0.7</option>
-					<option value="0.8">0.8 / COVID-19 lowest estimates</option>
-					<option value="0.9">0.9</option>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Incubation Period in Days">
+				<label for="select-latent_duration">Incubation Period in Days</label>
+				<!-- <input class="form-control form-control-sm" type="text" name="latent_duration"
+					id="input-latent_duration" value="5.5"> -->
+				<select class="form-control form-control-sm" name="latent_duration" id="select-latent_duration">
 					<option value="1.0">1.0</option>
 					<option value="1.1">1.1</option>
 					<option value="1.2">1.2</option>
 					<option value="1.3">1.3</option>
-					<option value="1.4" selected>1.4</option>
-					<option value="1.5">1.5</option>
+					<option value="1.4">1.4</option>
+					<option value="1.5">1.5 </option>
 					<option value="1.6">1.6</option>
 					<option value="1.7">1.7</option>
 					<option value="1.8">1.8</option>
@@ -539,7 +533,53 @@
 					<option value="2.2">2.2</option>
 					<option value="2.3">2.3</option>
 					<option value="2.4">2.4</option>
-					<option value="2.5">2.5 / COVID-19 highest estimates</option>
+					<option value="2.5">2.5</option>
+					<option value="2.6">2.6</option>
+					<option value="2.7">2.7</option>
+					<option value="2.8">2.8</option>
+					<option value="2.9">2.9</option>
+					<option value="3.0">3.0 non-SARS Corona [2009 Lessler e al.]</option>
+					<option value="3.1">3.1</option>
+					<option value="3.2">3.2</option>
+					<option value="3.3">3.3</option>
+					<option value="3.4">3.4</option>
+					<option value="3.5">3.5</option>
+					<option value="3.6">3.6</option>
+					<option value="3.7">3.7</option>
+					<option value="3.8">3.8</option>
+					<option value="3.9">3.9</option>
+					<option value="4.0">4.0</option>
+					<option value="4.1">4.1</option>
+					<option value="4.2">4.2</option>
+					<option value="4.3">4.3</option>
+					<option value="4.4">4.4</option>
+					<option value="4.5">4.5</option>
+					<option value="4.6">4.6</option>
+					<option value="4.7">4.7</option>
+					<option value="4.8">4.8</option>
+					<option value="4.9">4.9</option>
+					<option value="5.0">5.0 [2020 Linton et al.], SARS-Cov-1 [2003 Varia et al.]</option>
+					<option value="5.1" selected>5.1 default [2020 Lauer et al.]</option>
+					<option value="5.2">5.2 [2020 Li et al.]</option>
+					<option value="5.3">5.3</option>
+					<option value="5.4">5.4</option>
+					<option value="5.5">5.5</option>
+					<option value="5.6">5.6</option>
+					<option value="5.7">5.7</option>
+					<option value="5.8">5.8</option>
+					<option value="5.9">5.9</option>
+					<option value="6.0">6.0</option>
+					<option value="6.1">6.1</option>
+					<option value="6.2">6.2</option>
+					<option value="6.3">6.3</option>
+					<option value="6.4">6.4 [2020 Backer et al.]</option>
+					<option value="6.5">6.5</option>
+				</select>
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Infectious Period in Days">
+				<label for="select-infectious_duration">Infectious Period in Days</label>
+				<select class="form-control form-control-sm" name="infectious_duration" id="select-infectious_duration">
+					<option value="2.5">2.5</option>
 					<option value="2.6">2.6</option>
 					<option value="2.7">2.7</option>
 					<option value="2.8">2.8</option>
@@ -565,8 +605,163 @@
 					<option value="4.8">4.8</option>
 					<option value="4.9">4.9</option>
 					<option value="5.0">5.0</option>
+					<option value="5.1">5.1</option>
+					<option value="5.2">5.2</option>
+					<option value="5.3">5.3</option>
+					<option value="5.4">5.4</option>
+					<option value="5.5">5.5</option>
+					<option value="5.6">5.6</option>
+					<option value="5.7">5.7</option>
+					<option value="5.8">5.8</option>
+					<option value="5.9">5.9</option>
+					<option value="6.0">6.0</option>
+					<option value="6.1">6.1</option>
+					<option value="6.2">6.2</option>
+					<option value="6.3">6.3</option>
+					<option value="6.4">6.4</option>
+					<option value="6.5">6.5</option>
+					<option value="6.6">6.6</option>
+					<option value="6.7">6.7</option>
+					<option value="6.8">6.8</option>
+					<option value="6.9">6.9</option>
+					<option value="7.0">7.0</option>
+					<option value="7.1">7.1</option>
+					<option value="7.2">7.2</option>
+					<option value="7.3">7.3</option>
+					<option value="7.4">7.4</option>
+					<option value="7.5">7.5</option>
+					<option value="7.6">7.6</option>
+					<option value="7.7">7.7</option>
+					<option value="7.8">7.8</option>
+					<option value="7.9">7.9</option>
+					<option value="8.0">8.0</option>
+					<option value="8.1">8.1</option>
+					<option value="8.2">8.2</option>
+					<option value="8.3">8.3</option>
+					<option value="8.4">8.4</option>
+					<option value="8.5">8.5</option>
+					<option value="8.6">8.6</option>
+					<option value="8.7">8.7</option>
+					<option value="8.8">8.8</option>
+					<option value="8.9">8.9</option>
+					<option value="9.0">9.0</option>
+					<option value="9.1">9.1</option>
+					<option value="9.2">9.2</option>
+					<option value="9.3">9.3</option>
+					<option value="9.4">9.4</option>
+					<option value="9.5">9.5</option>
+					<option value="9.6">9.6</option>
+					<option value="9.7">9.7</option>
+					<option value="9.8">9.8</option>
+					<option value="9.9">9.9</option>
+					<option value="10.0" selected>10.0 default</option>
+					<option value="10.1">10.1</option>
+					<option value="10.2">10.2</option>
+					<option value="10.3">10.3</option>
+					<option value="10.4">10.4</option>
+					<option value="10.5">10.5</option>
+					<option value="10.6">10.6</option>
+					<option value="10.7">10.7</option>
+					<option value="10.8">10.8</option>
+					<option value="10.9">10.9</option>
+					<option value="11.0">11.0</option>
 				</select>
 			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Base Reproduction Number R₀">
+				<label for="select-base_reproduction_number">Base Reproduction Number R₀</label>
+				<select class="form-control form-control-sm" name="base_reproduction_number"
+					id="select-base_reproduction_number">
+					<option value="1.0">1.0</option>
+					<option value="1.1">1.1</option>
+					<option value="1.2">1.2</option>
+					<option value="1.3">1.3</option>
+					<option value="1.4">1.4</option>
+					<option value="1.5">1.5</option>
+					<option value="1.6">1.6</option>
+					<option value="1.7">1.7</option>
+					<option value="1.8">1.8</option>
+					<option value="1.9">1.9</option>
+					<option value="2.0">2.0 [2020 WHO]</option>
+					<option value="2.1">2.1</option>
+					<option value="2.2">2.2 [2020 Zhao et al.], [2020 Riou & Althaus], [2020 Qun Li et al.]</option>
+					<option value="2.3">2.3</option>
+					<option value="2.4">2.4</option>
+					<option value="2.5" selected>2.5 default [2020 Imai]</option>
+					<option value="2.6">2.6 [2020 Majumder et al.]</option>
+					<option value="2.7">2.7 [2020 Joseph et al.]</option>
+					<option value="2.8">2.8 [2020 Liu, Ying et al.]</option>
+					<option value="2.9">2.9 [2020 Liu et al.]</option>
+					<option value="3.0">3.0</option>
+					<option value="3.1">3.1 [2020 Read et al.]</option>
+					<option value="3.2">3.2</option>
+					<option value="3.3">3.3 [2020 Liu, Ying et al.]</option>
+					<option value="3.4">3.4</option>
+					<option value="3.5">3.5</option>
+					<option value="3.6">3.6 [2020 Zhao et al.]</option>
+					<option value="3.7">3.7</option>
+					<option value="3.8">3.8</option>
+					<option value="3.9">4.9</option>
+					<option value="4.0">4.0</option>
+					<option value="4.1">4.1 [2020 Cao et al.]</option>
+				</select>
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Case Fatality Risk (CFR) in %">
+				<label for="select-case_fatality_risk">Case Fatality Risk (CFR) in %</label>
+				<select class="form-control form-control-sm" name="case_fatality_risk" id="select-case_fatality_risk">
+					<option value="0.0">0.0 / nobody dies</option>
+					<option value="0.1">0.1 / Seasonal Flu</option>
+					<option value="0.2">0.2</option>
+					<option value="0.3">0.3</option>
+					<option value="0.4">0.4</option>
+					<option value="0.5">0.5</option>
+					<option value="0.6">0.6 Diamond Princess [2020 Wilson et al.]</option>
+					<option value="0.7">0.7</option>
+					<option value="0.8">0.8 China w/o Hubei [2020 Wilson et al.]</option>
+					<option value="0.9">0.9 [2020 Mizumoto & Chowell]</option>
+					<option value="1.0" selected>1.0 default</option>
+					<option value="1.1">1.1 China [2020 Russell at al.]</option>
+					<option value="1.2">1.2</option>
+					<option value="1.3">1.3</option>
+					<option value="1.4">1.4</option>
+					<option value="1.5">1.5</option>
+					<option value="1.6">1.6</option>
+					<option value="1.7">1.7</option>
+					<option value="1.8">1.8</option>
+					<option value="1.9">1.9</option>
+					<option value="2.0">2.0</option>
+					<option value="2.1">2.1</option>
+					<option value="2.2">2.2</option>
+					<option value="2.3">2.3 Diamond Princess [2020 Russell at al.]</option>
+					<option value="2.4">2.4</option>
+					<option value="2.5">2.5</option>
+					<option value="2.6">2.6</option>
+					<option value="2.7">2.7</option>
+					<option value="2.8">2.8</option>
+					<option value="2.9">2.9</option>
+					<option value="3.0">3.0</option>
+					<option value="3.1">3.1</option>
+					<option value="3.2">3.2</option>
+					<option value="3.3">3.3</option>
+					<option value="3.4">3.4</option>
+					<option value="3.5">3.5</option>
+					<option value="3.6">3.6</option>
+					<option value="3.7">3.7</option>
+					<option value="3.8">3.8</option>
+					<option value="3.9">3.9</option>
+					<option value="4.0">4.0</option>
+					<option value="4.1">4.1</option>
+					<option value="4.2">4.2 w/o China [2020 Wilson et al.]</option>
+					<option value="4.3">4.3</option>
+					<option value="4.4">4.4</option>
+					<option value="4.5">4.5</option>
+					<option value="4.6">4.6</option>
+					<option value="4.7">4.7</option>
+					<option value="4.8">4.8</option>
+					<option value="4.9">4.9</option>
+					<option value="5.0">5.0</option>
+				</select>
+			</div>
+			
 			<!-- <div class="form-group" data-toggle="tooltip" data-placement="auto"
 				title="Infection Fatality Rate (IFR) in %">
 				<label for="select-infection_fatality_risk">Infection Fatality Rate (IFR) in
@@ -626,6 +821,11 @@
 					<option value="5.0">5.0</option>
 				</select>
 			</div> -->
+			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Total Population">
+				<label for="input-total_population">Total Population</label>
+				<input class="form-control form-control-sm" type="text" name="total_population"
+					id="input-total_population" value="83500000">
+			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Initial Exposed/Latent">
 				<label for="input-initial_latent">Initial Exposed/Latent</label>
 				<input class="form-control form-control-sm" type="text" name="initial_latent" id="input-initial_latent"
@@ -646,8 +846,8 @@
 				<input class="form-control form-control-sm" type="text" name="initial_deceased"
 					id="input-initial_deceased" value="0">
 			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Interventions">
-				<!-- <label for="container-interventions">Interventions</label> -->
+			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Interventions / non-pharmaceutical Mitigation Measures (e.g. Lockdown)">
+				<label for="container-interventions">Interventions</label>
 				<div id="container-interventions" class="form-group" data-toggle="tooltip" data-placement="auto"
 					title="Interventions">
 					<div class="nested-form">
@@ -657,12 +857,12 @@
 								R₀</label>
 							<input id="input-interventions_base_reproduction_number_0"
 								class="form-control form-control-sm" type="input"
-								name="interventions_base_reproduction_number" value="2.5">
+								name="interventions_base_reproduction_number" value="0.8">
 						</div>
 						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
 							<label for="input-interventions_start_date">Start Date</label>
 							<input id="input-interventions_start_date_0" class="form-control form-control-sm"
-								type="input" name="interventions_start_date" value="2020-04-01">
+								type="input" name="interventions_start_date" value="2020-03-15">
 						</div>
 						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
 							<label for="input-interventions_end_date">End Date</label>
@@ -676,14 +876,123 @@
 							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
 						</div>
 					</div>
+					<div class="nested-form">
+						<div class="form-group" data-toggle="tooltip" data-placement="auto"
+							title="Base Reproduction Number R₀">
+							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
+								R₀</label>
+							<input id="input-interventions_base_reproduction_number_1"
+								class="form-control form-control-sm" type="input"
+								name="interventions_base_reproduction_number" value="0.8">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
+							<label for="input-interventions_start_date">Start Date</label>
+							<input id="input-interventions_start_date_1" class="form-control form-control-sm"
+								type="input" name="interventions_start_date" value="2020-06-01">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
+							<label for="input-interventions_end_date">End Date</label>
+							<input id="input-interventions_end_date_1" class="form-control form-control-sm" type="input"
+								name="interventions_end_date" value="2020-07-01">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
+							<input id="button_interventions_remove_1"
+								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
+								value="Remove Intervention">
+							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
+						</div>
+					</div>
+					<div class="nested-form">
+						<div class="form-group" data-toggle="tooltip" data-placement="auto"
+							title="Base Reproduction Number R₀">
+							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
+								R₀</label>
+							<input id="input-interventions_base_reproduction_number_2"
+								class="form-control form-control-sm" type="input"
+								name="interventions_base_reproduction_number" value="0.8">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
+							<label for="input-interventions_start_date">Start Date</label>
+							<input id="input-interventions_start_date_2" class="form-control form-control-sm"
+								type="input" name="interventions_start_date" value="2020-08-01">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
+							<label for="input-interventions_end_date">End Date</label>
+							<input id="input-interventions_end_date_2" class="form-control form-control-sm" type="input"
+								name="interventions_end_date" value="2020-09-01">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
+							<input id="button_interventions_remove_2"
+								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
+								value="Remove Intervention">
+							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
+						</div>
+					</div>
+					<div class="nested-form">
+						<div class="form-group" data-toggle="tooltip" data-placement="auto"
+							title="Base Reproduction Number R₀">
+							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
+								R₀</label>
+							<input id="input-interventions_base_reproduction_number_3"
+								class="form-control form-control-sm" type="input"
+								name="interventions_base_reproduction_number" value="0.8">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
+							<label for="input-interventions_start_date">Start Date</label>
+							<input id="input-interventions_start_date_3" class="form-control form-control-sm"
+								type="input" name="interventions_start_date" value="2020-10-01">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
+							<label for="input-interventions_end_date">End Date</label>
+							<input id="input-interventions_end_date_3" class="form-control form-control-sm" type="input"
+								name="interventions_end_date" value="2020-11-01">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
+							<input id="button_interventions_remove_3"
+								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
+								value="Remove Intervention">
+							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
+						</div>
+					</div>
+					<div class="nested-form">
+						<div class="form-group" data-toggle="tooltip" data-placement="auto"
+							title="Base Reproduction Number R₀">
+							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
+								R₀</label>
+							<input id="input-interventions_base_reproduction_number_4"
+								class="form-control form-control-sm" type="input"
+								name="interventions_base_reproduction_number" value="0.8">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
+							<label for="input-interventions_start_date">Start Date</label>
+							<input id="input-interventions_start_date_4" class="form-control form-control-sm"
+								type="input" name="interventions_start_date" value="2020-12-01">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
+							<label for="input-interventions_end_date">End Date</label>
+							<input id="input-interventions_end_date_4" class="form-control form-control-sm" type="input"
+								name="interventions_end_date" value="2021-01-01">
+						</div>
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
+							<input id="button_interventions_remove_4"
+								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
+								value="Remove Intervention">
+							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
+						</div>
+					</div>
 					<input class="btn-sm form-control form-control-sm" type="button" value="Add Intervention"
 						id="button-interventions_add">
 					<!-- <label for="button-interventions_add">Add Intervention</label> -->
 				</div>
 			</div>
+			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Logaritmic Scale">
+				<input class="form-check-input" type="checkbox" name="checkbox-log_scale" id="checkbox-log_scale"
+					value="log_scale">
+				<label class="form-check-label" for="checkbox-log_scale">Logaritmic Scale</label>
+			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Simulate">
-				<button class="btn btn-outline-secondary btn-sm form-control form-control-sm" name="button-simulate"
-					id="button-simulate" type="button" onclick="simulate();">Simulate</button>
+				<button class="btn btn-outline-primary btn-sm form-control form-control-sm" name="button-simulate"
+					id="button-simulate" type="button" onclick="doSimulate();">Simulate</button>
 			</div>
 		</div>
 	</div>

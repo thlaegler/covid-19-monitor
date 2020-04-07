@@ -42,17 +42,19 @@ const buildSimulationData = (simulationRequest) => {
     var theta = (1 / simulationRequest.infectiousDuration) * simulationRequest.caseFatalityRisk; // I->D
 
     var t = 0;
-    var startDate = new Date(simulationRequest.initialDate);
+    var startDateId = incrementDateByDays(simulationRequest.initialDate, 1);
+    var startDate = new Date(startDateId);
     simulationData.push({
         t: t,
-        date: simulationRequest.initialDate,
+        dateId: startDateId,
         E: simulationRequest.initialLatent,
         I: simulationRequest.initialInfectious,
         R: simulationRequest.initialRecovered,
         D: simulationRequest.initialDeceased,
         S: simulationRequest.initialPopulation - simulationRequest.initialLatent - simulationRequest.initialInfectious - simulationRequest.initialRecovered - simulationRequest.initialDeceased,
+        country: simulationRequest.country,
+        intervention: -1,
     });
-    startDate.setDate(startDate.getDate() + 1);
 
     var endDate = new Date();
     endDate.setDate(startDate.getDate() + simulationRequest.simulationDuration);
@@ -60,12 +62,14 @@ const buildSimulationData = (simulationRequest) => {
     t++;
     for (var dateIterate = startDate; dateIterate <= endDate; dateIterate.setDate(dateIterate.getDate() + 1)) {
         var previousData = simulationData[t - 1];
+        var intervention = -1;
 
         var baseReproductionNumber = simulationRequest.baseReproductionNumber;
         if (simulationRequest.interventions && simulationRequest.interventions.length > 0) {
             var currentInterventions = simulationRequest.interventions.filter(i => isInDateRange(dateIterate, new Date(i.startDate), new Date(i.endDate)));
             if (currentInterventions && currentInterventions.length >= 1) {
                 baseReproductionNumber = currentInterventions[0].baseReproductionNumber;
+                intervention = currentInterventions[0].intervention;
             }
         }
         beta = baseReproductionNumber / simulationRequest.infectiousDuration; // S->E
@@ -78,12 +82,14 @@ const buildSimulationData = (simulationRequest) => {
 
         simulationData.push({
             t: t,
-            date: dateIterate.toISOString().substring(0, 10),
+            dateId: dateIterate.toISOString().substring(0, 10),
             E: previousData.E + dE,
             I: previousData.I + dI,
             R: previousData.R + dR,
             D: previousData.D + dD,
             S: previousData.S + dS,
+            country: simulationRequest.country,
+            intervention: intervention,
         });
         console.log('Simulated ' + dateIterate.toISOString().substring(0, 10));
         t++;
@@ -92,42 +98,92 @@ const buildSimulationData = (simulationRequest) => {
     return simulationData;
 };
 
-const updateMap = (simulationData) => { };
+const updateMap = (data) => { };
 
 const updateChart = (simulationData) => {
-    var dataArray = [['Date', 'Exposed/Latent', 'Infectious', 'Recovered', 'Deceased']].concat(simulationData.map(data => [data.date, Math.floor(data.E), Math.floor(data.I), Math.floor(data.R), Math.floor(data.D)]));
-    // var dataArray = [['Date', 'Suspectible', 'Exposed/Latent', 'Infectious', 'Recovered', 'Deceased']].concat(simulationData.map(data => [data.date, data.S, data.E, data.I, data.R, data.D]));
+    var currentCountryName = simulationData[0].country;
+    var currentCountry = allCountries[currentCountryName];
+    var countrySnaps = allSnapshotsByCountry[currentCountryName];
+    var latentDuration = $('#input-latent_duration').val() || 5.5;
+    var isLogScale = $('#checkbox-log_scale').prop("checked");
+
+    var infs = simulationData.map(s => s.I);
+    var maxInf = Math.max(...infs);
+
+    var seirDataArray = [['Date', 'Suspectible (Simulation)', 'Exposed/Latent (Simulation)', 'Infectious (Simulation)', 'Recovered (Simulation)', 'Deceased (Simulation)', 'Suspectible (Actual)', 'Exposed/Latent (Actual)', 'Infectious (Actual)', 'Recovered (Actual)', 'Deceased (Actual)', 'Interventions', { type: 'string', role: 'style' }]];
+    seirDataArray = seirDataArray.concat(Object.values(allDates)
+        // .filter(d => d.dateId != latestDateId)
+        .map(d => {
+            var snap = countrySnaps[d.dateId];
+            if (snap) {
+                var s = Math.floor(currentCountry.populationAbsolute - snap.confirmed - snap.recovered - snap.deceased);
+                var e = Math.floor(snap.confirmedDelta * latentDuration);
+                var i = Math.floor(snap.confirmed - snap.recovered - snap.deceased);
+                var r = Math.floor(snap.recovered);
+                var de = Math.floor(snap.deceased);
+                return [d.dateId, undefined, undefined, undefined, undefined, undefined, 0, e, i, 0, de, maxInf, 'opacity: 0.0;'];
+            } else {
+                return [d.dateId, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, maxInf, 'opacity: 0.0;'];
+            }
+        }));
+    // seirDataArray = seirDataArray.concat(simulationData.map(data => [data.dateId, Math.floor(data.S), Math.floor(data.E), Math.floor(data.I), Math.floor(data.R), Math.floor(data.D), undefined, undefined, undefined, undefined, undefined]));
+    seirDataArray = seirDataArray.concat(simulationData.map(data => {
+        return [data.dateId, 0, Math.floor(data.E), Math.floor(data.I), 0, Math.floor(data.D), undefined, undefined, undefined, undefined, undefined, maxInf, (data.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')];
+    }));
     drawChart(
-        google.visualization.arrayToDataTable(dataArray),
-        new google.visualization.LineChart(document.getElementById('chart_over_time')),
-        'Title');
+        google.visualization.arrayToDataTable(seirDataArray),
+        new google.visualization.ComboChart(document.getElementById('chart_over_time')),
+        'SEIR-Model',
+        isLogScale ? { vAxis: { scaleType: 'log' } } : {
+            seriesType: 'line',
+            series: { 10: { type: 'area' } }
+        });
+
+    var criticalCareArray = [['Date', 'Critical Care Cases', 'Critical Care Capacity']]
+        .concat(simulationData.map(data => [data.dateId, Math.floor(data.I * ($('#input-critical_care_rate').val() / 100)), currentCountry.criticalCareBedsAbsolute]));
+    drawChart(
+        google.visualization.arrayToDataTable(criticalCareArray),
+        new google.visualization.LineChart(document.getElementById('chart_latest')),
+        'Critical Care Utilization',
+        isLogScale ? { vAxis: { scaleType: 'log' } } : {});
+
+    var acuteCareArray = [['Date', 'Acute Care Cases', 'Acute Care Capacity']]
+        // .concat(Object.values(allSnapshotsByCountry[currentCountryName]).map(snap => [snap.dateId, undefined, snap.confirmed - snap.recovered - snap.deceased, currentCountry.acuteCareBedsAbsolute]))
+        .concat(simulationData.map(data => [data.dateId, Math.floor(data.I * ($('#input-acute_care_rate').val() / 100)), currentCountry.acuteCareBedsAbsolute]));
+    drawChart(
+        google.visualization.arrayToDataTable(acuteCareArray),
+        new google.visualization.LineChart(document.getElementById('chart_tertiary')),
+        'Acute Care Utilization',
+        isLogScale ? { vAxis: { scaleType: 'log' } } : {});
 };
 
-const updateTable = (simulationData) => { };
+const updateTable = (data) => { };
 
-const simulate = () => {
+const doSimulate = () => {
     closeSidenav();
 
     var simulationRequest = defaultSimulationRequest();
-    simulationRequest.country = $('#input-country').val();
-    simulationRequest.initialDate = $('#input-start_dateId').val() || new Date().toISOString().substring(0, 10);
-    simulationRequest.initialPopulation = Number($('#input-total_population').val() || 83000000);
-    simulationRequest.simulationDuration = Number($('#input-simulation_horizon').val() || 365);
-    simulationRequest.baseReproductionNumber = Number($('#select-base_reproduction_number').val() || 3.3);
-    simulationRequest.caseFatalityRisk = Number($('#select-case_fatality_risk').val() || 1.0) / 100;
-    simulationRequest.latentDuration = Number($('#input-latent_duration').val() || 5.5);
-    simulationRequest.infectiousDuration = Number($('#input-infectious_duration').val() || 10);
+    simulationRequest.country = $('#input-simulation_country').val();
+    simulationRequest.initialDate = $('#input-simulation_start_dateId').val();
+    simulationRequest.simulationDuration = Number($('#input-simulation_horizon').val());
+    simulationRequest.latentDuration = Number($('#select-latent_duration').val());
+    simulationRequest.infectiousDuration = Number($('#select-infectious_duration').val());
+    simulationRequest.baseReproductionNumber = Number($('#select-base_reproduction_number').val());
+    simulationRequest.caseFatalityRisk = Number($('#select-case_fatality_risk').val()) / 100;
 
+    simulationRequest.initialPopulation = Number($('#input-total_population').val());
     simulationRequest.initialLatent = Number($('#input-initial_latent').val() || 1);
     simulationRequest.initialInfectious = Number($('#input-initial_infectious').val() || 1);
     simulationRequest.initialRecovered = Number($('#input-initial_recovered').val() || 0);
     simulationRequest.initialDeceased = Number($('#input-initial_deceased').val() || 0);
 
-    var interventionsNested = $('.nested-form').is(':visible');
-    if (interventionsNested.length > 0) {
+    var nestedForms = $('.nested-form');
+    var interventionsNested = nestedForms.is(':visible');
+    if (interventionsNested && nestedForms.length > 0) {
         for (var j = 0; j < $('.nested-form').length; j++) {
             simulationRequest.interventions.push({
-                baseReproductionNumber: $('#input-interventions_base_reproduction_number_' + j).val(),
+                intervention: j,
+                baseReproductionNumber: Number($('#input-interventions_base_reproduction_number_' + j).val()),
                 startDate: $('#input-interventions_start_date_' + j).val(),
                 endDate: $('#input-interventions_end_date_' + j).val(),
             });

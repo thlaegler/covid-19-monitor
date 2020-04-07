@@ -5,7 +5,7 @@
             "tooltip": "Anfangsparameters"
         },
         "simulation": {
-            "link": "Simulation 'Flatten the Curve'",
+            "link": "Simulation",
             "tooltip": "Simulation 'Flatten the Curve'"
         },
         "calculated": {
@@ -23,6 +23,18 @@
         "language": {
             "link": "Sprache",
             "tooltip": "Bildschirmsprache ändern"
+        },
+        "overTime": {
+            "link": "Im Zeitverlauf",
+            "tooltip": "Im Zeitverlauf",
+        },
+        "latest": {
+            "link": "Letzter Stand",
+            "tooltip": "Letzter Stand",
+        },
+        "tertiary": {
+            "link": "Zusätzliche Daten",
+            "tooltip": "Zusätzliche Daten",
         }
     },
     "confirmed": {
@@ -41,16 +53,36 @@
             "tooltip": "Bestätigte Fälle: Inzidenz pro 100.000 Einwohner"
         },
         "growthRate": {
-            "link": "Wachstumsrate in %",
+            "link": "Veränderung ggü. Vortag in %",
             "tooltip": "Bestätigte Fälle: Wachstumsrate in % gegenüber gestern"
         },
         "delta": {
-            "link": "Neuinfizierte",
+            "link": "Neue Fälle ggü. Vortag",
             "tooltip": "Bestätigte Fälle: Differenz gegenüber gestern (Neuinfektionen)"
         },
         "doublingTime": {
-            "link": "Verdopplungszeit in Tagen",
+            "link": "Verdopplungszeit (z. Z.)",
             "tooltip": "Bestätigte Fälle: Verdopplungszeit in Tagen"
+        },
+        "doublingTimeLast7Days": {
+            "link": "Verdopplungszeit (über 7 Tage)",
+            "tooltip": "Bestätigte Fälle: Verdopplungszeit in Tagen (durchschnittliche Wachstumsrate der letzten 7 Tage)"
+        }
+    },
+    "infectious": {
+        "link": "Aktive Fälle",
+        "tooltip": "Aktive Fälle (Bestätigte minus Genesene minus Verstorbene)",
+        "absolute": {
+            "link": "Absolute Anzahl",
+            "tooltip": "Aktive Fälle: Absolute Anzahl"
+        },
+        "growthRate": {
+            "link": "Veränderung ggü. Vortag in %",
+            "tooltip": "Aktive Fälle: Wachstumsrate in % gegenüber gestern"
+        },
+        "delta": {
+            "link": "Veränderung Fälle ggü. Vortag",
+            "tooltip": "Aktive Fälle: Differenz gegenüber gestern"
         }
     },
     "recovered": {
@@ -59,6 +91,22 @@
         "absolute": {
             "link": "Absolute Anzahl",
             "tooltip": "Genesene Fälle: Absolute Anzahl"
+        },
+        "recoveryRate": {
+            "link": "Recovery Rate in %",
+            "tooltip": "Recovery Rate in %"
+        },
+        "immunizationRate": {
+            "link": "Immunization Rate in %",
+            "tooltip": "Immunization Rate in %"
+        },
+        "growthRate": {
+            "link": "Veränderung ggü. Vortag in %",
+            "tooltip": "Genesene Fälle: Wachstumsrate in % gegenüber gestern"
+        },
+        "delta": {
+            "link": "Neue Fälle ggü. Vortag",
+            "tooltip": "Genesene Fälle: Differenz gegenüber gestern (Neugenesene)"
         }
     },
     "deceased": {
@@ -67,6 +115,18 @@
         "absolute": {
             "link": "Absolute Anzahl",
             "tooltip": "Verstorbene Fälle: Absolute Anzahl"
+        },
+        "caseFatalityRisk": {
+            "link": "Fallsterblichkeit (CFR) in %",
+            "tooltip": "Verstorbene Fälle: Fallsterblichkeit (CFR) in %"
+        },
+        "growthRate": {
+            "link": "Veränderung ggü. Vortag in %",
+            "tooltip": "Verstorbene Fälle: Wachstumsrate in % gegenüber gestern"
+        },
+        "delta": {
+            "link": "Neue Fälle ggü. Vortag",
+            "tooltip": "Verstorbene Fälle: Differenz gegenüber gestern (Neuverstorbene)"
         }
     }
 }

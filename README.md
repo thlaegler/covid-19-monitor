@@ -1,9 +1,9 @@
-# covid-19-monitor
+# COVID-19-monitor
 
-covid-19-monitor World Health Monitor
+COVID-19 World Health Monitor
 
 
-## [Demo](https://thlaegler.github.io/covid-19-monitor)
+## [Demo: www.covid-19-monitor.ml](https://thlaegler.github.io/covid-19-monitor)
 
 
 ## Data Sources

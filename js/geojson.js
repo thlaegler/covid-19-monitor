@@ -255,78 +255,86 @@ const toggleLayer = (layerId) => {
     }
 }
 
-const updateGeoJsonCircle = (featureCollection) => {
-    if (featureCollection && featureCollection.features && featureCollection.features.length > 0) {
-        // exclude air and intercity 
-        var layerId = featureCollection.id;
-        // if (!mapLayerData.Circle[layerId]) {
-        //     mapLayerData.Circle[layerId] = featureCollection
-        // }
-        mapLayerData.Circle[layerId] = featureCollection;
-        // var existing = false;
-        // var j = 0;
-        // for (j in mapLayerData.Circle[layerId].features) {
-        //     if (mapLayerData.Circle[layerId].features[j].id == feature.id) {
-        //         mapLayerData.Circle[layerId].features[j] = feature;
-        //         existing = true;
-        //     }
-        // }
-        // if (!existing) {
-        //     mapLayerData.Circle[layerId].features.push(feature);
-        // }
 
-        if (map.getSource(layerId)) {
-            map.getSource(layerId).setData(mapLayerData.Circle[layerId]);
-        } else {
-            map.addSource(layerId, {
-                type: 'geojson',
-                data: mapLayerData.Circle[layerId]
-            });
+const updateGeoJsonCircle = async (featureCollectionOrFeature, layerId = undefined) => {
+    // Feature collection
+    var featureCollection;
+    var newOrUpdatedFeatures = [];
+    if (featureCollectionOrFeature && featureCollectionOrFeature.features && featureCollectionOrFeature.features.length > 0) {
+        newOrUpdatedFeatures = newOrUpdatedFeatures.concat(featureCollectionOrFeature.features);
+        layerId = featureCollectionOrFeature.id;
+        featureCollection = featureCollectionOrFeature;
+    } else if (featureCollectionOrFeature && featureCollectionOrFeature.type == 'Feature') {
+        newOrUpdatedFeatures.push(featureCollectionOrFeature);
+        if (!layerId) {
+            layerId = 'countries';
         }
+    } else {
+        return;
+    }
 
-        if (!map.getLayer(layerId)) {
-            map.addLayer({
-                id: layerId,
-                type: 'circle',
-                source: layerId,
-                layout: {
-                    visibility: 'visible',
-                },
-                // source: {
-                //     type: 'geojson',
-                //     data: mapLayerData.Circle[layerId],
-                // },
-                paint: {
-                    'circle-radius': {
-                        type: 'identity',
-                        property: 'radius',
-                    },
-                    'circle-color': {
-                        type: 'identity',
-                        property: 'color',
-                    },
-                },
-            });
+    if (!mapLayerData.Circle[layerId]) {
+        mapLayerData.Circle[layerId] = {
+            id: layerId,
+            type: 'FeatureCollection',
+            features: newOrUpdatedFeatures,
         }
-        if (!map.getLayer(layerId + '-label')) {
-            map.addLayer({
-                id: layerId + '-label',
-                type: 'symbol',
-                source: layerId,
-                // source: {
-                //     type: 'geojson',
-                //     data: mapLayerData.Circle[layerId],
-                // },
-                layout: {
-                    visibility: 'visible',
-                    'text-field': {
-                        type: 'identity',
-                        property: 'label',
-                    },
-                    'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-                    'text-size': 12,
+    } else {
+        mapLayerData.Circle[layerId].features = mapLayerData.Circle[layerId].features.concat(newOrUpdatedFeatures);
+    }
+
+    if (map.getSource(layerId)) {
+        map.getSource(layerId).setData(mapLayerData.Circle[layerId]);
+    } else {
+        map.addSource(layerId, {
+            type: 'geojson',
+            data: mapLayerData.Circle[layerId],
+        });
+    }
+
+    if (!map.getLayer(layerId)) {
+        map.addLayer({
+            id: layerId,
+            type: 'circle',
+            source: layerId,
+            layout: {
+                visibility: 'visible',
+            },
+            // source: {
+            //     type: 'geojson',
+            //     data: mapLayerData.Circle[layerId],
+            // },
+            paint: {
+                'circle-radius': {
+                    type: 'identity',
+                    property: 'radius',
                 },
-            });
-        }
+                'circle-color': {
+                    type: 'identity',
+                    property: 'color',
+                },
+                'circle-blur': 0.2,
+            },
+        });
+    }
+    if (!map.getLayer(layerId + '-label')) {
+        map.addLayer({
+            id: layerId + '-label',
+            type: 'symbol',
+            source: layerId,
+            // source: {
+            //     type: 'geojson',
+            //     data: mapLayerData.Circle[layerId],
+            // },
+            layout: {
+                visibility: 'visible',
+                'text-field': {
+                    type: 'identity',
+                    property: 'label',
+                },
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                'text-size': 12,
+            },
+        });
     }
 };

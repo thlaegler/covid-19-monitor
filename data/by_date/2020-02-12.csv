@@ -1,238 +1,238 @@
-caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCode,dateId,dayId,deceased,deceasedDelta,deceasedGrowthRate,doublingTime,immunizationRate,importDate,incidencePer100k,recovered,recoveredDelta,recoveredGrowthRate,recoveryRate,source
-,0,,,Afghanistan,AF,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Albania,AL,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Algeria,DZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,American Samoa,AS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Andorra,AD,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Angola,AO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Anguilla,AI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Antigua and Barbuda,AG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Argentina,AR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Armenia,AM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Aruba,AW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,15,0,1.0,Australia,AU,2020-02-12,43,0,0,0.0,,7.843172933649423E-8,2020-04-08T07:40:14.289,0.05882379700237068,2,0,1.0,0.13333333333333333,https://github.com/CSSEGISandData/COVID-19
-,0,,,Austria,AT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Azerbaijan,AZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Bahamas,BS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Bahrain,BH,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Bangladesh,BD,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Barbados,BB,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Belarus,BY,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,1,0,1.0,Belgium,BE,2020-02-12,43,0,0,0.0,,0.0,2020-04-08T07:40:14.290,0.008628408361514434,0,0,0.0,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Belize,BZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Benin,BJ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Bermuda,BM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Bhutan,BT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Bolivia,BO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Bosnia and Herzegovina,BA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Botswana,BW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Brazil,BR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,British Virgin Islands,VG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Brunei,BN,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Bulgaria,BG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Burkina Faso,BF,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Burundi,BI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Cabo Verde,CV,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,1,0,1.0,Cambodia,KH,2020-02-12,43,0,0,0.0,,5.981231493695932E-8,2020-04-08T07:40:14.289,0.005981231493695931,1,0,0.0,1.0,https://github.com/CSSEGISandData/COVID-19
-,0,,,Cameroon,CM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,7,0,1.0,Canada,CA,2020-02-12,43,0,0,0.0,,2.6495573093152022E-8,2020-04-08T07:40:14.289,0.018546901165206416,1,0,0.0,0.14285714285714285,https://github.com/CSSEGISandData/COVID-19
-,0,,,Caribbean Netherlands,BQ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Cayman Islands,KY,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Central African Republic,CF,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Chad,TD,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Chile,CL,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-0.024967001498914964,44699,372,1.0083921763259414,China,CN,2020-02-12,43,1116,5,1.0045004500450045,82.94053998258688,3.528740429839186E-6,2020-04-08T07:40:14.289,3.105555591127816,5079,444,1.0957928802588996,0.11362670305823397,https://github.com/CSSEGISandData/COVID-19
-,0,,,Colombia,CO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Comoros,KM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Congo,CD,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Cook Islands,CK,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Costa Rica,CR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Cote d'Ivoire,CI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Croatia,HR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Cuba,CU,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Curaçao,CW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Cyprus,CY,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Czech Republic,CZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Denmark,DK,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,175,40,1.2962962962962963,Diamond Princess Cruise Ship,,2020-02-12,43,0,0,0.0,2.670972168519735,,2020-04-08T07:40:14.289,,0,0,0.0,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Djibouti,DJ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Dominica,DM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Dominican Republic,DO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Ecuador,EC,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Egypt,EG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,El Salvador,SV,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Equatorial Guinea,GQ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Eritrea,ER,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Estonia,EE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Eswatini,SZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Ethiopia,ET,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Faeroe Islands,FO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Falkland Islands,FK,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Fiji,FJ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,1,0,1.0,Finland,FI,2020-02-12,43,0,0,0.0,,1.8048195902337602E-7,2020-04-08T07:40:14.289,0.0180481959023376,1,0,0.0,1.0,https://github.com/CSSEGISandData/COVID-19
-,11,0,1.0,France,FR,2020-02-12,43,0,0,0.0,,3.064030062669679E-8,2020-04-08T07:40:14.290,0.016852165344683236,2,0,0.0,0.18181818181818182,https://github.com/CSSEGISandData/COVID-19
-,0,,,French Guiana,GF,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,French Polynesia,PF,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Gabon,GA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Gambia,GM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Georgia,GE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,16,0,1.0,Germany,DE,2020-02-12,43,0,0,0.0,,0.0,2020-04-08T07:40:14.290,0.01909673813151451,0,0,0.0,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Ghana,GH,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Gibraltar,GI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Greece,GR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Greenland,GL,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Grenada,GD,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Guadeloupe,GP,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Guam,GU,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Guatemala,GT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Guinea,GN,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Guinea-Bissau,GW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Guyana,GY,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Haiti,HT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Holy See,VA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Honduras,HN,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-0.02,50,1,1.0204081632653061,Hong Kong,HK,2020-02-12,43,1,0,1.0,34.30961849152064,1.333870260575557E-7,2020-04-08T07:40:14.290,0.6669351302877785,1,0,0.0,0.02,https://github.com/CSSEGISandData/COVID-19
-,0,,,Hungary,HU,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Iceland,IS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,3,0,1.0,India,IN,2020-02-12,43,0,0,0.0,,0.0,2020-04-08T07:40:14.289,2.1739061358127496E-4,0,0,0.0,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Indonesia,ID,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Iran,IR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Iraq,IQ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Ireland,IE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Isle of Man,IM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Israel,IL,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,3,0,1.0,Italy,IT,2020-02-12,43,0,0,0.0,,0.0,2020-04-08T07:40:14.289,0.004961808464071198,0,0,0.0,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Jamaica,JM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,28,2,1.0769230769230769,Japan,JP,2020-02-12,43,0,0,0.0,9.353206684999465,7.115948634900529E-8,2020-04-08T07:40:14.290,0.02213850686413498,9,0,1.0,0.32142857142857145,https://github.com/CSSEGISandData/COVID-19
-,0,,,Jordan,JO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Kazakhstan,KZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Kenya,KE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Kiribati,KI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Kosovo,XK,2020-02-12,43,0,,,,,2020-04-08T07:40:14.290,,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Kuwait,KW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Kyrgyzstan,KG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Laos,LA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Latvia,LV,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Lebanon,LB,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Lesotho,LS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Liberia,LR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Libya,LY,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Liechtenstein,LI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Lithuania,LT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Luxembourg,LU,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,10,0,1.0,Macao,MO,2020-02-12,43,0,0,0.0,,3.080074229788938E-6,2020-04-08T07:40:14.290,1.540037114894469,2,1,2.0,0.2,https://github.com/CSSEGISandData/COVID-19
-,0,,,Madagascar,MG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Malawi,MW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,18,0,1.0,Malaysia,MY,2020-02-12,43,0,0,0.0,,9.268986259314907E-8,2020-04-08T07:40:14.289,0.05561391755588944,3,0,1.0,0.16666666666666666,https://github.com/CSSEGISandData/COVID-19
-,0,,,Maldives,MV,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Mali,ML,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Malta,MT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Marshall Islands,MH,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Martinique,MQ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Mauritania,MR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Mauritius,MU,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Mayotte,YT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Mexico,MX,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Micronesia,FM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Moldova,MD,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Monaco,MC,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Mongolia,MN,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Montenegro,ME,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Montserrat,MS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Morocco,MA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Mozambique,MZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Myanmar,MM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Namibia,NA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Nauru,NR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,1,0,1.0,Nepal,NP,2020-02-12,43,0,0,0.0,,3.4320849421803517E-8,2020-04-08T07:40:14.289,0.0034320849421803513,1,0,0.0,1.0,https://github.com/CSSEGISandData/COVID-19
-,0,,,Netherlands,NL,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,New Caledonia,NC,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,New Zealand,NZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Nicaragua,NI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Niger,NE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Nigeria,NG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Niue,NU,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,North Korea,KP,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,North Macedonia,MK,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Northern Mariana Islands,MP,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Norway,NO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Oman,OM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Pakistan,PK,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Palau,PW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Palestine,PS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Panama,PA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Papua New Guinea,PG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Paraguay,PY,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Peru,PE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-0.3333333333333333,3,0,1.0,Philippines,PH,2020-02-12,43,1,0,1.0,,9.125663100339275E-9,2020-04-08T07:40:14.289,0.0027376989301017827,1,0,0.0,0.3333333333333333,https://github.com/CSSEGISandData/COVID-19
-,0,,,Poland,PL,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Portugal,PT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Puerto Rico,PR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Qatar,QA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Republic of Congo,CG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Reunion,RE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Romania,RO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,2,0,1.0,Russia,RU,2020-02-12,43,0,0,0.0,,1.3704782082247304E-8,2020-04-08T07:40:14.289,0.0013704782082247303,2,0,0.0,1.0,https://github.com/CSSEGISandData/COVID-19
-,0,,,Rwanda,RW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Saint Barthelemy,,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Saint Helena,,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Saint Kitts & Nevis,,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Saint Lucia,LC,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Saint Martin,,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Saint Pierre & Miquelon,,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Samoa,WS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,San Marino,SM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Sao Tome & Principe,ST,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Saudi Arabia,SA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Senegal,SN,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Serbia,RS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Seychelles,SC,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Sierra Leone,SL,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,50,3,1.0638297872340425,Singapore,SG,2020-02-12,43,0,0,0.0,11.202305583621172,2.5639526714848466E-6,2020-04-08T07:40:14.289,0.8546508904949489,15,6,1.6666666666666667,0.3,https://github.com/CSSEGISandData/COVID-19
-,0,,,Sint Maarten,SX,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Slovakia,SK,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Slovenia,SI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Solomon Islands,SB,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Somalia,SO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,South Africa,ZA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,28,0,1.0,South Korea,KR,2020-02-12,43,0,0,0.0,,1.3653425542067814E-7,2020-04-08T07:40:14.290,0.05461370216827125,7,4,2.3333333333333335,0.25,https://github.com/CSSEGISandData/COVID-19
-,0,,,South Sudan,SS,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,2,0,1.0,Spain,ES,2020-02-12,43,0,0,0.0,,0.0,2020-04-08T07:40:14.290,0.004277637678014427,0,0,0.0,,https://github.com/CSSEGISandData/COVID-19
-,1,0,1.0,Sri Lanka,LK,2020-02-12,43,0,0,0.0,,4.6700059388465526E-8,2020-04-08T07:40:14.290,0.004670005938846552,1,0,1.0,1.0,https://github.com/CSSEGISandData/COVID-19
-,0,,,St. Vincent & Grenadines,VC,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Sudan,SD,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Suriname,SR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,1,0,1.0,Sweden,SE,2020-02-12,43,0,0,0.0,,0.0,2020-04-08T07:40:14.289,0.009901710669043738,0,0,0.0,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Switzerland,CH,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Syria,SY,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,18,0,1.0,Taiwan,TW,2020-02-12,43,0,0,0.0,,4.198721279434348E-8,2020-04-08T07:40:14.290,0.07557698302981826,1,0,1.0,0.05555555555555555,https://github.com/CSSEGISandData/COVID-19
-,0,,,Tajikistan,TJ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Tanzania,TZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,33,0,1.0,Thailand,TH,2020-02-12,43,0,0,0.0,,1.4326652080033606E-7,2020-04-08T07:40:14.290,0.047277951864110906,10,0,1.0,0.30303030303030304,https://github.com/CSSEGISandData/COVID-19
-,0,,,Timor-Leste,TL,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Togo,TG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Tokelau,TK,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Tonga,TO,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Trinidad and Tobago,TT,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Tunisia,TN,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Turkey,TR,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Turkmenistan,TM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Turks and Caicos,TC,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Tuvalu,TV,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,U.S. Virgin Islands,VI,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Uganda,UG,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Ukraine,UA,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,8,0,1.0,United Arab Emirates,AE,2020-02-12,43,0,0,0.0,,1.0110812482647318E-7,2020-04-08T07:40:14.289,0.08088649986117855,1,0,0.0,0.125,https://github.com/CSSEGISandData/COVID-19
-,9,1,1.125,United Kingdom,GB,2020-02-12,43,0,0,0.0,5.884949192361718,1.4730575346369962E-8,2020-04-08T07:40:14.290,0.013257517811732965,1,0,0.0,0.1111111111111111,https://github.com/CSSEGISandData/COVID-19
-,13,0,1.0,United States,US,2020-02-12,43,0,0,0.0,,9.063371519643812E-9,2020-04-08T07:40:14.290,0.003927460991845651,3,0,1.0,0.23076923076923078,https://github.com/CSSEGISandData/COVID-19
-,0,,,Uruguay,UY,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Uzbekistan,UZ,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Vanuatu,VU,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Venezuela,VE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,15,0,1.0,Vietnam,VN,2020-02-12,43,0,0,0.0,,6.164051357273256E-8,2020-04-08T07:40:14.290,0.015410128393183137,6,0,1.0,0.4,https://github.com/CSSEGISandData/COVID-19
-,0,,,Wallis & Futuna,WF,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Western Sahara,EH,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.290,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-0.024722480208747954,45222,419,1.0093520523179251,World,WWW,2020-02-12,43,1118,5,1.004492362982929,74.46315554916387,6.603807027097363E-7,2020-04-08T07:40:14.290,0.5798783716104795,5150,467,1.0997224001708306,0.1138826235018354,https://github.com/CSSEGISandData/COVID-19
-,0,,,Yemen,YE,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Zambia,ZM,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
-,0,,,Zimbabwe,ZW,2020-02-12,43,0,,,,0.0,2020-04-08T07:40:14.289,0.0,0,,,,https://github.com/CSSEGISandData/COVID-19
+caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCode,dateId,dayId,deceased,deceasedDelta,deceasedGrowthRate,doublingTime,immunizationRate,importDate,incidencePer100k,infectious,infectiousDelta,infectiousGrowthRate,recovered,recoveredDelta,recoveredGrowthRate,recoveryRate,source,tested,testedDelta,testedPer1k
+0.0,0,0,0.0,Afghanistan,AF,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Albania,AL,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Algeria,DZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,American Samoa,AS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Andorra,AD,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Angola,AO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Anguilla,AI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Antigua and Barbuda,AG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Argentina,AR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Armenia,AM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Aruba,AW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,15,0,1.0,Australia,AU,2020-02-12,43,0,0,0.0,0.0,7.843172933649423E-8,2020-04-10T18:19:57.978,0.05882379700237068,13,0,1.0,2,0,1.0,0.13333333333333333,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Austria,AT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Azerbaijan,AZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Bahamas,BS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Bahrain,BH,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Bangladesh,BD,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Barbados,BB,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Belarus,BY,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,1,0,1.0,Belgium,BE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.008628408361514434,1,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Belize,BZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Benin,BJ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Bermuda,BM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Bhutan,BT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Bolivia,BO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Bosnia and Herzegovina,BA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Botswana,BW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Brazil,BR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,British Virgin Islands,VG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Brunei,BN,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Bulgaria,BG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Burkina Faso,BF,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Burundi,BI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Cabo Verde,CV,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,1,0,1.0,Cambodia,KH,2020-02-12,43,0,0,0.0,0.0,5.981231493695932E-8,2020-04-10T18:19:57.978,0.005981231493695931,1,0,1.0,1,0,0.0,1.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Cameroon,CM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,7,0,1.0,Canada,CA,2020-02-12,43,0,0,0.0,0.0,2.6495573093152022E-8,2020-04-10T18:19:57.979,0.018546901165206416,6,-1,0.8571428571428571,1,0,0.0,0.14285714285714285,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Caribbean Netherlands,BQ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Cayman Islands,KY,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Central African Republic,CF,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Chad,TD,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Chile,CL,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.024967001498914964,44699,372,1.0083921763259414,China,CN,2020-02-12,43,1116,5,1.0045004500450045,82.94053998258688,3.528740429839186E-6,2020-04-10T18:19:57.979,3.105555591127816,38504,-77,0.9980041989580364,5079,444,1.0957928802588996,0.11362670305823397,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Colombia,CO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Comoros,KM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Congo,CD,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Cook Islands,CK,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Costa Rica,CR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Cote d'Ivoire,CI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Croatia,HR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Cuba,CU,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Curaçao,CW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Cyprus,CY,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Czech Republic,CZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,75,1,0.00705323139564453
+0.0,0,0,0.0,Denmark,DK,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,175,40,1.2962962962962963,Diamond Princess Cruise Ship,,2020-02-12,43,0,0,0.0,2.670972168519735,0.0,2020-04-10T18:19:57.978,0.0,175,40,1.2962962962962963,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Djibouti,DJ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Dominica,DM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Dominican Republic,DO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Ecuador,EC,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Egypt,EG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,El Salvador,SV,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Equatorial Guinea,GQ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Eritrea,ER,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Estonia,EE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Eswatini,SZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Ethiopia,ET,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Faeroe Islands,FO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Falkland Islands,FK,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Fiji,FJ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,1,0,1.0,Finland,FI,2020-02-12,43,0,0,0.0,0.0,1.8048195902337602E-7,2020-04-10T18:19:57.978,0.0180481959023376,1,0,1.0,1,0,0.0,1.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,11,0,1.0,France,FR,2020-02-12,43,0,0,0.0,0.0,3.064030062669679E-8,2020-04-10T18:19:57.979,0.016852165344683236,9,-2,0.8181818181818182,2,0,0.0,0.18181818181818182,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,French Guiana,GF,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,French Polynesia,PF,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Gabon,GA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Gambia,GM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Georgia,GE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,16,0,1.0,Germany,DE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.01909673813151451,16,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Ghana,GH,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Gibraltar,GI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Greece,GR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Greenland,GL,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Grenada,GD,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Guadeloupe,GP,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Guam,GU,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Guatemala,GT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Guinea,GN,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Guinea-Bissau,GW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Guyana,GY,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Haiti,HT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Holy See,VA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Honduras,HN,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.02,50,1,1.0204081632653061,Hong Kong,HK,2020-02-12,43,1,0,1.0,34.30961849152064,1.333870260575557E-7,2020-04-10T18:19:57.979,0.6669351302877785,48,0,1.0,1,0,0.0,0.02,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Hungary,HU,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Iceland,IS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,3,0,1.0,India,IN,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,2.1739061358127496E-4,3,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Indonesia,ID,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Iran,IR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Iraq,IQ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Ireland,IE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Isle of Man,IM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Israel,IL,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,3,0,1.0,Italy,IT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.004961808464071198,3,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Jamaica,JM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,28,2,1.0769230769230769,Japan,JP,2020-02-12,43,0,0,0.0,9.353206684999465,7.115948634900529E-8,2020-04-10T18:19:57.979,0.02213850686413498,19,2,1.1176470588235294,9,0,1.0,0.32142857142857145,https://github.com/CSSEGISandData/COVID-19,954,0,0.0075417614963462
+0.0,0,0,0.0,Jordan,JO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Kazakhstan,KZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Kenya,KE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Kiribati,KI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Kosovo,XK,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Kuwait,KW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Kyrgyzstan,KG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Laos,LA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Latvia,LV,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Lebanon,LB,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Lesotho,LS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Liberia,LR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Libya,LY,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Liechtenstein,LI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Lithuania,LT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Luxembourg,LU,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,10,0,1.0,Macao,MO,2020-02-12,43,0,0,0.0,0.0,3.080074229788938E-6,2020-04-10T18:19:57.979,1.540037114894469,8,-1,0.8888888888888888,2,1,2.0,0.2,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Madagascar,MG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Malawi,MW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,18,0,1.0,Malaysia,MY,2020-02-12,43,0,0,0.0,0.0,9.268986259314907E-8,2020-04-10T18:19:57.978,0.05561391755588944,15,0,1.0,3,0,1.0,0.16666666666666666,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Maldives,MV,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Mali,ML,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Malta,MT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Marshall Islands,MH,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Martinique,MQ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Mauritania,MR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Mauritius,MU,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Mayotte,YT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Mexico,MX,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Micronesia,FM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Moldova,MD,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Monaco,MC,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Mongolia,MN,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Montenegro,ME,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Montserrat,MS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Morocco,MA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Mozambique,MZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Myanmar,MM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Namibia,NA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Nauru,NR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,1,0,1.0,Nepal,NP,2020-02-12,43,0,0,0.0,0.0,3.4320849421803517E-8,2020-04-10T18:19:57.979,0.0034320849421803513,1,0,1.0,1,0,0.0,1.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Netherlands,NL,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,New Caledonia,NC,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,New Zealand,NZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Nicaragua,NI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Niger,NE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Nigeria,NG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Niue,NU,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,North Korea,KP,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,North Macedonia,MK,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Northern Mariana Islands,MP,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Norway,NO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Oman,OM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Pakistan,PK,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Palau,PW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Palestine,PS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Panama,PA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Papua New Guinea,PG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Paraguay,PY,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Peru,PE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.3333333333333333,3,0,1.0,Philippines,PH,2020-02-12,43,1,0,1.0,0.0,9.125663100339275E-9,2020-04-10T18:19:57.979,0.0027376989301017827,1,-1,0.5,1,0,0.0,0.3333333333333333,https://github.com/CSSEGISandData/COVID-19,112,0,0.00102093466641634
+0.0,0,0,0.0,Poland,PL,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Portugal,PT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Puerto Rico,PR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Qatar,QA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Republic of Congo,CG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Reunion,RE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Romania,RO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,2,0,1.0,Russia,RU,2020-02-12,43,0,0,0.0,0.0,1.3704782082247304E-8,2020-04-10T18:19:57.979,0.0013704782082247303,2,0,1.0,2,0,0.0,1.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Rwanda,RW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Saint Barthelemy,,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Saint Helena,,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Saint Kitts & Nevis,,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Saint Lucia,LC,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Saint Martin,,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Saint Pierre & Miquelon,,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Samoa,WS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,San Marino,SM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Sao Tome & Principe,ST,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Saudi Arabia,SA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Senegal,SN,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Serbia,RS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Seychelles,SC,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Sierra Leone,SL,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,50,3,1.0638297872340425,Singapore,SG,2020-02-12,43,0,0,0.0,11.202305583621172,2.5639526714848466E-6,2020-04-10T18:19:57.979,0.8546508904949489,35,-3,0.9210526315789473,15,6,1.6666666666666667,0.3,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Sint Maarten,SX,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Slovakia,SK,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Slovenia,SI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Solomon Islands,SB,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Somalia,SO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,South Africa,ZA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,28,0,1.0,South Korea,KR,2020-02-12,43,0,0,0.0,0.0,1.3653425542067814E-7,2020-04-10T18:19:57.979,0.05461370216827125,21,-4,0.84,7,4,2.3333333333333335,0.25,https://github.com/CSSEGISandData/COVID-19,5074,1445,0.0985109298303773
+0.0,0,0,0.0,South Sudan,SS,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,2,0,1.0,Spain,ES,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.004277637678014427,2,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,1,0,1.0,Sri Lanka,LK,2020-02-12,43,0,0,0.0,0.0,4.6700059388465526E-8,2020-04-10T18:19:57.979,0.004670005938846552,1,0,1.0,1,0,1.0,1.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,St. Vincent & Grenadines,VC,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Sudan,SD,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Suriname,SR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,1,0,1.0,Sweden,SE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.009901710669043738,1,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Switzerland,CH,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Syria,SY,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,18,0,1.0,Taiwan,TW,2020-02-12,43,0,0,0.0,0.0,4.198721279434348E-8,2020-04-10T18:19:57.979,0.07557698302981826,17,0,1.0,1,0,1.0,0.05555555555555555,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Tajikistan,TJ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Tanzania,TZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,33,0,1.0,Thailand,TH,2020-02-12,43,0,0,0.0,0.0,1.4326652080033606E-7,2020-04-10T18:19:57.979,0.047277951864110906,23,0,1.0,10,0,1.0,0.30303030303030304,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Timor-Leste,TL,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Togo,TG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Tokelau,TK,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Tonga,TO,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Trinidad and Tobago,TT,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Tunisia,TN,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Turkey,TR,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Turkmenistan,TM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Turks and Caicos,TC,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Tuvalu,TV,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,U.S. Virgin Islands,VI,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Uganda,UG,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Ukraine,UA,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,8,0,1.0,United Arab Emirates,AE,2020-02-12,43,0,0,0.0,0.0,1.0110812482647318E-7,2020-04-10T18:19:57.978,0.08088649986117855,7,-1,0.875,1,0,0.0,0.125,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,9,1,1.125,United Kingdom,GB,2020-02-12,43,0,0,0.0,5.884949192361718,1.4730575346369962E-8,2020-04-10T18:19:57.979,0.013257517811732965,8,0,1.0,1,0,0.0,0.1111111111111111,https://github.com/CSSEGISandData/COVID-19,1758,400,0.0261085717381572
+0.0,13,0,1.0,United States,US,2020-02-12,43,0,0,0.0,0.0,9.063371519643812E-9,2020-04-10T18:19:57.979,0.003927460991845651,10,0,1.0,3,0,1.0,0.23076923076923078,https://github.com/CSSEGISandData/COVID-19,2011,58,0.00606761817660959
+0.0,0,0,0.0,Uruguay,UY,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Uzbekistan,UZ,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Vanuatu,VU,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Venezuela,VE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,15,0,1.0,Vietnam,VN,2020-02-12,43,0,0,0.0,0.0,6.164051357273256E-8,2020-04-10T18:19:57.979,0.015410128393183137,9,0,1.0,6,0,1.0,0.4,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Wallis & Futuna,WF,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Western Sahara,EH,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.024722480208747954,45222,419,1.0093520523179251,World,WWW,2020-02-12,43,1118,5,1.004492362982929,74.46315554916387,6.603807027097363E-7,2020-04-10T18:19:57.979,0.5798783716104795,38954,-53,0.998641269515728,5150,467,1.0997224001708306,0.1138826235018354,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Yemen,YE,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Zambia,ZM,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.978,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Zimbabwe,ZW,2020-02-12,43,0,0,0.0,0.0,0.0,2020-04-10T18:19:57.979,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0

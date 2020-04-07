@@ -33,7 +33,7 @@ const csvOptions = {
 
 // const loadCsvFocusCountrySnaps2 = (callback, toObject = true) => {
 //     focusCountries.forEach(country => {
-//         var fileName = filePathPrefix + 'data/byCountry/' + country + '.csv';
+//         var fileName = filePathPrefix + 'data/by_country/' + country + '.csv';
 //         $.get(fileName, function (csvString) {
 //             if (toObject) {
 //                 callback($.csv.toObjects(csvString, csvOptions));
@@ -46,9 +46,9 @@ const csvOptions = {
 //     console.log('Imported all focus country CSV-files');
 // };
 
-const loadCsvCovid19Snapshots = async (countryNames, callback) => {
+const loadCsvCovid19Snapshots = async (countryNames, callback = undefined) => {
     await asyncForEach(countryNames, async (countryName) => {
-        var fileName = filePathPrefix + 'data/byCountry/' + countryName + '.csv';
+        var fileName = filePathPrefix + 'data/by_country/' + countryName + '.csv';
         $.get(fileName, function (csvString) {
             updateSnapshots($.csv.toObjects(csvString, csvOptions));
         });
@@ -61,7 +61,7 @@ const loadCsvCovid19Snapshots = async (countryNames, callback) => {
 };
 
 const loadCsvCovid19ByCountry = (countryName, callback) => {
-    var fileName = filePathPrefix + 'data/byCountry/' + countryName + '.csv';
+    var fileName = filePathPrefix + 'data/by_country/' + countryName + '.csv';
     $.get(fileName, function (csvString) {
         callback($.csv.toObjects(csvString, csvOptions));
     });
@@ -69,7 +69,7 @@ const loadCsvCovid19ByCountry = (countryName, callback) => {
 }
 
 const loadCsvCovid19ByDate = (dateId, callback) => {
-    var fileName = filePathPrefix + 'data/byDate/' + dateId + '.csv';
+    var fileName = filePathPrefix + 'data/by_date/' + dateId + '.csv';
     $.get(fileName, function (csvString) {
         callback($.csv.toObjects(csvString, csvOptions));
     });
@@ -77,7 +77,7 @@ const loadCsvCovid19ByDate = (dateId, callback) => {
 }
 
 const loadCsvCountries = (callback) => {
-    var fileName = filePathPrefix + 'data/countries_export.csv';
+    var fileName = filePathPrefix + 'data/countries.csv';
     $.get(fileName, function (csvString) {
         callback($.csv.toObjects(csvString, csvOptions));
     });
