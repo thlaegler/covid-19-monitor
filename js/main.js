@@ -242,7 +242,7 @@ const buildGeojsonFeature = (snap) => {
                 // RECOVERED
                 recovered: snap.recovered,
                 recoveredDelta: snap.recoveredDelta,
-                recoveredGrowthRate: snap.recoveredGrowthRates,
+                recoveredGrowthRate: snap.recoveredGrowthRate,
 
                 // DEATH
                 deceased: snap.deceased,
@@ -332,8 +332,8 @@ const updateSnapshots = async (csvSnapshot) => {
                 if (countr) {
                     var base = snap.infectious;
                     var infectiousDuration = Math.round($('#select-infectious_duration').val());
-                    if(j >= infectiousDuration) {
-                        base = csvSnapshot[j-infectiousDuration].infectious;
+                    if (j >= infectiousDuration) {
+                        base = csvSnapshot[j - infectiousDuration].infectious;
                     }
                     snap.calculatedAcuteCareAbsolute = base * ($('#input-acute_care_rate').val() / 100);
                     snap.calculatedAcuteCareAbsolute = (snap.calculatedAcuteCareAbsolute < 0) ? 0 : snap.calculatedAcuteCareAbsolute;
@@ -396,14 +396,17 @@ const doApply = async () => {
 
     closeSidenav();
 
+    window.scrollTo(0,0);
+
     var selectedCountryNames = $('#input-countries').val();//.filter(co => co && co != '').join(',');
-    var selectedDateIds = $('#input-dateIds').val();//.filter(da => da && da != '').join(',');
+    // var selectedDateIds = $('#input-dateIds').val();//.filter(da => da && da != '').join(',');
 
     var missingCountryNames = selectedCountryNames.filter(sc => !allSnapshotsByCountry[sc]);
     if (missingCountryNames && missingCountryNames.length > 0) {
         await asyncForEach(missingCountryNames, async (countryName) => {
+            $('.loader-text').html('Loading ' + countryName + ' ...');
             var fileName = filePathPrefix + 'data/by_country/' + countryName + '.csv';
-            $.get(fileName, function (csvString) {
+            await $.get(fileName, function (csvString) {
                 updateSnapshots($.csv.toObjects(csvString, csvOptions));
             });
             console.log('Imported CSV-file ' + fileName);
@@ -429,8 +432,6 @@ const focusCountries = ['United States',
     'Sri Lanka',
     'Greece',
     'India',
-    'Hong Kong',
-    'Macao',
     'Singapore',
     'Saudi Arabia',
     'Philippines',
@@ -469,13 +470,13 @@ const initSelectCountries = async (countries) => {
 
         allCountries[c.country] = c;
 
-        if (focusCountries.includes(c.country)) {
-            var fileName = filePathPrefix + 'data/by_country/' + c.country + '.csv';
-            $.get(fileName, function (csvString) {
-                updateSnapshots($.csv.toObjects(csvString, csvOptions));
-            });
-            console.log('Imported CSV-file ' + fileName);
-        }
+        // if (focusCountries.includes(c.country)) {
+        //     var fileName = filePathPrefix + 'data/by_country/' + c.country + '.csv';
+        //     $.get(fileName, function (csvString) {
+        //         updateSnapshots($.csv.toObjects(csvString, csvOptions));
+        //     });
+        //     console.log('Imported CSV-file ' + fileName);
+        // }
     });
 };
 
@@ -504,6 +505,7 @@ const initSelectDateIds = async (countryDateSnapshots) => {
             dateId: snap.dateId
         };
     });
+    updateSnapshots(countryDateSnapshots);
 };
 
 const updateTimeAgo = (actualUtcTimeString) => {
@@ -638,6 +640,7 @@ const setSimulationCrossFields = (selDate, selCountryName) => {
 
 const init = () => {
     $('.loader-modal').show();
+    window.scrollTo(0,0);
 
     // Charts
     google.charts.load('current', { 'packages': ['corechart', 'table'] });

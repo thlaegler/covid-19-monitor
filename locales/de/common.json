@@ -26,15 +26,15 @@
         },
         "overTime": {
             "link": "Im Zeitverlauf",
-            "tooltip": "Im Zeitverlauf",
+            "tooltip": "Im Zeitverlauf"
         },
         "latest": {
             "link": "Letzter Stand",
-            "tooltip": "Letzter Stand",
+            "tooltip": "Letzter Stand"
         },
         "tertiary": {
             "link": "Zusätzliche Daten",
-            "tooltip": "Zusätzliche Daten",
+            "tooltip": "Zusätzliche Daten"
         }
     },
     "confirmed": {

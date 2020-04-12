@@ -194,7 +194,7 @@ caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCod
 0.0,0,0,0.0,Slovenia,SI,2020-02-14,45,0,0,0.0,0.0,0.0,2020-04-10T18:19:59.135,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Solomon Islands,SB,2020-02-14,45,0,0,0.0,0.0,0.0,2020-04-10T18:19:59.135,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Somalia,SO,2020-02-14,45,0,0,0.0,0.0,0.0,2020-04-10T18:19:59.136,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
-0.0,0,0,0.0,South Africa,ZA,2020-02-14,45,0,0,0.0,0.0,0.0,2020-04-10T18:19:59.136,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,South Africa,ZA,2020-02-14,45,0,0,0.0,0.0,0.0,2020-04-10T18:19:59.136,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,71,4,0.00120910275907202
 0.0,28,0,1.0,South Korea,KR,2020-02-14,45,0,0,0.0,0.0,1.3653425542067814E-7,2020-04-10T18:19:59.136,0.05461370216827125,21,0,1.0,7,0,1.0,0.25,https://github.com/CSSEGISandData/COVID-19,6854,1057,0.1330693561406
 0.0,0,0,0.0,South Sudan,SS,2020-02-14,45,0,0,0.0,0.0,0.0,2020-04-10T18:19:59.136,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,2,0,1.0,Spain,ES,2020-02-14,45,0,0,0.0,0.0,0.0,2020-04-10T18:19:59.136,0.004277637678014427,2,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0

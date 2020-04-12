@@ -75,7 +75,7 @@ public class ExportService extends CsvService {
       log.error("Cannot write CSV {}", csvFilePath, ex);
     }
 
-    log.info("Finished data export for {} with {} snaps", country, snaps.size());
+    log.info("Finished data export for {} with {} Snapshots", country, snaps.size());
 
     return true;
   }
@@ -94,7 +94,7 @@ public class ExportService extends CsvService {
       log.error("Cannot write CSV {}", csvFilePath, ex);
     }
 
-    log.info("Finished data export for {} with {} snaps", dateId, snaps.size());
+    log.info("Finished data export for {} with {} Snapshots", dateId, snaps.size());
 
     return true;
   }

@@ -48,6 +48,7 @@ const csvOptions = {
 
 const loadCsvCovid19Snapshots = async (countryNames, callback = undefined) => {
     await asyncForEach(countryNames, async (countryName) => {
+        $('.loader-text').html('Loading ' + countryName + ' ...');
         var fileName = filePathPrefix + 'data/by_country/' + countryName + '.csv';
         $.get(fileName, function (csvString) {
             updateSnapshots($.csv.toObjects(csvString, csvOptions));
@@ -61,6 +62,7 @@ const loadCsvCovid19Snapshots = async (countryNames, callback = undefined) => {
 };
 
 const loadCsvCovid19ByCountry = (countryName, callback) => {
+    $('.loader-text').html('Loading ' + countryName + ' ...');
     var fileName = filePathPrefix + 'data/by_country/' + countryName + '.csv';
     $.get(fileName, function (csvString) {
         callback($.csv.toObjects(csvString, csvOptions));
@@ -69,6 +71,7 @@ const loadCsvCovid19ByCountry = (countryName, callback) => {
 }
 
 const loadCsvCovid19ByDate = (dateId, callback) => {
+    $('.loader-text').html('Loading Dates ...');
     var fileName = filePathPrefix + 'data/by_date/' + dateId + '.csv';
     $.get(fileName, function (csvString) {
         callback($.csv.toObjects(csvString, csvOptions));
@@ -77,6 +80,7 @@ const loadCsvCovid19ByDate = (dateId, callback) => {
 }
 
 const loadCsvCountries = (callback) => {
+    $('.loader-text').html('Loading Countries ...');
     var fileName = filePathPrefix + 'data/countries.csv';
     $.get(fileName, function (csvString) {
         callback($.csv.toObjects(csvString, csvOptions));

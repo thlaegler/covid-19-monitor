@@ -92,7 +92,7 @@ public class DailyReport extends AbstractModel {
   @JsonProperty("lastUpdate")
   @JsonAlias("lastUpdate")
   @Field(name = "lastUpdate", type = FieldType.Text)
-  @CsvBindByName(column = "Last_Update", required = false)
+  @CsvBindByName(column = "Last Update", required = false)
   private String lastUpdate;
 
   @Override

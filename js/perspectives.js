@@ -16,8 +16,8 @@ const perspectives = {
         title: 'Tests per 1000 Capita',
         titleKey: 'tested.per1k',
         color: (props) => (props['testedPer1k'] > 20 ? '#77ff00' : (props['testedPer1k'] > 10 ? '#ffcc00' : (props['testedPer1k'] > 5 ? '#ff6f00' : (props['testedPer1k'] > 0 ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props['testedPer1k'] * 2),
-        label: (props) => determineSign(props['testedPer1k']) + parseFloat(props['testedPer1k']).toFixed(2) + ' Tests per 1k',
+        radius: (props) => makeRadius(props['testedPer1k']),
+        label: (props) => determineSign(props['testedPer1k']) + parseFloat(props['testedPer1k']).toFixed(2) + ' \n Tests per 1k Capita',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'testedPer1k')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'testedPer1k')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
@@ -27,7 +27,7 @@ const perspectives = {
         title: 'Tests: Delta of new Tests compared to yesterday',
         titleKey: 'tested.delta',
         color: (props) => (props['testedDelta'] > 10000 ? '#77ff00' : (props['testedDelta'] > 5000 ? '#ffcc00' : (props['testedDelta'] > 1000 ? '#ff6f00' : (props['testedDelta'] > 0 ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props['testedDelta'] / 1000),
+        radius: (props) => makeRadius(props['testedDelta'] / 3000),
         label: (props) => '+' + Math.round(props['testedDelta']) + ' Tests',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'testedDelta')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -136,12 +136,12 @@ const perspectives = {
         },
     },
 
-    // INFECTIOUS
+    // INFECTIOUS / ACTIVE
     infectious_absolute: {
         title: 'Absolute Number of Active Cases',
         titleKey: 'infectious.absolute',
-        color: (props) => (props['infectious'] > 500 ? '#ff0000' : (props['infectious'] > 100 ? '#ff6f00' : (props['infectious'] > 20 ? '#ffcc00' : (props['infectious'] > 0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props['infectious'] / 200),
+        color: (props) => (props['infectious'] > 10000 ? '#ff0000' : (props['infectious'] > 3000 ? '#ff6f00' : (props['infectious'] > 500 ? '#ffcc00' : (props['infectious'] > 0 ? '#77ff00' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['infectious'] / 10000),
         label: (props) => props['infectious'] + ' Cases \n ' + determineSign(props.infectiousDelta) + props.infectiousDelta + ' Cases (' + determineSign(props.infectiousGrowthRate) + parseFloat(props.infectiousGrowthRate).toFixed(2) + '%)',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'infectious')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -163,7 +163,7 @@ const perspectives = {
         title: 'Active Cases: Difference to yesterday',
         titleKey: 'infectious.delta',
         color: (props) => (props.infectiousDelta > 500 ? '#ff0000' : (props.infectiousDelta > 200 ? '#ff6f00' : (props.infectiousDelta > 0 ? '#ffcc00' : (props.infectiousDelta < 0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.infectiousDelta > 0 ? (props.infectiousDelta / 80) : (-0.03 * props.infectiousDelta)),
+        radius: (props) => makeRadius(props.infectiousDelta > 0 ? (props.infectiousDelta / 100) : (-0.02 * props.infectiousDelta)),
         label: (props) => determineSign(props.infectiousDelta) + Math.round(props.infectiousDelta) + ' Cases \n ' + determineSign(props.infectiousGrowthRate) + parseFloat(props.infectiousGrowthRate).toFixed(2) + ' %',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'infectiousDelta')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -175,8 +175,8 @@ const perspectives = {
     recovered_absolute: {
         title: 'Absolute Number of Recovered Cases',
         titleKey: 'recovered.absolute',
-        color: (props) => props['recovered'] > 10000 ? '#ff0000' : (props['recovered'] > 3000 ? '#ff6f00' : (props['recovered'] > 500 ? '#ffcc00' : (props['recovered'] > 0 ? '#77ff00' : '#bfbfbf'))),
-        radius: (props) => makeRadius(props['recovered'] / 500),
+        color: (props) => props['recovered'] > 10000 ? '#77ff00' : (props['recovered'] > 3000 ? '#ffcc00' : (props['recovered'] > 500 ? '#ff6f00' : (props['recovered'] > 0 ? '#ff0000' : '#bfbfbf'))),
+        radius: (props) => makeRadius(props['recovered'] / 3000),
         label: (props) => props['recovered'] + ' Cases \n ' + determineSign(props.recoveredDelta) + props.recoveredDelta + ' Cases (' + determineSign(props.recoveredGrowthRate) + parseFloat(props.recoveredGrowthRate).toFixed(2) + '%)',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'recovered')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -252,8 +252,8 @@ const perspectives = {
     deceased_absolute: {
         title: 'Absolute Number of Deceased Cases',
         titleKey: 'deceased.absolute',
-        color: (props) => (props['deceased'] > 500 ? '#ff0000' : (props['deceased'] > 100 ? '#ff6f00' : (props['deceased'] > 20 ? '#ffcc00' : (props['deceased'] > 0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props['deceased'] / 200),
+        color: (props) => (props['deceased'] > 10000 ? '#ff0000' : (props['deceased'] > 3000 ? '#ff6f00' : (props['deceased'] > 500 ? '#ffcc00' : (props['deceased'] > 0 ? '#77ff00' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['deceased'] / 1000),
         label: (props) => props['deceased'] + ' Cases \n ' + determineSign(props.deceasedDelta) + props.deceasedDelta + ' Cases (' + determineSign(props.deceasedGrowthRate) + parseFloat(props.deceasedGrowthRate).toFixed(2) + '%)',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'deceased')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');

@@ -36,6 +36,13 @@ const isInDateRange = (date, start, end) => {
 const buildSimulationData = (simulationRequest) => {
     var simulationData = [];
 
+    var currentCountryName = simulationRequest.country;
+    var currentCountry = allCountries[currentCountryName];
+    var criticalCareUntreatedFatalityRisk = $('#input-critical_care_untreated_fatality_risk').val() || 0.5;
+    var criticalCareHospitalizationRate = ($('#input-critical_care_rate').val() / 100);
+    var acuteCareUntreatedFatalityRisk = $('#input-acute_care_untreated_fatality_risk').val() || 0.1;
+    var acuteCareHospitalizationRate = ($('#input-acute_care_rate').val() / 100);
+
     var beta = simulationRequest.baseReproductionNumber / simulationRequest.infectiousDuration; // S->E
     var alpha = 1 / simulationRequest.latentDuration; // E->I
     var gamma = (1 / simulationRequest.infectiousDuration) * (1 - simulationRequest.caseFatalityRisk); // I->R
@@ -47,12 +54,13 @@ const buildSimulationData = (simulationRequest) => {
     simulationData.push({
         t: t,
         dateId: startDateId,
+        country: simulationRequest.country,
         E: simulationRequest.initialLatent,
         I: simulationRequest.initialInfectious,
         R: simulationRequest.initialRecovered,
         D: simulationRequest.initialDeceased,
         S: simulationRequest.initialPopulation - simulationRequest.initialLatent - simulationRequest.initialInfectious - simulationRequest.initialRecovered - simulationRequest.initialDeceased,
-        country: simulationRequest.country,
+        D_overload: simulationRequest.initialDeceased,
         intervention: -1,
     });
 
@@ -80,15 +88,20 @@ const buildSimulationData = (simulationRequest) => {
         var dD = previousData.I * theta;
         var dS = (-1) * (previousData.S / simulationRequest.initialPopulation) * previousData.I * beta;
 
+        var criticalCareOverload = (((previousData.I + dI) * criticalCareHospitalizationRate) - currentCountry.criticalCareBedsAbsolute) * criticalCareUntreatedFatalityRisk;
+        var acuteCareOverload = (((previousData.I + dI) * acuteCareHospitalizationRate) - currentCountry.acuteCareBedsAbsolute) * acuteCareUntreatedFatalityRisk;
+        var dD_overload = dD + (criticalCareOverload > 0 ? criticalCareOverload : 0) + (acuteCareOverload > 0 ? acuteCareOverload : 0);
+
         simulationData.push({
             t: t,
             dateId: dateIterate.toISOString().substring(0, 10),
+            country: simulationRequest.country,
             E: previousData.E + dE,
             I: previousData.I + dI,
             R: previousData.R + dR,
             D: previousData.D + dD,
             S: previousData.S + dS,
-            country: simulationRequest.country,
+            D_overload: previousData.D_overload + dD_overload,
             intervention: intervention,
         });
         console.log('Simulated ' + dateIterate.toISOString().substring(0, 10));
@@ -107,28 +120,28 @@ const updateChart = (simulationData) => {
     var latentDuration = $('#input-latent_duration').val() || 5.5;
     var isLogScale = $('#checkbox-log_scale').prop("checked");
 
-    var infs = simulationData.map(s => s.I);
+    var infs = simulationData.map(s => s.S);
     var maxInf = Math.max(...infs);
 
-    var seirDataArray = [['Date', 'Suspectible (Simulation)', 'Exposed/Latent (Simulation)', 'Infectious (Simulation)', 'Recovered (Simulation)', 'Deceased (Simulation)', 'Suspectible (Actual)', 'Exposed/Latent (Actual)', 'Infectious (Actual)', 'Recovered (Actual)', 'Deceased (Actual)', 'Interventions', { type: 'string', role: 'style' }]];
+    var seirDataArray = [['Date', 'Suspectible (Simulation)', 'Exposed/Latent (Simulation)', 'Infectious (Simulation)', 'Recovered (Simulation)', 'Deceased (Simulation)', 'Deceased (Simulation, incl. Capacity Exceedance)', 'Suspectible (Actual)', 'Exposed/Latent (Actual)', 'Infectious (Actual)', 'Recovered (Actual)', 'Deceased (Actual)', 'Interventions', { type: 'string', role: 'style' }]];
     seirDataArray = seirDataArray.concat(Object.values(allDates)
         // .filter(d => d.dateId != latestDateId)
         .map(d => {
             var snap = countrySnaps[d.dateId];
             if (snap) {
-                var s = Math.floor(currentCountry.populationAbsolute - snap.confirmed - snap.recovered - snap.deceased);
+                var s = Math.floor(currentCountry.populationAbsolute - snap.infectious);
                 var e = Math.floor(snap.confirmedDelta * latentDuration);
-                var i = Math.floor(snap.confirmed - snap.recovered - snap.deceased);
+                var i = Math.floor(snap.infectious);
                 var r = Math.floor(snap.recovered);
                 var de = Math.floor(snap.deceased);
-                return [d.dateId, undefined, undefined, undefined, undefined, undefined, 0, e, i, 0, de, maxInf, 'opacity: 0.0;'];
+                return [d.dateId, undefined, undefined, undefined, undefined, undefined, undefined, s, e, i, r, de, maxInf, 'opacity: 0.0;'];
             } else {
-                return [d.dateId, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, maxInf, 'opacity: 0.0;'];
+                return [d.dateId, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, maxInf, 'opacity: 0.0;'];
             }
         }));
     // seirDataArray = seirDataArray.concat(simulationData.map(data => [data.dateId, Math.floor(data.S), Math.floor(data.E), Math.floor(data.I), Math.floor(data.R), Math.floor(data.D), undefined, undefined, undefined, undefined, undefined]));
     seirDataArray = seirDataArray.concat(simulationData.map(data => {
-        return [data.dateId, 0, Math.floor(data.E), Math.floor(data.I), 0, Math.floor(data.D), undefined, undefined, undefined, undefined, undefined, maxInf, (data.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')];
+        return [data.dateId, Math.floor(data.S), Math.floor(data.E), Math.floor(data.I), Math.floor(data.R), Math.floor(data.D), Math.floor(data.D_overload), undefined, undefined, undefined, undefined, undefined, maxInf, (data.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')];
     }));
     drawChart(
         google.visualization.arrayToDataTable(seirDataArray),
@@ -136,7 +149,7 @@ const updateChart = (simulationData) => {
         'SEIR-Model',
         isLogScale ? { vAxis: { scaleType: 'log' } } : {
             seriesType: 'line',
-            series: { 10: { type: 'area' } }
+            series: { 11: { type: 'area' } }
         });
 
     var criticalCareArray = [['Date', 'Critical Care Cases', 'Critical Care Capacity']]
@@ -161,6 +174,7 @@ const updateTable = (data) => { };
 
 const doSimulate = () => {
     closeSidenav();
+    window.scrollTo(0,0);
 
     var simulationRequest = defaultSimulationRequest();
     simulationRequest.country = $('#input-simulation_country').val();
