@@ -70,7 +70,7 @@ public class OwidTesting extends AbstractModel {
   @JsonAlias("delta")
   @Field(name = "delta", type = FieldType.Long)
   @CsvBindByName(column = "Daily change in cumulative total", required = false)
-  private long delta;
+  private double delta;
 
   @ApiModelProperty(name = "per1k", value = "Cumulative total per thousand", required = false)
   @JsonProperty("per1k")

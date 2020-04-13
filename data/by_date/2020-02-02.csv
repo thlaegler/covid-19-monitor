@@ -100,7 +100,7 @@ caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCod
 0.0,0,0,0.0,Iraq,IQ,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Ireland,IE,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Isle of Man,IM,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
-0.0,0,0,0.0,Israel,IL,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
+0.0,0,0,0.0,Israel,IL,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,17,6,0.00195098237126758
 0.0,2,0,1.0,Italy,IT,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0033078723093807987,2,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Jamaica,JM,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,20,0,1.0,Japan,JP,2020-02-02,33,0,0,0.0,0.0,7.906609594333921E-9,2020-04-10T18:19:51.051,0.01581321918866784,19,0,1.0,1,0,1.0,0.05,https://github.com/CSSEGISandData/COVID-19,0,0,0.0

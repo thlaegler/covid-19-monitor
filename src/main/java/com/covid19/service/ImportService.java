@@ -134,7 +134,7 @@ public class ImportService extends CsvService {
                 OwidTesting dat = testCountryByDate.get(snap.getDateId());
                 if (dat != null) {
                   snap.setTested(dat.getTotal());
-                  snap.setTestedDelta(dat.getDelta());
+                  snap.setTestedDelta(Double.valueOf(dat.getDelta()).longValue());
                   snap.setTestedPer1k(dat.getPer1k());
                 }
                 return snap;
@@ -171,46 +171,48 @@ public class ImportService extends CsvService {
   }
 
   public boolean importAllDailyReports(String importStartDate) {
+    LocalDate currentDate = LocalDate.of(2020, 1, 22); // From Start
+    if (importStartDate != null) {
+      currentDate = LocalDate.parse(importStartDate, INTERNAL_DATE_FORMAT);
+    }
+    final Map<String, Covid19Snapshot> previousDay = new HashMap<>();
 
     Map<String, Country> countries = countryRepo.findAll(PageRequest.of(0, 9999, ASC, "country"))
         .getContent().stream().collect(toMap(c -> c.getCountry(), c -> c));
 
     // China early days
-    final Map<String, Covid19Snapshot> previousDay = new HashMap<>();
-    readCsv("sources/china_early_days.csv", DailyReport.class).forEach(dr -> {
-      String earlyDateId = dr.getLastUpdate();
-      dr.setCountry(sanitizeCountryName(dr.getCountry()));
-      dr.setDateId(earlyDateId);
-      dr.setInfectious(dr.getInfectious() != 0 ? dr.getInfectious()
-          : (dr.getConfirmed() - dr.getRecovered() - dr.getDeceased()));
-      dr.getId();
+    if (currentDate.isBefore(LocalDate.of(2020, 1, 22))) {
+      readCsv("sources/china_early_days.csv", DailyReport.class).forEach(dr -> {
+        String earlyDateId = dr.getLastUpdate();
+        dr.setCountry(sanitizeCountryName(dr.getCountry()));
+        dr.setDateId(earlyDateId);
+        dr.setInfectious(dr.getInfectious() != 0 ? dr.getInfectious()
+            : (dr.getConfirmed() - dr.getRecovered() - dr.getDeceased()));
+        dr.getId();
 
-      Map<String, Covid19Snapshot> snaps = new HashMap<>();
-      countries.values().forEach(c -> {
-        if (c.getCountry().equalsIgnoreCase(dr.getCountry())) {
-          snaps.put(c.getCountry(), buildSnap(dr, c, previousDay));
-        } else {
-          snaps.put(c.getCountry(),
-              buildSnap(DailyReport.builder().dateId(earlyDateId).country(c.getCountry()).build(),
-                  c, previousDay));
-        }
+        Map<String, Covid19Snapshot> snaps = new HashMap<>();
+        countries.values().forEach(c -> {
+          if (c.getCountry().equalsIgnoreCase(dr.getCountry())) {
+            snaps.put(c.getCountry(), buildSnap(dr, c, previousDay));
+          } else {
+            snaps.put(c.getCountry(),
+                buildSnap(DailyReport.builder().dateId(earlyDateId).country(c.getCountry()).build(),
+                    c, previousDay));
+          }
+        });
+        previousDay.clear();
+        previousDay.putAll(snaps);
+        covid19SnapshotRepo.saveAll(snaps.values());
+        log.info("Imported early days {}", earlyDateId);
       });
-      previousDay.clear();
-      previousDay.putAll(snaps);
-      covid19SnapshotRepo.saveAll(snaps.values());
-      log.info("Imported early days {}", earlyDateId);
-    });
 
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException ex) {
-      log.error("Cannot sleep", ex);
+      try {
+        Thread.sleep(2000);
+      } catch (InterruptedException ex) {
+        log.error("Cannot sleep", ex);
+      }
     }
 
-    LocalDate currentDate = LocalDate.of(2020, 1, 22); // From Start
-    if (importStartDate != null) {
-      currentDate = LocalDate.parse(importStartDate, INTERNAL_DATE_FORMAT);
-    }
     previousDay.clear();
     previousDay.putAll(StreamSupport.stream(covid19SnapshotRepo
         .findByDateId(currentDate.minusDays(1).format(INTERNAL_DATE_FORMAT)).spliterator(), false)
