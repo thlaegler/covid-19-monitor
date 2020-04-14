@@ -5,10 +5,9 @@ var allDates = {};
 var allCountries = {};
 var allSnapshotsByCountry = {};
 var allSnapshotsByDate = {};
-var selectedSnapshots = {}; // Subset of allSnapshotsByDate
-var filePathPrefix = '';
-// var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/';
 
+// var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
+var filePathPrefix = ''; // local prod
 
 const determineSign = (it) => {
     return it == 0 ? '' : ((it > 0) ? '+' : '');
@@ -29,10 +28,11 @@ const makeRadius = (value) => {
     }
 }
 
-const arrayTocountryObject = (array) =>
+const arrayToObjects = (array, identifier) =>
     array.reduce((obj, item) => {
-        obj[item.country] = item
-        return obj
+        var id = item[identifier];
+        obj[id] = item;
+        return obj;
     }, {});
 
 const groupSnapshotsByDateId = async (snapshots, dateIds) => {
@@ -57,22 +57,6 @@ const updatePerspective = async (perspectiveId = 'confirmed_absolute') => {
     if (missingCountries && missingCountries.length > 0) {
         await loadCsvCovid19Snapshots(missingCountries);
     }
-
-    // TODO: Just the selected snapshots
-    var selectedSnapshots = allSnapshotsByDate;
-
-    // if (selectedSnapshots && latestDateId && selectedSnapshots[latestDateId]) {
-    //     geoJsonFeatures = Object.values(selectedSnapshots[latestDateId])
-    //         .filter(snap => selectedCountryNames.includes(snap.country))
-    //         .map(snap => buildGeojsonFeature(snap));
-    // } else {
-    //     geoJsonFeatures = [];
-    // }
-    // await updateGeoJsonCircle({
-    //     id: 'countries',
-    //     type: 'FeatureCollection',
-    //     features: geoJsonFeatures,
-    // });
 
     var perspect = perspectives[perspectiveId];
     if (perspect) {
@@ -162,7 +146,7 @@ const constructLatestChartArray = (title, selector1, selector2) => {
     var selectedCountries = $('#input-countries').val();
     var latestArray = [['Country', title]];
     if (selector1 == 'country') {
-        countries.forEach(ct => latestArray.push([ct.country, ct[selector2]]));
+        selectedCountries.forEach(c => latestArray.push([c, allCountries[c][selector2]]));
     } else {
         // var row = [newDateId];
         // selectedCountries.forEach(c => {
@@ -331,7 +315,7 @@ const updateSnapshots = async (csvSnapshot) => {
                 // TODO: Use time-shift for confirmed cases
                 if (countr) {
                     var base = snap.infectious;
-                    var infectiousDuration = Math.round($('#select-infectious_duration').val());
+                    var infectiousDuration = Math.round($('#input-infectious_duration').val());
                     if (j >= infectiousDuration) {
                         base = csvSnapshot[j - infectiousDuration].infectious;
                     }
@@ -396,7 +380,7 @@ const doApply = async () => {
 
     closeSidenav();
 
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
     var selectedCountryNames = $('#input-countries').val();//.filter(co => co && co != '').join(',');
     // var selectedDateIds = $('#input-dateIds').val();//.filter(da => da && da != '').join(',');
@@ -406,7 +390,7 @@ const doApply = async () => {
         await asyncForEach(missingCountryNames, async (countryName) => {
             $('.loader-text').html('Loading ' + countryName + ' ...');
             var fileName = filePathPrefix + 'data/by_country/' + countryName + '.csv';
-            await $.get(fileName, function (csvString) {
+            await $.get(fileName, async (csvString) => {
                 updateSnapshots($.csv.toObjects(csvString, csvOptions));
             });
             console.log('Imported CSV-file ' + fileName);
@@ -425,6 +409,7 @@ const focusCountries = ['United States',
     'France',
     'Iceland',
     'Palestine',
+    'Ireland',
     'Israel',
     'Turkey',
     'Malaysia',
@@ -458,6 +443,7 @@ const focusCountries = ['United States',
     'Austria',
     'Netherlands',
     'Australia',
+    'Vietnam',
     'United Kingdom']
 const initSelectCountries = async (countries) => {
     countries.sort(function (a, b) { return b.country - a.country });
@@ -469,14 +455,6 @@ const initSelectCountries = async (countries) => {
         $('#input-simulation_country').append('<option value="' + c.country + '" ' + selected2 + '>' + c.country + '</option>');
 
         allCountries[c.country] = c;
-
-        // if (focusCountries.includes(c.country)) {
-        //     var fileName = filePathPrefix + 'data/by_country/' + c.country + '.csv';
-        //     $.get(fileName, function (csvString) {
-        //         updateSnapshots($.csv.toObjects(csvString, csvOptions));
-        //     });
-        //     console.log('Imported CSV-file ' + fileName);
-        // }
     });
 };
 
@@ -488,7 +466,8 @@ const focusDateIds = ['2020-02-25', '2020-02-26', '2020-02-27', '2020-02-28',
     '2020-03-24', '2020-03-25', '2020-03-26', '2020-03-27', '2020-03-28', '2020-03-29',
     '2020-03-30', '2020-03-31', '2020-04-01', '2020-04-02', '2020-04-03', '2020-04-04',
     '2020-04-05', '2020-04-06', '2020-04-07', '2020-04-08', '2020-04-09', '2020-04-08',
-    '2020-04-10', '2020-04-11', '2020-04-12', '2020-04-13', '2020-04-14', '2020-04-15'];
+    '2020-04-10', '2020-04-11', '2020-04-12', '2020-04-13', '2020-04-14', '2020-04-15',
+    '2020-04-16', '2020-04-17', '2020-04-18', '2020-04-19', '2020-04-20', '2020-04-21'];
 const initSelectDateIds = async (countryDateSnapshots) => {
     countryDateSnapshots.sort(function (a, b) { return b.dateId - a.dateId });
     firstDateId = countryDateSnapshots[0].dateId;
@@ -497,7 +476,7 @@ const initSelectDateIds = async (countryDateSnapshots) => {
 
     await asyncForEach(countryDateSnapshots, snap => {
         var selected = focusDateIds.includes(snap.dateId) ? ' selected' : '';
-        $('#input-dateIds').append('<option value="' + snap.dateId + '" selected>' + snap.dateId + '</option>');
+        $('#input-dateIds').append('<option value="' + snap.dateId + '" ' + selected + '>' + snap.dateId + '</option>');
         $('#input-simulation_start_dateId').append('<option value="' + snap.dateId + '" ' + selected + '>' + snap.dateId + '</option>');
 
         allDates[snap.dateId] = {
@@ -581,7 +560,7 @@ const initLanguage = () => {
 }
 
 const initSlider = (elementName, min, max, step) => {
-    var select = $('#select-' + elementName);
+    var select = $('#input-' + elementName);
     var slider = $('<div id="slider_' + elementName + '" class="form-control form-control-sm"></div>').insertAfter(select).slider({
         // range: true,
         min: min,
@@ -599,16 +578,17 @@ const initSlider = (elementName, min, max, step) => {
 }
 
 const initNestedForm = (elementName) => {
-    var lol = $('#container-' + elementName).nestedForm({
+    $('#container-' + elementName).nestedForm({
         forms: '.nested-form',
         adder: '#button-' + elementName + '_add',
         remover: '.button-' + elementName + '_remove',
         // associations: 'assocs',
         startIndex: 0,
-        afterAddForm: function (container, form) {
+        afterAddForm: (container, form) => {
             var j = $('.nested-form').length - 1;
             form.find('input').each(function () { $(this).attr('id', 'input-' + $(this).attr('name') + '_' + j) });
         },
+        afterRemoveForm: (container) => container.remove(),
     }).find('#button-' + elementName + '_remove_0').click();
     // $('#button-' + elementName + '_remove_0').click();
 }
@@ -640,7 +620,7 @@ const setSimulationCrossFields = (selDate, selCountryName) => {
 
 const init = () => {
     $('.loader-modal').show();
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
     // Charts
     google.charts.load('current', { 'packages': ['corechart', 'table'] });
@@ -658,7 +638,7 @@ const init = () => {
     map.setCenter({ lng: 0.0, lat: 0.0 });
 
     // Form
-    initSlider('base_reproduction_number', 1.0, 3.5, 0.1);
+    initSlider('base_reproduction_number', 1.0, 5.0, 0.1);
     initSlider('case_fatality_risk', 0.0, 5.0, 0.1);
     initSlider('latent_duration', 1.0, 6.5, 0.1);
     initSlider('infectious_duration', 2.5, 11.0, 0.1);

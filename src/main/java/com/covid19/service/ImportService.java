@@ -98,6 +98,8 @@ public class ImportService extends CsvService {
       t.setCountry(t.getCountry()//
           .replace(" - units unclear", "")//
           .replace(" - tests performed", "")//
+          .replace(" - tests analysed", "")//
+          .replace(" - analysed samples", "")//
           .replace(" - people tested", "")//
           .replace(" - samples tested", "")//
           .replace(" - tests sampled", "")//

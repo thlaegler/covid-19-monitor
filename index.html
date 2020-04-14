@@ -432,19 +432,19 @@
 				</select>
 			</div>
 			<!-- <div class="form-check" data-toggle="tooltip" data-placement="auto" title="Confirmed Cases">
-				<input class="form-check-input" type="checkbox" name="checkbox-confirmed" id="checkbox-confirmed"
+				<input class="form-check-input" type="checkbox" name="input-confirmed" id="input-confirmed"
 					value="confirmed" checked>
-				<label class="form-check-label" for="checkbox-confirmed">Confirmed Cases</label>
+				<label class="form-check-label" for="input-confirmed">Confirmed Cases</label>
 			</div>
 			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Recovered Cases">
-				<input class="form-check-input" type="checkbox" name="checkbox-recovered" id="checkbox-recovered"
+				<input class="form-check-input" type="checkbox" name="input-recovered" id="input-recovered"
 					value="recovered" checked>
-				<label class="form-check-label" for="checkbox-recovered">Recovered Cases</label>
+				<label class="form-check-label" for="input-recovered">Recovered Cases</label>
 			</div>
 			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Deceased Cases">
-				<input class="form-check-input" type="checkbox" name="checkbox-deceased" id="checkbox-deceased"
+				<input class="form-check-input" type="checkbox" name="input-deceased" id="input-deceased"
 					value="deceased" checked>
-				<label class="form-check-label" for="checkbox-deceased">Deceased Cases</label>
+				<label class="form-check-label" for="input-deceased">Deceased Cases</label>
 			</div> -->
 			<div class="form-group" data-toggle="tooltip" data-placement="auto"
 				title="Estimated undetected Cases per Confirmed
@@ -515,10 +515,10 @@
 					id="input-simulation_horizon" value="365">
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Incubation Period in Days">
-				<label for="select-latent_duration">Incubation Period in Days</label>
+				<label for="input-latent_duration">Incubation Period in Days</label>
 				<!-- <input class="form-control form-control-sm" type="text" name="latent_duration"
 					id="input-latent_duration" value="5.5"> -->
-				<select class="form-control form-control-sm" name="latent_duration" id="select-latent_duration">
+				<select class="form-control form-control-sm" name="latent_duration" id="input-latent_duration">
 					<option value="1.0">1.0</option>
 					<option value="1.1">1.1</option>
 					<option value="1.2">1.2</option>
@@ -578,8 +578,8 @@
 				</select>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Infectious Period in Days">
-				<label for="select-infectious_duration">Infectious Period in Days</label>
-				<select class="form-control form-control-sm" name="infectious_duration" id="select-infectious_duration">
+				<label for="input-infectious_duration">Infectious Period in Days</label>
+				<select class="form-control form-control-sm" name="infectious_duration" id="input-infectious_duration">
 					<option value="2.5">2.5</option>
 					<option value="2.6">2.6</option>
 					<option value="2.7">2.7</option>
@@ -669,9 +669,9 @@
 				</select>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Base Reproduction Number R₀">
-				<label for="select-base_reproduction_number">Base Reproduction Number R₀</label>
+				<label for="input-base_reproduction_number">Base Reproduction Number R₀</label>
 				<select class="form-control form-control-sm" name="base_reproduction_number"
-					id="select-base_reproduction_number">
+					id="input-base_reproduction_number">
 					<option value="1.0">1.0</option>
 					<option value="1.1">1.1</option>
 					<option value="1.2">1.2</option>
@@ -704,11 +704,20 @@
 					<option value="3.9">4.9</option>
 					<option value="4.0">4.0</option>
 					<option value="4.1">4.1 [2020 Cao et al.]</option>
+					<option value="4.2">4.2</option>
+					<option value="4.3">4.3</option>
+					<option value="4.4">4.4</option>
+					<option value="4.5">4.5</option>
+					<option value="4.6">4.6</option>
+					<option value="4.7">4.7</option>
+					<option value="4.8">4.8</option>
+					<option value="4.9">4.9</option>
+					<option value="5.0">5.0</option>
 				</select>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Case Fatality Risk (CFR) in %">
-				<label for="select-case_fatality_risk">Case Fatality Risk (CFR) in %</label>
-				<select class="form-control form-control-sm" name="case_fatality_risk" id="select-case_fatality_risk">
+				<label for="input-case_fatality_risk">Case Fatality Risk (CFR) in %</label>
+				<select class="form-control form-control-sm" name="case_fatality_risk" id="input-case_fatality_risk">
 					<option value="0.0">0.0 / nobody dies</option>
 					<option value="0.1">0.1 / Seasonal Flu</option>
 					<option value="0.2">0.2</option>
@@ -765,10 +774,10 @@
 
 			<!-- <div class="form-group" data-toggle="tooltip" data-placement="auto"
 				title="Infection Fatality Rate (IFR) in %">
-				<label for="select-infection_fatality_risk">Infection Fatality Rate (IFR) in
+				<label for="input-infection_fatality_risk">Infection Fatality Rate (IFR) in
 					%</label>
 				<select class="form-control form-control-sm" name="infection_fatality_risk"
-					id="select-infection_fatality_risk">
+					id="input-infection_fatality_risk">
 					<option value="0.0">0.0 / nobody dies</option>
 					<option value="0.1">0.1 / Seasonal Flu</option>
 					<option value="0.2">0.2</option>
@@ -827,6 +836,20 @@
 				<input class="form-control form-control-sm" type="text" name="total_population"
 					id="input-total_population" value="83500000">
 			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Critical Care Fatality Risk when Patient cannot
+				receive appropriate Treatment due to Critical Care Capacity overload. 0=no risk, 1=all of untreated
+				ICU admission die">
+				<label for="input-critical_care_untreated_fatality_risk">Critical Care Fatality Risk on Overload</label>
+				<input class="form-control form-control-sm" type="text" name="critical_care_untreated_fatality_risk"
+					id="input-critical_care_untreated_fatality_risk" value="0.12">
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Acute Care Fatality Risk when Patient cannot
+				receive appropriate Treatment due to Acute Care Capacity overload. 0=no risk, 1=all of untreated
+				hospitalization admission die">
+				<label for="input-acute_care_untreated_fatality_risk">Acute Care Fatality Risk on Overload</label>
+				<input class="form-control form-control-sm" type="text" name="acute_care_untreated_fatality_risk"
+					id="input-acute_care_untreated_fatality_risk" value="0.05">
+			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Initial Exposed/Latent">
 				<label for="input-initial_latent">Initial Exposed/Latent</label>
 				<input class="form-control form-control-sm" type="text" name="initial_latent" id="input-initial_latent"
@@ -848,18 +871,18 @@
 					id="input-initial_deceased" value="0">
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Interventions / non-pharmaceutical Mitigation Measures (e.g. Lockdown)">
-				<label for="container-interventions">Interventions</label>
+				title="Interventions / non-pharmaceutical Mitigation Measures e.g. Social Distancing, Lockdown">
+				<label for="container-interventions">Interventions/Mitigations</label>
 				<div id="container-interventions" class="form-group" data-toggle="tooltip" data-placement="auto"
 					title="Interventions / non-pharmaceutical Mitigation Measures">
 					<div class="nested-form">
 						<div class="form-group" data-toggle="tooltip" data-placement="auto"
 							title="Base Reproduction Number R₀">
-							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
+							<label for="input-interventions_base_reproduction_number">Base Reproduction Number
 								R₀</label>
 							<input id="input-interventions_base_reproduction_number_0"
 								class="form-control form-control-sm" type="input"
-								name="interventions_base_reproduction_number" value="0.8">
+								name="interventions_base_reproduction_number" value="1.1">
 						</div>
 						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
 							<label for="input-interventions_start_date">Start Date</label>
@@ -869,114 +892,10 @@
 						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
 							<label for="input-interventions_end_date">End Date</label>
 							<input id="input-interventions_end_date_0" class="form-control form-control-sm" type="input"
-								name="interventions_end_date" value="2020-05-01">
+								name="interventions_end_date" value="2020-06-01">
 						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<input id="button_interventions_remove_0"
-								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
-								value="Remove Intervention">
-							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
-						</div>
-					</div>
-					<div class="nested-form">
-						<div class="form-group" data-toggle="tooltip" data-placement="auto"
-							title="Base Reproduction Number R₀">
-							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
-								R₀</label>
-							<input id="input-interventions_base_reproduction_number_1"
-								class="form-control form-control-sm" type="input"
-								name="interventions_base_reproduction_number" value="0.8">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
-							<label for="input-interventions_start_date">Start Date</label>
-							<input id="input-interventions_start_date_1" class="form-control form-control-sm"
-								type="input" name="interventions_start_date" value="2020-06-01">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<label for="input-interventions_end_date">End Date</label>
-							<input id="input-interventions_end_date_1" class="form-control form-control-sm" type="input"
-								name="interventions_end_date" value="2020-07-01">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<input id="button_interventions_remove_1"
-								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
-								value="Remove Intervention">
-							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
-						</div>
-					</div>
-					<div class="nested-form">
-						<div class="form-group" data-toggle="tooltip" data-placement="auto"
-							title="Base Reproduction Number R₀">
-							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
-								R₀</label>
-							<input id="input-interventions_base_reproduction_number_2"
-								class="form-control form-control-sm" type="input"
-								name="interventions_base_reproduction_number" value="0.8">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
-							<label for="input-interventions_start_date">Start Date</label>
-							<input id="input-interventions_start_date_2" class="form-control form-control-sm"
-								type="input" name="interventions_start_date" value="2020-08-01">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<label for="input-interventions_end_date">End Date</label>
-							<input id="input-interventions_end_date_2" class="form-control form-control-sm" type="input"
-								name="interventions_end_date" value="2020-09-01">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<input id="button_interventions_remove_2"
-								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
-								value="Remove Intervention">
-							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
-						</div>
-					</div>
-					<div class="nested-form">
-						<div class="form-group" data-toggle="tooltip" data-placement="auto"
-							title="Base Reproduction Number R₀">
-							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
-								R₀</label>
-							<input id="input-interventions_base_reproduction_number_3"
-								class="form-control form-control-sm" type="input"
-								name="interventions_base_reproduction_number" value="0.8">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
-							<label for="input-interventions_start_date">Start Date</label>
-							<input id="input-interventions_start_date_3" class="form-control form-control-sm"
-								type="input" name="interventions_start_date" value="2020-10-01">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<label for="input-interventions_end_date">End Date</label>
-							<input id="input-interventions_end_date_3" class="form-control form-control-sm" type="input"
-								name="interventions_end_date" value="2020-11-01">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<input id="button_interventions_remove_3"
-								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
-								value="Remove Intervention">
-							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
-						</div>
-					</div>
-					<div class="nested-form">
-						<div class="form-group" data-toggle="tooltip" data-placement="auto"
-							title="Base Reproduction Number R₀">
-							<label for="select-interventions_base_reproduction_number">Base Reproduction Number
-								R₀</label>
-							<input id="input-interventions_base_reproduction_number_4"
-								class="form-control form-control-sm" type="input"
-								name="interventions_base_reproduction_number" value="0.8">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Start Date">
-							<label for="input-interventions_start_date">Start Date</label>
-							<input id="input-interventions_start_date_4" class="form-control form-control-sm"
-								type="input" name="interventions_start_date" value="2020-12-01">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<label for="input-interventions_end_date">End Date</label>
-							<input id="input-interventions_end_date_4" class="form-control form-control-sm" type="input"
-								name="interventions_end_date" value="2021-01-01">
-						</div>
-						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="End Date">
-							<input id="button_interventions_remove_4"
+						<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Remove Intervention">
+							<input id="button_interventions_remove_0" name="button_interventions_remove"
 								class="btn-sm form-control form-control-sm button-interventions_remove" type="button"
 								value="Remove Intervention">
 							<!-- <label for="button-interventions_add">Remove Intervention</label> -->
@@ -988,9 +907,9 @@
 				</div>
 			</div>
 			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Logaritmic Scale">
-				<input class="form-check-input" type="checkbox" name="checkbox-log_scale" id="checkbox-log_scale"
+				<input class="form-check-input" type="checkbox" name="input-log_scale" id="input-log_scale"
 					value="log_scale">
-				<label class="form-check-label" for="checkbox-log_scale">Logaritmic Scale</label>
+				<label class="form-check-label" for="input-log_scale">Logaritmic Scale</label>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Simulate">
 				<button class="btn btn-outline-primary btn-sm form-control form-control-sm" name="button-simulate"

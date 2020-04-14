@@ -52,7 +52,7 @@ caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCod
 0.0,0,0,0.0,Cuba,CU,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Curaçao,CW,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Cyprus,CY,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
-0.0,0,0,0.0,Czech Republic,CZ,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,43,5,0.0040438526668362
+0.0,0,0,0.0,Czech Republic,CZ,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,43,5,0.004
 0.0,0,0,0.0,Denmark,DK,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Diamond Princess Cruise Ship,,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Djibouti,DJ,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
@@ -100,7 +100,7 @@ caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCod
 0.0,0,0,0.0,Iraq,IQ,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Ireland,IE,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Isle of Man,IM,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
-0.0,0,0,0.0,Israel,IL,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,17,6,0.00195098237126758
+0.0,0,0,0.0,Israel,IL,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,17,6,0.002
 0.0,2,0,1.0,Italy,IT,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0033078723093807987,2,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Jamaica,JM,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,20,0,1.0,Japan,JP,2020-02-02,33,0,0,0.0,0.0,7.906609594333921E-9,2020-04-10T18:19:51.051,0.01581321918866784,19,0,1.0,1,0,1.0,0.05,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
@@ -195,7 +195,7 @@ caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCod
 0.0,0,0,0.0,Solomon Islands,SB,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Somalia,SO,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,South Africa,ZA,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
-0.0,15,3,1.25,South Korea,KR,2020-02-02,33,0,0,0.0,3.10628371950539,0.0,2020-04-10T18:19:51.051,0.029257340447288168,15,3,1.25,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,429,58,0.00832896903768859
+0.0,15,3,1.25,South Korea,KR,2020-02-02,33,0,0,0.0,3.10628371950539,0.0,2020-04-10T18:19:51.051,0.029257340447288168,15,3,1.25,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,429,58,0.008
 0.0,0,0,0.0,South Sudan,SS,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,1,0,1.0,Spain,ES,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0021388188390072133,1,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,1,0,1.0,Sri Lanka,LK,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.004670005938846552,1,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
@@ -223,8 +223,8 @@ caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCod
 0.0,0,0,0.0,Uganda,UG,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Ukraine,UA,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,5,1,1.25,United Arab Emirates,AE,2020-02-02,33,0,0,0.0,3.10628371950539,0.0,2020-04-10T18:19:51.050,0.05055406241323659,5,1,1.25,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
-0.0,2,0,1.0,United Kingdom,GB,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0029461150692739924,2,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,266,63,0.00395044373284973
-0.0,8,0,1.0,United States,US,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0024168990719050164,8,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,1200,33,0.00362065729086599
+0.0,2,0,1.0,United Kingdom,GB,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0029461150692739924,2,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,266,63,0.004
+0.0,8,0,1.0,United States,US,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0024168990719050164,8,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,1200,33,0.004
 0.0,0,0,0.0,Uruguay,UY,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.051,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Uzbekistan,UZ,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Vanuatu,VU,2020-02-02,33,0,0,0.0,0.0,0.0,2020-04-10T18:19:51.050,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0

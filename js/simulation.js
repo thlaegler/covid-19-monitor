@@ -38,9 +38,9 @@ const buildSimulationData = (simulationRequest) => {
 
     var currentCountryName = simulationRequest.country;
     var currentCountry = allCountries[currentCountryName];
-    var criticalCareUntreatedFatalityRisk = $('#input-critical_care_untreated_fatality_risk').val() || 0.5;
+    var criticalCareUntreatedFatalityRisk = $('#input-critical_care_untreated_fatality_risk').val() || 0.12;
     var criticalCareHospitalizationRate = ($('#input-critical_care_rate').val() / 100);
-    var acuteCareUntreatedFatalityRisk = $('#input-acute_care_untreated_fatality_risk').val() || 0.1;
+    var acuteCareUntreatedFatalityRisk = $('#input-acute_care_untreated_fatality_risk').val() || 0.05;
     var acuteCareHospitalizationRate = ($('#input-acute_care_rate').val() / 100);
 
     var beta = simulationRequest.baseReproductionNumber / simulationRequest.infectiousDuration; // S->E
@@ -118,30 +118,39 @@ const updateChart = (simulationData) => {
     var currentCountry = allCountries[currentCountryName];
     var countrySnaps = allSnapshotsByCountry[currentCountryName];
     var latentDuration = $('#input-latent_duration').val() || 5.5;
-    var isLogScale = $('#checkbox-log_scale').prop("checked");
+    var isLogScale = $('#input-log_scale').prop("checked");
 
-    var infs = simulationData.map(s => s.S);
+    var infs = simulationData.map(s => s.I);
     var maxInf = Math.max(...infs);
+    var simulationDataByDate = arrayToObjects(simulationData, 'dateId');
 
-    var seirDataArray = [['Date', 'Suspectible (Simulation)', 'Exposed/Latent (Simulation)', 'Infectious (Simulation)', 'Recovered (Simulation)', 'Deceased (Simulation)', 'Deceased (Simulation, incl. Capacity Exceedance)', 'Suspectible (Actual)', 'Exposed/Latent (Actual)', 'Infectious (Actual)', 'Recovered (Actual)', 'Deceased (Actual)', 'Interventions', { type: 'string', role: 'style' }]];
+    var seirDataArray = [['Date', 'Suspectible (Simulation)', 'Exposed/Latent (Simulation)', 'Infectious (Simulation)', 'Recovered (Simulation)', 'Deceased (Simulation)', 'Deceased (Simulation, incl. Capacity Exceedance)', 'Suspectible (Actual)', 'Exposed/Latent (Estimated)', 'Infectious (Actual)', 'Recovered (Actual)', 'Deceased (Actual)', 'Interventions', { type: 'string', role: 'style' }]];
     seirDataArray = seirDataArray.concat(Object.values(allDates)
         // .filter(d => d.dateId != latestDateId)
         .map(d => {
             var snap = countrySnaps[d.dateId];
+            var result = [d.dateId];
+            var sim = simulationDataByDate[d.dateId];
+            if (sim) {
+                result = result.concat([0, Math.floor(sim.E), Math.floor(sim.I), 0, Math.floor(sim.D), Math.floor(sim.D_overload)]);
+            } else {
+                result = result.concat([undefined, undefined, undefined, undefined, undefined, undefined]);
+            }
             if (snap) {
                 var s = Math.floor(currentCountry.populationAbsolute - snap.infectious);
                 var e = Math.floor(snap.confirmedDelta * latentDuration);
                 var i = Math.floor(snap.infectious);
                 var r = Math.floor(snap.recovered);
                 var de = Math.floor(snap.deceased);
-                return [d.dateId, undefined, undefined, undefined, undefined, undefined, undefined, s, e, i, r, de, maxInf, 'opacity: 0.0;'];
+                result = result.concat([0, e, i, 0, de, maxInf, (sim && sim.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')]);
             } else {
-                return [d.dateId, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, maxInf, 'opacity: 0.0;'];
+                result = result.concat([undefined, undefined, undefined, undefined, undefined, maxInf, (sim && sim.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')]);
             }
+            return result;
         }));
     // seirDataArray = seirDataArray.concat(simulationData.map(data => [data.dateId, Math.floor(data.S), Math.floor(data.E), Math.floor(data.I), Math.floor(data.R), Math.floor(data.D), undefined, undefined, undefined, undefined, undefined]));
-    seirDataArray = seirDataArray.concat(simulationData.map(data => {
-        return [data.dateId, Math.floor(data.S), Math.floor(data.E), Math.floor(data.I), Math.floor(data.R), Math.floor(data.D), Math.floor(data.D_overload), undefined, undefined, undefined, undefined, undefined, maxInf, (data.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')];
+    seirDataArray = seirDataArray.concat(simulationData.filter(data => data.dateId > latestDateId).map(data => {
+        return [data.dateId, 0, Math.floor(data.E), Math.floor(data.I), 0, Math.floor(data.D), Math.floor(data.D_overload), undefined, undefined, undefined, undefined, undefined, maxInf, (data.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')];
     }));
     drawChart(
         google.visualization.arrayToDataTable(seirDataArray),
@@ -174,16 +183,16 @@ const updateTable = (data) => { };
 
 const doSimulate = () => {
     closeSidenav();
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
     var simulationRequest = defaultSimulationRequest();
     simulationRequest.country = $('#input-simulation_country').val();
     simulationRequest.initialDate = $('#input-simulation_start_dateId').val();
     simulationRequest.simulationDuration = Number($('#input-simulation_horizon').val());
-    simulationRequest.latentDuration = Number($('#select-latent_duration').val());
-    simulationRequest.infectiousDuration = Number($('#select-infectious_duration').val());
-    simulationRequest.baseReproductionNumber = Number($('#select-base_reproduction_number').val());
-    simulationRequest.caseFatalityRisk = Number($('#select-case_fatality_risk').val()) / 100;
+    simulationRequest.latentDuration = Number($('#input-latent_duration').val());
+    simulationRequest.infectiousDuration = Number($('#input-infectious_duration').val());
+    simulationRequest.baseReproductionNumber = Number($('#input-base_reproduction_number').val());
+    simulationRequest.caseFatalityRisk = Number($('#input-case_fatality_risk').val()) / 100;
 
     simulationRequest.initialPopulation = Number($('#input-total_population').val());
     simulationRequest.initialLatent = Number($('#input-initial_latent').val() || 1);
@@ -192,17 +201,28 @@ const doSimulate = () => {
     simulationRequest.initialDeceased = Number($('#input-initial_deceased').val() || 0);
 
     var nestedForms = $('.nested-form');
-    var interventionsNested = nestedForms.is(':visible');
-    if (interventionsNested && nestedForms.length > 0) {
-        for (var j = 0; j < $('.nested-form').length; j++) {
-            simulationRequest.interventions.push({
-                intervention: j,
-                baseReproductionNumber: Number($('#input-interventions_base_reproduction_number_' + j).val()),
-                startDate: $('#input-interventions_start_date_' + j).val(),
-                endDate: $('#input-interventions_end_date_' + j).val(),
-            });
-        }
-    }
+    // var interventionsNested = nestedForms.is(':visible');
+    jQuery.each(nestedForms, (index, domElem) => {
+        var element = $(domElem);
+        var ids = element.find('.button-interventions_remove').attr('id').split('_');
+        var id = ids[ids.length - 1];
+        simulationRequest.interventions.push({
+            intervention: id,
+            baseReproductionNumber: Number(element.find('#input-interventions_base_reproduction_number_' + id).val()),
+            startDate: element.find('#input-interventions_start_date_' + id).val(),
+            endDate: element.find('#input-interventions_end_date_' + id).val(),
+        });
+    });
+    // if (interventionsNested && nestedForms.length > 0) {
+    //     for (var j = 0; j < $('.nested-form').length; j++) {
+    //         simulationRequest.interventions.push({
+    //             intervention: j,
+    //             baseReproductionNumber: Number($('#input-interventions_base_reproduction_number_' + j).val()),
+    //             startDate: $('#input-interventions_start_date_' + j).val(),
+    //             endDate: $('#input-interventions_end_date_' + j).val(),
+    //         });
+    //     }
+    // }
     var simulationData = buildSimulationData(simulationRequest);
 
     updateMap(simulationData);

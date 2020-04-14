@@ -315,11 +315,11 @@ const perspectives = {
     },
     acute_care_beds_absolute: {
         title: 'Absolute Acute Care Bed Capacity',
-        color: (props) => (props.acuteCareBeds > 200000 ? '#77ff00' : (props.acuteCareBeds > 80000 ? '#ffcc00' : (props.acuteCareBeds > 30000 ? '#ff6f00' : (props.acuteCareBeds > 0.0 ? '#ff0000' : (isFinite(props.acuteCareBeds) && props.acuteCareBeds > 0.0) ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.acuteCareBeds / 70000),
-        label: (props) => Math.round(props.acuteCareBeds) + ' Beds',
+        color: (props) => (props['acuteCareBedsAbsolute'] > 200000 ? '#77ff00' : (props['acuteCareBedsAbsolute'] > 80000 ? '#ffcc00' : (props['acuteCareBedsAbsolute'] > 30000 ? '#ff6f00' : (props.acuteCareBeds > 0.0 ? '#ff0000' : (isFinite(props.acuteCareBeds) && props.acuteCareBeds > 0.0) ? '#ff0000' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['acuteCareBedsAbsolute'] / 70000),
+        label: (props) => Math.round(props['acuteCareBedsAbsolute']) + ' Beds',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'acuteCareBeds')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'acuteCareBedsAbsolute')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     acute_care_beds_per100k: {
@@ -328,16 +328,16 @@ const perspectives = {
         radius: (props) => makeRadius(props.acuteCareBedsPer100k / 10),
         label: (props) => Math.round(props.acuteCareBedsPer100k) + ' \n Beds per 100k',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['acute_care_beds_per100k'].title + ' (' + latestDateId + ')', 'countryDetail', 'acuteCareBedsPer100k')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['acute_care_beds_per100k'].title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['acute_care_beds_per100k'].title + ' (' + latestDateId + ')', 'country', 'acuteCareBedsPer100k')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['acute_care_beds_per100k'].title + ' (' + latestDateId + ')');
         },
     },
     critical_care_beds_absolute: {
         title: 'Absolute Critical/Intensive Care Bed Capacity',
-        color: (props) => (props.criticalCareBeds > 10000 ? '#77ff00' : (props.criticalCareBeds > 5000 ? '#ffcc00' : (props.criticalCareBeds > 1000 ? '#ff6f00' : (isFinite(props.criticalCareBeds) && props.criticalCareBeds > 0.0 ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.criticalCareBeds / 1000),
-        label: (props) => Math.round(props.criticalCareBeds) + ' Beds',
+        color: (props) => (props['criticalCareBedsAbsolute'] > 10000 ? '#77ff00' : (props['criticalCareBedsAbsolute'] > 5000 ? '#ffcc00' : (props['criticalCareBedsAbsolute'] > 1000 ? '#ff6f00' : (isFinite(props['criticalCareBedsAbsolute']) && props['criticalCareBedsAbsolute'] > 0.0 ? '#ff0000' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['criticalCareBedsAbsolute'] / 1000),
+        label: (props) => Math.round(props['criticalCareBedsAbsolute']) + ' Beds',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'criticalCareBeds')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'criticalCareBedsAbsolute')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     critical_care_beds_per100k: {
@@ -346,7 +346,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.criticalCareBedsPer100k),
         label: (props) => Math.round(props.criticalCareBedsPer100k) + ' \n Beds per 100k',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['critical_care_beds_per100k'].title + ' (' + latestDateId + ')', 'countryDetail', 'criticalCareBedsPer100k')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['critical_care_beds_per100k'].title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['critical_care_beds_per100k'].title + ' (' + latestDateId + ')', 'country', 'criticalCareBedsPer100k')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['critical_care_beds_per100k'].title + ' (' + latestDateId + ')');
         },
     },
 
@@ -357,7 +357,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.gdpAbsolute / 10000000000),
         label: (props) => parseFloat(props.gdpAbsolute).toFixed(2) + ' US$',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'gdpAbsolute')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'gdpAbsolute')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     gdp_perCapita: {
@@ -366,7 +366,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.gdpPerCapita / 800),
         label: (props) => parseFloat(props.gdpPerCapita).toFixed(2) + ' US$ \n per Capita',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'gdpPerCapita')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'gdpPerCapita')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     health_expenditure_gdp: {
@@ -375,7 +375,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.healthExpenditureOfGdp * 2),
         label: (props) => parseFloat(props.healthExpenditureOfGdp).toFixed(2) + ' %',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'healthExpenditureOfGdp')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'healthExpenditureOfGdp')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     health_expenditure_perCapita: {
@@ -384,7 +384,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.healthExpenditurePerCapita / 800),
         label: (props) => Math.round(props.healthExpenditurePerCapita) + ' US$ \n per Capita',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'healthExpenditurePerCapita')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'healthExpenditurePerCapita')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     population_absolute: {
@@ -393,7 +393,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.populationAbsolute / 7000000),
         label: (props) => Math.round(props.populationAbsolute / 1000000) + ' Million',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'populationAbsolute')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'populationAbsolute')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     population_urban: {
@@ -402,7 +402,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.urbanPopulationRatio / 3),
         label: (props) => parseFloat(props.urbanPopulationRatio).toFixed(2) + ' %',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'urbanPopulationRatio')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'urbanPopulationRatio')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     population_density: {
@@ -411,7 +411,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.populationDensity / 6),
         label: (props) => parseFloat(props.populationDensity).toFixed(2) + ' P/Km²',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'populationDensity')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'populationDensity')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     population_median_age: {
@@ -420,7 +420,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.populationMedianAge / 2),
         label: (props) => Math.round(props.populationMedianAge) + ' years',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'populationMedianAge')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'populationMedianAge')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     population_over65_absolute: {
@@ -429,7 +429,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.populationOver65 / 1000000),
         label: (props) => parseFloat(props.populationOver65 / 1000000).toFixed(2) + ' Million',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['population_over65_absolute'].title + ' (' + latestDateId + ')', 'countryDetail', 'populationOver65')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['population_over65_absolute'].title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['population_over65_absolute'].title + ' (' + latestDateId + ')', 'country', 'populationOver65')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['population_over65_absolute'].title + ' (' + latestDateId + ')');
         },
     },
     population_over65_ratio: {
@@ -438,7 +438,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.populationOver65Ratio * 2),
         label: (props) => parseFloat(props.populationOver65Ratio).toFixed(2) + ' %',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['population_over65_ratio'].title + ' (' + latestDateId + ')', 'countryDetail', 'populationOver65Ratio')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['population_over65_ratio'].title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['population_over65_ratio'].title + ' (' + latestDateId + ')', 'country', 'populationOver65Ratio')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['population_over65_ratio'].title + ' (' + latestDateId + ')');
         },
     },
     fertility_rate: {
@@ -447,7 +447,7 @@ const perspectives = {
         radius: (props) => makeRadius(props.fertilityRate * 12),
         label: (props) => parseFloat(props.fertilityRate).toFixed(2),
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'countryDetail', 'fertilityRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'fertilityRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
 
