@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Validated
-public class OwidTesting extends AbstractModel {
+public class Testing extends AbstractModel {
 
   @ApiModelProperty(name = "country", value = "Country/Entity", required = false)
   @JsonProperty("country")

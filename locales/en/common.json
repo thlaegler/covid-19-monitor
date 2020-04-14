@@ -8,9 +8,13 @@
             "link": "Simulation",
             "tooltip": "Simulation 'Flatten the Curve'"
         },
-        "calculated": {
-            "link": "Calculated Values",
-            "tooltip": "Calculated Values are results of combining COVID-19 realtime data with each countries health system data"
+        "estimate": {
+            "link": "Estimates",
+            "tooltip": "Estimated/Calculated Values are results of combining COVID-19 realtime data with each countries health system data"
+        },
+        "restrictions": {
+            "link": "Restrictions & Measures",
+            "tooltip": "Restrictions & Measures"
         },
         "health": {
             "link": "Health System",
@@ -143,6 +147,14 @@
         "delta": {
             "link": "New Tests",
             "tooltip": "Tests: Difference of new Tests compared to yesterday"
+        }
+    },
+    "estimate": {
+        "link": "Estimates",
+        "tooltip": "Estimated/Calculated Values are results of combining COVID-19 realtime data with each countries health system data",
+        "reproductionNumber": {
+            "link": "Effective Reproduction Number",
+            "tooltip": "Effective Reproduction Number"
         }
     }
 }

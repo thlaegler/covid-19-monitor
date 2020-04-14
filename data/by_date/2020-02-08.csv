@@ -224,7 +224,7 @@ caseFatalityRisk,confirmed,confirmedDelta,confirmedGrowthRate,country,countryCod
 0.0,0,0,0.0,Ukraine,UA,2020-02-08,39,0,0,0.0,0.0,0.0,2020-04-10T18:19:55.492,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,7,2,1.4,United Arab Emirates,AE,2020-02-08,39,0,0,0.0,2.0600427171061453,0.0,2020-04-10T18:19:55.491,0.07077568737853122,7,2,1.4,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,3,0,1.0,United Kingdom,GB,2020-02-08,39,0,0,0.0,0.0,0.0,2020-04-10T18:19:55.492,0.004419172603910989,3,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,686,66,0.01
-0.0,12,0,1.0,United States,US,2020-02-08,39,0,0,0.0,0.0,0.0,2020-04-10T18:19:55.492,0.0036253486078575243,12,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,1780,79,0.005
+0.0,12,0,1.0,United States,US,2020-02-08,39,0,0,0.0,0.0,0.0,2020-04-10T18:19:55.492,0.0036253486078575243,12,0,1.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,1782,79,0.005
 0.0,0,0,0.0,Uruguay,UY,2020-02-08,39,0,0,0.0,0.0,0.0,2020-04-10T18:19:55.492,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Uzbekistan,UZ,2020-02-08,39,0,0,0.0,0.0,0.0,2020-04-10T18:19:55.492,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0
 0.0,0,0,0.0,Vanuatu,VU,2020-02-08,39,0,0,0.0,0.0,0.0,2020-04-10T18:19:55.492,0.0,0,0,0.0,0,0,0.0,0.0,https://github.com/CSSEGISandData/COVID-19,0,0,0.0

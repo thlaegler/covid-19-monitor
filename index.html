@@ -8,13 +8,11 @@
 
 	<title>COVID-19 Monitor</title>
 
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shards-ui@3.0.0/dist/css/shards.min.css"
-		integrity="sha256-/Jp0Ye+4qZWXFKalAvmvkRdMScrRebEEMwrcxZ7sD80=" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/1.4.0/mapbox-gl.css"
 		integrity="sha256-t2fYcalxXkJ++B2YwGcM5KYrF8Fu9vCcO69LI16Q5Y0=" crossorigin="anonymous" />
 
@@ -181,10 +179,15 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCalculated" role="button"
-								data-i18n="[title]general.calculated.tooltip; [text]general.calculated.link"
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEstimates" role="button"
+								data-i18n="[title]estimate.tooltip; [text]estimate.link"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdownCalculated">
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownEstimates">
+								<a id="input-estimate_reproduction_number" class="change-perspective dropdown-item"
+									data-i18n="[title]estimate.reproductionNumber.tooltip; [text]estimate.reproductionNumber.link"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									data-target="estimate_reproduction_number"></a>
+								<div class="dropdown-divider"></div>
 								<a id="link-calculated_acute_care_beds_absolute"
 									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
 									data-placement="auto" title="Calculated: Absolute Number of Acute Care Cases"
@@ -255,6 +258,19 @@
 									data-target="calculated_confirmed_incidence_7Days">Calculated: Simulation of
 									Incidence per 100.000 Capita next 7
 									Days</a> -->
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRestrictions" role="button"
+								data-i18n="[title]general.restrictions.tooltip; [text]general.restrictions.link"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownRestrictions">
+								<a id="link-travel_restrictions" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Travel Restrictions"
+									data-target="travel_restrictions">Travel Restrictions</a>
+								<a id="link-health_restrictions" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Public Health Restrictions"
+									data-target="health_restrictions">Public Health Restrictions</a>
+							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHealth" role="button"
@@ -383,7 +399,7 @@
 		<div class="section section-charts">
 			<div style="width: 100%; padding: 5px;">
 				<h4 id="details-title">COVID-19 Monitor</h4>
-				<p id="details-description"></p>
+				<div id="details-description"></div>
 				<div>
 					<h5 id="title_over_time" data-i18n="general.overTime.link">Over Time</h5>
 					<div id="chart_over_time" class="chart"></div>
@@ -655,7 +671,7 @@
 					<option value="9.7">9.7</option>
 					<option value="9.8">9.8</option>
 					<option value="9.9">9.9</option>
-					<option value="10.0" selected>10.0 default</option>
+					<option value="10.0">10.0</option>
 					<option value="10.1">10.1</option>
 					<option value="10.2">10.2</option>
 					<option value="10.3">10.3</option>
@@ -665,13 +681,53 @@
 					<option value="10.7">10.7</option>
 					<option value="10.8">10.8</option>
 					<option value="10.9">10.9</option>
-					<option value="11.0">11.0</option>
+					<option value="11.0" selected>11.0 default</option>
+					<option value="11.1">11.1</option>
+					<option value="11.2">11.2</option>
+					<option value="11.3">11.3</option>
+					<option value="11.4">11.4</option>
+					<option value="11.5">11.5</option>
+					<option value="11.6">11.6</option>
+					<option value="11.7">11.7</option>
+					<option value="11.8">11.8</option>
+					<option value="11.9">11.9</option>
+					<option value="12.0">12.0</option>
+					<option value="12.1">12.1</option>
+					<option value="12.2">12.2</option>
+					<option value="12.3">12.3</option>
+					<option value="12.4">12.4</option>
+					<option value="12.5">12.5</option>
+					<option value="12.6">12.6</option>
+					<option value="12.7">12.7</option>
+					<option value="12.8">12.8</option>
+					<option value="12.9">12.9</option>
+					<option value="13.0">13.0</option>
+					<option value="13.1">13.1</option>
+					<option value="13.2">13.2</option>
+					<option value="13.3">13.3</option>
+					<option value="13.4">13.4</option>
+					<option value="13.5">13.5</option>
+					<option value="13.6">13.6</option>
+					<option value="13.7">13.7</option>
+					<option value="13.8">13.8</option>
+					<option value="13.9">13.9</option>
+					<option value="14.0">14.0</option>
 				</select>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Base Reproduction Number R₀">
 				<label for="input-base_reproduction_number">Base Reproduction Number R₀</label>
 				<select class="form-control form-control-sm" name="base_reproduction_number"
 					id="input-base_reproduction_number">
+					<option value="0.0">0.0</option>
+					<option value="0.1">0.1</option>
+					<option value="0.2">0.2</option>
+					<option value="0.3">0.3</option>
+					<option value="0.4">0.4</option>
+					<option value="0.5">0.5</option>
+					<option value="0.6">0.6</option>
+					<option value="0.7">0.7</option>
+					<option value="0.8">0.8</option>
+					<option value="0.9">0.9</option>
 					<option value="1.0">1.0</option>
 					<option value="1.1">1.1</option>
 					<option value="1.2">1.2</option>
@@ -713,6 +769,26 @@
 					<option value="4.8">4.8</option>
 					<option value="4.9">4.9</option>
 					<option value="5.0">5.0</option>
+					<option value="5.1">5.1</option>
+					<option value="5.2">5.2</option>
+					<option value="5.3">5.3</option>
+					<option value="5.4">5.4</option>
+					<option value="5.5">5.5</option>
+					<option value="5.6">5.6</option>
+					<option value="5.7">5.7</option>
+					<option value="5.8">5.8</option>
+					<option value="5.9">5.9</option>
+					<option value="6.0">6.0</option>
+					<option value="6.1">6.1</option>
+					<option value="6.2">6.2</option>
+					<option value="6.3">6.3</option>
+					<option value="6.4">6.4</option>
+					<option value="6.5">6.5</option>
+					<option value="6.6">6.6</option>
+					<option value="6.7">6.7</option>
+					<option value="6.8">6.8</option>
+					<option value="6.9">6.9</option>
+					<option value="7.0">7.0</option>
 				</select>
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Case Fatality Risk (CFR) in %">
@@ -920,6 +996,7 @@
 
 	<input id="inputBaseUrl" type="hidden" value="api/v1">
 
+	<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"

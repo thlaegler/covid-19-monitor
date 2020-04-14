@@ -5,6 +5,7 @@ import static java.time.format.DateTimeFormatter.ofPattern;
 import static java.util.Collections.emptyMap;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static org.springframework.data.domain.Sort.Direction.ASC;
@@ -18,22 +19,29 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.StreamSupport;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StreamUtils;
 import com.covid19.model.Country;
 import com.covid19.model.Covid19Snapshot;
 import com.covid19.model.DailyReport;
 import com.covid19.model.DailyReport2;
-import com.covid19.model.OwidTesting;
+import com.covid19.model.HealthRestriction;
+import com.covid19.model.Testing;
+import com.covid19.model.TravelRestriction;
 import com.covid19.repo.CountryEsRepo;
 import com.covid19.repo.Covid19SnapshotEsRepo;
 import com.covid19.rest.FollowRedirectRestTemplate;
@@ -45,23 +53,26 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class ImportService extends CsvService {
 
+  private static final String SOURCE_URL = "https://github.com/CSSEGISandData/COVID-19";
   private static final String COVID19_URL =
       "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/%s.csv";
-
   private static final String TESTING_CSV_URL =
       "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/covid-testing-all-observations.csv";
-
-  private static final String SOURCE_URL = "https://github.com/CSSEGISandData/COVID-19";
+  private static final String HEALTH_RESTRICTION_CSV_URL =
+      "https://s3-us-west-1.amazonaws.com/starschema.covid/HDX_ACAPS.csv";
+  private static final String TRAVEL_RESTRICTION_CSV_URL =
+      "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
 
   private static final String IMPORT_COUNTRY_PATH = "sources/countries.csv";
-
   private static final String IMPORT_COVID19_CSV_PATH = "sources/covid19/%s.csv";
-
-  private static final String IMPORT_TESTING_CSV_PATH = "sources/test_capacity.csv";
+  private static final String IMPORT_TESTING_CSV_PATH = "sources/test_capacities.csv";
+  private static final String HEALTH_RESTRICTION_CSV_PATH = "sources/health_restrictions.csv";
+  private static final String TRAVEL_RESTRICTION_CSV_PATH = "sources/travel_restrictions.csv";
 
   private static final DateTimeFormatter INTERNAL_DATE_FORMAT = ISO_DATE;
-
   private static final DateTimeFormatter DAILY_FILE_DATE_FORMAT = ofPattern("MM-dd-yyyy");
+  private static final DateTimeFormatter STARSCHEMA_DATE_FORMAT =
+      ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
 
   private final FollowRedirectRestTemplate followRedirectRestTemplate;
 
@@ -78,7 +89,7 @@ public class ImportService extends CsvService {
         .collect(toMap(Country::getId, Function.identity(), (a, b) -> b, HashMap::new));
   }
 
-  public Map<String, OwidTesting> importOwidTesting() {
+  public Map<String, Testing> importTesting() {
     log.info("Importing Testing Data");
 
     final File csvFile = new File(IMPORT_TESTING_CSV_PATH);
@@ -94,7 +105,7 @@ public class ImportService extends CsvService {
       return emptyMap();
     }
 
-    List<OwidTesting> rawTestings = readCsv(IMPORT_TESTING_CSV_PATH, OwidTesting.class).map(t -> {
+    List<Testing> rawTestings = readCsv(IMPORT_TESTING_CSV_PATH, Testing.class).map(t -> {
       t.setCountry(t.getCountry()//
           .replace(" - units unclear", "")//
           .replace(" - tests performed", "")//
@@ -112,13 +123,13 @@ public class ImportService extends CsvService {
       return t;
     }).collect(toList());
 
-    Map<String, List<OwidTesting>> testingByCountry =
+    Map<String, List<Testing>> testingByCountry =
         rawTestings.stream().sorted((a, b) -> b.getCountry().compareTo(a.getCountry()))
             .collect(groupingBy(t -> t.getCountry()));
 
     testingByCountry.entrySet().stream().forEach(e -> {
       // Duplicates of same date (e.g US)
-      Map<String, OwidTesting> testCountryByDate = e.getValue().stream()//
+      Map<String, Testing> testCountryByDate = e.getValue().stream()//
           .sorted((a, b) -> b.getDateId().compareTo(a.getDateId()))//
           .collect(toMap(t -> t.getDateId(), t -> t, (a, b) -> {
             b.setTotal(b.getTotal() + a.getTotal());
@@ -133,7 +144,7 @@ public class ImportService extends CsvService {
               .sorted((a, b) -> a.getDateId().compareTo(b.getDateId()))
               // .filter(snap -> dateIds.contains(snap.getDateId()))
               .map(snap -> {
-                OwidTesting dat = testCountryByDate.get(snap.getDateId());
+                Testing dat = testCountryByDate.get(snap.getDateId());
                 if (dat != null) {
                   snap.setTested(dat.getTotal());
                   snap.setTestedDelta(Double.valueOf(dat.getDelta()).longValue());
@@ -164,10 +175,143 @@ public class ImportService extends CsvService {
       });
 
       covid19SnapshotRepo.saveAll(testsAdded);
-      log.info("Finished importing of Testing Data for country {}", e.getKey());
+      log.info("Finished Import of Testing Data for country {}", e.getKey());
     });
 
-    log.info("Finished importing of Testing Data");
+    log.info("Finished Import of Testing Data");
+
+    return null;
+  }
+
+  public Map<String, Testing> importRestrictions() {
+    log.info("Importing Restrictions Data");
+
+    Map<String, Country> countries = countryRepo.findAll(PageRequest.of(0, 9999, ASC, "country"))
+        .getContent().stream().collect(toMap(c -> c.getCountry(), c -> c));
+
+    final File travelCsvFile = new File(TRAVEL_RESTRICTION_CSV_PATH);
+    final File healthCsvFile = new File(HEALTH_RESTRICTION_CSV_PATH);
+
+    // Download CSV
+    try {
+      followRedirectRestTemplate.execute(TRAVEL_RESTRICTION_CSV_URL, GET, null, resp -> {
+        StreamUtils.copy(resp.getBody(), new FileOutputStream(travelCsvFile));
+        return travelCsvFile;
+      });
+      followRedirectRestTemplate.execute(HEALTH_RESTRICTION_CSV_URL, GET, null, resp -> {
+        StreamUtils.copy(resp.getBody(), new FileOutputStream(healthCsvFile));
+        return healthCsvFile;
+      });
+    } catch (Exception ex) {
+      log.error("Cannot fetch Restrictions Data from {} or {}", TRAVEL_RESTRICTION_CSV_URL,
+          HEALTH_RESTRICTION_CSV_URL, ex);
+      return emptyMap();
+    }
+
+    Map<String, List<TravelRestriction>> travelRestr =
+        readCsv(TRAVEL_RESTRICTION_CSV_PATH, TravelRestriction.class).map(x -> {
+          x.setDateId(INTERNAL_DATE_FORMAT.format(STARSCHEMA_DATE_FORMAT.parse(x.getPublished())));
+          x.setCountry(sanitizeCountryName(x.getCountry()));
+          x.setRestriction(x.getRestriction().replace(System.getProperty("line.separator"), "<br>")
+              .replace("\\n", "<br>"));
+          x.setQuarantine(x.getQuarantine().replace(System.getProperty("line.separator"), "<br>")
+              .replace("\\n", "<br>"));
+          return x;
+        }).collect(groupingBy(TravelRestriction::getCountry, toList()));
+
+    Map<String, List<HealthRestriction>> healthRestr =
+        readCsv(HEALTH_RESTRICTION_CSV_PATH, HealthRestriction.class).map(x -> {
+          x.setDateId((!StringUtils.isBlank(x.getDateImplemented())
+              && !x.getDateImplemented().equalsIgnoreCase("Not applicable"))
+                  ? INTERNAL_DATE_FORMAT
+                      .format(STARSCHEMA_DATE_FORMAT.parse(x.getDateImplemented()))
+                  : (!StringUtils.isBlank(x.getEntryDate())
+                      ? INTERNAL_DATE_FORMAT.format(STARSCHEMA_DATE_FORMAT.parse(x.getEntryDate()))
+                      : "2020-xx-xx"));
+          x.setCountry(sanitizeCountryName(x.getCountry()));
+          x.setComments(x.getComments().replace(System.getProperty("line.separator"), "<br>")
+              .replace("\\n", "<br>"));
+          return x;
+        }).collect(groupingBy(HealthRestriction::getCountry, toList()));
+
+    countries.entrySet().forEach(e -> {
+      String cn = e.getKey();
+      Country c = e.getValue();
+      boolean hasData = false;
+
+      List<TravelRestriction> ts = travelRestr.get(cn);
+      if (!CollectionUtils.isEmpty(ts)) {
+        ts = travelRestr.get(cn).stream().collect(toMap(x -> x.getDateId(), x -> x, (a, b) -> {
+          a.setRestriction(a.getRestriction() + "<br>" + b.getRestriction());
+          a.setQuarantine(a.getQuarantine() + "<br>" + b.getQuarantine());
+          a.setSourceUrl(a.getSourceUrl() + "<br>" + b.getSourceUrl());
+          return a;
+        }, HashMap::new)).values().stream().collect(toList());
+
+        ts.sort((a, b) -> (-1) * a.getDateId().compareToIgnoreCase(b.getDateId()));
+        final StringBuilder travelRestriction = new StringBuilder();
+        ts.forEach(t -> {
+          travelRestriction.append(" <h4>Restrictions</h4> ");
+          travelRestriction.append(t.getRestriction());
+          travelRestriction.append(" <h4>Quarantine</h4> ");
+          travelRestriction.append(t.getQuarantine());
+          travelRestriction.append(" <h4>Sources</h4> ");
+          travelRestriction.append(t.getSourceUrl());
+        });
+        c.setTravelRestriction(buildHyperlinks(travelRestriction.toString()));
+        hasData = true;
+      }
+
+      List<HealthRestriction> hs = healthRestr.get(cn);
+      if (!CollectionUtils.isEmpty(hs)) {
+        hs.sort((a, b) -> (-1) * a.getDateId().compareToIgnoreCase(b.getDateId()));
+
+        Map<String, List<HealthRestriction>> hr =
+            hs.stream().collect(groupingBy(HealthRestriction::getDateId, toList()));
+
+        Map<String, String> allHealthRes =
+            hr.entrySet().stream().collect(toMap(e2 -> e2.getKey(), e2 -> {
+              final StringBuilder healthRestriction = new StringBuilder();
+
+              healthRestriction.append("<h4>");
+              healthRestriction.append(e2.getKey());
+              healthRestriction.append("</h4>");
+              healthRestriction.append("<ul>");
+              e2.getValue().forEach(h -> {
+                healthRestriction.append("<li>");
+                healthRestriction.append(h.getCategory());
+                healthRestriction.append(": ");
+                healthRestriction.append(h.getMeasure());
+                healthRestriction.append(".<br>");
+                healthRestriction.append(h.getComments());
+                healthRestriction.append("<br>Source: ");
+                healthRestriction.append(h.getSource());
+                healthRestriction.append(" (");
+                healthRestriction.append(h.getSourceType());
+                healthRestriction.append("), ");
+                healthRestriction.append(h.getSourceUrl());
+                healthRestriction.append(" ");
+                healthRestriction.append("</li>");
+              });
+              healthRestriction.append("</ul>");
+              return healthRestriction.toString();
+            })).entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(
+                toMap(a -> a.getKey(), a -> a.getValue(), (a, b) -> b, LinkedHashMap::new));
+
+        c.setHealthRestriction(
+            buildHyperlinks(allHealthRes.values().stream().collect(joining("<br>"))));
+
+        hasData = true;
+      }
+
+      if (hasData) {
+        countryRepo.save(c);
+
+        log.info("Finished Import of Restriction Data for {}", cn);
+      }
+    });
+
+    log.info("Finished Import of Restriction Data");
 
     return null;
   }
@@ -235,7 +379,7 @@ public class ImportService extends CsvService {
 
     log.info("Finished data import");
 
-    importOwidTesting();
+    importTesting();
 
     return true;
   }
@@ -474,7 +618,8 @@ public class ImportService extends CsvService {
       return "Taiwan";
     } else if (countryName.equalsIgnoreCase("Mainland China")) {
       return "China";
-    } else if (countryName.equalsIgnoreCase("Hong Kong SAR")) {
+    } else if (countryName.equalsIgnoreCase("Hong Kong SAR")
+        || countryName.equalsIgnoreCase("China, Hong Kong Special Administrative Region")) {
       return "Hong Kong";
     } else if (countryName.equalsIgnoreCase("Macao SAR") || countryName.equalsIgnoreCase("Macau")) {
       return "Macao";
@@ -528,12 +673,43 @@ public class ImportService extends CsvService {
       return "St. Vincent & Grenadines";
     } else if (countryName.equalsIgnoreCase("Saint Kitts and Nevis")) {
       return "Saint Kitts & Nevis";
+    } else if (countryName.equalsIgnoreCase("Sao Tome and Principe")) {
+      return "Sao Tome & Principe";
     } else if (countryName.equalsIgnoreCase("Swiss")) {
       return "Switzerland";
+    } else if (countryName.equalsIgnoreCase("Brunei Darussalam")) {
+      return "Brunei";
+    } else if (countryName.equalsIgnoreCase("Lao PDR") || countryName.equalsIgnoreCase("Lao")) {
+      return "Laos";
+    } else if (countryName.equalsIgnoreCase("Moldova Republic of")) {
+      return "Moldova";
+    } else if (countryName.equalsIgnoreCase("North Macedonia Republic Of")) {
+      return "North Macedonia";
     } else if (countryName.equalsIgnoreCase("UAE")) {
       return "United Arab Emirates";
     }
     return countryName;
+  }
+
+  private String buildHyperlinks(String string) {
+    log.debug("href input: {}", string);
+
+    Pattern p = Pattern.compile(
+        "(?:(?:https?|ftp):\\/\\/)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:\\/[^\\s]*)?");
+    Matcher m = p.matcher(string);
+    StringBuffer sb = new StringBuffer();
+    while (m.find()) {
+      String orgValue = m.group();
+      String newValue = String.format("<a href=\"%s\">%s</a>", orgValue, orgValue);
+      m.appendReplacement(sb, newValue);
+    }
+    m.appendTail(sb);
+
+    String result = sb.toString();
+
+    log.debug("href ouput: {}", string);
+
+    return result;
   }
 
 }

@@ -63,17 +63,17 @@ const updatePerspective = async (perspectiveId = 'confirmed_absolute') => {
         $('#title_over_time').css('display', 'none');
         $('#chart_over_time').css('display', 'none');
         $('#button-chart_over_time').css('display', 'none');
-        $('#table_chart_over_time').css('display', 'none')
+        $('#table_chart_over_time').css('display', 'none');
 
         $('#title_latest').css('display', 'none');
         $('#chart_latest').css('display', 'none');
         $('#button-chart_latest').css('display', 'none');
-        $('#table_chart_latest').css('display', 'none')
+        $('#table_chart_latest').css('display', 'none');
 
         $('#title_tertiary').css('display', 'none');
         $('#chart_tertiary').css('display', 'none');
         $('#button-chart_tertiary').css('display', 'none');
-        $('#table_tertiary').css('display', 'none')
+        $('#table_tertiary').css('display', 'none');
 
         // Update Title
         var title = '';
@@ -148,22 +148,15 @@ const constructLatestChartArray = (title, selector1, selector2) => {
     if (selector1 == 'country') {
         selectedCountries.forEach(c => latestArray.push([c, allCountries[c][selector2]]));
     } else {
-        // var row = [newDateId];
-        // selectedCountries.forEach(c => {
-        //     if (allSnapshotsByDate[latestDateId][c]) {
-        //         var snap = allSnapshotsByDate[latestDateId][c];
-        //         var result = (snap[selector1]) ? (selector2 ? snap[selector1][selector2] : snap[selector1]) : 0.0;
-        //         row.push(result ? Number(result) : Number(0.0));
-        //     } else {
-        //         row.push(Number(0.0));
-        //     }
-        // });
-        // overTimeArray.push(row);
         if (allSnapshotsByDate[latestDateId]) {
             var snaps = allSnapshotsByDate[latestDateId];
             Object.values(snaps)
                 .filter(snap => selectedCountries.includes(snap.country))
-                .forEach(snap => latestArray.push([snap.country, Number(selector2 ? (snap[selector1] ? snap[selector1][selector2] : 0) : snap[selector1])]));
+                .forEach(snap => {
+                    var vall = selector2 ? (snap[selector1] ? snap[selector1][selector2] : 0) : snap[selector1];
+                    vall = isNaN(vall) ? vall : Number(vall);
+                    latestArray.push([snap.country, vall]);
+                });
         }
     }
     latestArray.sort(function (a, b) { return b[1] - a[1] });
@@ -217,6 +210,8 @@ const buildGeojsonFeature = (snap) => {
                 healthExpenditurePerCapita: country ? (country.healthExpenditurePerCapita) : undefined,
                 populationOver65: country ? (country.populationOver65) : undefined,
                 populationOver65Ratio: country ? (country.populationOver65Ratio) : undefined,
+                healthRestriction: country ? (country.healthRestriction) : undefined,
+                travelRestriction: country ? (country.travelRestriction) : undefined,
 
                 // CONFIRMED
                 confirmed: snap.confirmed,
@@ -244,6 +239,7 @@ const buildGeojsonFeature = (snap) => {
                 testedPer1k: snap.testedPer1k,
 
                 // CALUCLATED
+                estimateReproductionNumber: snap.estimateReproductionNumber,
                 calculatedAcuteCareAbsolute: snap.calculatedAcuteCareAbsolute,
                 calculatedAcuteCarePer100k: snap.calculatedAcuteCarePer100k,
                 calculatedAcuteCareBedUtilization: snap.calculatedAcuteCareBedUtilization,
@@ -291,6 +287,9 @@ const updateSnapshots = async (csvSnapshot) => {
             }
 
             if (snap.confirmed) {
+                var infectiousDuration = Number($('#input-infectious_duration').val());
+                var latentDuration = Number($('#input-latent_duration').val());
+
                 var countr = allCountries[snap.country];
 
                 snap.confirmedGrowthRate = snap.confirmedGrowthRate <= 0 ? 0 : ((snap.confirmedGrowthRate - 1) * 100);
@@ -315,7 +314,6 @@ const updateSnapshots = async (csvSnapshot) => {
                 // TODO: Use time-shift for confirmed cases
                 if (countr) {
                     var base = snap.infectious;
-                    var infectiousDuration = Math.round($('#input-infectious_duration').val());
                     if (j >= infectiousDuration) {
                         base = csvSnapshot[j - infectiousDuration].infectious;
                     }
@@ -328,9 +326,12 @@ const updateSnapshots = async (csvSnapshot) => {
                     snap.calculatedCriticalCareAbsolute = (snap.calculatedCriticalCareAbsolute < 0) ? 0 : snap.calculatedCriticalCareAbsolute;
                     snap.calculatedCriticalCarePer100k = snap.calculatedCriticalCareAbsolute / (countr.populationAbsolute / 100000);
                     snap.calculatedCriticalCareBedUtilization = (snap.calculatedCriticalCarePer100k / countr.criticalCareBedsPer100k) * 100;
+
                 } else {
                     console.warn('No data about country ' + countr);
                 }
+                snap.estimateReproductionNumber = ((snap.confirmedDelta / snap.infectious) * (infectiousDuration + (0.5 * latentDuration))) * (1 - snap.immunizationRate);
+
                 // Forecast
                 var growthRate24 = parseFloat(snap.confirmedGrowthRate);
                 // var growthRate7 = parseFloat(snap.confirmed.growthRate7Days);
@@ -561,7 +562,7 @@ const initLanguage = () => {
 
 const initSlider = (elementName, min, max, step) => {
     var select = $('#input-' + elementName);
-    var slider = $('<div id="slider_' + elementName + '" class="form-control form-control-sm"></div>').insertAfter(select).slider({
+    var slider = $('<div id="slider_' + elementName + '"></div>').insertAfter(select).slider({
         // range: true,
         min: min,
         max: max,
@@ -574,6 +575,7 @@ const initSlider = (elementName, min, max, step) => {
     select.on('change', function () {
         slider.slider('value', this.value);
     });
+    slider.slider('value', select.val());
     slider.css('background', 'linear-gradient(90deg, rgba(187,187,187,1) 10%, rgba(0,255,61,1) 30%, rgba(251,255,0,1) 50%, rgba(255,151,0,1) 75%, rgba(255,0,0,1) 100%)');
 }
 
@@ -638,10 +640,10 @@ const init = () => {
     map.setCenter({ lng: 0.0, lat: 0.0 });
 
     // Form
-    initSlider('base_reproduction_number', 1.0, 5.0, 0.1);
+    initSlider('base_reproduction_number', 0.0, 7.0, 0.1);
     initSlider('case_fatality_risk', 0.0, 5.0, 0.1);
     initSlider('latent_duration', 1.0, 6.5, 0.1);
-    initSlider('infectious_duration', 2.5, 11.0, 0.1);
+    initSlider('infectious_duration', 2.5, 14.0, 0.1);
     initNestedForm('interventions');
     initSimulationCrossFields();
 

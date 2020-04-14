@@ -8,7 +8,7 @@ COVID-19 World Health Monitor
 
 ## Data Sources
 
-* covid-19-monitor-Data from Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE): https://github.com/CSSEGISandData/covid-19-monitor
+* COVID-19 Data from Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE): https://github.com/CSSEGISandData/COVID-19
   * World Health Organization (WHO): https://www.who.int/
   * DXY.cn. Pneumonia. 2020. http://3g.dxy.cn/newh5/view/pneumonia.
   * BNO News: https://bnonews.com/index.php/2020/02/the-latest-coronavirus-cases/
@@ -23,6 +23,10 @@ COVID-19 World Health Monitor
   * European Centre for Disease Prevention and Control (ECDC): https://www.ecdc.europa.eu/en/geographical-distribution-2019-ncov-cases 
   * Ministry of Health Singapore (MOH): https://www.moh.gov.sg/covid-19
   * Italy Ministry of Health: http://www.salute.gov.it/nuovocoronavirus
+* Restrictions & Measures & Interventions
+  * Starschema: https://github.com/starschema/COVID-19-data
+*COVID-19 Testing Data
+  * Our World in Data: https://github.com/owid/covid-19-data
 * Country Details & Population
   * Worldometers: https://www.worldometers.info/world-population/population-by-country
 * Health system

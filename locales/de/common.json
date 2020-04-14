@@ -8,13 +8,17 @@
             "link": "Simulation",
             "tooltip": "Simulation 'Flatten the Curve'"
         },
-        "calculated": {
-            "link": "Berechnete Werte",
-            "tooltip": "Berechnete Werte sind das Ergebnis aus der Kombination von COVID-19 Daten und den Gesundheitssystemdaten der jeweiligen Länder"
+        "estimate": {
+            "link": "Schätzungen",
+            "tooltip": "Geschätzte Werte"
         },
         "health": {
             "link": "Gesundheitsversorgung",
             "tooltip": "Gesundheitsversorgung"
+        },
+        "restrictions": {
+            "link": "Restriktionen & Massnahmen",
+            "tooltip": "Restriktionen & Massnahmen"
         },
         "population": {
             "link": "Bevölkerung",
@@ -127,6 +131,14 @@
         "delta": {
             "link": "Neue Fälle ggü. Vortag",
             "tooltip": "Verstorbene Fälle: Differenz gegenüber gestern (Neuverstorbene)"
+        }
+    },
+    "estimate": {
+        "link": "Schätzungen",
+        "tooltip": "Geschätzte Werte",
+        "reproductionNumber": {
+            "link": "Effektive Reproduktionszahl",
+            "tooltip": "Effektive Reproduktionszahl"
         }
     }
 }

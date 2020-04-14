@@ -214,6 +214,20 @@ public class Country extends AbstractModel {
   @CsvBindByName(column = "populationOver65Ratio", required = false)
   private Double populationOver65Ratio;
 
+  @ApiModelProperty(name = "travelRestriction", required = false)
+  @JsonProperty("travelRestriction")
+  @JsonAlias("travelRestriction")
+  @Field(name = "travelRestriction", type = Text)
+  @CsvBindByName(column = "travelRestriction", required = false)
+  private String travelRestriction;
+
+  @ApiModelProperty(name = "healthRestriction", required = false)
+  @JsonProperty("healthRestriction")
+  @JsonAlias("healthRestriction")
+  @Field(name = "healthRestriction", type = Text)
+  @CsvBindByName(column = "healthRestriction", required = false)
+  private String healthRestriction;
+
   @ApiModelProperty(name = "location", value = "Searchable Geo location", required = false)
   @JsonProperty("location")
   @JsonAlias("location")

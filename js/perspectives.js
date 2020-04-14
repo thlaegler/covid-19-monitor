@@ -443,15 +443,73 @@ const perspectives = {
     },
     fertility_rate: {
         title: 'Fertility Rate',
-        color: (props) => (props.fertilityRate > 2.1 ? '#77ff00' : (props.fertilityRate > 1.8 ? '#ffcc00' : (props.fertilityRate > 1.4 ? '#ff6f00' : (isFinite(props.fertilityRate) && props.fertilityRate > 0.0 ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.fertilityRate * 12),
+        color: (props) => '#bfbfbf',
+        radius: (props) => 10,
         label: (props) => parseFloat(props.fertilityRate).toFixed(2),
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'fertilityRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
+    travel_restrictions: {
+        title: 'Travel Restrictions',
+        color: (props) => '#bfbfbf',
+        radius: (props) => 10,
+        label: (props) => '',
+        makeCharts: async (title) => {
+            var selectedCountryNames = $('#input-countries').val();
+            var desc = $('#details-description');
+            desc.html('');
+            var elem = $(desc.append('<div></div>').children()[0]);
+            await asyncForEach(selectedCountryNames, cn => {
+                var c = allCountries[cn];
+                elem.append('<h5>' + c.country + '</h5><div>' + c['travelRestriction'] + '</div>');
+            });
+            elem.accordion({
+                collapsible: true,
+                heightStyle: 'content',
+                icons: {
+                    header: "ui-icon-circle-arrow-e",
+                    activeHeader: "ui-icon-circle-arrow-s"
+                },
+            });
+        },
+    },
+    health_restrictions: {
+        title: 'Public Health Restrictions',
+        color: (props) => '#bfbfbf',
+        radius: (props) => 10,
+        label: (props) => '',
+        makeCharts: async (title) => {
+            var selectedCountryNames = $('#input-countries').val();
+            var desc = $('#details-description');
+            desc.html('');
+            var elem = $(desc.append('<div></div>').children()[0]);
+            await asyncForEach(selectedCountryNames, cn => {
+                var c = allCountries[cn];
+                elem.append('<h5>' + c.country + '</h5><div>' + c['healthRestriction'] + '</div>');
+            });
+            elem.accordion({
+                collapsible: true,
+                heightStyle: 'content',
+                icons: {
+                    header: "ui-icon-circle-arrow-e",
+                    activeHeader: "ui-icon-circle-arrow-s"
+                },
+            });
+        },
+    },
 
-    // CALCULATED
+    // ESTIMATES / CALCULATED
+    estimate_reproduction_number: {
+        title: 'Estimated effective Reproduction Number',
+        color: (props) => (props['estimateReproductionNumber'] > 3 ? '#ff0000' : (props['estimateReproductionNumber'] > 2 ? '#ff6f00' : (props['estimateReproductionNumber'] > 1 ? '#ffcc00' : (isFinite(props['estimateReproductionNumber']) && props['estimateReproductionNumber'] > 0.0 ? '#77ff00' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['estimateReproductionNumber'] * 15),
+        label: (props) => parseFloat(props['estimateReproductionNumber']).toFixed(2),
+        makeCharts: (title) => {
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'estimateReproductionNumber')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'estimateReproductionNumber')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
+        },
+    },
     calculated_acute_care_beds_absolute: {
         title: 'Calculated: Absolute Number of Acute Care Cases',
         color: (props) => (props.calculatedAcuteCareAbsolute > 5000 ? '#ff0000' : (props.calculatedAcuteCareAbsolute > 2000 ? '#ff6f00' : (props.calculatedAcuteCareAbsolute > 600 ? '#ffcc00' : (isFinite(props.calculatedAcuteCareAbsolute) && props.calculatedAcuteCareAbsolute > 0.0 ? '#77ff00' : '#bfbfbf')))),

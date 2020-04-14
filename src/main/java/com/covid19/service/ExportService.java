@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import com.covid19.model.Country;
 import com.covid19.model.Covid19Snapshot;
@@ -29,11 +31,12 @@ public class ExportService extends CsvService {
   private final CountryEsRepo countryRepo;
 
   public boolean exportCountries() {
-    List<Country> countries =
-        StreamSupport.stream(countryRepo.findAll().spliterator(), false).collect(toList());
+    List<Country> countries = StreamSupport
+        .stream(countryRepo.findAll(Sort.by(Direction.ASC, "country")).spliterator(), false)
+        .collect(toList());
 
     try {
-      writeCsv(EXPORT_COUNTRIES_PATH, countries, Country.class, false);
+      writeCsv(EXPORT_COUNTRIES_PATH, countries, Country.class, false, true);
     } catch (CsvDataTypeMismatchException | CsvRequiredFieldEmptyException | IOException ex) {
       log.error("Cannot write CSV {}", EXPORT_COUNTRIES_PATH, ex);
     }
@@ -70,7 +73,7 @@ public class ExportService extends CsvService {
 
     String csvFilePath = String.format(EXPORT_BY_COUNTRY_PATH, country);
     try {
-      writeCsv(csvFilePath, snaps, Covid19Snapshot.class, false);
+      writeCsv(csvFilePath, snaps, Covid19Snapshot.class, false, false);
     } catch (CsvDataTypeMismatchException | CsvRequiredFieldEmptyException | IOException ex) {
       log.error("Cannot write CSV {}", csvFilePath, ex);
     }
@@ -89,7 +92,7 @@ public class ExportService extends CsvService {
 
     String csvFilePath = String.format(EXPORT_BY_DATE_PATH, dateId);
     try {
-      writeCsv(csvFilePath, snaps, Covid19Snapshot.class, false);
+      writeCsv(csvFilePath, snaps, Covid19Snapshot.class, false, false);
     } catch (CsvDataTypeMismatchException | CsvRequiredFieldEmptyException | IOException ex) {
       log.error("Cannot write CSV {}", csvFilePath, ex);
     }

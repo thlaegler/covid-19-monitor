@@ -122,7 +122,7 @@ abstract public class CsvService {
   }
 
   protected <R> void writeCsv(@NonNull String csvFilePath, @NotEmpty List<R> content,
-      @NonNull Class<R> clazz, boolean append)
+      @NonNull Class<R> clazz, boolean append, boolean withQuotes)
       throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, IOException {
 
     if (!isEmpty(content)) {
@@ -130,10 +130,11 @@ abstract public class CsvService {
         createFile(csvFilePath);
       }
       try (Writer fileWriter = new FileWriter(csvFilePath, append)) {
-
-        ICSVWriter csvWriter = new CSVWriterBuilder(fileWriter)//
-            .withQuoteChar(ICSVParser.NULL_CHARACTER)//
-            .build();
+        CSVWriterBuilder csvWriterBuilder = new CSVWriterBuilder(fileWriter);
+        if (!withQuotes) {
+          csvWriterBuilder.withQuoteChar(ICSVParser.NULL_CHARACTER);
+        }
+        ICSVWriter csvWriter = csvWriterBuilder.build();
 
         HeaderAnnotationMappingStrategy<R> mappingStrategy =
             new HeaderAnnotationMappingStrategy<R>(append);

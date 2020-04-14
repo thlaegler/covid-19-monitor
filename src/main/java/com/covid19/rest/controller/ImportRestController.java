@@ -28,10 +28,16 @@ public class ImportRestController {
     return created(URI.create("http://www.example.org")).body(service.importCountries());
   }
 
+  @ApiOperation(value = "Import Restrictions")
+  @PostMapping(value = "/restrictions")
+  public ResponseEntity<?> importRestrictions() {
+    return created(URI.create("http://www.example.org")).body(service.importRestrictions());
+  }
+
   @ApiOperation(value = "Import Test Coverage")
   @PostMapping(value = "/test_coverage")
   public ResponseEntity<?> importTestCoverage() {
-    return created(URI.create("http://www.example.org")).body(service.importOwidTesting());
+    return created(URI.create("http://www.example.org")).body(service.importTesting());
   }
 
   @ApiOperation(
