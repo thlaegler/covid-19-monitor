@@ -8,7 +8,8 @@
 
 	<title>COVID-19 Monitor</title>
 
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" crossorigin="anonymous" />
+	<!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" crossorigin="anonymous" /> -->
+	<link rel="stylesheet" href="styles/jquery-ui.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -78,15 +79,6 @@
 									data-i18n="[title]confirmed.incidencePer100k.tooltip; [text]confirmed.incidencePer100k.link"
 									href="#" data-toggle="tooltip" data-placement="auto"
 									data-target="confirmed_incidence_per100k"></a>
-								<a id="input-confirmed_doubling_time" class="change-perspective dropdown-item"
-									data-i18n="[title]confirmed.doublingTime.tooltip; [text]confirmed.doublingTime.link"
-									href="#" data-toggle="tooltip" data-placement="auto"
-									data-target="confirmed_doubling_time"></a>
-								<a id="input-confirmed_doubling_time_last_7days"
-									class="change-perspective dropdown-item"
-									data-i18n="[title]confirmed.doublingTimeLast7Days.tooltip; [text]confirmed.doublingTimeLast7Days.link"
-									href="#" data-toggle="tooltip" data-placement="auto"
-									data-target="confirmed_doubling_time_last_7days"></a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -160,33 +152,23 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTested" role="button"
-								data-i18n="[title]tested.tooltip; [text]tested.link" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"></a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdownTested">
-								<a id="link-tested_absolute" class="change-perspective dropdown-item" href="#"
-									data-toggle="tooltip" data-placement="auto"
-									data-i18n="[title]tested.absolute.tooltip; [text]tested.absolute.link"
-									data-target="tested_absolute">s</a>
-								<a id="input-tested_delta" class="change-perspective dropdown-item" href="#"
-									data-toggle="tooltip" data-placement="auto"
-									data-i18n="[title]tested.delta.tooltip; [text]tested.delta.link"
-									data-target="tested_delta"></a>
-								<a id="link-tested_per1k" class="change-perspective dropdown-item" href="#"
-									data-toggle="tooltip" data-placement="auto"
-									data-i18n="[title]tested.per1k.tooltip; [text]tested.per1k.link"
-									data-target="tested_per1k"></a>
-							</div>
-						</li>
-						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEstimates" role="button"
-								data-i18n="[title]estimate.tooltip; [text]estimate.link"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+								data-i18n="[title]estimate.tooltip; [text]estimate.link" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"></a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownEstimates">
 								<a id="input-estimate_reproduction_number" class="change-perspective dropdown-item"
 									data-i18n="[title]estimate.reproductionNumber.tooltip; [text]estimate.reproductionNumber.link"
 									href="#" data-toggle="tooltip" data-placement="auto"
 									data-target="estimate_reproduction_number"></a>
+								<a id="input-confirmed_doubling_time" class="change-perspective dropdown-item"
+									data-i18n="[title]confirmed.doublingTime.tooltip; [text]confirmed.doublingTime.link"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									data-target="confirmed_doubling_time"></a>
+								<a id="input-confirmed_doubling_time_last_7days"
+									class="change-perspective dropdown-item"
+									data-i18n="[title]confirmed.doublingTimeLast7Days.tooltip; [text]confirmed.doublingTimeLast7Days.link"
+									href="#" data-toggle="tooltip" data-placement="auto"
+									data-target="confirmed_doubling_time_last_7days"></a>
 								<div class="dropdown-divider"></div>
 								<a id="link-calculated_acute_care_beds_absolute"
 									class="change-perspective dropdown-item" href="#" data-toggle="tooltip"
@@ -264,12 +246,34 @@
 								data-i18n="[title]general.restrictions.tooltip; [text]general.restrictions.link"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownRestrictions">
+								<a id="link-mobility" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Mobility"
+									data-target="mobility">Mobility</a>
 								<a id="link-travel_restrictions" class="change-perspective dropdown-item" href="#"
 									data-toggle="tooltip" data-placement="auto" title="Travel Restrictions"
 									data-target="travel_restrictions">Travel Restrictions</a>
 								<a id="link-health_restrictions" class="change-perspective dropdown-item" href="#"
 									data-toggle="tooltip" data-placement="auto" title="Public Health Restrictions"
 									data-target="health_restrictions">Public Health Restrictions</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTesting" role="button"
+								data-i18n="[title]tested.tooltip; [text]tested.link" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"></a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownTesting">
+								<a id="link-tested_absolute" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]tested.absolute.tooltip; [text]tested.absolute.link"
+									data-target="tested_absolute">s</a>
+								<a id="input-tested_delta" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]tested.delta.tooltip; [text]tested.delta.link"
+									data-target="tested_delta"></a>
+								<a id="link-tested_per1k" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto"
+									data-i18n="[title]tested.per1k.tooltip; [text]tested.per1k.link"
+									data-target="tested_per1k"></a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -467,7 +471,7 @@
 				Case Factor (0/empty=disabled, means 100% test-coverage, means no undetected/untested Cases; 1=Doubles the number, meaning one undetected Case per one confirmed Case)">
 				<label class="form-control-label" for="input-estimated_undetected_factor">Estimated undetected Cases per
 					Confirmed Case Factor</label>
-				<input class="form-control form-control-sm" type="text" name="estimated_undetected_factor"
+				<input class="form-control form-control-sm" type="hidden" name="estimated_undetected_factor"
 					id="input-estimated_undetected_factor" value="0">
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto"

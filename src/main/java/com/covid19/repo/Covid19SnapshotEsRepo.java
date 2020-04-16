@@ -29,6 +29,8 @@ public interface Covid19SnapshotEsRepo extends AbstractEsRepo<Covid19Snapshot> {
 
   Iterable<Covid19Snapshot> findByCountry(String countryRegion);
 
+  Iterable<Covid19Snapshot> findByCountryOrderByDateIdAsc(String countryRegion);
+
   Iterable<Covid19Snapshot> findByDateId(String dateId);
 
 }

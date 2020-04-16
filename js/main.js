@@ -210,8 +210,6 @@ const buildGeojsonFeature = (snap) => {
                 healthExpenditurePerCapita: country ? (country.healthExpenditurePerCapita) : undefined,
                 populationOver65: country ? (country.populationOver65) : undefined,
                 populationOver65Ratio: country ? (country.populationOver65Ratio) : undefined,
-                healthRestriction: country ? (country.healthRestriction) : undefined,
-                travelRestriction: country ? (country.travelRestriction) : undefined,
 
                 // CONFIRMED
                 confirmed: snap.confirmed,
@@ -239,6 +237,7 @@ const buildGeojsonFeature = (snap) => {
                 testedPer1k: snap.testedPer1k,
 
                 // CALUCLATED
+                mobility: snap.mobility,
                 estimateReproductionNumber: snap.estimateReproductionNumber,
                 calculatedAcuteCareAbsolute: snap.calculatedAcuteCareAbsolute,
                 calculatedAcuteCarePer100k: snap.calculatedAcuteCarePer100k,

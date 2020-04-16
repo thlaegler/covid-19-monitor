@@ -28,21 +28,26 @@ public class ImportRestController {
     return created(URI.create("http://www.example.org")).body(service.importCountries());
   }
 
-  @ApiOperation(value = "Import Restrictions")
+  @ApiOperation(value = "Import Restriction Data from Starschema")
   @PostMapping(value = "/restrictions")
   public ResponseEntity<?> importRestrictions() {
     return created(URI.create("http://www.example.org")).body(service.importRestrictions());
   }
 
-  @ApiOperation(value = "Import Test Coverage")
-  @PostMapping(value = "/test_coverage")
+  @ApiOperation(value = "Import Testing from OWID")
+  @PostMapping(value = "/testing")
   public ResponseEntity<?> importTestCoverage() {
     return created(URI.create("http://www.example.org")).body(service.importTesting());
   }
 
-  @ApiOperation(
-      value = "Import covid-19-monitor raw data from 'https://github.com/CSSEGISandData/covid-19-monitor/tree/master/csse_covid_19_data/csse_covid_19_daily_reports' and persist as \"Country-Date-Snapshot\"")
-  @PostMapping(value = "/covid-19/{importStartDate}")
+  @ApiOperation(value = "Import Mobility Date from Apple Mobility")
+  @PostMapping(value = "/mobility")
+  public ResponseEntity<?> importMobility() {
+    return created(URI.create("http://www.example.org")).body(service.importMobility());
+  }
+
+  @ApiOperation(value = "Import COVID-19 Data from Johns Hopkins University")
+  @PostMapping(value = "/covid19/{importStartDate}")
   public ResponseEntity<?> importCovid19(@ApiParam(example = "2020-04-06") @RequestParam(
       value = "importStartDate", required = false) String importStartDate) {
     return created(URI.create("http://www.example.org"))

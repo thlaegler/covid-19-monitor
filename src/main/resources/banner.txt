@@ -1,6 +1,6 @@
-==============
- covid-19-monitor App
-==============            
+========================
+ COVID-19 World Monitor
+========================  
 
 Application:	${spring.application.name}
 Version:	${covid19.version}

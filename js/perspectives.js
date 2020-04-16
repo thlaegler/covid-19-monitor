@@ -450,6 +450,18 @@ const perspectives = {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'fertilityRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
+
+    // RESTRICTIONS
+    mobility: {
+        title: 'Mobility in % compared to usual Mobility (Baseline 2020-02-13 100%)',
+        color: (props) => (props['mobility'] > 70 ? '#ff0000' : (props['mobility'] > 50 ? '#ff6f00' : (props['mobility'] > 25 ? '#ffcc00' : (isFinite(props['mobility']) && props['mobility'] > 0.0 ? '#77ff00' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['mobility'] / 2),
+        label: (props) => parseFloat(props['mobility']).toFixed(2) + ' %',
+        makeCharts: (title) => {
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'mobility')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'mobility')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
+        },
+    },
     travel_restrictions: {
         title: 'Travel Restrictions',
         color: (props) => '#bfbfbf',

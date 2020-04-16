@@ -119,6 +119,9 @@ public class Covid19Snapshot extends AbstractModel {
   @CsvBindByName
   private double doublingTime;
 
+  @CsvBindByName
+  private double mobility;
+
   // @ApiModelProperty(name = "location", value = "Searchable Geo location", required = false)
   // @CsvRecurse
   // private CustomGeoPoint location;

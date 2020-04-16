@@ -10,6 +10,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static org.springframework.data.domain.Sort.Direction.ASC;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.util.CollectionUtils.isEmpty;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
@@ -40,11 +41,13 @@ import com.covid19.model.Covid19Snapshot;
 import com.covid19.model.DailyReport;
 import com.covid19.model.DailyReport2;
 import com.covid19.model.HealthRestriction;
+import com.covid19.model.Mobility;
 import com.covid19.model.Testing;
 import com.covid19.model.TravelRestriction;
 import com.covid19.repo.CountryEsRepo;
 import com.covid19.repo.Covid19SnapshotEsRepo;
 import com.covid19.rest.FollowRedirectRestTemplate;
+import com.google.common.util.concurrent.AtomicDouble;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -62,12 +65,15 @@ public class ImportService extends CsvService {
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HDX_ACAPS.csv";
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
+  private static final String MOBILITY_URL =
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2005HotfixDev14/v1/en-us/applemobilitytrends-%s.csv";
 
   private static final String IMPORT_COUNTRY_PATH = "sources/countries.csv";
   private static final String IMPORT_COVID19_CSV_PATH = "sources/covid19/%s.csv";
   private static final String IMPORT_TESTING_CSV_PATH = "sources/test_capacities.csv";
   private static final String HEALTH_RESTRICTION_CSV_PATH = "sources/health_restrictions.csv";
   private static final String TRAVEL_RESTRICTION_CSV_PATH = "sources/travel_restrictions.csv";
+  private static final String MOBILITY_CSV_PATH = "sources/mobility.csv";
 
   private static final DateTimeFormatter INTERNAL_DATE_FORMAT = ISO_DATE;
   private static final DateTimeFormatter DAILY_FILE_DATE_FORMAT = ofPattern("MM-dd-yyyy");
@@ -106,20 +112,7 @@ public class ImportService extends CsvService {
     }
 
     List<Testing> rawTestings = readCsv(IMPORT_TESTING_CSV_PATH, Testing.class).map(t -> {
-      t.setCountry(t.getCountry()//
-          .replace(" - units unclear", "")//
-          .replace(" - tests performed", "")//
-          .replace(" - tests analysed", "")//
-          .replace(" - analysed samples", "")//
-          .replace(" - people tested", "")//
-          .replace(" - samples tested", "")//
-          .replace(" - tests sampled", "")//
-          .replace(" - cases tested", "")//
-          .replace(" - samples analyzed", "")//
-          .replace(" - swabs tested", "")//
-          .replace(" - inconsistent units (COVID Tracking Project)", "")//
-          .replace(" - specimens tested (CDC)", "")//
-      );
+      t.setCountry(sanitizeCountryName(t.getCountry()));
       return t;
     }).collect(toList());
 
@@ -139,19 +132,20 @@ public class ImportService extends CsvService {
           }, HashMap::new));
 
 
-      List<Covid19Snapshot> testsAdded =
-          StreamSupport.stream(covid19SnapshotRepo.findByCountry(e.getKey()).spliterator(), false)
-              .sorted((a, b) -> a.getDateId().compareTo(b.getDateId()))
-              // .filter(snap -> dateIds.contains(snap.getDateId()))
-              .map(snap -> {
-                Testing dat = testCountryByDate.get(snap.getDateId());
-                if (dat != null) {
-                  snap.setTested(dat.getTotal());
-                  snap.setTestedDelta(Double.valueOf(dat.getDelta()).longValue());
-                  snap.setTestedPer1k(dat.getPer1k());
-                }
-                return snap;
-              }).collect(toList());
+      List<Covid19Snapshot> testsAdded = StreamSupport
+          .stream(covid19SnapshotRepo.findByCountryOrderByDateIdAsc(e.getKey()).spliterator(),
+              false)
+          .sorted((a, b) -> a.getDateId().compareTo(b.getDateId()))
+          // .filter(snap -> dateIds.contains(snap.getDateId()))
+          .map(snap -> {
+            Testing dat = testCountryByDate.get(snap.getDateId());
+            if (dat != null) {
+              snap.setTested(dat.getTotal());
+              snap.setTestedDelta(Double.valueOf(dat.getDelta()).longValue());
+              snap.setTestedPer1k(dat.getPer1k());
+            }
+            return snap;
+          }).collect(toList());
 
       final AtomicLong prevTotal = new AtomicLong(0);
       final AtomicLong prevDelta = new AtomicLong(0);
@@ -312,6 +306,56 @@ public class ImportService extends CsvService {
     });
 
     log.info("Finished Import of Restriction Data");
+
+    return null;
+  }
+
+  public Map<String, Testing> importMobility() {
+    log.info("Importing Mobility Data");
+
+    final String url =
+        String.format(MOBILITY_URL, LocalDate.now().minusDays(2).format(INTERNAL_DATE_FORMAT));
+    final File csvFile = new File(MOBILITY_CSV_PATH);
+
+    try {
+      followRedirectRestTemplate.execute(url, GET, null, resp -> {
+        StreamUtils.copy(resp.getBody(), new FileOutputStream(csvFile));
+        return csvFile;
+      });
+    } catch (Exception ex) {
+      log.error("Cannot fetch Restrictions Data from {} or {}", url, ex);
+      return emptyMap();
+    }
+
+    Map<String, List<Mobility>> byCountry = readCsv(MOBILITY_CSV_PATH, Mobility.class)
+        .filter(m -> m.getGeoType().equalsIgnoreCase("country/region")).map(m -> {
+          m.setCountry(sanitizeCountryName(m.getCountry()));
+          return m;
+        }).collect(groupingBy(Mobility::getCountry, toList()));
+
+    byCountry.entrySet().forEach(e -> {
+      String cn = e.getKey();
+      List<Mobility> values = e.getValue();
+      final AtomicDouble previous = new AtomicDouble(100.0);
+      List<Covid19Snapshot> newSnaps = StreamSupport
+          .stream(covid19SnapshotRepo.findByCountryOrderByDateIdAsc(cn).spliterator(), false)
+          .map(snap -> {
+            String dateId = snap.getDateId();
+            double mob = values.stream()
+                .filter(v -> v.getDateValues() != null && !isEmpty(v.getDateValues().get(dateId)))
+                .mapToDouble(
+                    v -> v.getDateValues().get(dateId).stream().findFirst().orElse(previous.get()))
+                .average().orElse(previous.get());
+            snap.setMobility(mob);
+            previous.set(mob);
+            return snap;
+          }).collect(toList());
+      covid19SnapshotRepo.saveAll(newSnaps);
+      log.info("Finished Import of Mobility Data for {}", cn);
+    });
+
+
+    log.info("Finished Import of Mobility Data");
 
     return null;
   }
@@ -613,6 +657,20 @@ public class ImportService extends CsvService {
   }
 
   private String sanitizeCountryName(String countryName) {
+    countryName = countryName.replace(" - units unclear", "")//
+        .replace(" - tests performed", "")//
+        .replace(" - tests analysed", "")//
+        .replace(" - analysed samples", "")//
+        .replace(" - people tested", "")//
+        .replace(" - samples tested", "")//
+        .replace(" - tests sampled", "")//
+        .replace(" - cases tested", "")//
+        .replace(" - samples analyzed", "")//
+        .replace(" - swabs tested", "")//
+        .replace(" - samples processed", "")//
+        .replace(" - inconsistent units (COVID Tracking Project)", "")//
+        .replace(" - specimens tested (CDC)", "");
+
     if (countryName.equalsIgnoreCase("Taipei and environs")
         || countryName.equalsIgnoreCase("Taiwan*")) {
       return "Taiwan";
@@ -626,7 +684,8 @@ public class ImportService extends CsvService {
     } else if (countryName.equalsIgnoreCase("Republic of Korea")
         || countryName.equalsIgnoreCase("Korea, South")) {
       return "South Korea";
-    } else if (countryName.equalsIgnoreCase("Iran (Islamic Republic of)")) {
+    } else if (countryName.equalsIgnoreCase("Iran (Islamic Republic of)")
+        || countryName.equalsIgnoreCase("Islamic Republic of Iran")) {
       return "Iran";
     } else if (countryName.equalsIgnoreCase("US")) {
       return "United States";
