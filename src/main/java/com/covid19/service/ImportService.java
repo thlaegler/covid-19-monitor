@@ -66,7 +66,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2005HotfixDev14/v1/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev6/v1/en-us/applemobilitytrends-%s.csv";
 
   private static final String IMPORT_COUNTRY_PATH = "sources/countries.csv";
   private static final String IMPORT_COVID19_CSV_PATH = "sources/covid19/%s.csv";
