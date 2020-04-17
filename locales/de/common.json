@@ -16,8 +16,8 @@
             "link": "Gesundheitsversorgung",
             "tooltip": "Gesundheitsversorgung"
         },
-        "restrictions": {
-            "link": "Restriktionen & Massnahmen",
+        "mitigations": {
+            "link": "Eindämmungsmassnahmen",
             "tooltip": "Restriktionen & Massnahmen"
         },
         "population": {

@@ -453,13 +453,23 @@ const perspectives = {
 
     // RESTRICTIONS
     mobility: {
-        title: 'Mobility in % compared to usual Mobility (Baseline 2020-02-13 100%)',
+        title: 'Apple Mobility Trend in % compared to usual Mobility (Baseline 2020-02-13 100%)',
         color: (props) => (props['mobility'] > 70 ? '#ff0000' : (props['mobility'] > 50 ? '#ff6f00' : (props['mobility'] > 25 ? '#ffcc00' : (isFinite(props['mobility']) && props['mobility'] > 0.0 ? '#77ff00' : '#bfbfbf')))),
         radius: (props) => makeRadius(props['mobility'] / 2),
         label: (props) => parseFloat(props['mobility']).toFixed(2) + ' %',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'mobility')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'mobility')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
+        },
+    },
+    response_stringency: {
+        title: 'Oxford Government Response Stringency Index',
+        color: (props) => (props['responseStringency'] > 75 ? '#77ff00' : (props['responseStringency'] > 55 ? '#ffcc00' : (props['responseStringency'] > 35 ? '#ff6f00' : (isFinite(props['responseStringency']) && props['responseStringency'] > 0.0 ? '#ff0000' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['responseStringency'] / 3),
+        label: (props) => parseFloat(props['responseStringency']).toFixed(2),
+        makeCharts: (title) => {
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'responseStringency')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'responseStringency')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
         },
     },
     travel_restrictions: {

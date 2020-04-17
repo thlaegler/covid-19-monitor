@@ -12,9 +12,9 @@
             "link": "Estimates",
             "tooltip": "Estimated/Calculated Values are results of combining COVID-19 realtime data with each countries health system data"
         },
-        "restrictions": {
-            "link": "Restrictions & Measures",
-            "tooltip": "Restrictions & Measures"
+        "mitigations": {
+            "link": "Mitigations",
+            "tooltip": "Mitigation Measures & Restrictions"
         },
         "health": {
             "link": "Health System",
@@ -65,12 +65,12 @@
             "tooltip": "Confirmed Cases: Delta of new Cases compared to yesterday (new Infections)"
         },
         "doublingTime": {
-            "link": "Doubling Time (yesterday)",
-            "tooltip": "Confirmed Cases: Doubling Time in Days using latest Growth Rate"
+            "link": "Doubling Time (24 hours)",
+            "tooltip": "Confirmed Cases: Doubling Time in Days using latest daily Growth Rate"
         },
         "doublingTimeLast7Days": {
-            "link": "Doubling Time (over last Week)",
-            "tooltip": "Confirmed Cases: Doubling Time in Days using average Growth Rate of last week"
+            "link": "Doubling Time (7 Days)",
+            "tooltip": "Confirmed Cases: Doubling Time in Days using average Growth Rate of last 7 days"
         }
     },
     "infectious": {

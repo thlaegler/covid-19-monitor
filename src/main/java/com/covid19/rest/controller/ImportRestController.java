@@ -40,6 +40,12 @@ public class ImportRestController {
     return created(URI.create("http://www.example.org")).body(service.importTesting());
   }
 
+  @ApiOperation(value = "Import Oxford Government Response Stringency Index")
+  @PostMapping(value = "/response_stringency")
+  public ResponseEntity<?> importResponseStringency() {
+    return created(URI.create("http://www.example.org")).body(service.importResponseStringency());
+  }
+
   @ApiOperation(value = "Import Mobility Date from Apple Mobility")
   @PostMapping(value = "/mobility")
   public ResponseEntity<?> importMobility() {

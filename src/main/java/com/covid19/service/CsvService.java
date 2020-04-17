@@ -17,13 +17,13 @@ import javax.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import com.covid19.util.csv.HeaderAnnotationMappingStrategy;
-import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriterBuilder;
 import com.opencsv.ICSVParser;
 import com.opencsv.ICSVWriter;
+import com.opencsv.RFC4180ParserBuilder;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.StatefulBeanToCsv;
@@ -40,7 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 abstract public class CsvService {
 
-  protected <R> Stream<R> readCsv(String csvFilePath, Class<R> clazz) {
+  protected <R> Stream<R> readCsv(String csvFilePath, Class<R> clazz, boolean rfc4180) {
     File file = new File(csvFilePath);
     if (file.exists() && file.isFile() && file.canRead() && file.length() > 10) {
       URI filePathUri = file.toURI();
@@ -55,12 +55,21 @@ abstract public class CsvService {
         log.error("Cannot read CSV file {}", filePathUri);
         return Stream.empty();
       }
-      CSVParser parser = new CSVParserBuilder() // .withQuoteChar('"')
-          .withSeparator(',')//
-          .withIgnoreLeadingWhiteSpace(true)//
-          .withStrictQuotes(false)//
-          .withIgnoreQuotations(false)//
-          .build();
+
+      ICSVParser parser = null;
+      if (rfc4180) {
+        parser = new RFC4180ParserBuilder()//
+            .withSeparator(',')//
+            .withQuoteChar('"')//
+            .build();
+      } else {
+        parser = new CSVParserBuilder() // .withQuoteChar('"')
+            .withSeparator(',')//
+            .withIgnoreLeadingWhiteSpace(true)//
+            .withStrictQuotes(false)//
+            .withIgnoreQuotations(false)//
+            .build();
+      }
 
       CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(0)
           .withVerifyReader(false).withCSVParser(parser).withRowValidator(new RowValidator() {

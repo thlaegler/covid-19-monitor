@@ -6,11 +6,18 @@ var allCountries = {};
 var allSnapshotsByCountry = {};
 var allSnapshotsByDate = {};
 
-// var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
-var filePathPrefix = ''; // local prod
+var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
+// var filePathPrefix = ''; // local prod
 
 const determineSign = (it) => {
     return it == 0 ? '' : ((it > 0) ? '+' : '');
+}
+
+const countryCode2EmojiFlag = (countryCode) => {
+    if (countryCode) {
+        return countryCode.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
+    }
+    return '';
 }
 
 const incrementDateByDays = (dateId, days) => {
@@ -122,7 +129,7 @@ const updatePerspective = async (perspectiveId = 'confirmed_absolute') => {
 const constructOverTimeChartArray = (title, selector1, selector2, dateShift) => {
     var selectedCountries = $('#input-countries').val();
     var selectedDateIds = $('#input-dateIds').val();
-    var overTimeArray = [[''].concat(selectedCountries)];
+    var overTimeArray = [[''].concat(selectedCountries.map(cn => allCountries[cn].flag + ' ' + cn))];
     Object.values(selectedDateIds).forEach(dateId => {
         // if (dateShift && dateShift > 0) {
         //     var dateId = incrementDateByDays(dateId, dateShift);
@@ -155,7 +162,7 @@ const constructLatestChartArray = (title, selector1, selector2) => {
                 .forEach(snap => {
                     var vall = selector2 ? (snap[selector1] ? snap[selector1][selector2] : 0) : snap[selector1];
                     vall = isNaN(vall) ? vall : Number(vall);
-                    latestArray.push([snap.country, vall]);
+                    latestArray.push([snap.flag + ' ' + snap.country, vall]);
                 });
         }
     }
@@ -181,6 +188,7 @@ const buildGeojsonFeature = (snap) => {
                 source: country.source + ',' + snap.source,
                 dateId: snap.dateId,
                 country: country.country,
+                flag: countryCode2EmojiFlag(snap.countryCode),
                 caseFatalityRisk: snap.caseFatalityRisk,
                 recoveryRate: snap.recoveryRate,
                 incidencePer100k: snap.incidencePer100k,
@@ -238,6 +246,7 @@ const buildGeojsonFeature = (snap) => {
 
                 // CALUCLATED
                 mobility: snap.mobility,
+                responseStringency: snap.responseStringency,
                 estimateReproductionNumber: snap.estimateReproductionNumber,
                 calculatedAcuteCareAbsolute: snap.calculatedAcuteCareAbsolute,
                 calculatedAcuteCarePer100k: snap.calculatedAcuteCarePer100k,
@@ -284,6 +293,8 @@ const updateSnapshots = async (csvSnapshot) => {
                     infectious: previous ? previous.infectious : 0,
                 };
             }
+
+            snap.flag = countryCode2EmojiFlag(snap.countryCode);
 
             if (snap.confirmed) {
                 var infectiousDuration = Number($('#input-infectious_duration').val());
@@ -449,11 +460,11 @@ const initSelectCountries = async (countries) => {
     countries.sort(function (a, b) { return b.country - a.country });
 
     await asyncForEach(countries, c => {
+        c.flag = countryCode2EmojiFlag(c.countryCode);
         var selected = focusCountries.includes(c.country) ? ' selected' : '';
-        $('#input-countries').append('<option value="' + c.country + '" ' + selected + '>' + c.country + '</option>');
+        $('#input-countries').append('<option value="' + c.country + '" ' + selected + '>' + c.flag + ' ' + c.country + '</option>');
         var selected2 = c.country == 'United States' ? ' selected' : '';
-        $('#input-simulation_country').append('<option value="' + c.country + '" ' + selected2 + '>' + c.country + '</option>');
-
+        $('#input-simulation_country').append('<option value="' + c.country + '" ' + selected2 + '>' + c.flag + ' ' + c.country + '</option>');
         allCountries[c.country] = c;
     });
 };
