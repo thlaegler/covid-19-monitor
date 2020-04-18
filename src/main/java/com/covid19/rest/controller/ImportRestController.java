@@ -49,7 +49,9 @@ public class ImportRestController {
   @ApiOperation(value = "Import Mobility Date from Apple Mobility")
   @PostMapping(value = "/mobility")
   public ResponseEntity<?> importMobility() {
-    return created(URI.create("http://www.example.org")).body(service.importMobility());
+    service.importAppleMobility();
+    service.importGoogleMobility();
+    return created(URI.create("http://www.example.org")).body("");
   }
 
   @ApiOperation(value = "Import COVID-19 Data from Johns Hopkins University")

@@ -5,7 +5,9 @@ function drawChart(data, chart, title = 'Unknown Title', options2, dateShift) {
         height: '640px', //'100%',
         // curveType: 'function',
         legend: { position: 'bottom' },
+        crosshair: { trigger: "both", orientation: "both" },
         // colors: ['green','yellow', 'organge', 'red'],
+        pointShape: 'diamond',
         chartArea: {
             width: '72%',
             height: '75%',

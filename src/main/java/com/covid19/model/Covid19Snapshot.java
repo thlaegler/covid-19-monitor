@@ -120,7 +120,10 @@ public class Covid19Snapshot extends AbstractModel {
   private double doublingTime;
 
   @CsvBindByName
-  private double mobility;
+  private double appleMobility;
+
+  @CsvBindByName
+  private double googleMobility;
 
   @CsvBindByName
   private double responseStringency;
@@ -129,9 +132,9 @@ public class Covid19Snapshot extends AbstractModel {
   // @CsvRecurse
   // private CustomGeoPoint location;
 
-  @ApiModelProperty(name = "source", required = false)
-  @CsvBindByName(column = "source")
-  private String source;
+  // @ApiModelProperty(name = "source", required = false)
+  // @CsvBindByName(column = "source")
+  // private String source;
 
   @ApiModelProperty(name = "importDate", value = "Import Date of this data into the system",
       required = true)

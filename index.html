@@ -33,7 +33,7 @@
 
 		<div class="section section-header">
 			<nav class="navbar fixed-top navbar-light bg-light" style="width: 100%;">
-				<a class="navbar-brand" href=".">COVID-19 Monitor</a>
+				<a class="navbar-brand" href=".">COVID-19</a>
 				<span id="last-update-ago" style="color: red;"></span>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -246,11 +246,15 @@
 								data-i18n="[title]general.mitigations.tooltip; [text]general.mitigations.link"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownRestrictions">
-								<a id="link-mobility" class="change-perspective dropdown-item" href="#"
-									data-toggle="tooltip" data-placement="auto" title="Mobility"
-									data-target="mobility">Mobility</a>
+								<a id="link-apple_mobility" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Mobility (Apple)"
+									data-target="apple_mobility">Mobility (Apple)</a>
+								<a id="link-google_mobility" class="change-perspective dropdown-item" href="#"
+									data-toggle="tooltip" data-placement="auto" title="Mobility (Google)"
+									data-target="google_mobility">Mobility (Google)</a>
 								<a id="link-response_stringency" class="change-perspective dropdown-item" href="#"
-									data-toggle="tooltip" data-placement="auto" title="Oxford Government Response Stringency Index"
+									data-toggle="tooltip" data-placement="auto"
+									title="Oxford Government Response Stringency Index"
 									data-target="response_stringency">Government Response Stringency</a>
 								<a id="link-travel_restrictions" class="change-perspective dropdown-item" href="#"
 									data-toggle="tooltip" data-placement="auto" title="Travel Restrictions"
@@ -535,7 +539,7 @@
 				title="Simulation Horizon in Days. How many Days the Simulation/Forecast should go ahead.">
 				<label for="input-simulation_horizon">Simulation Horizon in Days</label>
 				<input class="form-control form-control-sm" type="text" name="simulation_horizon"
-					id="input-simulation_horizon" value="365">
+					id="input-simulation_horizon" value="200">
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Incubation Period in Days">
 				<label for="input-latent_duration">Incubation Period in Days</label>

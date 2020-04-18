@@ -37,12 +37,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StreamUtils;
+import com.covid19.model.AppleMobility;
 import com.covid19.model.Country;
 import com.covid19.model.Covid19Snapshot;
 import com.covid19.model.DailyReport;
 import com.covid19.model.DailyReport2;
+import com.covid19.model.GoogleMobility;
 import com.covid19.model.HealthRestriction;
-import com.covid19.model.Mobility;
 import com.covid19.model.ResponseStringency;
 import com.covid19.model.Testing;
 import com.covid19.model.TravelRestriction;
@@ -67,8 +68,10 @@ public class ImportService extends CsvService {
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HDX_ACAPS.csv";
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
-  private static final String MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev7/v1/en-us/applemobilitytrends-%s.csv";
+  private static final String APPLE_MOBILITY_URL =
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev8/v1/en-us/applemobilitytrends-%s.csv";
+  private static final String GOOGLE_MOBILITY_URL =
+      "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
       "https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_latest.csv";
 
@@ -77,7 +80,9 @@ public class ImportService extends CsvService {
   private static final String IMPORT_TESTING_CSV_PATH = "sources/test_capacities.csv";
   private static final String HEALTH_RESTRICTION_CSV_PATH = "sources/health_restrictions.csv";
   private static final String TRAVEL_RESTRICTION_CSV_PATH = "sources/travel_restrictions.csv";
-  private static final String MOBILITY_CSV_PATH = "sources/mobility.csv";
+  private static final String APPLE_MOBILITY_CSV_PATH = "sources/apple_mobility.csv";
+  private static final String GOOGLE_MOBILITY_CSV_PATH = "source/google_mobility.csv";
+
   private static final String RESPONSE_STRINGENCY_CSV_PATH = "sources/response_stringency.csv";
 
   private static final DateTimeFormatter INTERNAL_DATE_FORMAT = ISO_DATE;
@@ -95,6 +100,7 @@ public class ImportService extends CsvService {
   public Map<String, Country> importCountries() {
     return StreamSupport
         .stream(countryRepo.saveAll(readCsv(IMPORT_COUNTRY_PATH, Country.class, false).map(c -> {
+          c.setCountry(sanitizeCountryName(c.getCountry()));
           c.getId();
           return c;
         }).collect(toList())).spliterator(), true)
@@ -364,32 +370,32 @@ public class ImportService extends CsvService {
     return null;
   }
 
-  public Map<String, Mobility> importMobility() {
-    log.info("Importing Mobility Data");
+  public Map<String, AppleMobility> importAppleMobility() {
+    log.info("Importing Apple Mobility Data");
 
-    final String url =
-        String.format(MOBILITY_URL, LocalDate.now().minusDays(2).format(INTERNAL_DATE_FORMAT));
-    final File csvFile = new File(MOBILITY_CSV_PATH);
-
+    final String appleUrl = String.format(APPLE_MOBILITY_URL,
+        LocalDate.now().minusDays(2).format(INTERNAL_DATE_FORMAT));
+    final File appleCsvFile = new File(APPLE_MOBILITY_CSV_PATH);
     try {
-      followRedirectRestTemplate.execute(url, GET, null, resp -> {
-        StreamUtils.copy(resp.getBody(), new FileOutputStream(csvFile));
-        return csvFile;
+      followRedirectRestTemplate.execute(appleUrl, GET, null, resp -> {
+        StreamUtils.copy(resp.getBody(), new FileOutputStream(appleCsvFile));
+        return appleCsvFile;
       });
     } catch (Exception ex) {
-      log.error("Cannot fetch Restrictions Data from {} or {}", url, ex);
+      log.error("Cannot fetch Apple Mobility Data from {}", appleUrl, ex);
       return emptyMap();
     }
 
-    Map<String, List<Mobility>> byCountry = readCsv(MOBILITY_CSV_PATH, Mobility.class, false)
-        .filter(m -> m.getGeoType().equalsIgnoreCase("country/region")).map(m -> {
-          m.setCountry(sanitizeCountryName(m.getCountry()));
-          return m;
-        }).collect(groupingBy(Mobility::getCountry, toList()));
+    Map<String, List<AppleMobility>> appleByCountry =
+        readCsv(APPLE_MOBILITY_CSV_PATH, AppleMobility.class, false)
+            .filter(m -> m.getGeoType().equalsIgnoreCase("country/region")).map(m -> {
+              m.setCountry(sanitizeCountryName(m.getCountry()));
+              return m;
+            }).collect(groupingBy(AppleMobility::getCountry, toList()));
 
-    byCountry.entrySet().forEach(e -> {
+    appleByCountry.entrySet().forEach(e -> {
       String cn = e.getKey();
-      List<Mobility> values = e.getValue();
+      List<AppleMobility> values = e.getValue();
       final AtomicDouble previous = new AtomicDouble(100.0);
       List<Covid19Snapshot> newSnaps = StreamSupport
           .stream(covid19SnapshotRepo.findByCountryOrderByDateIdAsc(cn).spliterator(), false)
@@ -400,15 +406,87 @@ public class ImportService extends CsvService {
                 .mapToDouble(
                     v -> v.getDateValues().get(dateId).stream().findFirst().orElse(previous.get()))
                 .average().orElse(previous.get());
-            snap.setMobility(mob);
+            snap.setAppleMobility(mob);
             previous.set(mob);
             return snap;
           }).collect(toList());
       covid19SnapshotRepo.saveAll(newSnaps);
-      log.info("Finished Import of Mobility Data for {}", cn);
+      log.info("Finished Import of Apple Mobility Data for {}", cn);
     });
 
-    log.info("Finished Import of Mobility Data");
+    log.info("Finished Import of Apple Mobility Data");
+
+    return null;
+  }
+
+  public Map<String, GoogleMobility> importGoogleMobility() {
+    log.info("Importing Google Mobility Data");
+
+    final File googleCsvFile = createFile(GOOGLE_MOBILITY_CSV_PATH);
+
+    try {
+      followRedirectRestTemplate.execute(GOOGLE_MOBILITY_URL, GET, null, resp -> {
+        StreamUtils.copy(resp.getBody(), new FileOutputStream(googleCsvFile));
+        return googleCsvFile;
+      });
+    } catch (Exception ex) {
+      log.error("Cannot fetch Google Mobility Data from {}", GOOGLE_MOBILITY_URL, ex);
+      return emptyMap();
+    }
+    Map<String, List<GoogleMobility>> googleByCountry =
+        readCsv(GOOGLE_MOBILITY_CSV_PATH, GoogleMobility.class, false).map(m -> {
+          m.setCountry(sanitizeCountryName(m.getCountry()));
+          return m;
+        }).collect(groupingBy(GoogleMobility::getCountry, toList()));
+
+    googleByCountry.entrySet().forEach(e -> {
+      String cn = e.getKey();
+      List<GoogleMobility> values = e.getValue();
+      Map<String, GoogleMobility> byDate = values.stream()
+          .collect(groupingBy(GoogleMobility::getDateId, toList())).entrySet().stream()//
+          .collect(toMap(e1 -> e1.getKey(), e1 -> {
+            return GoogleMobility.builder().dateId(e.getKey()).country(cn)
+                .groceryPharmacy(e1.getValue().stream().mapToDouble(x -> x.getGroceryPharmacy())
+                    .average().orElse(0))
+                .residential(
+                    e1.getValue().stream().mapToDouble(x -> x.getResidential()).average().orElse(0))
+                .retailRecreation(e1.getValue().stream().mapToDouble(x -> x.getRetailRecreation())
+                    .average().orElse(0))
+                .park(e1.getValue().stream().mapToDouble(x -> x.getPark()).average().orElse(0))
+                .workplace(
+                    e1.getValue().stream().mapToDouble(x -> x.getWorkplace()).average().orElse(0))
+                .transit(
+                    e1.getValue().stream().mapToDouble(x -> x.getTransit()).average().orElse(0))
+                .build();
+          }));
+
+      final AtomicDouble previous = new AtomicDouble(0.0);
+      List<Covid19Snapshot> newSnaps = StreamSupport
+          .stream(covid19SnapshotRepo.findByCountryOrderByDateIdAsc(cn).spliterator(), false)
+          .map(snap -> {
+            GoogleMobility lol = byDate.get(snap.getDateId());
+            if (lol != null) {
+              double neww = (lol.getGroceryPharmacy() + lol.getPark() + lol.getWorkplace()
+                  + lol.getTransit() + lol.getRetailRecreation() + lol.getResidential()) / 6;
+              snap.setGoogleMobility(neww != 0 ? neww : previous.get());
+              // snap.setGoogleMobilityGroceryPharmacy(lol.getGroceryPharmacy());
+              // snap.setGoogleMobilityPark(lol.getPark());
+              // snap.setGoogleMobilityWorkplace(lol.getWorkplace());
+              // snap.setGoogleMobilityTransit(lol.getTransit());
+              // snap.setGoogleMobilityRetailRecreation(lol.getRetailRecreation());
+              // snap.setGoogleMobilityResidential(lol.getResidential());
+              previous.set(snap.getGoogleMobility());
+              return snap;
+            }
+            return null;
+          }).filter(Objects::nonNull).collect(toList());
+      if (!CollectionUtils.isEmpty(newSnaps)) {
+        covid19SnapshotRepo.saveAll(newSnaps);
+      }
+      log.info("Finished Import of Google Mobility Data for {}", cn);
+    });
+
+    log.info("Finished Import of Google Mobility Data");
 
     return null;
   }
@@ -454,6 +532,10 @@ public class ImportService extends CsvService {
       } catch (InterruptedException ex) {
         log.error("Cannot sleep", ex);
       }
+    }
+
+    if (currentDate.isBefore(LocalDate.of(2020, 1, 22))) {
+      currentDate = LocalDate.of(2020, 1, 22);
     }
 
     previousDay.clear();
@@ -629,7 +711,7 @@ public class ImportService extends CsvService {
         .recovered(report.getRecovered())//
         .deceased(report.getDeceased())//
         .infectious(report.getInfectious())//
-        .source(SOURCE_URL)//
+        // .source(SOURCE_URL)//
         .build();
 
 
@@ -724,6 +806,8 @@ public class ImportService extends CsvService {
         .replace(" - inconsistent units (COVID Tracking Project)", "")//
         .replace(" - specimens tested (CDC)", "");
 
+    countryName = countryName.trim();
+
     if (countryName.equalsIgnoreCase("Taipei and environs")
         || countryName.equalsIgnoreCase("Taiwan*")) {
       return "Taiwan";
@@ -763,15 +847,19 @@ public class ImportService extends CsvService {
       return "Czech Republic";
     } else if (countryName.equalsIgnoreCase("Côte d'Ivoire")) {
       return "Cote d'Ivoire";
-    } else if (countryName.equalsIgnoreCase("Netherlands, The")) {
-      return "Netherlands";
     } else if (countryName.equalsIgnoreCase("Réunion")) {
       return "Reunion";
     } else if (countryName.equalsIgnoreCase("Russian Federation")
         || countryName.equalsIgnoreCase("Russian Federation, The")) {
       return "Russia";
+    } else if (countryName.equalsIgnoreCase("Netherlands, The")
+        || countryName.equalsIgnoreCase("The Netherlands")) {
+      return "Netherlands";
     } else if (countryName.equalsIgnoreCase("Gambia, The")) {
       return "Gambia";
+    } else if (countryName.equalsIgnoreCase("Bahamas, The")
+        || countryName.equalsIgnoreCase("The Bahamas")) {
+      return "Bahamas";
     } else if (countryName.equalsIgnoreCase("Viet Nam")) {
       return "Vietnam";
     } else if (countryName.equalsIgnoreCase("occupied Palestinian territory")
@@ -785,19 +873,46 @@ public class ImportService extends CsvService {
       return "Diamond Princess Cruise Ship";
     } else if (countryName.equalsIgnoreCase("MS Zaandam")) {
       return "Zaandam Cruise Ship";
-    } else if (countryName.equalsIgnoreCase("Burma")) {
+    } else if (countryName.equalsIgnoreCase("Burma")
+        || countryName.equalsIgnoreCase("Myanmar (Burma)")) {
       return "Myanmar";
     } else if (countryName.equalsIgnoreCase("Vatican City")
-        || countryName.equalsIgnoreCase("Vatican")) {
-      return "Holy See";
-    } else if (countryName.equalsIgnoreCase("Bahamas, The")) {
-      return "Bahamas";
-    } else if (countryName.equalsIgnoreCase("Saint Vincent and the Grenadines")) {
-      return "St. Vincent & Grenadines";
-    } else if (countryName.equalsIgnoreCase("Saint Kitts and Nevis")) {
-      return "Saint Kitts & Nevis";
-    } else if (countryName.equalsIgnoreCase("Sao Tome and Principe")) {
-      return "Sao Tome & Principe";
+        || countryName.equalsIgnoreCase("The Vatican")
+        || countryName.equalsIgnoreCase("Vatican, The")
+        || countryName.equalsIgnoreCase("Holy See")) {
+      return "Vatican";
+    } else if (countryName.equalsIgnoreCase("St Vincent and the Grenadines")
+        || countryName.equalsIgnoreCase("St. Vincent and the Grenadines")
+        || countryName.equalsIgnoreCase("Saint Vincent and the Grenadines")
+        || countryName.equalsIgnoreCase("Saint Vincent & the Grenadines")
+        || countryName.equalsIgnoreCase("Saint Vincent & Grenadines")
+        || countryName.equalsIgnoreCase("St Vincent and the Grenadines")
+        || countryName.equalsIgnoreCase("St Vincent & the Grenadines")
+        || countryName.equalsIgnoreCase("St Vincent & Grenadines")
+        || countryName.equalsIgnoreCase("St. Vincent and the Grenadines")
+        || countryName.equalsIgnoreCase("St. Vincent & the Grenadines")
+        || countryName.equalsIgnoreCase("St. Vincent & Grenadines")) {
+      return "Saint Vincent and Grenadines";
+    } else if (countryName.equalsIgnoreCase("St. Kitts and Nevis")
+        || countryName.equalsIgnoreCase("St Kitts and Nevis")
+        || countryName.equalsIgnoreCase("St Kitts & Nevis")
+        || countryName.equalsIgnoreCase("St. Kitts & Nevis")
+        || countryName.equalsIgnoreCase("Saint Kitts & Nevis")) {
+      return "Saint Kitts and Nevis";
+    } else if (countryName.equalsIgnoreCase("St. Pierre and Miquelon")
+        || countryName.equalsIgnoreCase("St Pierre and Miquelon")
+        || countryName.equalsIgnoreCase("St Pierre & Miquelon")
+        || countryName.equalsIgnoreCase("St. Pierre & Miquelon")
+        || countryName.equalsIgnoreCase("Saint Pierre & Miquelon")) {
+      return "Saint Pierre and Miquelon";
+    } else if (countryName.equalsIgnoreCase("Sao Tome & Principe")) {
+      return "Sao Tome and Principe";
+    } else if (countryName.equalsIgnoreCase("Bosnia & Herzegovina")) {
+      return "Bosnia and Herzegovina";
+    } else if (countryName.equalsIgnoreCase("Antigua & Barbuda")) {
+      return "Antigua and Barbuda";
+    } else if (countryName.equalsIgnoreCase("Trinidad & Tobago")) {
+      return "Trinidad and Tobago";
     } else if (countryName.equalsIgnoreCase("Swiss")) {
       return "Switzerland";
     } else if (countryName.equalsIgnoreCase("Brunei Darussalam")) {
@@ -814,12 +929,15 @@ public class ImportService extends CsvService {
     return countryName;
   }
 
-  private String buildHyperlinks(String string) {
-    log.debug("href input: {}", string);
+  /**
+   * Detect URLs and convert them to HTML Hyperlinks
+   */
+  private String buildHyperlinks(String input) {
+    log.debug("href input: {}", input);
 
     Pattern p = Pattern.compile(
         "(?:(?:https?|ftp):\\/\\/)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:\\/[^\\s]*)?");
-    Matcher m = p.matcher(string);
+    Matcher m = p.matcher(input);
     StringBuffer sb = new StringBuffer();
     while (m.find()) {
       String orgValue = m.group();
@@ -828,11 +946,11 @@ public class ImportService extends CsvService {
     }
     m.appendTail(sb);
 
-    String result = sb.toString();
+    String output = sb.toString();
 
-    log.debug("href ouput: {}", string);
+    log.debug("href ouput: {}", output);
 
-    return result;
+    return output;
   }
 
 }

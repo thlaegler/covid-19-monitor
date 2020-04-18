@@ -452,14 +452,24 @@ const perspectives = {
     },
 
     // RESTRICTIONS
-    mobility: {
+    apple_mobility: {
         title: 'Apple Mobility Trend in % compared to usual Mobility (Baseline 2020-02-13 100%)',
-        color: (props) => (props['mobility'] > 70 ? '#ff0000' : (props['mobility'] > 50 ? '#ff6f00' : (props['mobility'] > 25 ? '#ffcc00' : (isFinite(props['mobility']) && props['mobility'] > 0.0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props['mobility'] / 2),
-        label: (props) => parseFloat(props['mobility']).toFixed(2) + ' %',
+        color: (props) => (props['appleMobility'] > 70 ? '#ff0000' : (props['appleMobility'] > 50 ? '#ff6f00' : (props['appleMobility'] > 25 ? '#ffcc00' : (isFinite(props['appleMobility']) && props['appleMobility'] > 0.0 ? '#77ff00' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['appleMobility'] / 2),
+        label: (props) => parseFloat(props['appleMobility']).toFixed(2) + ' %',
         makeCharts: (title) => {
-            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'mobility')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
-            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'mobility')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'appleMobility')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'appleMobility')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
+        },
+    },
+    google_mobility: {
+        title: 'Google Mobility Trend in % compared to usual Mobility (Baseline=0 2020-02-15)',
+        color: (props) => (props['googleMobility'] > 0 ? '#ff0000' : (props['googleMobility'] > -10 ? '#ff6f00' : (props['googleMobility'] > -35 ? '#ffcc00' : (isFinite(props['googleMobility']) && props['googleMobility'] > -60 ? '#77ff00' : '#bfbfbf')))),
+        radius: (props) => makeRadius(props['googleMobility'] / 2),
+        label: (props) => parseFloat(props['googleMobility']).toFixed(2) + ' %',
+        makeCharts: (title) => {
+            drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'googleMobility')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'googleMobility')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
         },
     },
     response_stringency: {
@@ -529,7 +539,41 @@ const perspectives = {
         label: (props) => parseFloat(props['estimateReproductionNumber']).toFixed(2),
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'estimateReproductionNumber')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
-            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'estimateReproductionNumber')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
+            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'estimateReproductionNumber')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')', {
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        lineWidth: 10,
+                        opacity: 0.2,
+                        visibleInLegend: true,
+                        pointsVisible: true,showR2: true,
+                    },
+                    1: {
+                        type: 'linear',
+                        lineWidth: 10,
+                        opacity: 0.2,
+                        visibleInLegend: true, pointsVisible: true,showR2: true,
+                    },
+                    2: {
+                        type: 'linear',
+                        lineWidth: 10,
+                        opacity: 0.2,
+                        visibleInLegend: true, pointsVisible: true,showR2: true,
+                    },
+                    3: {
+                        type: 'linear',
+                        lineWidth: 10,
+                        opacity: 0.2,
+                        visibleInLegend: true, pointsVisible: true,showR2: true,
+                    },
+                    4: {
+                        type: 'linear',
+                        lineWidth: 10,
+                        opacity: 0.2,
+                        visibleInLegend: true, pointsVisible: true,
+                    },
+                }
+            });
         },
     },
     calculated_acute_care_beds_absolute: {

@@ -6,8 +6,8 @@ var allCountries = {};
 var allSnapshotsByCountry = {};
 var allSnapshotsByDate = {};
 
-var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
-// var filePathPrefix = ''; // local prod
+// var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
+var filePathPrefix = ''; // local prod
 
 const determineSign = (it) => {
     return it == 0 ? '' : ((it > 0) ? '+' : '');
@@ -129,7 +129,7 @@ const updatePerspective = async (perspectiveId = 'confirmed_absolute') => {
 const constructOverTimeChartArray = (title, selector1, selector2, dateShift) => {
     var selectedCountries = $('#input-countries').val();
     var selectedDateIds = $('#input-dateIds').val();
-    var overTimeArray = [[''].concat(selectedCountries.map(cn => allCountries[cn].flag + ' ' + cn))];
+    var overTimeArray = [[''].concat(selectedCountries.map(cn => cn + ' ' + allCountries[cn].flag))];
     Object.values(selectedDateIds).forEach(dateId => {
         // if (dateShift && dateShift > 0) {
         //     var dateId = incrementDateByDays(dateId, dateShift);
@@ -162,7 +162,7 @@ const constructLatestChartArray = (title, selector1, selector2) => {
                 .forEach(snap => {
                     var vall = selector2 ? (snap[selector1] ? snap[selector1][selector2] : 0) : snap[selector1];
                     vall = isNaN(vall) ? vall : Number(vall);
-                    latestArray.push([snap.flag + ' ' + snap.country, vall]);
+                    latestArray.push([snap.country + ' ' + snap.flag, vall]);
                 });
         }
     }
@@ -245,7 +245,8 @@ const buildGeojsonFeature = (snap) => {
                 testedPer1k: snap.testedPer1k,
 
                 // CALUCLATED
-                mobility: snap.mobility,
+                appleMobility: snap.appleMobility,
+                googleMobility: snap.googleMobility,
                 responseStringency: snap.responseStringency,
                 estimateReproductionNumber: snap.estimateReproductionNumber,
                 calculatedAcuteCareAbsolute: snap.calculatedAcuteCareAbsolute,
@@ -462,9 +463,9 @@ const initSelectCountries = async (countries) => {
     await asyncForEach(countries, c => {
         c.flag = countryCode2EmojiFlag(c.countryCode);
         var selected = focusCountries.includes(c.country) ? ' selected' : '';
-        $('#input-countries').append('<option value="' + c.country + '" ' + selected + '>' + c.flag + ' ' + c.country + '</option>');
+        $('#input-countries').append('<option value="' + c.country + '" ' + selected + '>' + c.country + ' ' + c.flag + '</option>');
         var selected2 = c.country == 'United States' ? ' selected' : '';
-        $('#input-simulation_country').append('<option value="' + c.country + '" ' + selected2 + '>' + c.flag + ' ' + c.country + '</option>');
+        $('#input-simulation_country').append('<option value="' + c.country + '" ' + selected2 + '>' + c.country + ' ' + c.flag + '</option>');
         allCountries[c.country] = c;
     });
 };
@@ -627,6 +628,7 @@ const setSimulationCrossFields = (selDate, selCountryName) => {
         $('#input-initial_infectious').val(selSnap.infectious);
         $('#input-initial_recovered').val(selSnap.recovered);
         $('#input-initial_deceased').val(selSnap.deceased);
+        $('#input-base_reproduction_number').val(parseFloat(selSnap.estimateReproductionNumber).toFixed(1));
     }
 };
 
