@@ -60,6 +60,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ImportService extends CsvService {
 
   private static final String SOURCE_URL = "https://github.com/CSSEGISandData/COVID-19";
+
   private static final String COVID19_URL =
       "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/%s.csv";
   private static final String TESTING_CSV_URL =
@@ -69,7 +70,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev10/v1/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev11/v1/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
