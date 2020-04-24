@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import com.covid19.model.Country;
 import com.covid19.model.Covid19Snapshot;
@@ -29,6 +30,13 @@ public class ExportService extends CsvService {
   private final Covid19SnapshotEsRepo covid19SnapshotRepo;
 
   private final CountryEsRepo countryRepo;
+
+  @Async
+  public void exportAllAsync() {
+    // exportCountries();
+    exportAllCovid19SnapshotsByCountry();
+    exportAllCovid19SnapshotsByDate();
+  }
 
   public boolean exportCountries() {
     List<Country> countries = StreamSupport

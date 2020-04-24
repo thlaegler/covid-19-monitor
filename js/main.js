@@ -1,6 +1,7 @@
 var geoJsonFeatures;
 var firstDateId;
 var latestDateId;
+var currentPerspectiveId = 'confirmed_absolute';
 var allDates = {};
 var allCountries = {};
 var allSnapshotsByCountry = {};
@@ -54,7 +55,7 @@ const groupSnapshotsByCountry = async (snapshots, countryNames) => {
     });
 };
 
-const updatePerspective = async (perspectiveId = 'confirmed_absolute') => {
+const updatePerspective = async (perspectiveId) => {
     $('.loader-modal').show();
     closeSidenav();
     var selectedCountryNames = $('#input-countries').val();//.filter(co => co && co != '').join(',');
@@ -65,17 +66,22 @@ const updatePerspective = async (perspectiveId = 'confirmed_absolute') => {
         await loadCsvCovid19Snapshots(missingCountries);
     }
 
+    if(!perspectiveId) {
+        perspectiveId = currentPerspectiveId;
+    }
+    currentPerspectiveId = perspectiveId;
+
     var perspect = perspectives[perspectiveId];
     if (perspect) {
         $('#title_over_time').css('display', 'none');
         $('#chart_over_time').css('display', 'none');
         $('#button-chart_over_time').css('display', 'none');
-        $('#table_chart_over_time').css('display', 'none');
+        $('#table_over_time').css('display', 'none');
 
         $('#title_latest').css('display', 'none');
         $('#chart_latest').css('display', 'none');
         $('#button-chart_latest').css('display', 'none');
-        $('#table_chart_latest').css('display', 'none');
+        $('#table_latest').css('display', 'none');
 
         $('#title_tertiary').css('display', 'none');
         $('#chart_tertiary').css('display', 'none');
@@ -129,12 +135,12 @@ const updatePerspective = async (perspectiveId = 'confirmed_absolute') => {
 const constructOverTimeChartArray = (title, selector1, selector2, dateShift) => {
     var selectedCountries = $('#input-countries').val();
     var selectedDateIds = $('#input-dateIds').val();
-    var overTimeArray = [[''].concat(selectedCountries.map(cn => cn + ' ' + allCountries[cn].flag))];
+    var overTimeArray = [['Date'].concat(selectedCountries.map(cn => cn + ' ' + allCountries[cn].flag))];
     Object.values(selectedDateIds).forEach(dateId => {
         // if (dateShift && dateShift > 0) {
         //     var dateId = incrementDateByDays(dateId, dateShift);
         // }
-        var row = [dateId];
+        var row = [new Date(dateId)];
         selectedCountries.forEach(c => {
             if (allSnapshotsByDate[dateId][c]) {
                 var snap = allSnapshotsByDate[dateId][c];

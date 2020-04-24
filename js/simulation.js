@@ -118,7 +118,7 @@ const updateChart = (simulationData) => {
     var currentCountry = allCountries[currentCountryName];
     var countrySnaps = allSnapshotsByCountry[currentCountryName];
     var latentDuration = $('#input-latent_duration').val() || 5.5;
-    var isLogScale = $('#input-log_scale').prop("checked");
+    var isLogScale = $('#input-log_scale').prop('checked');
 
     var infs = simulationData.map(s => s.I);
     var maxInf = Math.max(...infs);

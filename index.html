@@ -442,7 +442,7 @@
 	<!-- SIDENAV PARAMETERS -->
 	<div id="sidenav-parameters" class="sidenav sidenav-right">
 		<a href="javascript:void(0);" class="closebtn" onclick="closeSidenav();">&times;</a>
-		<div id="listing-group" class="listing-group">
+		<div class="listing-group">
 			<h4>Initial Parameters</h4>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Countries">
 				<label class="form-control-label" for="input-countries">Countries</label>
@@ -457,6 +457,10 @@
 					multiple="multiple">
 					<!-- <option value="" selected>all</option> -->
 				</select>
+			</div>
+			<div class="form-check" data-toggle="tooltip" data-placement="auto" title="Show Trendlines">
+				<input class="form-check-input" type="checkbox" name="input-with_trendlines" id="input-with_trendlines">
+				<label class="form-check-label" for="input-with_trendlines">Show Trendlines</label>
 			</div>
 			<!-- <div class="form-check" data-toggle="tooltip" data-placement="auto" title="Confirmed Cases">
 				<input class="form-check-input" type="checkbox" name="input-confirmed" id="input-confirmed"
@@ -473,42 +477,6 @@
 					value="deceased" checked>
 				<label class="form-check-label" for="input-deceased">Deceased Cases</label>
 			</div> -->
-			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Estimated undetected Cases per Confirmed
-				Case Factor (0/empty=disabled, means 100% test-coverage, means no undetected/untested Cases; 1=Doubles the number, meaning one undetected Case per one confirmed Case)">
-				<label class="form-control-label" for="input-estimated_undetected_factor">Estimated undetected Cases per
-					Confirmed Case Factor</label>
-				<input class="form-control form-control-sm" type="hidden" name="estimated_undetected_factor"
-					id="input-estimated_undetected_factor" value="0">
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Acute Care Hospitalization Admission Rate in % of Active Cases This value represents the Percentage of Confirmed Cases that need acute Care. A value around 5-15% seems to be realistic based on data from China, South Koreo and Japan">
-				<label class="form-control-label" for="input-acute_care_rate">Acute Care Hospitalization Rate in
-					%</label>
-				<input class="form-control form-control-sm" type="text" name="acute_care_rate"
-					id="input-acute_care_rate" value="10">
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Acute Care Capacity Increase in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
-				<label class="form-control-label" for="input-acute_care_additional_rate">Acute Care Capacity Increase in
-					%</label>
-				<input class="form-control form-control-sm" type="text" name="acute_care_additional_rate"
-					id="input-acute_care_additional_rate" value="10">
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Critical/Intensive Care Hospitalization Admission Rate in % of Active Cases. This value represents the Percentage of Confirmed Cases that need critical Care. A value around 2-5% seems to be realistic based on data from China, South Koreo and Japan">
-				<label class="form-control-label" for="input-critical_care_rate">Critical/Intensive Care Admission
-					Rate in %</label>
-				<input class="form-control form-control-sm" type="text" name="critical_care_rate"
-					id="input-critical_care_rate" value="2">
-			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="auto"
-				title="Critical/Intensive Care Capacity Increase in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
-				<label class="form-control-label" for="input-critical_care_additional_rate">Critical/Intensive Care
-					Capacity Increase in %</label>
-				<input class="form-control form-control-sm" type="text" name="critical_care_additional_rate"
-					id="input-critical_care_additional_rate" value="40">
-			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Apply">
 				<button class="btn btn-outline-primary btn-sm form-control form-control-sm" name="button-apply"
 					id="button-apply" type="button" onclick="doApply();">Apply</button>
@@ -519,7 +487,7 @@
 	<!-- SIDENAV SIMULATION -->
 	<div id="sidenav-simulations" class="sidenav sidenav-right">
 		<a href="javascript:void(0);" class="closebtn" onclick="closeSidenav();">&times;</a>
-		<div id="listing-group" class="listing-group">
+		<div class="listing-group">
 			<h4>Simulation</h4>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Country">
 				<label class="form-control-label" for="input-simulation_country">Country</label>
@@ -922,6 +890,42 @@
 				<label for="input-total_population">Total Population</label>
 				<input class="form-control form-control-sm" type="text" name="total_population"
 					id="input-total_population" value="83500000">
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto"
+				title="Estimated undetected Cases per Confirmed
+				Case Factor (0/empty=disabled, means 100% test-coverage, means no undetected/untested Cases; 1=Doubles the number, meaning one undetected Case per one confirmed Case)">
+				<label class="form-control-label" for="input-estimated_undetected_factor">Estimated undetected Cases per
+					Confirmed Case Factor</label>
+				<input class="form-control form-control-sm" type="hidden" name="estimated_undetected_factor"
+					id="input-estimated_undetected_factor" value="0">
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto"
+				title="Acute Care Hospitalization Admission Rate in % of Active Cases This value represents the Percentage of Confirmed Cases that need acute Care. A value around 5-15% seems to be realistic based on data from China, South Koreo and Japan">
+				<label class="form-control-label" for="input-acute_care_rate">Acute Care Hospitalization Rate in
+					%</label>
+				<input class="form-control form-control-sm" type="text" name="acute_care_rate"
+					id="input-acute_care_rate" value="10">
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto"
+				title="Acute Care Capacity Increase in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
+				<label class="form-control-label" for="input-acute_care_additional_rate">Acute Care Capacity Increase in
+					%</label>
+				<input class="form-control form-control-sm" type="text" name="acute_care_additional_rate"
+					id="input-acute_care_additional_rate" value="10">
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto"
+				title="Critical/Intensive Care Hospitalization Admission Rate in % of Active Cases. This value represents the Percentage of Confirmed Cases that need critical Care. A value around 2-5% seems to be realistic based on data from China, South Koreo and Japan">
+				<label class="form-control-label" for="input-critical_care_rate">Critical/Intensive Care Admission
+					Rate in %</label>
+				<input class="form-control form-control-sm" type="text" name="critical_care_rate"
+					id="input-critical_care_rate" value="2">
+			</div>
+			<div class="form-group" data-toggle="tooltip" data-placement="auto"
+				title="Critical/Intensive Care Capacity Increase in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
+				<label class="form-control-label" for="input-critical_care_additional_rate">Critical/Intensive Care
+					Capacity Increase in %</label>
+				<input class="form-control form-control-sm" type="text" name="critical_care_additional_rate"
+					id="input-critical_care_additional_rate" value="40">
 			</div>
 			<div class="form-group" data-toggle="tooltip" data-placement="auto" title="Critical Care Fatality Risk when Patient cannot
 				receive appropriate Treatment due to Critical Care Capacity overload. 0=no risk, 1=all of untreated

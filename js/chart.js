@@ -1,4 +1,19 @@
-function drawChart(data, chart, title = 'Unknown Title', options2, dateShift) {
+const trendline = {
+    // type: 'exponential',
+    type: 'polynomial',
+    // degree: 2,
+    lineWidth: 20,
+    opacity: 0.2,
+    //visibleInLegend: true,
+    //pointsVisible: true, showR2: true,
+};
+
+const drawChart = async (data, chart, title = 'Unknown Title', options2, dateShift) => {
+    const dateFormatter = new google.visualization.DateFormat({
+        pattern: 'yyyy-MM-dd',
+    });
+    var withTrendline = $('#input-with_trendlines').prop('checked');
+
     var options = {
         title: title,
         width: '100%',
@@ -13,6 +28,8 @@ function drawChart(data, chart, title = 'Unknown Title', options2, dateShift) {
             height: '75%',
             // top: 5,
         },
+        // hAxis: { format: 'yyyy-MM-dd' },
+        // vAxis: { format: 'yyyy-MM-dd' },
         // trendlines: { 0: {} },
     };
     options = { ...options, ...options2 };
@@ -31,7 +48,28 @@ function drawChart(data, chart, title = 'Unknown Title', options2, dateShift) {
         downloadButton.css('display', 'inherit')
         downloadButton.attr("href", chart.getImageURI());
     });
+
+    if (withTrendline) {
+        options['trendlines'] = {};
+    }
+    await asyncForEach(data.Ff, (f, index) => {
+        if (f.type == 'datetime') {
+            f.type = 'date';
+            f.pattern = 'yyyy-MM-dd';
+        }
+        if (withTrendline && index < data.Ff.length - 1) {
+            options['trendlines'][index] = trendline;
+        }
+    });
+
+    if (data.Ff[0].type == 'date') {
+        options['hAxis'] = { format: 'yyyy-MM-dd' };
+        dateFormatter.format(data, 0);
+    }
+
     chart.draw(data, options);
+
+
 
     // TABLE
     var tableId = chart.container.id.replace('chart', 'table');
@@ -40,11 +78,10 @@ function drawChart(data, chart, title = 'Unknown Title', options2, dateShift) {
 
     var dataTable = new google.visualization.DataTable();
 
-    data.Ff.forEach(f => {
-        dataTable.addColumn(f.type, f.label);
-    });
+    await asyncForEach(data.Ff, (f) => dataTable.addColumn(f));
 
     dataTable.addRows(data.eg.map(e => e.c.map(c => c.v)));
+    // dateFormatter.format(dataTable, 0);
 
     var table = new google.visualization.Table(document.getElementById(tableId));
 

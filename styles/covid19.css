@@ -17,8 +17,9 @@
     z-index: 1;
     border-radius: 3px;
     max-width: 33%; */
+    width: 100%;
     display: inline-block;
-    margin: 10px;
+    padding: 10px;
 }
 
 label {

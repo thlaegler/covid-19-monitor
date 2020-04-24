@@ -22,44 +22,45 @@ public class ImportRestController {
 
   private final ImportService service;
 
-  @ApiOperation(value = "Import Countries from CSV")
+  @ApiOperation(value = "Import Countries")
   @PostMapping(value = "/countries")
   public ResponseEntity<?> importCountries() {
     return created(URI.create("http://www.example.org")).body(service.importCountries());
   }
 
-  @ApiOperation(value = "Import Restriction Data from Starschema")
-  @PostMapping(value = "/restrictions")
-  public ResponseEntity<?> importRestrictions() {
-    return created(URI.create("http://www.example.org")).body(service.importRestrictions());
-  }
+  // @ApiOperation(value = "Import Restriction Data from Starschema")
+  // @PostMapping(value = "/restrictions")
+  // public ResponseEntity<?> importRestrictions() {
+  // return created(URI.create("http://www.example.org")).body(service.importRestrictions());
+  // }
+  //
+  // @ApiOperation(value = "Import Testing from OWID")
+  // @PostMapping(value = "/testing")
+  // public ResponseEntity<?> importTestCoverage() {
+  // return created(URI.create("http://www.example.org")).body(service.importTesting());
+  // }
+  //
+  // @ApiOperation(value = "Import Oxford Government Response Stringency Index")
+  // @PostMapping(value = "/response_stringency")
+  // public ResponseEntity<?> importResponseStringency() {
+  // return created(URI.create("http://www.example.org")).body(service.importResponseStringency());
+  // }
+  //
+  // @ApiOperation(value = "Import Mobility Date from Apple Mobility")
+  // @PostMapping(value = "/mobility")
+  // public ResponseEntity<?> importMobility() {
+  // service.importAppleMobility();
+  // service.importGoogleMobility();
+  // return created(URI.create("http://www.example.org")).body("");
+  // }
 
-  @ApiOperation(value = "Import Testing from OWID")
-  @PostMapping(value = "/testing")
-  public ResponseEntity<?> importTestCoverage() {
-    return created(URI.create("http://www.example.org")).body(service.importTesting());
-  }
-
-  @ApiOperation(value = "Import Oxford Government Response Stringency Index")
-  @PostMapping(value = "/response_stringency")
-  public ResponseEntity<?> importResponseStringency() {
-    return created(URI.create("http://www.example.org")).body(service.importResponseStringency());
-  }
-
-  @ApiOperation(value = "Import Mobility Date from Apple Mobility")
-  @PostMapping(value = "/mobility")
-  public ResponseEntity<?> importMobility() {
-    service.importAppleMobility();
-    service.importGoogleMobility();
-    return created(URI.create("http://www.example.org")).body("");
-  }
-
-  @ApiOperation(value = "Import COVID-19 Data from Johns Hopkins University")
+  @ApiOperation(value = "Import Data")
   @PostMapping(value = "/covid19/{importStartDate}")
   public ResponseEntity<?> importCovid19(@ApiParam(example = "2020-04-06") @RequestParam(
       value = "importStartDate", required = false) String importStartDate) {
-    return created(URI.create("http://www.example.org"))
-        .body(service.importAllDailyReports(importStartDate));
+    service.importAllAsync(importStartDate);
+
+    return created(URI.create("http://www.example.org")).body("Started async Import");
   }
 
 }

@@ -34,6 +34,7 @@ import java.util.stream.StreamSupport;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StreamUtils;
@@ -70,7 +71,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev12/v1/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev13/v1/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -97,6 +98,16 @@ public class ImportService extends CsvService {
   private final Covid19SnapshotEsRepo covid19SnapshotRepo;
 
   private final CountryEsRepo countryRepo;
+
+  @Async
+  public void importAllAsync(String importStartDate) {
+    importAllDailyReports(importStartDate);
+    importTesting();
+    importRestrictions();
+    importResponseStringency();
+    importAppleMobility();
+    importGoogleMobility();
+  }
 
   public Map<String, Country> importCountries() {
     return StreamSupport

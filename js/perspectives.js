@@ -17,7 +17,7 @@ const perspectives = {
         titleKey: 'tested.per1k',
         color: (props) => (props['testedPer1k'] > 20 ? '#77ff00' : (props['testedPer1k'] > 10 ? '#ffcc00' : (props['testedPer1k'] > 5 ? '#ff6f00' : (props['testedPer1k'] > 0 ? '#ff0000' : '#bfbfbf')))),
         radius: (props) => makeRadius(props['testedPer1k']),
-        label: (props) => determineSign(props['testedPer1k']) + parseFloat(props['testedPer1k']).toFixed(2) + ' \n Tests per 1k Capita',
+        label: (props) => parseFloat(props['testedPer1k']).toFixed(2) + ' \n Tests per 1k Capita',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'testedPer1k')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'testedPer1k')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
@@ -116,7 +116,7 @@ const perspectives = {
     confirmed_doubling_time: {
         title: 'Doubling Time in Days',
         titleKey: 'confirmed.doublingTime',
-        color: (props) => (props.doublingTime > 12 ? '#77ff00' : (props.doublingTime > 8 ? '#ffcc00' : (props.doublingTime > 4 ? '#ff6f00' : (props.doublingTime > 0.0 ? '#ff0000' : (isFinite(props.doublingTime) && props.doublingTime > 0.0) ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => (props.doublingTime > 20 ? '#77ff00' : (props.doublingTime > 10 ? '#ffcc00' : (props.doublingTime > 5 ? '#ff6f00' : (props.doublingTime > 0.0 ? '#ff0000' : (isFinite(props.doublingTime) && props.doublingTime > 0.0) ? '#ff0000' : '#bfbfbf')))),
         radius: (props) => makeRadius(props.doublingTime),
         label: (props) => parseFloat(props.doublingTime).toFixed(1) + ' Days',
         makeCharts: (title) => {
@@ -127,7 +127,7 @@ const perspectives = {
     confirmed_doubling_time_last_7days: {
         title: 'Doubling Time in Days (using Growth Rate of last 7 Days)',
         titleKey: 'confirmed.doublingTimeLast7Days',
-        color: (props) => (props.doublingTimeLast7Days > 12 ? '#77ff00' : (props.doublingTimeLast7Days > 8 ? '#ffcc00' : (props.doublingTimeLast7Days > 4 ? '#ff6f00' : (props.doublingTimeLast7Days > 0.0 ? '#ff0000' : (isFinite(props.doublingTimeLast7Days) && props.doublingTimeLast7Days > 0.0) ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => (props.doublingTimeLast7Days > 20 ? '#77ff00' : (props.doublingTimeLast7Days > 10 ? '#ffcc00' : (props.doublingTimeLast7Days > 5 ? '#ff6f00' : (props.doublingTimeLast7Days > 0.0 ? '#ff0000' : (isFinite(props.doublingTimeLast7Days) && props.doublingTimeLast7Days > 0.0) ? '#ff0000' : '#bfbfbf')))),
         radius: (props) => makeRadius(props.doublingTimeLast7Days),
         label: (props) => parseFloat(props.doublingTimeLast7Days).toFixed(1) + ' Days',
         makeCharts: (title) => {
@@ -409,7 +409,7 @@ const perspectives = {
         title: 'Population Density in P/Km²',
         color: (props) => (props.populationDensity > 150 ? '#ff0000' : (props.populationDensity > 70 ? '#ff6f00' : (props.populationDensity > 20 ? '#ffcc00' : (isFinite(props.populationDensity) && props.populationDensity > 0.0 ? '#77ff00' : '#bfbfbf')))),
         radius: (props) => makeRadius(props.populationDensity / 6),
-        label: (props) => parseFloat(props.populationDensity).toFixed(2) + ' P/Km²',
+        label: (props) => Math.floor(props.populationDensity) + ' P/Km²',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'populationDensity')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
@@ -539,41 +539,7 @@ const perspectives = {
         label: (props) => parseFloat(props['estimateReproductionNumber']).toFixed(2),
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'estimateReproductionNumber')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
-            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'estimateReproductionNumber')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')', {
-                trendlines: {
-                    0: {
-                        type: 'linear',
-                        lineWidth: 10,
-                        opacity: 0.2,
-                        visibleInLegend: true,
-                        pointsVisible: true,showR2: true,
-                    },
-                    1: {
-                        type: 'linear',
-                        lineWidth: 10,
-                        opacity: 0.2,
-                        visibleInLegend: true, pointsVisible: true,showR2: true,
-                    },
-                    2: {
-                        type: 'linear',
-                        lineWidth: 10,
-                        opacity: 0.2,
-                        visibleInLegend: true, pointsVisible: true,showR2: true,
-                    },
-                    3: {
-                        type: 'linear',
-                        lineWidth: 10,
-                        opacity: 0.2,
-                        visibleInLegend: true, pointsVisible: true,showR2: true,
-                    },
-                    4: {
-                        type: 'linear',
-                        lineWidth: 10,
-                        opacity: 0.2,
-                        visibleInLegend: true, pointsVisible: true,
-                    },
-                }
-            });
+            drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'estimateReproductionNumber')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
         },
     },
     calculated_acute_care_beds_absolute: {
