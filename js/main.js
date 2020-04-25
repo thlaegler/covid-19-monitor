@@ -474,6 +474,7 @@ const initSelectCountries = async (countries) => {
         $('#input-simulation_country').append('<option value="' + c.country + '" ' + selected2 + '>' + c.country + ' ' + c.flag + '</option>');
         allCountries[c.country] = c;
     });
+    $('.loader-modal').hide();
 };
 
 const focusDateIds = ['2020-02-25', '2020-02-26', '2020-02-27', '2020-02-28',
@@ -698,7 +699,6 @@ const init = () => {
     $('[data-toggle="tooltip"]').tooltip('dispose');
     $('[data-toggle="tooltip"]').tooltip();
     // $('#button-interventions_remove_0').click();
-    $('.loader-modal').hide();
 
     $('#sidenav-parameters').width('100%');
 

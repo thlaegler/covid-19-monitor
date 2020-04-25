@@ -71,7 +71,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev13/v1/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev15/v1/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -83,7 +83,7 @@ public class ImportService extends CsvService {
   private static final String HEALTH_RESTRICTION_CSV_PATH = "sources/health_restrictions.csv";
   private static final String TRAVEL_RESTRICTION_CSV_PATH = "sources/travel_restrictions.csv";
   private static final String APPLE_MOBILITY_CSV_PATH = "sources/apple_mobility.csv";
-  private static final String GOOGLE_MOBILITY_CSV_PATH = "source/google_mobility.csv";
+  private static final String GOOGLE_MOBILITY_CSV_PATH = "sources/google_mobility.csv";
 
   private static final String RESPONSE_STRINGENCY_CSV_PATH = "sources/response_stringency.csv";
 
@@ -378,6 +378,54 @@ public class ImportService extends CsvService {
     });
 
     log.info("Finished Import of Response Stringency Data");
+
+    return null;
+  }
+
+  public Map<String, Object> importMortality() {
+    log.info("Importing Mortality Data");
+
+    final File csvFile = new File(RESPONSE_STRINGENCY_CSV_PATH);
+
+    try {
+      followRedirectRestTemplate.execute(RESPONSE_STRINGENCY_URL, GET, null, resp -> {
+        StreamUtils.copy(resp.getBody(), new FileOutputStream(csvFile));
+        return csvFile;
+      });
+    } catch (Exception ex) {
+      log.error("Cannot fetch Mortality Data from {} or {}", RESPONSE_STRINGENCY_URL, ex);
+      return emptyMap();
+    }
+
+    Map<String, List<ResponseStringency>> byCountry =
+        readCsv(RESPONSE_STRINGENCY_CSV_PATH, ResponseStringency.class, false).map(m -> {
+          m.setCountry(sanitizeCountryName(m.getCountry()));
+          m.setDateId(
+              LocalDate.parse(m.getDate(), STRINGENCY_DATE_FORMAT).format(INTERNAL_DATE_FORMAT));
+          return m;
+        }).collect(groupingBy(ResponseStringency::getCountry, toList()));
+
+    byCountry.entrySet().forEach(e -> {
+      String cn = e.getKey();
+      List<ResponseStringency> values = e.getValue().stream()
+          .sorted((a, b) -> a.getDateId().compareToIgnoreCase(b.getDateId())).collect(toList());
+      final AtomicDouble previous = new AtomicDouble(0.0);
+      List<Covid19Snapshot> newSnaps = StreamSupport
+          .stream(covid19SnapshotRepo.findByCountryOrderByDateIdAsc(cn).spliterator(), false)
+          .map(snap -> {
+            String dateId = snap.getDateId();
+            double responseStringency = values.stream()
+                .filter(v -> v.getStringencyIndex() > 0 && v.getDateId().equalsIgnoreCase(dateId))
+                .map(v -> v.getStringencyIndex()).findFirst().orElse(previous.get());
+            snap.setResponseStringency(responseStringency);
+            previous.set(responseStringency);
+            return snap;
+          }).collect(toList());
+      covid19SnapshotRepo.saveAll(newSnaps);
+      log.info("Finished Import of Mortality Data for {}", cn);
+    });
+
+    log.info("Finished Import of Mortality Data");
 
     return null;
   }

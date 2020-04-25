@@ -119,6 +119,7 @@ const updateChart = (simulationData) => {
     var countrySnaps = allSnapshotsByCountry[currentCountryName];
     var latentDuration = $('#input-latent_duration').val() || 5.5;
     var isLogScale = $('#input-log_scale').prop('checked');
+    var withRecovered = $('#input-with_suspectible_and_recovered').prop('checked');
 
     var infs = simulationData.map(s => s.I);
     var maxInf = Math.max(...infs);
@@ -132,7 +133,7 @@ const updateChart = (simulationData) => {
             var result = [d.dateId];
             var sim = simulationDataByDate[d.dateId];
             if (sim) {
-                result = result.concat([0, Math.floor(sim.E), Math.floor(sim.I), 0, Math.floor(sim.D), Math.floor(sim.D_overload)]);
+                result = result.concat([withRecovered ? Math.floor(sim.S) : 0, Math.floor(sim.E), Math.floor(sim.I), withRecovered ? Math.floot(sim.R) : 0, Math.floor(sim.D), Math.floor(sim.D_overload)]);
             } else {
                 result = result.concat([undefined, undefined, undefined, undefined, undefined, undefined]);
             }
@@ -142,7 +143,7 @@ const updateChart = (simulationData) => {
                 var i = Math.floor(snap.infectious);
                 var r = Math.floor(snap.recovered);
                 var de = Math.floor(snap.deceased);
-                result = result.concat([0, e, i, 0, de, maxInf, (sim && sim.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')]);
+                result = result.concat([withRecovered ? s : 0, e, i, withRecovered ? r : 0, de, maxInf, (sim && sim.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')]);
             } else {
                 result = result.concat([undefined, undefined, undefined, undefined, undefined, maxInf, (sim && sim.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')]);
             }
@@ -150,12 +151,12 @@ const updateChart = (simulationData) => {
         }));
     // seirDataArray = seirDataArray.concat(simulationData.map(data => [data.dateId, Math.floor(data.S), Math.floor(data.E), Math.floor(data.I), Math.floor(data.R), Math.floor(data.D), undefined, undefined, undefined, undefined, undefined]));
     seirDataArray = seirDataArray.concat(simulationData.filter(data => data.dateId > latestDateId).map(data => {
-        return [data.dateId, 0, Math.floor(data.E), Math.floor(data.I), 0, Math.floor(data.D), Math.floor(data.D_overload), undefined, undefined, undefined, undefined, undefined, maxInf, (data.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')];
+        return [data.dateId, withRecovered ? Math.floor(data.S) : 0, Math.floor(data.E), Math.floor(data.I), withRecovered ? Math.floor(data.R) : 0, Math.floor(data.D), Math.floor(data.D_overload), undefined, undefined, undefined, undefined, undefined, maxInf, (data.intervention >= 0 ? 'color: pink;' : 'opacity: 0.0;')];
     }));
     drawChart(
         google.visualization.arrayToDataTable(seirDataArray),
         new google.visualization.ComboChart(document.getElementById('chart_over_time')),
-        'SEIR-Model',
+        'SEIR-Model with R₀=' + $('#input-base_reproduction_number').val(),
         isLogScale ? { vAxis: { scaleType: 'log' } } : {
             seriesType: 'line',
             series: { 11: { type: 'area' } }
@@ -229,5 +230,6 @@ const doSimulate = () => {
     updateChart(simulationData);
     updateTable(simulationData);
 
-    $('#details-title').html('Simulation ' + simulationRequest.country + ' starting from ' + simulationRequest.initialDate + ' for next ' + simulationRequest.simulationDuration + ' days');
+    $('#details-title').html('Simulation for ' + simulationRequest.country + ' starting from ' + simulationRequest.initialDate + ' over next ' + simulationRequest.simulationDuration + ' Days');
+    $('#details-description').html('SEIR Simulation for ' + simulationRequest.country + ' using Base Reproduction Number R₀=' + simulationRequest.baseReproductionNumber);
 };
