@@ -12,8 +12,12 @@ import static java.util.stream.Collectors.toMap;
 import static org.springframework.data.domain.Sort.Direction.ASC;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.util.CollectionUtils.isEmpty;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -31,6 +35,10 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.StreamSupport;
+import javax.imageio.ImageIO;
+import org.apache.batik.transcoder.TranscoderInput;
+import org.apache.batik.transcoder.TranscoderOutput;
+import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -71,7 +79,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev15/v1/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev16/v1/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -1012,5 +1020,41 @@ public class ImportService extends CsvService {
 
     return output;
   }
+
+  private void svgToPng() throws Exception {
+    // Step -1: We read the input SVG document into Transcoder Input
+    // We use Java NIO for this purpose
+    String svg_URI_input = Paths.get("chessboard.svg").toUri().toURL().toString();
+    TranscoderInput input_svg_image = new TranscoderInput(svg_URI_input);
+    // Step-2: Define OutputStream to PNG Image and attach to TranscoderOutput
+    OutputStream png_ostream = new FileOutputStream("chessboard.png");
+    TranscoderOutput output_png_image = new TranscoderOutput(png_ostream);
+    // Step-3: Create PNGTranscoder and define hints if required
+    PNGTranscoder my_converter = new PNGTranscoder();
+    // Step-4: Convert and Write output
+    my_converter.transcode(input_svg_image, output_png_image);
+    // Step 5- close / flush Output Stream
+    png_ostream.flush();
+    png_ostream.close();
+  }
+
+  private void svgToPng2() throws IOException {
+    BufferedImage input_image = null;
+    input_image = ImageIO.read(new File("Convert_to_PNG.svg")); // read svginto input_image object
+    File outputfile = new File("imageio_png_output.png"); // create new outputfile object
+    ImageIO.write(input_image, "PNG", outputfile);
+  }
+
+  // private BufferedImage svgToPng3(String svg) {
+  // Reader reader = new BufferedReader(new StringReader(svg));
+  // TranscoderInput svgImage = new TranscoderInput(reader);
+  //
+  // BufferedImageTranscoder transcoder = new BufferedImageTranscoder();
+  // transcoder.addTranscodingHint(PNGTranscoder.KEY_WIDTH, (float) component.getWidth());
+  // transcoder.addTranscodingHint(PNGTranscoder.KEY_HEIGHT, (float) component.getHeight());
+  // transcoder.transcode(svgImage, null);
+  //
+  // return transcoder.getImage();
+  // }
 
 }
