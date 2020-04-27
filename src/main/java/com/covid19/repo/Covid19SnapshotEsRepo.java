@@ -3,6 +3,8 @@ package com.covid19.repo;
 
 import java.time.LocalDateTime;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.stereotype.Repository;
 import com.covid19.model.Covid19Snapshot;
@@ -28,6 +30,8 @@ public interface Covid19SnapshotEsRepo extends AbstractEsRepo<Covid19Snapshot> {
   // @formatter:on
 
   Iterable<Covid19Snapshot> findByCountry(String countryRegion);
+
+  Page<Covid19Snapshot> findByCountryOrderByDateIdAsc(String countryRegion, Pageable pageable);
 
   Iterable<Covid19Snapshot> findByCountryOrderByDateIdAsc(String countryRegion);
 

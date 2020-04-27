@@ -33,7 +33,7 @@ public class ExportService extends CsvService {
 
   @Async
   public void exportAllAsync() {
-    // exportCountries();
+    exportCountries();
     exportAllCovid19SnapshotsByCountry();
     exportAllCovid19SnapshotsByDate();
   }

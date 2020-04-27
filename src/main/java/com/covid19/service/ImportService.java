@@ -53,6 +53,7 @@ import com.covid19.model.DailyReport;
 import com.covid19.model.DailyReport2;
 import com.covid19.model.GoogleMobility;
 import com.covid19.model.HealthRestriction;
+import com.covid19.model.JohnsHopkinsTimeSerie;
 import com.covid19.model.ResponseStringency;
 import com.covid19.model.Testing;
 import com.covid19.model.TravelRestriction;
@@ -72,6 +73,13 @@ public class ImportService extends CsvService {
 
   private static final String COVID19_URL =
       "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/%s.csv";
+  private static final String COVID19_CONFIRMED_URL =
+      "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+  private static final String COVID19_RECOVERED_URL =
+      "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv";
+  private static final String COVID19_DECEASED_URL =
+      "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
+
   private static final String TESTING_CSV_URL =
       "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/covid-testing-all-observations.csv";
   private static final String HEALTH_RESTRICTION_CSV_URL =
@@ -79,7 +87,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev16/v1/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev17/v1/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -87,6 +95,10 @@ public class ImportService extends CsvService {
 
   private static final String IMPORT_COUNTRY_PATH = "sources/countries.csv";
   private static final String IMPORT_COVID19_CSV_PATH = "sources/covid19/%s.csv";
+  private static final String IMPORT_COVID19_CONFIRMED_CSV_PATH = "sources/covid19/confirmed.csv";
+  private static final String IMPORT_COVID19_RECOVERED_CSV_PATH = "sources/covid19/recovered.csv";
+  private static final String IMPORT_COVID19_DECEASED_CSV_PATH = "sources/covid19/deceased.csv";
+
   private static final String IMPORT_TESTING_CSV_PATH = "sources/test_capacities.csv";
   private static final String HEALTH_RESTRICTION_CSV_PATH = "sources/health_restrictions.csv";
   private static final String TRAVEL_RESTRICTION_CSV_PATH = "sources/travel_restrictions.csv";
@@ -97,6 +109,8 @@ public class ImportService extends CsvService {
 
   private static final DateTimeFormatter INTERNAL_DATE_FORMAT = ISO_DATE;
   private static final DateTimeFormatter DAILY_FILE_DATE_FORMAT = ofPattern("MM-dd-yyyy");
+  private static final DateTimeFormatter TIMESERIES_DATE_FORMAT = ofPattern("M/d/yy");
+
   private static final DateTimeFormatter STARSCHEMA_DATE_FORMAT =
       ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
   private static final DateTimeFormatter STRINGENCY_DATE_FORMAT = BASIC_ISO_DATE;
@@ -107,14 +121,41 @@ public class ImportService extends CsvService {
 
   private final CountryEsRepo countryRepo;
 
+  // @Async
+  // public void importAllInOneAsync() {
+  // // importCountries();
+  // Map<String, Map<String, Covid19Snapshot>> covid19Snaphots = new HashMap<>();
+  //
+  // Map<String, Country> countries = getCountries();
+  // Map<String, Covid19Snapshot> covid19EarlyDays = getCovid19chinaEarlyDays();
+  // Map<String, Covid19Snapshot> dailyReports = getCovid19chinaEarlyDays();
+  //
+  // importAllDailyReports(importStartDate);
+  // importAllTimeSeries();
+  //
+  // importTesting();
+  // importRestrictions();
+  // importResponseStringency();
+  // importAppleMobility();
+  // importGoogleMobility();
+  //
+  // log.info("Finished all Imports");
+  // }
+
   @Async
   public void importAllAsync(String importStartDate) {
+    // importCountries();
+
     importAllDailyReports(importStartDate);
+    importAllTimeSeries();
+
     importTesting();
     importRestrictions();
     importResponseStringency();
     importAppleMobility();
     importGoogleMobility();
+
+    log.info("Finished all Imports");
   }
 
   public Map<String, Country> importCountries() {
@@ -559,6 +600,51 @@ public class ImportService extends CsvService {
     return null;
   }
 
+  public void importAllTimeSeries() {
+    log.info("Importing COVID-19 Timeseries Data");
+
+    try {
+      Map<String, JohnsHopkinsTimeSerie> confirmed =
+          fetchCovid19Timeseries(COVID19_CONFIRMED_URL, IMPORT_COVID19_CONFIRMED_CSV_PATH);
+      Map<String, JohnsHopkinsTimeSerie> recovered =
+          fetchCovid19Timeseries(COVID19_RECOVERED_URL, IMPORT_COVID19_RECOVERED_CSV_PATH);
+      Map<String, JohnsHopkinsTimeSerie> deceased =
+          fetchCovid19Timeseries(COVID19_DECEASED_URL, IMPORT_COVID19_DECEASED_CSV_PATH);
+
+      confirmed.entrySet().forEach(e -> {
+        String countryName = e.getKey();
+        Country country = countryRepo.findById(countryName).orElse(null);
+        if (country == null) {
+          log.warn("Unknown Country: {}", countryName);
+        } else {
+          List<Covid19Snapshot> snaps = covid19SnapshotRepo
+              .findByCountryOrderByDateIdAsc(countryName, PageRequest.of(0, 9999)).getContent()
+              .stream().filter(snap -> confirmed.get(countryName).getDateIdValues()
+                  .containsKey(snap.getDateId()))
+              .map(snap -> {
+                String dateId = snap.getDateId();
+                Long confirmed1 = confirmed.get(countryName).getDateIdValues().get(dateId);
+                Long recovered1 = recovered.get(countryName).getDateIdValues().get(dateId);
+                Long deceased1 = deceased.get(countryName).getDateIdValues().get(dateId);
+
+                snap.setConfirmed(confirmed1);
+                snap.setRecovered(recovered1);
+                snap.setDeceased(deceased1);
+                return snap;
+              }).collect(toList());
+
+          covid19SnapshotRepo.saveAll(addCalculatedValues(country, snaps));
+          log.info("Updated {} Snapshots for {} with Timeseries Data", snaps.size(), countryName);
+        }
+      });
+
+    } catch (Exception ex) {
+      log.error("Cannot fetch COVID-19 Timeseries Data from {} or {} or {}", COVID19_CONFIRMED_URL,
+          COVID19_RECOVERED_URL, COVID19_DECEASED_URL, ex);
+      return;
+    }
+  }
+
   public boolean importAllDailyReports(String importStartDate) {
     LocalDate currentDate = LocalDate.of(2020, 1, 22); // From Start
     if (importStartDate != null) {
@@ -626,7 +712,7 @@ public class ImportService extends CsvService {
 
     log.info("Finished data import");
 
-    importTesting();
+    // importTesting();
 
     return true;
   }
@@ -762,6 +848,116 @@ public class ImportService extends CsvService {
         .collect(toMap(f -> f.getCountry(), f -> f, (a, b) -> b, HashMap::new));
   }
 
+  private Map<String, JohnsHopkinsTimeSerie> fetchCovid19Timeseries(String url, String csvPath) {
+    final File csvFile = new File(csvPath);
+    followRedirectRestTemplate.execute(url, GET, null, resp -> {
+      StreamUtils.copy(resp.getBody(), new FileOutputStream(csvFile));
+      return csvFile;
+    });
+
+    return readCsv(csvPath, JohnsHopkinsTimeSerie.class, false).map(j -> {
+      j.setCountry(sanitizeCountryName(j.getCountry()));
+      j.setDateIdValues(j.getDateValues().asMap().entrySet().stream()
+          .collect(toMap(
+              e -> LocalDate.parse(e.getKey(), TIMESERIES_DATE_FORMAT).format(INTERNAL_DATE_FORMAT),
+              e -> e.getValue().iterator().next())));
+      j.setDateValues(null);
+      return j;
+    }).collect(toMap(j -> j.getCountry(), j -> j, (a, b) -> {
+      a.getDateIdValues().entrySet()
+          .forEach(en -> en.setValue(en.getValue() + b.getDateIdValues().get(en.getKey())));
+      return a;
+    }, HashMap::new));
+  }
+
+  private List<Covid19Snapshot> addCalculatedValues(Country country,
+      List<Covid19Snapshot> sortedCountrySnaps) {
+    final AtomicReference<Covid19Snapshot> previousDay = new AtomicReference<>(null);
+
+    return sortedCountrySnaps.stream().map(snap -> {
+      if (snap.getInfectious() == 0) {
+        snap.setInfectious(snap.getConfirmed() - snap.getRecovered() - snap.getDeceased());
+      }
+      if (previousDay.get() != null) {
+
+        Covid19Snapshot prev = previousDay.get();
+
+        if (prev != null && snap.getConfirmed() != 0) {
+
+          if (snap.getConfirmed() == 0 && prev.getConfirmed() != 0) {
+            snap.setConfirmed(prev.getConfirmed());
+          }
+          if (snap.getRecovered() == 0 && prev.getRecovered() != 0) {
+            snap.setRecovered(prev.getRecovered());
+          }
+          if (snap.getDeceased() == 0 && prev.getDeceased() != 0) {
+            snap.setDeceased(prev.getDeceased());
+          }
+          if (snap.getInfectious() == 0 && prev.getInfectious() != 0) {
+            snap.setInfectious(prev.getInfectious());
+          }
+
+          snap.setConfirmedGrowthRate(0.0);
+          snap.setConfirmedDelta(0);
+          if (prev.getConfirmed() != 0) {
+            snap.setConfirmedGrowthRate(1.0 * snap.getConfirmed() / prev.getConfirmed());
+            snap.setConfirmedDelta(snap.getConfirmed() - prev.getConfirmed());
+          }
+
+          snap.setRecoveredGrowthRate(0.0);
+          snap.setRecoveredDelta(0);
+          if (prev.getRecovered() != 0) {
+            snap.setRecoveredGrowthRate(1.0 * snap.getRecovered() / prev.getRecovered());
+            snap.setRecoveredDelta(snap.getRecovered() - prev.getRecovered());
+          }
+
+          snap.setDeceasedGrowthRate(0.0);
+          snap.setDeceasedDelta(0);
+          if (prev.getDeceased() != 0) {
+            snap.setDeceasedGrowthRate(1.0 * snap.getDeceased() / prev.getDeceased());
+            snap.setDeceasedDelta(snap.getDeceased() - prev.getDeceased());
+          }
+
+          snap.setInfectiousGrowthRate(0.0);
+          snap.setInfectiousDelta(0);
+          if (prev.getInfectious() != 0) {
+            snap.setInfectiousGrowthRate(1.0 * snap.getInfectious() / prev.getInfectious());
+            snap.setInfectiousDelta(snap.getInfectious() - prev.getInfectious());
+          }
+        }
+      }
+
+      // If we have sufficient country details
+      if (country != null && country.getPopulationAbsolute() != null) {
+        snap.setIncidencePer100k(
+            snap.getConfirmed() / (country.getPopulationAbsolute() / 100000.0));
+        snap.setImmunizationRate(1.0 * snap.getRecovered() / country.getPopulationAbsolute());
+      }
+
+      if (snap.getConfirmedGrowthRate() > 0 && snap.getConfirmedGrowthRate() != 1.0) {
+        double doublingTime = Math.log(2) / Math.log(snap.getConfirmedGrowthRate());
+        snap.setDoublingTime(Double.isFinite(doublingTime) ? doublingTime : null);
+      }
+
+      if (snap.getConfirmed() != 0) {
+        if (snap.getRecovered() != 0) {
+          Double recoveryRate = 1.0 * snap.getRecovered() / snap.getConfirmed();
+          snap.setRecoveryRate(
+              recoveryRate.isNaN() || recoveryRate.isInfinite() ? 0.0 : recoveryRate);
+        }
+        if (snap.getDeceased() != 0) {
+          Double lethalityRate = 1.0 * snap.getDeceased() / snap.getConfirmed();
+          snap.setCaseFatalityRisk(
+              lethalityRate.isNaN() || lethalityRate.isInfinite() ? 0.0 : lethalityRate);
+        }
+      }
+      snap.getId();
+      previousDay.set(snap);
+
+      return snap;
+    }).collect(toList());
+  }
+
   private Covid19Snapshot buildSnap(DailyReport report, Country country,
       Map<String, Covid19Snapshot> previousDay) {
     report.setConfirmed(report.getConfirmed() != 0 ? report.getConfirmed() : 0L);
@@ -869,6 +1065,7 @@ public class ImportService extends CsvService {
         .replace(" - tests sampled", "")//
         .replace(" - cases tested", "")//
         .replace(" - samples analyzed", "")//
+        .replace(" - samples analysed", "")//
         .replace(" - swabs tested", "")//
         .replace(" - samples processed", "")//
         .replace(" - inconsistent units (COVID Tracking Project)", "")//
@@ -908,6 +1105,7 @@ public class ImportService extends CsvService {
         || countryName.equalsIgnoreCase("Democratic Republic of the Congo")) {
       return "Congo";
     } else if (countryName.equalsIgnoreCase("Congo (Brazzavile)")
+        || countryName.equalsIgnoreCase("Congo (Brazzaville)")
         || countryName.equalsIgnoreCase("Congo-Brazzaville")
         || countryName.equalsIgnoreCase("Congo Republic")) {
       return "Republic of Congo";
@@ -959,6 +1157,7 @@ public class ImportService extends CsvService {
         || countryName.equalsIgnoreCase("St Vincent & Grenadines")
         || countryName.equalsIgnoreCase("St. Vincent and the Grenadines")
         || countryName.equalsIgnoreCase("St. Vincent & the Grenadines")
+        || countryName.equalsIgnoreCase("Saint Vincent and Grenadines")
         || countryName.equalsIgnoreCase("St. Vincent & Grenadines")) {
       return "Saint Vincent and Grenadines";
     } else if (countryName.equalsIgnoreCase("St. Kitts and Nevis")

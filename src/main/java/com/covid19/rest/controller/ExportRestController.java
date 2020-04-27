@@ -42,7 +42,18 @@ public class ExportRestController {
 
   @ApiOperation(value = "Export COVID-19 Data")
   @PostMapping(value = "/covid19")
-  public ResponseEntity<?> importCovid19() {
+  public ResponseEntity<?> exportCovid19() {
+
+    service.exportAllAsync();
+
+    return created(URI.create("http://www.example.org")).body("Started async Export");
+  }
+
+  @ApiOperation(value = "Export ALL Data")
+  @PostMapping(value = "/all")
+  public ResponseEntity<?> exportAll() {
+
+    service.exportCountries();
     service.exportAllAsync();
 
     return created(URI.create("http://www.example.org")).body("Started async Export");
