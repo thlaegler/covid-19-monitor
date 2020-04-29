@@ -34,12 +34,11 @@ public class ImportRestController {
   // return created(URI.create("http://www.example.org")).body(service.importRestrictions());
   // }
   //
-  @ApiOperation(value = "Import Testing from OWID")
-  @PostMapping(value = "/testing")
-  public ResponseEntity<?> importTestCoverage() {
-    return created(URI.create("http://www.example.org")).body(service.importTesting());
-  }
-
+  // @ApiOperation(value = "Import Testing from OWID")
+  // @PostMapping(value = "/testing")
+  // public ResponseEntity<?> importTestCoverage() {
+  // return created(URI.create("http://www.example.org")).body(service.importTesting());
+  // }
   //
   // @ApiOperation(value = "Import Oxford Government Response Stringency Index")
   // @PostMapping(value = "/response_stringency")
@@ -47,13 +46,13 @@ public class ImportRestController {
   // return created(URI.create("http://www.example.org")).body(service.importResponseStringency());
   // }
   //
-  @ApiOperation(value = "Import Mobility Date from Apple Mobility")
-  @PostMapping(value = "/mobility")
-  public ResponseEntity<?> importMobility() {
-    service.importAppleMobility();
-    // service.importGoogleMobility();
-    return created(URI.create("http://www.example.org")).body("");
-  }
+  // @ApiOperation(value = "Import Mobility Date from Apple Mobility")
+  // @PostMapping(value = "/mobility")
+  // public ResponseEntity<?> importMobility() {
+  // service.importAppleMobility();
+  // service.importGoogleMobility();
+  // return created(URI.create("http://www.example.org")).body("");
+  // }
 
   @ApiOperation(value = "Import Data")
   @PostMapping(value = "/covid19/{importStartDate}")

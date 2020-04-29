@@ -87,7 +87,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev18/v1/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev20/v2/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -627,9 +627,9 @@ public class ImportService extends CsvService {
                 Long recovered1 = recovered.get(countryName).getDateIdValues().get(dateId);
                 Long deceased1 = deceased.get(countryName).getDateIdValues().get(dateId);
 
-                snap.setConfirmed(confirmed1);
-                snap.setRecovered(recovered1);
-                snap.setDeceased(deceased1);
+                snap.setConfirmed(confirmed1 != null ? confirmed1 : 0);
+                snap.setRecovered(recovered1 != null ? recovered1 : 0);
+                snap.setDeceased(deceased1 != null ? deceased1 : 0);
                 return snap;
               }).collect(toList());
 

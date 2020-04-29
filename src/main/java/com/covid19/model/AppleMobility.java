@@ -51,6 +51,14 @@ public class AppleMobility extends AbstractModel {
   @CsvBindByName(column = "transportation_type", required = false)
   private String transportType;
 
+  @ApiModelProperty(name = "alternativeName", value = "Alternative Name", required = false)
+  @JsonProperty("alternativeName")
+  @JsonAlias("alternativeName")
+  @Field(name = "alternativeName", type = Keyword)
+  @CsvBindByName(column = "alternative_name", required = false)
+  private String alternativeName;
+
+
   @ApiModelProperty(name = "dateValues", value = "Date Values", required = false)
   @JsonProperty("dateValues")
   @JsonAlias("dateValues")
