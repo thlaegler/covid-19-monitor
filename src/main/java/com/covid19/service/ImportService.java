@@ -87,11 +87,18 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev20/v2/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev42/v2/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
       "https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_latest.csv";
+
+  private static final String DOW_JONES_URL =
+      "https://www.spindices.com/idsexport/file.xls?hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&selectedModule=PerformanceGraphView&selectedSubModule=Graph&yearFlag=oneYearFlag&indexId=1720081";
+  private static final String OILPRICE_BRENT_URL =
+      "https://datahub.io/core/oil-prices/r/brent-daily.csv";
+  private static final String OILPRICE_WTI_URL =
+      "https://datahub.io/core/oil-prices/r/wti-daily.csv";
 
   private static final String IMPORT_COUNTRY_PATH = "sources/countries.csv";
   private static final String IMPORT_COVID19_CSV_PATH = "sources/covid19/%s.csv";
@@ -1068,6 +1075,7 @@ public class ImportService extends CsvService {
         .replace(" - samples analysed", "")//
         .replace(" - swabs tested", "")//
         .replace(" - samples processed", "")//
+        .replace(" - samples", "")//
         .replace(" - inconsistent units (COVID Tracking Project)", "")//
         .replace(" - specimens tested (CDC)", "");
 

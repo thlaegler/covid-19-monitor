@@ -66,7 +66,7 @@ const updatePerspective = async (perspectiveId) => {
         await loadCsvCovid19Snapshots(missingCountries);
     }
 
-    if(!perspectiveId) {
+    if (!perspectiveId) {
         perspectiveId = currentPerspectiveId;
     }
     currentPerspectiveId = perspectiveId;
@@ -487,7 +487,9 @@ const focusDateIds = ['2020-02-25', '2020-02-26', '2020-02-27', '2020-02-28',
     '2020-04-05', '2020-04-06', '2020-04-07', '2020-04-08', '2020-04-09', '2020-04-08',
     '2020-04-10', '2020-04-11', '2020-04-12', '2020-04-13', '2020-04-14', '2020-04-15',
     '2020-04-16', '2020-04-17', '2020-04-18', '2020-04-19', '2020-04-20', '2020-04-21',
-    '2020-04-22', '2020-04-23', '2020-04-24', '2020-04-25', '2020-04-26', '2020-04-27'];
+    '2020-04-22', '2020-04-23', '2020-04-24', '2020-04-25', '2020-04-26', '2020-04-27',
+    '2020-04-28', '2020-04-29', '2020-04-30', '2020-05-01', '2020-05-02', '2020-05-03',
+    '2020-05-04', '2020-05-05', '2020-05-06', '2020-05-07', '2020-05-08', '2020-05-09'];
 const initSelectDateIds = async (countryDateSnapshots) => {
     countryDateSnapshots.sort(function (a, b) { return b.dateId - a.dateId });
     firstDateId = countryDateSnapshots[0].dateId;
