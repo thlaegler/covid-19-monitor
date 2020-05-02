@@ -4,7 +4,7 @@ const perspectives = {
     tested_absolute: {
         title: 'Tests: Total Number of Tests',
         titleKey: 'tested.absolute',
-        color: (props) => props['tested'] > 1000000 ? '#77ff00' : (props['tested'] > 500000 ? '#ffcc00' : (props['tested'] > 100000 ? '#ff6f00' : (props['tested'] > 0 ? '#ff0000' : '#bfbfbf'))),
+        color: (props) => generateColor(props['tested'], 0, '#ff0000', 1000000, '#00ff00'),
         radius: (props) => makeRadius(props['tested'] / 100000),
         label: (props) => props['tested'] + ' Tests \n ' + determineSign(props['testedDelta']) + props['testedDelta'] + ' Tests',
         makeCharts: (title) => {
@@ -15,7 +15,7 @@ const perspectives = {
     tested_per1k: {
         title: 'Tests per 1000 Capita',
         titleKey: 'tested.per1k',
-        color: (props) => (props['testedPer1k'] > 20 ? '#77ff00' : (props['testedPer1k'] > 10 ? '#ffcc00' : (props['testedPer1k'] > 5 ? '#ff6f00' : (props['testedPer1k'] > 0 ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => generateColor(props['testedPer1k'], 0, '#ff0000', 20, '#00ff00'),
         radius: (props) => makeRadius(props['testedPer1k']),
         label: (props) => parseFloat(props['testedPer1k']).toFixed(2) + ' \n Tests per 1k Capita',
         makeCharts: (title) => {
@@ -26,7 +26,7 @@ const perspectives = {
     tested_delta: {
         title: 'Tests: Delta of new Tests compared to yesterday',
         titleKey: 'tested.delta',
-        color: (props) => (props['testedDelta'] > 10000 ? '#77ff00' : (props['testedDelta'] > 5000 ? '#ffcc00' : (props['testedDelta'] > 1000 ? '#ff6f00' : (props['testedDelta'] > 0 ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => generateColor(props['testedDelta'], 0, '#ff0000', 10000, '#00ff00'),
         radius: (props) => makeRadius(props['testedDelta'] / 3000),
         label: (props) => '+' + Math.round(props['testedDelta']) + ' Tests',
         makeCharts: (title) => {
@@ -39,8 +39,8 @@ const perspectives = {
     confirmed_absolute: {
         title: 'Confirmed Cases: Absolute Number of Cases',
         titleKey: 'confirmed.absolute',
-        color: (props) => props['confirmed'] > 10000 ? '#ff0000' : (props['confirmed'] > 3000 ? '#ff6f00' : (props['confirmed'] > 500 ? '#ffcc00' : (props['confirmed'] > 0 ? '#77ff00' : '#bfbfbf'))),
-        radius: (props) => makeRadius(props['confirmed'] / 8000),
+        color: (props) => generateColor(props['confirmed'], 0, '#00ff00', 100000, '#ff0000'),
+        radius: (props) => makeRadius(props['confirmed'] / 10000),
         label: (props) => props['confirmed'] + ' Cases \n ' + determineSign(props['confirmedDelta']) + props['confirmedDelta'] + ' Cases (' + determineSign(props['confirmedGrowthRate']) + parseFloat(props['confirmedGrowthRate']).toFixed(2) + '%)',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'confirmed')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -50,8 +50,8 @@ const perspectives = {
     confirmed_log: {
         title: 'Confirmed Cases: Absolute Number of Cases on logarithmic Scale',
         titleKey: 'confirmed.log',
-        color: (props) => props['confirmed'] > 10000 ? '#ff0000' : (props['confirmed'] > 3000 ? '#ff6f00' : (props['confirmed'] > 500 ? '#ffcc00' : (props['confirmed'] > 0 ? '#77ff00' : '#bfbfbf'))),
-        radius: (props) => makeRadius(props['confirmed'] / 8000),
+        color: (props) => generateColor(props['confirmed'], 0, '#00ff00', 100000, '#ff0000'),
+        radius: (props) => makeRadius(props['confirmed'] / 10000),
         label: (props) => props['confirmed'] + ' Cases \n ' + determineSign(props['confirmedDelta']) + props['confirmedDelta'] + ' Cases (' + determineSign(props['confirmedGrowthRate']) + parseFloat(props['confirmedGrowthRate']).toFixed(2) + '%)',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'confirmed')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -63,8 +63,8 @@ const perspectives = {
     confirmed_growth_rate: {
         title: 'Confirmed Cases: Growth Rate in % compared to yesterday',
         titleKey: 'confirmed.growthRate',
-        color: (props) => (props['confirmedGrowthRate'] > 50 ? '#ff0000' : (props['confirmedGrowthRate'] > 20 ? '#ff6f00' : (props['confirmedGrowthRate'] > 8 ? '#ffcc00' : (props['confirmedGrowthRate'] > 0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props['confirmedGrowthRate'] / 2),
+        color: (props) => generateColor(props['confirmedGrowthRate'], 0, '#00ff00', 5, '#ff0000'),
+        radius: (props) => makeRadius(props['confirmedGrowthRate'] * 2),
         label: (props) => determineSign(props['confirmedGrowthRate']) + parseFloat(props['confirmedGrowthRate']).toFixed(2) + '% \n ' + determineSign(props['confirmedDelta']) + props['confirmedDelta'] + ' Cases',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'confirmedGrowthRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -74,8 +74,8 @@ const perspectives = {
     confirmed_delta: {
         title: 'Confirmed Cases: Delta of new Cases compared to yesterday',
         titleKey: 'confirmed.delta',
-        color: (props) => (props['confirmedDelta'] > 6000 ? '#ff0000' : (props['confirmedDelta'] > 1000 ? '#ff6f00' : (props['confirmedDelta'] > 200 ? '#ffcc00' : (props['confirmedDelta'] > 0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props['confirmedDelta'] / 800),
+        color: (props) => generateColor(props['confirmedDelta'], 0, '#00ff00', 5000, '#ff0000'),
+        radius: (props) => makeRadius(props['confirmedDelta'] / 500),
         label: (props) => '+' + Math.round(props['confirmedDelta']) + ' Cases \n ' + determineSign(props['confirmedGrowthRate']) + parseFloat(props['confirmedGrowthRate']).toFixed(2) + ' %',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'confirmedDelta')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -105,9 +105,9 @@ const perspectives = {
     confirmed_incidence_per100k: {
         title: 'Incidence of Confirmed Cases per 100.000 Capita',
         titleKey: 'confirmed.incidencePer100k',
-        color: (props) => (props.incidencePer100k > 100.0 ? '#ff0000' : (props.incidencePer100k > 30.0 ? '#ff6f00' : (props.incidencePer100k > 5.0 ? '#ffcc00' : (props.incidencePer100k > 0.0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.incidencePer100k / 5),
-        label: (props) => parseFloat(props.incidencePer100k).toFixed(2) + ' \n Cases per 100k',
+        color: (props) => generateColor(props['incidencePer100k'], 0, '#00ff00', 500, '#ff0000'),
+        radius: (props) => makeRadius(props['incidencePer100k'] * 0.05),
+        label: (props) => parseFloat(props['incidencePer100k']).toFixed(2) + ' \n Cases per 100k',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['confirmed_incidence_per100k'].title + ' (' + latestDateId + ')', 'incidencePer100k')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'incidencePer100k')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
@@ -116,9 +116,9 @@ const perspectives = {
     confirmed_doubling_time: {
         title: 'Doubling Time in Days',
         titleKey: 'confirmed.doublingTime',
-        color: (props) => (props.doublingTime > 20 ? '#77ff00' : (props.doublingTime > 10 ? '#ffcc00' : (props.doublingTime > 5 ? '#ff6f00' : (props.doublingTime > 0.0 ? '#ff0000' : (isFinite(props.doublingTime) && props.doublingTime > 0.0) ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.doublingTime),
-        label: (props) => parseFloat(props.doublingTime).toFixed(1) + ' Days',
+        color: (props) => generateColor(props['doublingTime'], 0, '#ff0000', 50, '#00ff00'),
+        radius: (props) => makeRadius(props['doublingTime'] * 0.3),
+        label: (props) => parseFloat(props['doublingTime']).toFixed(1) + ' Days',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'doublingTime')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'doublingTime')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
@@ -127,9 +127,9 @@ const perspectives = {
     confirmed_doubling_time_last_7days: {
         title: 'Doubling Time in Days (using Growth Rate of last 7 Days)',
         titleKey: 'confirmed.doublingTimeLast7Days',
-        color: (props) => (props.doublingTimeLast7Days > 20 ? '#77ff00' : (props.doublingTimeLast7Days > 10 ? '#ffcc00' : (props.doublingTimeLast7Days > 5 ? '#ff6f00' : (props.doublingTimeLast7Days > 0.0 ? '#ff0000' : (isFinite(props.doublingTimeLast7Days) && props.doublingTimeLast7Days > 0.0) ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.doublingTimeLast7Days),
-        label: (props) => parseFloat(props.doublingTimeLast7Days).toFixed(1) + ' Days',
+        color: (props) => generateColor(props['doublingTimeLast7Days'], 0, '#ff0000', 50, '#00ff00'),
+        radius: (props) => makeRadius(props['doublingTimeLast7Days'] * 0.3),
+        label: (props) => parseFloat(props['doublingTimeLast7Days']).toFixed(1) + ' Days',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['confirmed_doubling_time_last_7days'].title + ' (' + latestDateId + ')', 'doublingTimeLast7Days')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['confirmed_doubling_time_last_7days'].title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(perspectives['confirmed_doubling_time_last_7days'].title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'doublingTimeLast7Days')), new google.visualization.LineChart(document.getElementById('chart_over_time')), perspectives['confirmed_doubling_time_last_7days'].title + ' (' + firstDateId + ' - ' + latestDateId + ')');
@@ -140,7 +140,7 @@ const perspectives = {
     infectious_absolute: {
         title: 'Absolute Number of Active Cases',
         titleKey: 'infectious.absolute',
-        color: (props) => (props['infectious'] > 10000 ? '#ff0000' : (props['infectious'] > 3000 ? '#ff6f00' : (props['infectious'] > 500 ? '#ffcc00' : (props['infectious'] > 0 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['infectious'], 0, '#00ff00', 10000, '#ff0000'),
         radius: (props) => makeRadius(props['infectious'] / 10000),
         label: (props) => props['infectious'] + ' Cases \n ' + determineSign(props.infectiousDelta) + props.infectiousDelta + ' Cases (' + determineSign(props.infectiousGrowthRate) + parseFloat(props.infectiousGrowthRate).toFixed(2) + '%)',
         makeCharts: (title) => {
@@ -151,9 +151,9 @@ const perspectives = {
     infectious_growth_rate: {
         title: 'Active Cases: Growth Rate in % compared to yesterday',
         titleKey: 'infectious.growthRate',
-        color: (props) => (props.infectiousGrowthRate > 10 ? '#ff0000' : (props.infectiousGrowthRate > 5 ? '#ff6f00' : (props.infectiousGrowthRate > 0 ? '#ffcc00' : (isFinite(props.infectiousGrowthRate) && props.infectiousGrowthRate < 0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.infectiousGrowthRate > 0 ? (props.infectiousGrowthRate) : (-2 * props.infectiousGrowthRate)),
-        label: (props) => determineSign(props.infectiousGrowthRate) + parseFloat(props.infectiousGrowthRate).toFixed(2) + '% \n ' + determineSign(props.infectiousDelta) + props.infectiousDelta + ' Cases',
+        color: (props) => generateColor(props['infectiousGrowthRate'], 0, '#00ff00', 5, '#ff0000'),
+        radius: (props) => makeRadius(props['infectiousGrowthRate'] > 0 ? (props['infectiousGrowthRate']) * 2 : (-2 * props['infectiousGrowthRate'])),
+        label: (props) => determineSign(props['infectiousGrowthRate']) + parseFloat(props['infectiousGrowthRate']).toFixed(2) + '% \n ' + determineSign(props.infectiousDelta) + props.infectiousDelta + ' Cases',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'infectiousGrowthRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'infectiousGrowthRate')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
@@ -162,9 +162,9 @@ const perspectives = {
     infectious_delta: {
         title: 'Active Cases: Difference to yesterday',
         titleKey: 'infectious.delta',
-        color: (props) => (props.infectiousDelta > 500 ? '#ff0000' : (props.infectiousDelta > 200 ? '#ff6f00' : (props.infectiousDelta > 0 ? '#ffcc00' : (props.infectiousDelta < 0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.infectiousDelta > 0 ? (props.infectiousDelta / 100) : (-0.02 * props.infectiousDelta)),
-        label: (props) => determineSign(props.infectiousDelta) + Math.round(props.infectiousDelta) + ' Cases \n ' + determineSign(props.infectiousGrowthRate) + parseFloat(props.infectiousGrowthRate).toFixed(2) + ' %',
+        color: (props) => generateColor(props['infectiousDelta'], 0, '#00ff00', 5000, '#ff0000'),
+        radius: (props) => makeRadius(props['infectiousDelta'] > 0 ? (props['infectiousDelta'] / 100) : (-0.02 * props['infectiousDelta'])),
+        label: (props) => determineSign(props['infectiousDelta']) + Math.round(props['infectiousDelta']) + ' Cases \n ' + determineSign(props.infectiousGrowthRate) + parseFloat(props.infectiousGrowthRate).toFixed(2) + ' %',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'infectiousDelta')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'infectiousDelta')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
@@ -175,7 +175,7 @@ const perspectives = {
     recovered_absolute: {
         title: 'Absolute Number of Recovered Cases',
         titleKey: 'recovered.absolute',
-        color: (props) => props['recovered'] > 10000 ? '#77ff00' : (props['recovered'] > 3000 ? '#ffcc00' : (props['recovered'] > 500 ? '#ff6f00' : (props['recovered'] > 0 ? '#ff0000' : '#bfbfbf'))),
+        color: (props) => generateColor(props['recovered'], 0, '#ff0000', 100000, '#00ff00'),
         radius: (props) => makeRadius(props['recovered'] / 3000),
         label: (props) => props['recovered'] + ' Cases \n ' + determineSign(props.recoveredDelta) + props.recoveredDelta + ' Cases (' + determineSign(props.recoveredGrowthRate) + parseFloat(props.recoveredGrowthRate).toFixed(2) + '%)',
         makeCharts: (title) => {
@@ -186,8 +186,8 @@ const perspectives = {
     recovered_growth_rate: {
         title: 'Recovered Cases: Growth Rate in % compared to yesterday',
         titleKey: 'recovered.growthRate',
-        color: (props) => (props.recoveredGrowthRate > 50 ? '#77ff00' : (props.recoveredGrowthRate > 20 ? '#ffcc00' : (props.recoveredGrowthRate > 8 ? '#ff6f00' : (props.recoveredGrowthRate > 0 ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.recoveredGrowthRate / 3),
+        color: (props) => generateColor(props['recoveredGrowthRate'], 0, '#ff0000', 5, '#00ff00'),
+        radius: (props) => makeRadius(props.recoveredGrowthRate * 2),
         label: (props) => determineSign(props.recoveredGrowthRate) + parseFloat(props.recoveredGrowthRate).toFixed(2) + '% \n ' + determineSign(props.recoveredDelta) + props.recoveredDelta + ' Cases',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'recoveredGrowthRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -197,7 +197,7 @@ const perspectives = {
     recovered_delta: {
         title: 'Recovered Cases: New Cases compared to yesterday',
         titleKey: 'recovered.delta',
-        color: (props) => (props.recoveredDelta > 600 ? '#77ff00' : (props.recoveredDelta > 100 ? '#ffcc00' : (props.recoveredDelta > 20 ? '#ff6f00' : (props.recoveredDelta > 0 ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => generateColor(props['recoveredDelta'], 0, '#ff0000', 5000, '#00ff00'),
         radius: (props) => makeRadius(props.recoveredDelta / 100),
         label: (props) => '+' + Math.round(props.recoveredDelta) + ' Cases \n ' + determineSign(props.recoveredGrowthRate) + parseFloat(props.recoveredGrowthRate).toFixed(2) + ' %',
         makeCharts: (title) => {
@@ -228,8 +228,8 @@ const perspectives = {
     recovery_rate: {
         title: 'Recovery Rate in %',
         titleKey: 'recovered.recoveryRate',
-        color: (props) => (props.recoveryRate > 70 ? '#77ff00' : (props.recoveryRate > 30 ? '#ffcc00' : (props.recoveryRate > 8 ? '#ff6f00' : (props.recoveryRate > 0 ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius((props.recoveryRate) / 2),
+        color: (props) => generateColor(props['recoveryRate'], 0, '#ff0000', 80, '#00ff00'),
+        radius: (props) => makeRadius((props.recoveryRate) / 3),
         label: (props) => parseFloat(props.recoveryRate).toFixed(2) + '%',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'recoveryRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -239,8 +239,8 @@ const perspectives = {
     immunization_rate: {
         title: 'Immunization Rate in %',
         titleKey: 'recovered.immunizationRate',
-        color: (props) => (props.immunizationRate > 0.1 ? '#77ff00' : (props.immunizationRate > 0.05 ? '#ffcc00' : (props.immunizationRate > 0.01 ? '#ff6f00' : (props.immunizationRate > 0 ? '#ff0000' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.immunizationRate * 100),
+        color: (props) => generateColor(props['immunizationRate'], 0, '#ff0000', 0.2, '#00ff00'),
+        radius: (props) => makeRadius(props.immunizationRate * 50),
         label: (props) => parseFloat(props.immunizationRate).toFixed(2) + '%',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'recoveryRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -252,7 +252,7 @@ const perspectives = {
     deceased_absolute: {
         title: 'Absolute Number of Deceased Cases',
         titleKey: 'deceased.absolute',
-        color: (props) => (props['deceased'] > 10000 ? '#ff0000' : (props['deceased'] > 3000 ? '#ff6f00' : (props['deceased'] > 500 ? '#ffcc00' : (props['deceased'] > 0 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['deceased'], 0, '#00ff00', 10000, '#ff0000'),
         radius: (props) => makeRadius(props['deceased'] / 1000),
         label: (props) => props['deceased'] + ' Cases \n ' + determineSign(props.deceasedDelta) + props.deceasedDelta + ' Cases (' + determineSign(props.deceasedGrowthRate) + parseFloat(props.deceasedGrowthRate).toFixed(2) + '%)',
         makeCharts: (title) => {
@@ -263,8 +263,8 @@ const perspectives = {
     deceased_growth_rate: {
         title: 'Deceased Cases: Growth Rate in % compared to yesterday',
         titleKey: 'deceased.growthRate',
-        color: (props) => (props.deceasedGrowthRate > 50 ? '#ff0000' : (props.deceasedGrowthRate > 20 ? '#ff6f00' : (props.deceasedGrowthRate > 8 ? '#ffcc00' : (isFinite(props.deceasedGrowthRate) && props.deceasedGrowthRate > 1 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.deceasedGrowthRate / 2),
+        color: (props) => generateColor(props['deceasedGrowthRate'], 0, '#00ff00', 5, '#ff0000'),
+        radius: (props) => makeRadius(props.deceasedGrowthRate * 2),
         label: (props) => determineSign(props.deceasedGrowthRate) + parseFloat(props.deceasedGrowthRate).toFixed(2) + '% \n ' + determineSign(props.deceasedDelta) + props.deceasedDelta + ' Cases',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'deceasedGrowthRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
@@ -274,7 +274,7 @@ const perspectives = {
     deceased_delta: {
         title: 'Deceased Cases: New Cases compared to yesterday',
         titleKey: 'deceased.delta',
-        color: (props) => (props.deceasedDelta > 500 ? '#ff0000' : (props.deceasedDelta > 200 ? '#ff6f00' : (props.deceasedDelta > 60 ? '#ffcc00' : (props.deceasedDelta > 0 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['deceasedDelta'], 0, '#00ff00', 5000, '#ff0000'),
         radius: (props) => makeRadius(props.deceasedDelta / 35),
         label: (props) => '+' + Math.round(props.deceasedDelta) + ' Cases \n ' + determineSign(props.deceasedGrowthRate) + parseFloat(props.deceasedGrowthRate).toFixed(2) + ' %',
         makeCharts: (title) => {
@@ -305,9 +305,9 @@ const perspectives = {
     case_fatality_risk: {
         title: 'Case Fatality Risk (CFR) in %',
         titleKey: 'deceased.caseFatalityRisk',
-        color: (props) => (props.caseFatalityRisk > 5 ? '#ff0000' : (props.caseFatalityRisk > 3 ? '#ff6f00' : (props.caseFatalityRisk > 1 ? '#ffcc00' : (isFinite(props.caseFatalityRisk) && props.caseFatalityRisk > 0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.caseFatalityRisk * 2),
-        label: (props) => parseFloat(props.caseFatalityRisk).toFixed(2) + '%',
+        color: (props) => generateColor(props['caseFatalityRisk'], 0, '#00ff00', 10, '#ff0000'),
+        radius: (props) => makeRadius(props['caseFatalityRisk'] * 2),
+        label: (props) => parseFloat(props['caseFatalityRisk']).toFixed(2) + '%',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'caseFatalityRisk')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
             drawChart(google.visualization.arrayToDataTable(constructOverTimeChartArray(title + ' (' + firstDateId + ' - ' + latestDateId + ')', 'caseFatalityRisk')), new google.visualization.LineChart(document.getElementById('chart_over_time')), title + ' (' + firstDateId + ' - ' + latestDateId + ')');
@@ -353,7 +353,7 @@ const perspectives = {
     // POPULATION
     gdp_absolute: {
         title: 'Absolute GDP in US$',
-        color: (props) => (props.gdpAbsolute > 30000000000 ? '#77ff00' : (props.gdpAbsolute > 20000000000 ? '#ffcc00' : (props.gdpAbsolute > 10000000000 ? '#ff6f00' : (isFinite(props.gdpAbsolute) && props.gdpAbsolute > 0.0 ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => generateColor(props['gdpAbsolute'], 0, '#ff0000', 30000000000, '#00ff00'),
         radius: (props) => makeRadius(props.gdpAbsolute / 10000000000),
         label: (props) => parseFloat(props.gdpAbsolute).toFixed(2) + ' US$',
         makeCharts: (title) => {
@@ -362,7 +362,7 @@ const perspectives = {
     },
     gdp_perCapita: {
         title: 'GDP in US$ per Capita',
-        color: (props) => (props.gdpPerCapita > 30000 ? '#77ff00' : (props.gdpPerCapita > 20000 ? '#ffcc00' : (props.gdpPerCapita > 10000 ? '#ff6f00' : (isFinite(props.gdpPerCapita) && props.gdpPerCapita > 0.0 ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => generateColor(props['gdpPerCapita'], 0, '#ff0000', 30000, '#00ff00'),
         radius: (props) => makeRadius(props.gdpPerCapita / 800),
         label: (props) => parseFloat(props.gdpPerCapita).toFixed(2) + ' US$ \n per Capita',
         makeCharts: (title) => {
@@ -371,7 +371,7 @@ const perspectives = {
     },
     health_expenditure_gdp: {
         title: 'Health Expenditure in % of GDP',
-        color: (props) => (props.healthExpenditureOfGdp > 9 ? '#77ff00' : (props.healthExpenditureOfGdp > 6 ? '#ffcc00' : (props.healthExpenditureOfGdp > 3 ? '#ff6f00' : (isFinite(props.healthExpenditureOfGdp) && props.healthExpenditureOfGdp > 0.0 ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => generateColor(props['healthExpenditureOfGdp'], 0, '#ff0000', 10, '#00ff00'),
         radius: (props) => makeRadius(props.healthExpenditureOfGdp * 2),
         label: (props) => parseFloat(props.healthExpenditureOfGdp).toFixed(2) + ' %',
         makeCharts: (title) => {
@@ -380,7 +380,7 @@ const perspectives = {
     },
     health_expenditure_perCapita: {
         title: 'Health Expenditure in US$ per Capita',
-        color: (props) => (props.healthExpenditurePerCapita > 3200 ? '#77ff00' : (props.healthExpenditurePerCapita > 2000 ? '#ffcc00' : (props.healthExpenditurePerCapita > 8000 ? '#ff6f00' : (isFinite(props.healthExpenditurePerCapita) && props.healthExpenditurePerCapita > 0.0 ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => generateColor(props['healthExpenditurePerCapita'], 0, '#ff0000', 3200, '#00ff00'),
         radius: (props) => makeRadius(props.healthExpenditurePerCapita / 800),
         label: (props) => Math.round(props.healthExpenditurePerCapita) + ' US$ \n per Capita',
         makeCharts: (title) => {
@@ -389,7 +389,7 @@ const perspectives = {
     },
     population_absolute: {
         title: 'Absolute Population',
-        color: (props) => (props.populationAbsolute > 150000000 ? '#ff0000' : (props.populationAbsolute > 80000000 ? '#ff6f00' : (props.populationAbsolute > 30000000 ? '#ffcc00' : (isFinite(props.populationAbsolute) && props.populationAbsolute > 0.0 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['populationAbsolute'], 0, '#00ff00', 150000000, '#ff0000'),
         radius: (props) => makeRadius(props.populationAbsolute / 7000000),
         label: (props) => Math.round(props.populationAbsolute / 1000000) + ' Million',
         makeCharts: (title) => {
@@ -398,7 +398,7 @@ const perspectives = {
     },
     population_urban: {
         title: 'Urban Population in %',
-        color: (props) => (props.urbanPopulationRatio > 90 ? '#ff0000' : (props.urbanPopulationRatio > 75 ? '#ff6f00' : (props.urbanPopulationRatio > 60 ? '#ffcc00' : (isFinite(props.urbanPopulationRatio) && props.urbanPopulationRatio > 0.0 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['urbanPopulationRatio'], 0, '#00ff00', 100, '#ff0000'),
         radius: (props) => makeRadius(props.urbanPopulationRatio / 3),
         label: (props) => parseFloat(props.urbanPopulationRatio).toFixed(2) + ' %',
         makeCharts: (title) => {
@@ -407,7 +407,7 @@ const perspectives = {
     },
     population_density: {
         title: 'Population Density in P/Km²',
-        color: (props) => (props.populationDensity > 150 ? '#ff0000' : (props.populationDensity > 70 ? '#ff6f00' : (props.populationDensity > 20 ? '#ffcc00' : (isFinite(props.populationDensity) && props.populationDensity > 0.0 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['populationDensity'], 0, '#00ff00', 150, '#ff0000'),
         radius: (props) => makeRadius(props.populationDensity / 6),
         label: (props) => Math.floor(props.populationDensity) + ' P/Km²',
         makeCharts: (title) => {
@@ -416,36 +416,36 @@ const perspectives = {
     },
     population_median_age: {
         title: 'Population Median Age in years',
-        color: (props) => (props.populationMedianAge > 40 ? '#ff0000' : (props.populationMedianAge > 35 ? '#ff6f00' : (props.populationMedianAge > 30 ? '#ffcc00' : (isFinite(props.populationMedianAge) && props.populationMedianAge > 0.0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.populationMedianAge / 2),
-        label: (props) => Math.round(props.populationMedianAge) + ' years',
+        color: (props) => generateColor(props['populationMedianAge'], 0, '#00ff00', 40, '#ff0000'),
+        radius: (props) => makeRadius(props['populationMedianAge'] / 2),
+        label: (props) => Math.round(props['populationMedianAge']) + ' years',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'populationMedianAge')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
     },
     population_over65_absolute: {
         title: 'Absolute Population over 65 years',
-        color: (props) => (props.populationOver65 > 10000000 ? '#ff0000' : (props.populationOver65 > 3000000 ? '#ff6f00' : (props.populationOver65 > 1000000 ? '#ffcc00' : (isFinite(props.populationOver65) && props.populationOver65 > 0.0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.populationOver65 / 1000000),
-        label: (props) => parseFloat(props.populationOver65 / 1000000).toFixed(2) + ' Million',
+        color: (props) => generateColor(props['populationOver65'], 0, '#00ff00', 10000000, '#ff0000'),
+        radius: (props) => makeRadius(props['populationOver65'] / 1000000),
+        label: (props) => parseFloat(props['populationOver65'] / 1000000).toFixed(2) + ' Million',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['population_over65_absolute'].title + ' (' + latestDateId + ')', 'country', 'populationOver65')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['population_over65_absolute'].title + ' (' + latestDateId + ')');
         },
     },
     population_over65_ratio: {
         title: 'Population over 65 years in % of total Population',
-        color: (props) => (props.populationOver65Ratio > 20 ? '#ff0000' : (props.populationOver65Ratio > 15 ? '#ff6f00' : (props.populationOver65Ratio > 10 ? '#ffcc00' : (isFinite(props.populationOver65Ratio) && props.populationOver65Ratio > 0.0 ? '#77ff00' : '#bfbfbf')))),
-        radius: (props) => makeRadius(props.populationOver65Ratio * 2),
-        label: (props) => parseFloat(props.populationOver65Ratio).toFixed(2) + ' %',
+        color: (props) => generateColor(props['populationOver65Ratio'], 0, '#00ff00', 20, '#ff0000'),
+        radius: (props) => makeRadius(props['populationOver65Ratio'] * 2),
+        label: (props) => parseFloat(props['populationOver65Ratio']).toFixed(2) + ' %',
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(perspectives['population_over65_ratio'].title + ' (' + latestDateId + ')', 'country', 'populationOver65Ratio')), new google.visualization.BarChart(document.getElementById('chart_latest')), perspectives['population_over65_ratio'].title + ' (' + latestDateId + ')');
         },
     },
     fertility_rate: {
         title: 'Fertility Rate',
-        color: (props) => '#bfbfbf',
+        color: (props) => generateColor(props['fertilityRate'], 0, '#ff0000', 2, '#00ff00'),
         radius: (props) => 10,
-        label: (props) => parseFloat(props.fertilityRate).toFixed(2),
+        label: (props) => parseFloat(props['fertilityRate']).toFixed(2),
         makeCharts: (title) => {
             drawChart(google.visualization.arrayToDataTable(constructLatestChartArray(title + ' (' + latestDateId + ')', 'country', 'fertilityRate')), new google.visualization.BarChart(document.getElementById('chart_latest')), title + ' (' + latestDateId + ')');
         },
@@ -454,7 +454,7 @@ const perspectives = {
     // RESTRICTIONS
     apple_mobility: {
         title: 'Apple Mobility Trend in % compared to usual Mobility (Baseline 2020-02-13 100%)',
-        color: (props) => (props['appleMobility'] > 70 ? '#ff0000' : (props['appleMobility'] > 50 ? '#ff6f00' : (props['appleMobility'] > 25 ? '#ffcc00' : (isFinite(props['appleMobility']) && props['appleMobility'] > 0.0 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['appleMobility'], 50, '#00ff00', 100, '#ff0000'),
         radius: (props) => makeRadius(props['appleMobility'] / 2),
         label: (props) => parseFloat(props['appleMobility']).toFixed(2) + ' %',
         makeCharts: (title) => {
@@ -464,7 +464,7 @@ const perspectives = {
     },
     google_mobility: {
         title: 'Google Mobility Trend in % compared to usual Mobility (Baseline=0 2020-02-15)',
-        color: (props) => (props['googleMobility'] > 0 ? '#ff0000' : (props['googleMobility'] > -10 ? '#ff6f00' : (props['googleMobility'] > -35 ? '#ffcc00' : (isFinite(props['googleMobility']) && props['googleMobility'] > -60 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['googleMobility'], -50, '#00ff00', 0, '#ff0000'),
         radius: (props) => makeRadius(props['googleMobility'] / 2),
         label: (props) => parseFloat(props['googleMobility']).toFixed(2) + ' %',
         makeCharts: (title) => {
@@ -474,7 +474,7 @@ const perspectives = {
     },
     response_stringency: {
         title: 'Oxford Government Response Stringency Index',
-        color: (props) => (props['responseStringency'] > 75 ? '#77ff00' : (props['responseStringency'] > 55 ? '#ffcc00' : (props['responseStringency'] > 35 ? '#ff6f00' : (isFinite(props['responseStringency']) && props['responseStringency'] > 0.0 ? '#ff0000' : '#bfbfbf')))),
+        color: (props) => generateColor(props['responseStringency'], 0, '#ff0000', 100, '#00ff00'),
         radius: (props) => makeRadius(props['responseStringency'] / 3),
         label: (props) => parseFloat(props['responseStringency']).toFixed(2),
         makeCharts: (title) => {
@@ -534,7 +534,7 @@ const perspectives = {
     // ESTIMATES / CALCULATED
     estimate_reproduction_number: {
         title: 'Estimated effective Reproduction Number',
-        color: (props) => (props['estimateReproductionNumber'] > 3 ? '#ff0000' : (props['estimateReproductionNumber'] > 2 ? '#ff6f00' : (props['estimateReproductionNumber'] > 1 ? '#ffcc00' : (isFinite(props['estimateReproductionNumber']) && props['estimateReproductionNumber'] > 0.0 ? '#77ff00' : '#bfbfbf')))),
+        color: (props) => generateColor(props['estimateReproductionNumber'], 0, '#00ff00', 2, '#ff0000'),
         radius: (props) => makeRadius(props['estimateReproductionNumber'] * 15),
         label: (props) => parseFloat(props['estimateReproductionNumber']).toFixed(2),
         makeCharts: (title) => {

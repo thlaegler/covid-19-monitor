@@ -124,6 +124,9 @@ const updatePerspective = async (perspectiveId) => {
         data.features = features;
         map.getSource('countries').setData(data);
 
+        // add Color Scale
+        // colorScale = interpolateColors(minRgbColor, maxRgbColor, 100);
+
         // Update Charts
         perspect.makeCharts(title);
 

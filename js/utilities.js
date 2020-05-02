@@ -1,4 +1,4 @@
-
+const currentColorScale = [];
 const getParameterByName = (name, url) => {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -30,9 +30,9 @@ const groupBy = function (xs, key) {
 
 async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
-      await callback(array[index], index, array);
+        await callback(array[index], index, array);
     }
-  }
+}
 
 const timeDifference = (time) => {
     var actual = moment(time, 'HH:mm:ss');
@@ -108,6 +108,101 @@ const otpTimeFormat = (input) => {
 const getPixelWidth = (duration, factor) => Math.round(duration * factor);
 
 const getPixelsLeft = (startTime, minTime, factor) => Math.round(((startTime / 1000) - minTime) * factor);
+
+const rgbToHex = (rgb) => {
+    var hex = Number(rgb).toString(16);
+    if (hex.length < 2) {
+        hex = "0" + hex;
+    }
+    return hex;
+};
+
+const fullColorHex = (rgbArray) => {
+    var red = rgbToHex(rgbArray[0]);
+    var green = rgbToHex(rgbArray[1]);
+    var blue = rgbToHex(rgbArray[2]);
+    return '#' + red + green + blue;
+};
+
+const interpolateColor = (color1, color2, factor = 0.5) => {
+    var result = color1.slice();
+    for (var i = 0; i < 3; i++) {
+        result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+    }
+    return fullColorHex(result);
+};
+
+const interpolateColors = (color1, color2, steps) => {
+    var stepFactor = 1 / (steps - 1),
+        interpolatedColorArray = [];
+
+    // color1 = color1.match(/\d+/g).map(Number);
+    // color2 = color2.match(/\d+/g).map(Number);
+    color1 = hexToRgb(color1);
+    color2 = hexToRgb(color2);
+
+    for (var i = 0; i < steps; i++) {
+        interpolatedColorArray.push(interpolateColor(color1, color2, stepFactor * i));
+    }
+
+    return interpolatedColorArray;
+}
+
+const hexToRgb = (hex) => {
+    if (hex.charAt(0) === '#') {
+        hex = hex.substr(1);
+    }
+    if ((hex.length < 2) || (hex.length > 6)) {
+        return false;
+    }
+    var values = hex.split(''),
+        r,
+        g,
+        b;
+
+    if (hex.length === 2) {
+        r = parseInt(values[0].toString() + values[1].toString(), 16);
+        g = r;
+        b = r;
+    } else if (hex.length === 3) {
+        r = parseInt(values[0].toString() + values[0].toString(), 16);
+        g = parseInt(values[1].toString() + values[1].toString(), 16);
+        b = parseInt(values[2].toString() + values[2].toString(), 16);
+    } else if (hex.length === 6) {
+        r = parseInt(values[0].toString() + values[1].toString(), 16);
+        g = parseInt(values[2].toString() + values[3].toString(), 16);
+        b = parseInt(values[4].toString() + values[5].toString(), 16);
+    } else {
+        return false;
+    }
+    return [r, g, b];
+}
+
+const getColorScale = (minColor, maxColor, mediumColor = '#ffae1a') => {
+    var colorScale = interpolateColors(minColor, mediumColor, 50);
+    colorScale = colorScale.concat(interpolateColors(mediumColor, maxColor, 50));
+    return colorScale;
+}
+
+//generateColor("rgb(94, 79, 162)", "rgb(247, 148, 89)")
+const generateColor2 = (value, minValue, maxValue, colorScale = currentColorScale) => {
+    if (value && value != 0) {
+        var percentage = ((value - minValue) / (maxValue - minValue)) * 100;
+        percentage = Math.floor(percentage < 0 ? 0 : percentage >= 100 ? 99 : percentage);
+        return colorScale[percentage];
+    } else {
+        return '#bfbfbf';
+    }
+}
+
+const generateColor = (value, minValue, minColor, maxValue, maxColor) => {
+    if (value && value != 0) {
+        var colorScale = getColorScale(minColor, maxColor);
+        return generateColor2(value, minValue, maxValue, colorScale);
+    } else {
+        return '#bfbfbf';
+    }
+}
 
 const ProviderType = {
     ALL: 'ALL', //
