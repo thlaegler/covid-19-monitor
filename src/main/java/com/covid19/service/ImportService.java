@@ -87,7 +87,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev44/v2/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev45/v2/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -1063,11 +1063,13 @@ public class ImportService extends CsvService {
   }
 
   private String sanitizeCountryName(String countryName) {
-    countryName = countryName.replace(" - units unclear", "")//
+    countryName = countryName//
+        .replace(" - units unclear", "")//
         .replace(" - tests performed", "")//
         .replace(" - tests analysed", "")//
         .replace(" - analysed samples", "")//
         .replace(" - people tested", "")//
+        .replace(" - People tested", "")//
         .replace(" - samples tested", "")//
         .replace(" - tests sampled", "")//
         .replace(" - cases tested", "")//
@@ -1077,9 +1079,8 @@ public class ImportService extends CsvService {
         .replace(" - samples processed", "")//
         .replace(" - samples", "")//
         .replace(" - inconsistent units (COVID Tracking Project)", "")//
-        .replace(" - specimens tested (CDC)", "");
-
-    countryName = countryName.trim();
+        .replace(" - specimens tested (CDC)", "")//
+        .trim();
 
     if (countryName.equalsIgnoreCase("Taipei and environs")
         || countryName.equalsIgnoreCase("Taiwan*")) {
