@@ -87,7 +87,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev47/v2/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev48/v2/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -284,7 +284,8 @@ public class ImportService extends CsvService {
 
     Map<String, List<TravelRestriction>> travelRestr =
         readCsv(TRAVEL_RESTRICTION_CSV_PATH, TravelRestriction.class, true).map(x -> {
-          x.setDateId(INTERNAL_DATE_FORMAT.format(STARSCHEMA_DATE_FORMAT.parse(x.getPublished())));
+          x.setDateId(StringUtils.isBlank(x.getPublished()) ? null
+              : INTERNAL_DATE_FORMAT.format(STARSCHEMA_DATE_FORMAT.parse(x.getPublished())));
           x.setCountry(sanitizeCountryName(x.getCountry()));
           x.setRestriction(x.getRestriction().replace(System.getProperty("line.separator"), "<br>")
               .replace("\\n", "<br>"));
