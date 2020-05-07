@@ -19,6 +19,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+
 @ApiModel(description = "Public Health Restriction")
 @JsonInclude(NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

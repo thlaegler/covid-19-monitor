@@ -87,7 +87,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev48/v2/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev49/v2/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -593,9 +593,10 @@ public class ImportService extends CsvService {
               // snap.setGoogleMobilityRetailRecreation(lol.getRetailRecreation());
               // snap.setGoogleMobilityResidential(lol.getResidential());
               previous.set(snap.getGoogleMobility());
-              return snap;
+            } else {
+              snap.setGoogleMobility(previous.get());
             }
-            return null;
+            return snap;
           }).filter(Objects::nonNull).collect(toList());
       if (!CollectionUtils.isEmpty(newSnaps)) {
         covid19SnapshotRepo.saveAll(newSnaps);
@@ -703,7 +704,7 @@ public class ImportService extends CsvService {
     previousDay.clear();
     previousDay.putAll(StreamSupport.stream(covid19SnapshotRepo
         .findByDateId(currentDate.minusDays(1).format(INTERNAL_DATE_FORMAT)).spliterator(), false)
-        .collect(toMap(f -> f.getCountry(), f -> f, (a, b) -> b, HashMap::new)));
+        .collect(toMap(f -> f.getCountry(), f -> f, (a, b) -> b)));
     log.info("Importing all Daily Reports starting from of {}",
         currentDate.format(INTERNAL_DATE_FORMAT));
 

@@ -151,7 +151,7 @@ const perspectives = {
     infectious_growth_rate: {
         title: 'Active Cases: Growth Rate in % compared to yesterday',
         titleKey: 'infectious.growthRate',
-        color: (props) => generateColor(props['infectiousGrowthRate'], 0, '#00ff00', 5, '#ff0000'),
+        color: (props) => generateColor(props['infectiousGrowthRate'], -5, '#00ff00', 5, '#ff0000'),
         radius: (props) => makeRadius(props['infectiousGrowthRate'] > 0 ? (props['infectiousGrowthRate']) * 2 : (-2 * props['infectiousGrowthRate'])),
         label: (props) => determineSign(props['infectiousGrowthRate']) + parseFloat(props['infectiousGrowthRate']).toFixed(2) + '% \n ' + determineSign(props.infectiousDelta) + props.infectiousDelta + ' Cases',
         makeCharts: (title) => {

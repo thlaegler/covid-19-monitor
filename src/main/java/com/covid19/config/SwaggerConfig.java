@@ -67,35 +67,35 @@ public class SwaggerConfig {
   @Bean
   public Docket swaggerApi(ServletContext servletContext) {
     // @formatter:off
-		return new Docket(SWAGGER_2)
-		    .pathProvider(new RelativePathProvider(servletContext) {
+    return new Docket(SWAGGER_2)
+        .pathProvider(new RelativePathProvider(servletContext) {
                 @Override
                 public String getApplicationBasePath() {
                     return basePath + servletContext.getContextPath();
                 }
             })
-  			.directModelSubstitute(Locale.class, String.class)
-  			.directModelSubstitute(LocalDateTime.class, String.class)
-  			.directModelSubstitute(LocalDate.class, String.class)
-  			.ignoredParameterTypes(ApiIgnore.class).forCodeGeneration(true)
-  			.protocols(protocols())
-  			.useDefaultResponseMessages(false)
-  			.globalResponseMessage(GET, asList(
-  					message200(), message400(), message401(), message404(), message500()))
-  			.globalResponseMessage(PUT, asList(
-  					message200(), message400(), message401(), message404(), message409(), message500()))
-  			.globalResponseMessage(POST, asList(
-  					message201(), message400(), message401(), message409(), message500()))
-  			.globalResponseMessage(DELETE, asList(
-  					message204(), message400(), message401(), message500()))
-  			.globalResponseMessage(HEAD, asList(
+        .directModelSubstitute(Locale.class, String.class)
+        .directModelSubstitute(LocalDateTime.class, String.class)
+        .directModelSubstitute(LocalDate.class, String.class)
+        .ignoredParameterTypes(ApiIgnore.class).forCodeGeneration(true)
+        .protocols(protocols())
+        .useDefaultResponseMessages(false)
+        .globalResponseMessage(GET, asList(
+            message200(), message400(), message401(), message404(), message500()))
+        .globalResponseMessage(PUT, asList(
+            message200(), message400(), message401(), message404(), message409(), message500()))
+        .globalResponseMessage(POST, asList(
+            message201(), message400(), message401(), message409(), message500()))
+        .globalResponseMessage(DELETE, asList(
+            message204(), message400(), message401(), message500()))
+        .globalResponseMessage(HEAD, asList(
                 message204(), message400(), message401(), message500()))
-  			.apiInfo(apiInfo())
-  			.select()
+        .apiInfo(apiInfo())
+        .select()
             .apis(basePackage("com.covid19"))
-  			.paths(PathSelectors.any())
-  			.build();
-		// @formatter:on
+        .paths(PathSelectors.any())
+        .build();
+    // @formatter:on
   }
 
   @Bean

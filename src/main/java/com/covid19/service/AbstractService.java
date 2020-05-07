@@ -1,27 +1,16 @@
 package com.covid19.service;
 
-import static com.mobility23.api.util.FieldName.DISTANCE;
-import static com.mobility23.api.util.FieldName.LOCATION;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.elasticsearch.common.geo.GeoDistance.PLANE;
 import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
-import static org.elasticsearch.index.query.QueryBuilders.geoDistanceQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termsQuery;
-import static org.elasticsearch.script.ScriptType.INLINE;
-import static org.elasticsearch.search.sort.SortOrder.ASC;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.ParameterizedType;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 import javax.validation.constraints.NotNull;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.GeoDistanceQueryBuilder;
-import org.elasticsearch.script.Script;
-import org.elasticsearch.search.sort.SortBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -30,13 +19,11 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
-import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.ScriptField;
 import com.covid19.model.AbstractModel;
 import com.covid19.model.AbstractRequest;
 import com.covid19.repo.AbstractEsRepo;
-import com.covid19.rest.error.BadRequestException;
+import com.mobility23.rest.error.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -110,73 +97,12 @@ public abstract class AbstractService<M extends AbstractModel> {
       }
     }
 
-    // if (request.getProvider_id() != null) {
-    // boolQuery.must(matchQuery(PROVIDER_ID, request.getProvider_id()));
-    // }
-    //
-    // if (request.getArea_id() != null) {
-    // boolQuery.must(matchQuery("area_id", request.getArea_id()));
-    // }
-    //
-    // if (request.getActive() != null) {
-    // boolQuery.must(matchQuery("active", request.getActive()));
-    // }
-
-    // query: {
-    // bool: {
-    // must: [{
-    // range: {
-    // 'trip.calendar.start_date': {
-    // lte: dateFormatted,
-    // format: 'basic_date',
-    // },
-    // },
-    // }, {
-    // range: {
-    // 'trip.calendar.end_date': {
-    // gte: dateFormatted,
-    // format: 'basic_date',
-    // },
-    // },
-    // }],
-    // },
-    // },
-
-    if (request.getLat() != null && request.getLng() != null) {
-      GeoDistanceQueryBuilder geoQuery =
-          geoDistanceQuery(LOCATION).point(request.getLat(), request.getLng()).geoDistance(PLANE)
-              .distance((request.getRadius() != null ? request.getRadius() : 5000) / 1000 + "km");
-      // .distance("10km");
-      boolQuery.must(geoQuery);
-      boolQuery.filter(geoQuery);
-    }
-
     return boolQuery;
   }
 
   protected NativeSearchQueryBuilder buildQuery(AbstractRequest request) {
     NativeSearchQueryBuilder searchQueryBuilder =
         new NativeSearchQueryBuilder().withQuery(buildBoolQuery(request));
-
-    if (request.getLat() != null && request.getLng() != null) {
-      Map<String, Object> params = new HashMap<>();
-      params.put("lat", request.getLat());
-      params.put("lon", request.getLng());
-      searchQueryBuilder.withScriptField(new ScriptField(DISTANCE, new Script(INLINE, "painless",
-          "doc['" + LOCATION + "'].arcDistance(params.lat,params.lon)", params)));
-      searchQueryBuilder
-          .withSourceFilter(
-              new FetchSourceFilterBuilder().withIncludes("*").withExcludes("").build())
-          .withFields("*");
-
-      searchQueryBuilder.withSort(//
-          // SortBuilders.scriptSort(
-          // new Script(INLINE, "painless",
-          // "doc['" + LOCATION + "'].arcDistance(params.lat,params.lon)", params),
-          // ScriptSortType.NUMBER).order(ASC)//
-          SortBuilders.geoDistanceSort(LOCATION, request.getLat(), request.getLng()).order(ASC)//
-      );
-    }
 
     int page = 0;
     int size = PAGE_SIZE_LIMIT;
