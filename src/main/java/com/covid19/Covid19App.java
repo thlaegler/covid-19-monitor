@@ -9,6 +9,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +23,11 @@ import lombok.extern.slf4j.Slf4j;
 @EnableCaching
 @EnableConfigurationProperties
 @ConfigurationPropertiesScan({"com.covid19"})
-@ComponentScan(basePackages = {"com.covid19", "com.mobility23"})
-@EntityScan(basePackages = {"com.covid19.model"}) // , "com.mobility23.model"})
-@EnableElasticsearchRepositories(basePackages = {"com.covid19.repo"}) // , "com.mobility23.repo"})
+@ComponentScan(basePackages = {"com.covid19", "com.mobility23"},
+    excludeFilters = @Filter(classes = com.mobility23.service.taxi.SuperShuttleTaxiService.class,
+        type = FilterType.ASSIGNABLE_TYPE))
+@EntityScan(basePackages = {"com.covid19.model", "com.mobility23.model"})
+@EnableElasticsearchRepositories(basePackages = {"com.covid19.repo", "com.mobility23.repo"})
 public class Covid19App {
 
   public static void main(String[] args) {
