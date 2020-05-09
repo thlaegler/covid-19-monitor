@@ -3,7 +3,7 @@
 COVID-19 World Health Monitor
 
 
-## [Demo: www.covid-19-monitor.ml](https://thlaegler.github.io/covid-19-monitor)
+## [Demo: www.covid19-monitor.ml](https://thlaegler.github.io/covid-19-monitor)
 
 
 ## Data Sources
