@@ -9,6 +9,19 @@ const trendline = {
 };
 
 const drawChart = async (data, chart, title = 'Unknown Title', options2, dateShift) => {
+    var fields = data.Ff;
+    var entities = data.eg;
+    var isKf = false;
+    var isHg = false;
+    if (data.Kf !== undefined) {
+        isKf = true;
+        fields = data.Kf;
+    }
+    if (data.hg !== undefined) {
+        isHg = true;
+        entities = data.hg;
+    }
+
     const dateFormatter = new google.visualization.DateFormat({
         pattern: 'yyyy-MM-dd',
     });
@@ -52,23 +65,27 @@ const drawChart = async (data, chart, title = 'Unknown Title', options2, dateShi
     if (withTrendline) {
         options['trendlines'] = {};
     }
-    await asyncForEach(data.Ff, (f, index) => {
+    await asyncForEach(fields, (f, index) => {
         if (f.type == 'datetime') {
             f.type = 'date';
             f.pattern = 'yyyy-MM-dd';
         }
-        if (withTrendline && index < data.Ff.length - 1) {
+        if (withTrendline && index < fields.length - 1) {
             options['trendlines'][index] = trendline;
         }
     });
 
-    if (data.Ff[0].type == 'date') {
+    if (fields[0].type == 'date') {
         options['hAxis'] = { format: 'yyyy-MM-dd' };
         dateFormatter.format(data, 0);
     }
+    if(isKf) {
+        data.Kf = fields;
+    } else {
+        data.Ff = fields;
+    }
 
     chart.draw(data, options);
-
 
 
     // TABLE
@@ -78,9 +95,9 @@ const drawChart = async (data, chart, title = 'Unknown Title', options2, dateShi
 
     var dataTable = new google.visualization.DataTable();
 
-    await asyncForEach(data.Ff, (f) => dataTable.addColumn(f));
+    await asyncForEach(fields, (f) => dataTable.addColumn(f));
 
-    dataTable.addRows(data.eg.map(e => e.c.map(c => c.v)));
+    dataTable.addRows(entities.map(e => e.c.map(c => c.v)));
     // dateFormatter.format(dataTable, 0);
 
     var table = new google.visualization.Table(document.getElementById(tableId));

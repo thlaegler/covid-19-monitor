@@ -7,8 +7,8 @@ var allCountries = {};
 var allSnapshotsByCountry = {};
 var allSnapshotsByDate = {};
 
-// var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
-var filePathPrefix = ''; // local prod
+var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
+// var filePathPrefix = ''; // local prod
 
 const determineSign = (it) => {
     return it == 0 ? '' : ((it > 0) ? '+' : '');

@@ -13,6 +13,8 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import com.mobility23.service.taxi.SuperShuttleTaxiService;
+import com.mobility23.service.taxi.TaxiService;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -24,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableConfigurationProperties
 @ConfigurationPropertiesScan({"com.covid19"})
 @ComponentScan(basePackages = {"com.covid19", "com.mobility23"},
-    excludeFilters = @Filter(classes = com.mobility23.service.taxi.SuperShuttleTaxiService.class,
+    excludeFilters = @Filter(classes = {TaxiService.class, SuperShuttleTaxiService.class},
         type = FilterType.ASSIGNABLE_TYPE))
 @EntityScan(basePackages = {"com.covid19.model", "com.mobility23.model"})
 @EnableElasticsearchRepositories(basePackages = {"com.covid19.repo", "com.mobility23.repo"})
