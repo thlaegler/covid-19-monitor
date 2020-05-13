@@ -7,8 +7,8 @@ var allCountries = {};
 var allSnapshotsByCountry = {};
 var allSnapshotsByDate = {};
 
-var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
-// var filePathPrefix = ''; // local prod
+// var filePathPrefix = 'https://raw.githubusercontent.com/thlaegler/covid-19-monitor/master/'; // local dev
+var filePathPrefix = ''; // local prod
 
 const determineSign = (it) => {
     return it == 0 ? '' : ((it > 0) ? '+' : '');
@@ -310,8 +310,6 @@ const updateSnapshots = async (csvSnapshot) => {
                 var infectiousDuration = Number($('#input-infectious_duration').val());
                 var latentDuration = Number($('#input-latent_duration').val());
 
-                var countr = allCountries[snap.country];
-
                 snap.confirmedGrowthRate = snap.confirmedGrowthRate <= 0 ? 0 : ((snap.confirmedGrowthRate - 1) * 100);
                 snap.recoveredGrowthRate = snap.recoveredGrowthRate <= 0 ? 0 : ((snap.recoveredGrowthRate - 1) * 100);
                 snap.deceasedGrowthRate = snap.deceasedGrowthRate <= 0 ? 0 : ((snap.deceasedGrowthRate - 1) * 100);
@@ -332,6 +330,7 @@ const updateSnapshots = async (csvSnapshot) => {
                 // snap.immunizationRate = snap.immunizationRate * (1 + undetectedFactor);
 
                 // TODO: Use time-shift for confirmed cases
+                var countr = allCountries[snap.country];
                 if (countr) {
                     var base = snap.infectious;
                     if (j >= infectiousDuration) {
@@ -348,7 +347,7 @@ const updateSnapshots = async (csvSnapshot) => {
                     snap.calculatedCriticalCareBedUtilization = (snap.calculatedCriticalCarePer100k / countr.criticalCareBedsPer100k) * 100;
 
                 } else {
-                    console.warn('No data about country ' + countr);
+                    console.warn('No data about country ' + snap.country);
                 }
                 snap.estimateReproductionNumber = ((snap.confirmedDelta / snap.infectious) * (infectiousDuration + (0.5 * latentDuration))) * (1 - snap.immunizationRate);
 
@@ -408,7 +407,7 @@ const doApply = async () => {
 
     var missingCountryNames = selectedCountryNames.filter(sc => !allSnapshotsByCountry[sc]);
     if (missingCountryNames && missingCountryNames.length > 0) {
-        await asyncForEach(missingCountryNames, async (countryName) => {
+        await asyncForEach(selectedCountryNames, async (countryName) => {
             $('.loader-text').html('Loading ' + countryName + ' ...');
             var fileName = filePathPrefix + 'data/by_country/' + countryName + '.csv';
             await $.get(fileName, async (csvString) => {
@@ -648,7 +647,7 @@ const setSimulationCrossFields = (selDate, selCountryName) => {
     }
 };
 
-const init = () => {
+const init = async () => {
     $('.loader-modal').show();
     window.scrollTo(0, 0);
 
@@ -659,7 +658,7 @@ const init = () => {
     initLanguage();
 
     // Initial Data
-    loadCsvCountries(initSelectCountries);
+    loadCsvCountries(await initSelectCountries);
     loadCsvCovid19ByCountry('China', initSelectDateIds);
 
     // Map
