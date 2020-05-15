@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -87,7 +88,7 @@ public class ImportService extends CsvService {
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev58/v2/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2008HotfixDev26/v2/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -520,9 +521,16 @@ public class ImportService extends CsvService {
             String dateId = snap.getDateId();
             double mob = values.stream()
                 .filter(v -> v.getDateValues() != null && !isEmpty(v.getDateValues().get(dateId)))
-                .mapToDouble(
-                    v -> v.getDateValues().get(dateId).stream().findFirst().orElse(previous.get()))
-                .average().orElse(previous.get());
+                .mapToDouble(v -> {
+                  Collection<Double> ga = v.getDateValues().get(dateId);
+                  Double da = ga.iterator().next();
+                  if (da != null) {
+                    return da;
+                  } else {
+                    return previous.get();
+                    // ga.stream().filter(Objects::nonNull).findFirst().orElse(previous.get());
+                  }
+                }).average().orElse(previous.get());
             snap.setAppleMobility(mob);
             previous.set(mob);
             return snap;
