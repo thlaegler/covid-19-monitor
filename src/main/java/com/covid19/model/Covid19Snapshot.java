@@ -33,64 +33,76 @@ public class Covid19Snapshot extends AbstractModel {
 
   @ApiModelProperty(name = "dateId", value = "Date in ISO format (YYYY-mm-dd)", required = false)
   @CsvBindByName(column = "dateId")
+  @Field(type = FieldType.Keyword)
   private String dateId;
 
   @ApiModelProperty(name = "dayId",
       value = "Number of Days since 1th of Januaray 2020 (start of chinese/global data collection)",
       required = false)
   @CsvBindByName(column = "dayId")
+  @Field(type = FieldType.Integer)
   private Integer dayId;
 
   @ApiModelProperty(name = "country", value = "Country or Region", required = false)
   @CsvBindByName(column = "country")
+  @Field(type = FieldType.Keyword)
   private String country;
 
   @ApiModelProperty(name = "countryCode", value = "ISO Country Code", required = false)
   @CsvBindByName(column = "countryCode")
+  @Field(type = FieldType.Keyword)
   private String countryCode;
 
-  @ApiModelProperty(name = "confirmed", value = "Confirmed Cases")
+  @ApiModelProperty(value = "Confirmed Cases")
   @CsvBindByName
-  @Field(name = "confirmed", type = FieldType.Long)
+  @Field(type = FieldType.Long)
   private long confirmed;
 
   @CsvBindByName
+  @Field(type = FieldType.Long)
   private long confirmedDelta;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double confirmedGrowthRate;
 
   @ApiModelProperty(name = "recovered", value = "Recovered Cases")
   @CsvBindByName
-  @Field(name = "recovered", type = FieldType.Long)
+  @Field(type = FieldType.Long)
   private long recovered;
 
   @CsvBindByName
+  @Field(type = FieldType.Long)
   private long recoveredDelta;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double recoveredGrowthRate;
 
   @ApiModelProperty(name = "deceased", value = "Deceased Cases")
   @CsvBindByName
-  @Field(name = "deceased", type = FieldType.Long)
+  @Field(type = FieldType.Long)
   private long deceased;
 
   @CsvBindByName
+  @Field(type = FieldType.Long)
   private long deceasedDelta;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double deceasedGrowthRate;
 
   @ApiModelProperty(name = "infectious", value = "Active/Infectious Cases")
   @CsvBindByName
-  @Field(name = "infectious", type = FieldType.Long)
+  @Field(type = FieldType.Long)
   private long infectious;
 
   @CsvBindByName
+  @Field(type = FieldType.Long)
   private long infectiousDelta;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double infectiousGrowthRate;
 
   @ApiModelProperty(name = "tested", value = "Tested Cases/People")
@@ -99,33 +111,43 @@ public class Covid19Snapshot extends AbstractModel {
   private long tested;
 
   @CsvBindByName
+  @Field(type = FieldType.Long)
   private long testedDelta;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double testedPer1k;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double incidencePer100k;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double recoveryRate;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double caseFatalityRisk;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double immunizationRate;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double doublingTime;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double appleMobility;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double googleMobility;
 
   @CsvBindByName
+  @Field(type = FieldType.Double)
   private double responseStringency;
 
   // @ApiModelProperty(name = "location", value = "Searchable Geo location", required = false)
@@ -140,6 +162,7 @@ public class Covid19Snapshot extends AbstractModel {
       required = true)
   @CsvBindByName(column = "importDate")
   @Builder.Default
+  @Field(type = FieldType.Long)
   private LocalDateTime importDate = LocalDateTime.now();
 
   @Override
