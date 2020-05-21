@@ -42,7 +42,7 @@ public class HealthRestriction extends AbstractModel {
   @JsonProperty("country")
   @JsonAlias("country")
   @Field(name = "country", type = Keyword)
-  @CsvBindByName(column = "COUNTRY_STATE", required = true)
+  @CsvBindByName(column = "COUNTRY_STATE", required = false)
   private String country;
 
   @ApiModelProperty(name = "category", value = "Category", required = false)
