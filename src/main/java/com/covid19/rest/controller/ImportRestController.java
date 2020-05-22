@@ -46,13 +46,13 @@ public class ImportRestController {
   // return created(URI.create("http://www.example.org")).body(service.importResponseStringency());
   // }
   //
-  // @ApiOperation(value = "Import Mobility Date from Apple Mobility")
-  // @PostMapping(value = "/mobility")
-  // public ResponseEntity<?> importMobility() {
-  // service.importAppleMobility();
-  // service.importGoogleMobility();
-  // return created(URI.create("http://www.example.org")).body("");
-  // }
+  @ApiOperation(value = "Import Mobility Date from Apple Mobility")
+  @PostMapping(value = "/mobility")
+  public ResponseEntity<?> importMobility() {
+    service.importAppleMobility();
+    service.importGoogleMobility();
+    return created(URI.create("http://www.example.org")).body("");
+  }
 
   @ApiOperation(value = "Import Data")
   @PostMapping(value = "/covid19/{importStartDate}")
