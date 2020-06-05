@@ -65,10 +65,10 @@ public class AppleMobility extends AbstractModel {
   @CsvBindByName(column = "sub-region", required = false)
   private String subRegion;
 
-  @ApiModelProperty(name = "country", value = "Country", required = false)
-  @JsonProperty("country")
-  @JsonAlias("country")
-  @Field(name = "country", type = Keyword)
+  @ApiModelProperty(name = "country2", value = "Country2", required = false)
+  @JsonProperty("country2")
+  @JsonAlias("country2")
+  @Field(name = "country2", type = Keyword)
   @CsvBindByName(column = "country", required = false)
   private String country2;
 
