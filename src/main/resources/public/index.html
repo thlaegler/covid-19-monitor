@@ -6,7 +6,7 @@
 	<meta name="viewport"
 		content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,shrink-to-fit=no">
 
-	<title>covid-19-monitor Monitor</title>
+	<title>COVID-19 Monitor</title>
 
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -33,7 +33,7 @@
 
 		<div class="section section-header">
 			<nav class="navbar fixed-top navbar-light bg-light" style="width: 100%;">
-				<a class="navbar-brand" href=".">covid-19-monitor</a>
+				<a class="navbar-brand" href=".">covid-19-COVID-19</a>
 				<span id="last-update-ago" style="color: red;"></span>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -326,7 +326,7 @@
 		</div>
 
 		<div class="section section-details">
-			<h4 id="details-title">covid-19-monitor Monitor</h4>
+			<h4 id="details-title">COVID-19 Monitor</h4>
 			<div id="accordion" style="display: none;">
 				<div class="card">
 					<div class="card-header" id="headingCountry">
@@ -421,11 +421,11 @@
 					Case Factor</label>
 			</div>
 			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
-				title="Additional Acute Care Capacity in % of Capacity before covid-19-monitor (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since covid-19-monitor outbreak)">
+				title="Additional Acute Care Capacity in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
 				<input class="form-control form-control-sm" type="text" name="acute_care_additional_rate"
 					id="input-acute_care_additional_rate" value="10">
 				<label class="form-control-label" for="input-acute_care_additional_rate">Additional Acute Care Capacity
-					in % since covid-19-monitor Outbreak</label>
+					in % since COVID-19 Outbreak</label>
 			</div>
 			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
 				title="Acute Care Rate in % of Confirmed Cases This value represents the Percentage of Confirmed Cases that need acute Care. A value around 15% seems to be realistic based on data from China, South Koreo and Japan">
@@ -435,12 +435,12 @@
 					Cases</label>
 			</div>
 			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
-				title="Additional Critical/Intensive Care Capacity in % of Capacity before covid-19-monitor (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since covid-19-monitor outbreak)">
+				title="Additional Critical/Intensive Care Capacity in % of Capacity before COVID-19 (0/empty=no additional Capacity has been build; 100=Capacity has been doubled since COVID-19 outbreak)">
 				<input class="form-control form-control-sm" type="text" name="critical_care_additional_rate"
 					id="input-critical_care_additional_rate" value="50">
 				<label class="form-control-label" for="input-critical_care_additional_rate">Additional
 					Critical/Intensive Care
-					Capacity in % since covid-19-monitor Outbreak</label>
+					Capacity in % since COVID-19 Outbreak</label>
 			</div>
 			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
 				title="Critical/Intensive Care Rate in % of Confirmed Cases. This value represents the Percentage of Confirmed Cases that need critical Care. A value around 5% seems to be realistic based on data from China, South Koreo and Japan">
@@ -450,7 +450,7 @@
 					Confirmed
 					Cases</label>
 			</div>
-			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Apply">
+			<div class="form-1group">
 				<button class="btn btn-outline-secondary btn-sm form-control form-control-sm" name="button-apply"
 					id="button-apply" type="button" onclick="apply();">Apply</button>
 			</div>
@@ -499,12 +499,12 @@
 				<label class="form-control-label" for="input-simulation_horizon">Simulation Horizon in Days</label>
 			</div>
 			<div class="form-1group" data-toggle="tooltip" data-placement="auto"
-				title="Herd Immunity Rate in %. covid-19-monitor may have a value of 70-80%">
+				title="Herd Immunity Rate in %. COVID-19 may have a value of 70-80%">
 				<input class="form-control form-control-sm" type="text" name="herd_immunity_rate"
 					id="input-herd_immunity_rate" value="100">
 				<label class="form-control-label" for="input-herd_immunity_rate">Herd Immunity Rate in % </label>
 			</div>
-			<div class="form-1group" data-toggle="tooltip" data-placement="auto" title="Apply">
+			<div class="form-1group" data-placement="auto">
 				<button class="btn btn-outline-secondary btn-sm form-control form-control-sm" name="button-simulate"
 					id="button-simulate" type="button" onclick="simulate();">Simulate</button>
 			</div>
