@@ -19,7 +19,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@ApiModel(description = "OWID Testing Coverage")
+@ApiModel(description = "Travel Restrictions")
 @JsonInclude(NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -41,8 +41,15 @@ public class TravelRestriction extends AbstractModel {
   @JsonProperty("country")
   @JsonAlias("country")
   @Field(name = "country", type = Keyword)
-  @CsvBindByName(column = "COUNTRY", required = true)
+  @CsvBindByName(column = "COUNTRY", required = false)
   private String country;
+
+  @ApiModelProperty(name = "countryCode", value = "Country Code", required = true)
+  @JsonProperty("countryCode")
+  @JsonAlias("countryCode")
+  @Field(name = "countryCode", type = Keyword)
+  @CsvBindByName(column = "ISO3166_1", required = false)
+  private String countryCode;
 
   @ApiModelProperty(name = "published", value = "Published Date", required = false)
   @JsonProperty("published")

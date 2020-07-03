@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -35,6 +37,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import javax.imageio.ImageIO;
 import org.apache.batik.transcoder.TranscoderInput;
@@ -57,7 +61,7 @@ import com.covid19.model.HealthRestriction;
 import com.covid19.model.JohnsHopkinsTimeSerie;
 import com.covid19.model.ResponseStringency;
 import com.covid19.model.Testing;
-import com.covid19.model.TravelRestriction;
+import com.covid19.model.TravelRestriction2;
 import com.covid19.repo.CountryEsRepo;
 import com.covid19.repo.Covid19SnapshotEsRepo;
 import com.covid19.rest.FollowRedirectRestTemplate;
@@ -87,8 +91,11 @@ public class ImportService extends CsvService {
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HDX_ACAPS.csv";
   private static final String TRAVEL_RESTRICTION_CSV_URL =
       "https://s3-us-west-1.amazonaws.com/starschema.covid/HUM_RESTRICTIONS_COUNTRY.csv";
+  private static final String TRAVEL_RESTRICTION_CSV_URL2 =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vTxATUFm0tR6Vqq-UAOuqQ-BoQDvYYEe-BmJ20s50yBKDHEifGofP2P1LJ4jWFIu0Pb_4kRhQeyhHmn/pub?gid=0&single=true&output=csv";
+
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2010HotfixDev27/v3/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2011HotfixDev11/v3/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
@@ -121,6 +128,7 @@ public class ImportService extends CsvService {
 
   private static final DateTimeFormatter STARSCHEMA_DATE_FORMAT =
       ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
+  private static final DateTimeFormatter NEW_STARSCHEMA_DATE_FORMAT = ofPattern("dd.MM.yyyy");
   private static final DateTimeFormatter STRINGENCY_DATE_FORMAT = BASIC_ISO_DATE;
 
   private final FollowRedirectRestTemplate followRedirectRestTemplate;
@@ -158,7 +166,8 @@ public class ImportService extends CsvService {
     importAllTimeSeries();
 
     importTesting();
-    importRestrictions();
+    // importTravelRestrictions();
+    // importHealthRestrictions();
     importResponseStringency();
     importAppleMobility();
     importGoogleMobility();
@@ -258,64 +267,46 @@ public class ImportService extends CsvService {
     return null;
   }
 
-  public Map<String, Testing> importRestrictions() {
-    log.info("Importing Restrictions Data");
+  public Map<String, Testing> importTravelRestrictions() {
+    log.info("Importing Travel Restrictions Data");
 
     Map<String, Country> countries = countryRepo.findAll(PageRequest.of(0, 9999, ASC, "country"))
         .getContent().stream().collect(toMap(c -> c.getCountry(), c -> c));
 
     final File travelCsvFile = new File(TRAVEL_RESTRICTION_CSV_PATH);
-    final File healthCsvFile = new File(HEALTH_RESTRICTION_CSV_PATH);
 
     // Download CSV
     try {
-      followRedirectRestTemplate.execute(TRAVEL_RESTRICTION_CSV_URL, GET, null, resp -> {
+      followRedirectRestTemplate.execute(TRAVEL_RESTRICTION_CSV_URL2, GET, null, resp -> {
         StreamUtils.copy(resp.getBody(), new FileOutputStream(travelCsvFile));
         return travelCsvFile;
       });
-      followRedirectRestTemplate.execute(HEALTH_RESTRICTION_CSV_URL, GET, null, resp -> {
-        StreamUtils.copy(resp.getBody(), new FileOutputStream(healthCsvFile));
-        return healthCsvFile;
-      });
     } catch (Exception ex) {
-      log.error("Cannot fetch Restrictions Data from {} or {}", TRAVEL_RESTRICTION_CSV_URL,
-          HEALTH_RESTRICTION_CSV_URL, ex);
+      log.error("Cannot fetch Travel Restrictions Data from {} or {}", TRAVEL_RESTRICTION_CSV_URL2,
+          ex);
       return emptyMap();
     }
 
-    Map<String, List<TravelRestriction>> travelRestr =
-        readCsv(TRAVEL_RESTRICTION_CSV_PATH, TravelRestriction.class, true).map(x -> {
+    fileReplace(TRAVEL_RESTRICTION_CSV_URL2);
+
+    Map<String, List<TravelRestriction2>> travelRestr =
+        readCsv(TRAVEL_RESTRICTION_CSV_PATH, TravelRestriction2.class, true).map(x -> {
           x.setDateId(StringUtils.isBlank(x.getPublished()) ? null
-              : INTERNAL_DATE_FORMAT.format(STARSCHEMA_DATE_FORMAT.parse(x.getPublished())));
+              : INTERNAL_DATE_FORMAT.format(NEW_STARSCHEMA_DATE_FORMAT.parse(x.getPublished())));
           x.setCountry(sanitizeCountryName(x.getCountry()));
           x.setRestriction(x.getRestriction().replace(System.getProperty("line.separator"), "<br>")
               .replace("\\n", "<br>"));
           x.setQuarantine(x.getQuarantine().replace(System.getProperty("line.separator"), "<br>")
               .replace("\\n", "<br>"));
           return x;
-        }).collect(groupingBy(TravelRestriction::getCountry, toList()));
-
-    Map<String, List<HealthRestriction>> healthRestr =
-        readCsv(HEALTH_RESTRICTION_CSV_PATH, HealthRestriction.class, false).map(x -> {
-          x.setDateId((!StringUtils.isBlank(x.getDateImplemented())
-              && !x.getDateImplemented().equalsIgnoreCase("Not applicable"))
-                  ? INTERNAL_DATE_FORMAT
-                      .format(STARSCHEMA_DATE_FORMAT.parse(x.getDateImplemented()))
-                  : (!StringUtils.isBlank(x.getEntryDate())
-                      ? INTERNAL_DATE_FORMAT.format(STARSCHEMA_DATE_FORMAT.parse(x.getEntryDate()))
-                      : "2020-xx-xx"));
-          x.setCountry(sanitizeCountryName(x.getCountry()));
-          x.setComments(x.getComments().replace(System.getProperty("line.separator"), "<br>")
-              .replace("\\n", "<br>"));
-          return x;
-        }).collect(groupingBy(HealthRestriction::getCountry, toList()));
+        }).collect(groupingBy(TravelRestriction2::getCountry, toList()));
 
     countries.entrySet().forEach(e -> {
       String cn = e.getKey();
       Country c = e.getValue();
       boolean hasData = false;
 
-      List<TravelRestriction> ts = travelRestr.get(cn);
+      List<TravelRestriction2> ts = travelRestr.get(cn);
       if (!CollectionUtils.isEmpty(ts)) {
         ts = travelRestr.get(cn).stream().collect(toMap(x -> x.getDateId(), x -> x, (a, b) -> {
           a.setRestriction(a.getRestriction() + "<br>" + b.getRestriction());
@@ -337,6 +328,60 @@ public class ImportService extends CsvService {
         c.setTravelRestriction(buildHyperlinks(travelRestriction.toString()));
         hasData = true;
       }
+
+      if (hasData) {
+        countryRepo.save(c);
+
+        log.info("Finished Import of Restriction Data for {}", cn);
+      }
+    });
+
+    log.info("Finished Import of Restriction Data");
+
+    return null;
+  }
+
+  public Map<String, Testing> importHealthRestrictions() {
+    log.info("Importing HealthRestrictions Data");
+
+    Map<String, Country> countries = countryRepo.findAll(PageRequest.of(0, 9999, ASC, "country"))
+        .getContent().stream().collect(toMap(c -> c.getCountry(), c -> c));
+
+    final File healthCsvFile = new File(HEALTH_RESTRICTION_CSV_PATH);
+
+    // Download CSV
+    try {
+      followRedirectRestTemplate.execute(HEALTH_RESTRICTION_CSV_URL, GET, null, resp -> {
+        StreamUtils.copy(resp.getBody(), new FileOutputStream(healthCsvFile));
+        return healthCsvFile;
+      });
+    } catch (Exception ex) {
+      log.error("Cannot fetch Health Restrictions Data from {} or {}", HEALTH_RESTRICTION_CSV_URL,
+          ex);
+      return emptyMap();
+    }
+
+    fileReplace(HEALTH_RESTRICTION_CSV_PATH);
+
+    Map<String, List<HealthRestriction>> healthRestr =
+        readCsv(HEALTH_RESTRICTION_CSV_PATH, HealthRestriction.class, false).map(x -> {
+          x.setDateId((!StringUtils.isBlank(x.getDateImplemented())
+              && !x.getDateImplemented().equalsIgnoreCase("Not applicable"))
+                  ? INTERNAL_DATE_FORMAT
+                      .format(STARSCHEMA_DATE_FORMAT.parse(x.getDateImplemented()))
+                  : (!StringUtils.isBlank(x.getEntryDate())
+                      ? INTERNAL_DATE_FORMAT.format(STARSCHEMA_DATE_FORMAT.parse(x.getEntryDate()))
+                      : "2020-xx-xx"));
+          x.setCountry(sanitizeCountryName(x.getCountry()));
+          x.setComments(x.getComments().replace(System.getProperty("line.separator"), "<br>")
+              .replace("\\n", "<br>"));
+          return x;
+        }).collect(groupingBy(HealthRestriction::getCountry, toList()));
+
+    countries.entrySet().forEach(e -> {
+      String cn = e.getKey();
+      Country c = e.getValue();
+      boolean hasData = false;
 
       List<HealthRestriction> hs = healthRestr.get(cn);
       if (!CollectionUtils.isEmpty(hs)) {
@@ -1213,6 +1258,21 @@ public class ImportService extends CsvService {
       return "United Arab Emirates";
     }
     return countryName;
+  }
+
+  private void fileReplace(String filePath) {
+    String wrongLinebreak = ".\n\"";
+    try {
+      Path path = Paths.get(filePath);
+      Stream<String> lines = Files.lines(path);
+      List<String> replaced =
+          lines.map(line -> line.replaceAll(wrongLinebreak, ".\"")).collect(Collectors.toList());
+      Files.write(path, replaced);
+      lines.close();
+      System.out.println("Find and Replace done!!!");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**

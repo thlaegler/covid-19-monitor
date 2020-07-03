@@ -28,12 +28,18 @@ public class ImportRestController {
     return created(URI.create("http://www.example.org")).body(service.importCountries());
   }
 
-  // @ApiOperation(value = "Import Restriction Data from Starschema")
-  // @PostMapping(value = "/restrictions")
-  // public ResponseEntity<?> importRestrictions() {
-  // return created(URI.create("http://www.example.org")).body(service.importRestrictions());
-  // }
-  //
+  @ApiOperation(value = "Import Health Restriction Data from Starschema")
+  @PostMapping(value = "/health_restrictions")
+  public ResponseEntity<?> importHealthRestrictions() {
+    return created(URI.create("http://www.example.org")).body(service.importHealthRestrictions());
+  }
+
+  @ApiOperation(value = "Import Trave Restriction Data from Starschema")
+  @PostMapping(value = "/travel_restrictions")
+  public ResponseEntity<?> importTravelRestrictions() {
+    return created(URI.create("http://www.example.org")).body(service.importTravelRestrictions());
+  }
+
   // @ApiOperation(value = "Import Testing from OWID")
   // @PostMapping(value = "/testing")
   // public ResponseEntity<?> importTestCoverage() {
