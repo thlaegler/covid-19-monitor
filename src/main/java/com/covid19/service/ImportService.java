@@ -95,7 +95,7 @@ public class ImportService extends CsvService {
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vTxATUFm0tR6Vqq-UAOuqQ-BoQDvYYEe-BmJ20s50yBKDHEifGofP2P1LJ4jWFIu0Pb_4kRhQeyhHmn/pub?gid=0&single=true&output=csv";
 
   private static final String APPLE_MOBILITY_URL =
-      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2012HotfixDev10/v3/en-us/applemobilitytrends-%s.csv";
+      "https://covid19-static.cdn-apple.com/covid19-mobility-data/2012HotfixDev14/v3/en-us/applemobilitytrends-%s.csv";
   private static final String GOOGLE_MOBILITY_URL =
       "https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv";
   private static final String RESPONSE_STRINGENCY_URL =
