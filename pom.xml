@@ -51,7 +51,7 @@
 		<google.maps.version>0.2.9</google.maps.version>
 		<google.functions.version>v1-rev48-1.23.0</google.functions.version>
 		<google.api.services.cloudkms.version>v1-rev81-1.25.0</google.api.services.cloudkms.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<!-- <junit.version>5.5.2</junit.version> -->
 		<cucumber.version>4.8.0</cucumber.version>
 		<restassured.version>4.1.2</restassured.version>
