@@ -133,7 +133,7 @@ const updateChart = (simulationData) => {
             var result = [d.dateId];
             var sim = simulationDataByDate[d.dateId];
             if (sim) {
-                result = result.concat([withRecovered ? Math.floor(sim.S) : 0, Math.floor(sim.E), Math.floor(sim.I), withRecovered ? Math.floot(sim.R) : 0, Math.floor(sim.D), Math.floor(sim.D_overload)]);
+                result = result.concat([withRecovered ? Math.floor(sim.S) : 0, Math.floor(sim.E), Math.floor(sim.I), withRecovered ? Math.floor(sim.R) : 0, Math.floor(sim.D), Math.floor(sim.D_overload)]);
             } else {
                 result = result.concat([undefined, undefined, undefined, undefined, undefined, undefined]);
             }
